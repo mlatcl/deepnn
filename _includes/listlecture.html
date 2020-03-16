@@ -1,6 +1,6 @@
 <div class="paper">
   <p><b>Title:</b> <a href="{{lecture.url}}">{{ lecture.title }}</a></p>
   <p><b>Speaker:</b> {% assign authors = lecture.author %}{% include listauthors.html %}</p>
-  <p><b>Venue:</b> {{lecture.venue }}</p>
-  <p><b>Date:</b> {{ lecture.date | date: '%B %d, %Y' }}</p>
+  {%if lecture.venue %}<p><b>Venue:</b> {{lecture.venue }}</p>{%endif%}
+  {%if lecture.date %}<p><b>Date:</b> {{ lecture.date | date: '%B %d, %Y' }}</p>{%endif%}
 </div>
