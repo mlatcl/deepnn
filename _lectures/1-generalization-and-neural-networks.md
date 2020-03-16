@@ -1,7 +1,7 @@
 ---
 layout: lecture
-title: Forward and Inverse models in Human-Computer Interaction
-subtitle: Physical simulation and machine learning for inferring 3D finger pose
+title: Generalization and Neural Networks
+week: 1
 author:
 - title: Professor
   given: Neil
