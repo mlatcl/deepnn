@@ -31,6 +31,7 @@ collections:
   updates:
     output: true
   lectures:
+    permalink: /deepnn/lectures/:year/:month/:day/:title:output_ext
     output: true
 
 github:
