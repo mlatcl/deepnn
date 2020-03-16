@@ -31,7 +31,7 @@ collections:
   updates:
     output: true
   lectures:
-    permalink: /seminars/:year/:month/:day/:title:output_ext
+    permalink: /lectures/:year/:month/:day/:title:output_ext
     output: true
 
 github:
