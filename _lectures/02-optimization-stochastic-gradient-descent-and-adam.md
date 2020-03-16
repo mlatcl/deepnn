@@ -3,8 +3,7 @@ layout: lecture
 title: "Optimization: Stochastic Gradient Descent and ADAM"
 week: 2
 author:
-- title: Professor
-  given: Neil
+- given: Neil D.
   family: Lawrence
   institution: University of Cambridge
   url: http://inverseprobability.com

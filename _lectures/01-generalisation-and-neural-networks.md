@@ -3,8 +3,7 @@ layout: lecture
 title: Generalization and Neural Networks
 week: 1
 author:
-- title: Professor
-  given: Neil
+- given: Neil D.
   family: Lawrence
   institution: University of Cambridge
   url: http://inverseprobability.com
