@@ -16,6 +16,6 @@ layout: home
 
 {% assign lastone = site.lectures | last %}
 {% for person in site.lectures %}
-{% include listlectures.html %}
+{% include listlecture.html %}
 {% endfor %}
 
