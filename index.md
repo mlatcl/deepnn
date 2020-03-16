@@ -3,11 +3,10 @@ title: Deep Neural Networks Module
 layout: home
 ---
 
-
-## People
+## Lectures
 
 {% assign lastone = site.lectures | last %}
-{% for person in site.lectures %}
+{% for lecture in site.lectures %}
 {% include listlecture.html %}
 {% endfor %}
 
