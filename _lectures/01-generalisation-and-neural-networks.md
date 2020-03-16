@@ -13,7 +13,8 @@ abstract: >
   neural architectures. We will review classical generalization and explore what's different
   about neural network models.
 talkscam:
-venue: Computer Laboratory, William Gates Building, Room TBA
+room: TBA
+venue: Computer Laboratory, William Gates Building
 time:
 ---
 
