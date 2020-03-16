@@ -1,7 +1,7 @@
 ---
-layout: lecture
-title: Automatic Differentiation
-week: 3
+layout: topic
+title: Hardware Implementations
+label: B
 author:
 - given: Ferenc
   family: Huszár
@@ -16,7 +16,7 @@ author:
   institution: University of Cambridge
   url: http://inverseprobability.com
 abstract: >
-  This lecture will cover the foundations of automatic differentiation as well as the different frameworks that exist for building models.
+  This topic covers how these models are deployed in hardware.
 talkscam:
 room: TBA
 venue: Computer Laboratory, William Gates Building
