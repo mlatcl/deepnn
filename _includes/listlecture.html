@@ -1,0 +1,6 @@
+<div class="paper">
+  <p><b>Title:</b> <a href="{{seminar.url}}">{{ seminar.title }}</a></p>
+  <p><b>Speaker:</b> {% assign authors = seminar.author %}{% include listauthors.html %}</p>
+  <p><b>Venue:</b> {{seminar.venue }}</p>
+  <p><b>Date:</b> {{ seminar.date | date: '%B %d, %Y' }}</p>
+</div>
