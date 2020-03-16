@@ -34,8 +34,8 @@ collections:
     permalink: /lectures/:title:output_ext
     output: true
     sort_by: week
-  special-topics:
-    permalink: /special-topics/:title:output_ext
+  special_topics:
+    permalink: /special_topics/:title:output_ext
     output: true
     sort_by: label
 
