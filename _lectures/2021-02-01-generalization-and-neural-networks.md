@@ -1,7 +1,7 @@
 ---
 layout: lecture
-title: "Optimization: Stochastic Gradient Descent and ADAM"
-week: 2
+title: Generalization and Neural Networks
+week: 1
 author:
 - title: Professor
   given: Neil
@@ -9,7 +9,9 @@ author:
   institution: University of Cambridge
   url: http://inverseprobability.com
 abstract: >
-  This lecture will cover the Robins Munroe approach to optimizatin, differing it from classical approaches and highlighting its advantages for big data. 
+  This lecture will cover generalization in machine learning with a particular focus on
+  neural architectures. We will review classical generalization and explore what's different
+  about neural network models.
 talkscam:
 venue: Computer Laboratory, William Gates Building, Room TBA
 time:
