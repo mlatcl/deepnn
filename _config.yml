@@ -31,7 +31,9 @@ collections:
   updates:
     output: true
   lectures:
+    permalink: /:year/:month/:day/:title:output_ext
     output: true
+    sort_by: week
 
 github:
   edit: true
