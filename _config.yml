@@ -22,8 +22,8 @@ title: Deep Neural Networks module
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   This is the website of the Deep Neural Networks module 
-baseurl: "/deepnn" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/deepnn" # the subpath of your site, e.g. /blog
 twitter_username:
 github_username: 
 
@@ -31,7 +31,7 @@ collections:
   updates:
     output: true
   lectures:
-    permalink: /:year/:month/:day/:title:output_ext
+    permalink: /lectures/:year/:month/:day/:title:output_ext
     output: true
     sort_by: week
 
