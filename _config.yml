@@ -62,7 +62,7 @@ plugins:
   - jekyll-remote-themes
   - jekyll-feed
   - jekyll-seo
-remote-theme: lawrennd/proceedings
+remote_theme: lawrennd/proceedings
 
 # Exclude from processing.
 # The following items will not be processed, by default.
