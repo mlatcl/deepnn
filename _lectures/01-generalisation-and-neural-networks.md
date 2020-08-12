@@ -2,6 +2,7 @@
 layout: lecture
 title: Generalization and Neural Networks
 week: 1
+lecture: 1
 author:
 - given: Neil D.
   family: Lawrence
@@ -17,7 +18,6 @@ date: 2021-01-26
 start: 14:00
 end: 15:00
 venue: Computer Laboratory, William Gates Building
-time:
 ---
 
-Related publications and links will appear here.
+
