@@ -1,5 +1,6 @@
 ---
 layout: home
+title: Deep Neural Networks
 ---
 
 # DRAFT 
