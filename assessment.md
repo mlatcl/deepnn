@@ -2,9 +2,6 @@
 title: Assessment
 ---
 
-The assessment will be in form of miniprojects. Each project will be undertaken in a team of two. Work starts in Week 6, and continues across to Week 8.
+There will be two assessment tasks. The first will be given out at the end of Week 3 for submisison in Week 4 (30%). 
 
-The teams will each work on a shared code base, and document their decision making through pull requests and issue logs. 
-
-Final submission will be in the form of a colab notebook alongside a github repository. 
-
+The second will be given out at the end of Week 5 for submission in Week 8 (70%).
