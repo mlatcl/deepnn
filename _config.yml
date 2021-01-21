@@ -84,6 +84,7 @@ exclude:
   - slides/reveal.js-3.8.0/plugin/markdown/example
   - slides/reveal.js-3.8.0/test/
   - slides/reveal.js-3.8.0/css/theme/
+  - slides/plugin/markdown/example
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
