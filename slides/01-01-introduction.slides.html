@@ -368,76 +368,7 @@ Cover of <em>Neural Computation</em>, Volume 1, Issue 4 containing <span class="
 <aside class="notes">
 The first several stages of processing in our previous system (described in Denker et al. 1989) involved convolutions in which the coefficients had been laboriously hand designed. In the present system, the first two layers of the network are constrained to be convolutional, but the system automatically learns the coefficients that make up the kernels.
 </aside>
-</section>
-<section id="what-does-machine-learning-do" class="slide level2">
-<h2>What does Machine Learning do?</h2>
-<ul>
-<li>Automation scales by codifying processes and automating them.</li>
-<li>Need:
-<ul>
-<li>Interconnected components</li>
-<li>Compatible components</li>
-</ul></li>
-<li>Early examples:
-<ul>
-<li>cf Colt 45, Ford Model T</li>
-</ul></li>
-</ul>
-</section>
-<section id="codify-through-mathematical-functions" class="slide level2">
-<h2>Codify Through Mathematical Functions</h2>
-<ul>
-<li>How does machine learning work?</li>
-<li>Jumper (jersey/sweater) purchase with logistic regression</li>
-</ul>
-<p><span class="math display">\[ \text{odds} = \frac{p(\text{bought})}{p(\text{not bought})} \]</span></p>
-<p><span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}.\]</span></p>
-</section>
-<section id="codify-through-mathematical-functions-1" class="slide level2">
-<h2>Codify Through Mathematical Functions</h2>
-<ul>
-<li>How does machine learning work?</li>
-<li>Jumper (jersey/sweater) purchase with logistic regression</li>
-</ul>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}\right).\]</span></p>
-</section>
-<section id="codify-through-mathematical-functions-2" class="slide level2">
-<h2>Codify Through Mathematical Functions</h2>
-<ul>
-<li>How does machine learning work?</li>
-<li>Jumper (jersey/sweater) purchase with logistic regression</li>
-</ul>
-<p><span class="math display">\[ p(\text{bought}) =  \sigma\left(\boldsymbol{\beta}^\top \mathbf{ x}\right).\]</span></p>
-</section>
-<section id="codify-through-mathematical-functions-3" class="slide level2">
-<h2>Codify Through Mathematical Functions</h2>
-<ul>
-<li>How does machine learning work?</li>
-<li>Jumper (jersey/sweater) purchase with logistic regression</li>
-</ul>
-<p><span class="math display">\[ y=  f\left(\mathbf{ x}, \boldsymbol{\beta}\right).\]</span></p>
-<div class="fragment">
-<p>We call <span class="math inline">\(f(\cdot)\)</span> the <em>prediction function</em>.</p>
-</div>
-</section>
-<section id="fit-to-data" class="slide level2">
-<h2>Fit to Data</h2>
-<ul>
-<li>Use an objective function</li>
-</ul>
-<p><span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X})\]</span></p>
-<div class="fragment">
-<ul>
-<li>E.g. least squares <span class="math display">\[E(\boldsymbol{\beta}, \mathbf{Y}, \mathbf{X}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \boldsymbol{\beta})\right)^2.\]</span></li>
-</ul>
-</div>
-</section>
-<section id="two-components" class="slide level2">
-<h2>Two Components</h2>
-<ul>
-<li>Prediction function, <span class="math inline">\(f(\cdot)\)</span></li>
-<li>Objective function, <span class="math inline">\(E(\cdot)\)</span></li>
-</ul>
+<!--include{_ml/includes/what-does-machine-learning-do.md}-->
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
