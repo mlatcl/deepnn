@@ -15,11 +15,12 @@ date: 2021-01-26
 published: 2021-01-26
 week: 1
 session: 2
-reveal: 01-02-background-generalisation.slides.html
-ipynb: 01-02-background-generalisation.ipynb
+background: 3
+reveal: 01-02-03-background-generalisation.slides.html
+ipynb: 01-02-03-background-generalisation.ipynb
 youtube: "wy0J6cgqlf8"
 edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/background-generalisation.md
-layout: lecture
+layout: background
 categories:
 - notes
 ---
@@ -158,7 +159,7 @@ R(\mathbf{ w}) \approx \frac{1}{n} \sum_{i=1}^{n}
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olympic-marathon-caption" class="caption-frame">
-<p>Figure: Olympic marathon pace times since 1892.</p>
+<p>Figure: Olympic marathon pace times since 1896.</p>
 </div>
 </div>
 <p>Things to notice about the data include the outlier in 1904, in this year, the olympics was in St Louis, USA. Organizational problems and challenges with dust kicked up by the cars following the race meant that participants got lost, and only very few participants completed.</p>
@@ -270,77 +271,6 @@ E(\mathbf{ w}) =  (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 <h3 id="exercise-7">Exercise 7</h3>
 <p>Perform <span class="math inline">\(k\)</span>-fold cross validation on the olympic data with your polynomial basis. Use <span class="math inline">\(k\)</span> set to 5 (e.g. five fold cross validation). Do the different forms of validation select different models? Does five fold cross validation always select the same model?</p>
 <p><em>Note</em>: The data doesn’t divide into 5 equal size partitions for the five fold cross validation error. Don’t worry about this too much. Two of the partitions will have an extra data point. You might find <code>np.random.permutation?</code> useful.</p>
-<h2 id="bias-variance-decomposition">Bias Variance Decomposition</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>The bias-variance decomposition considers the expected test error for different variations of the <em>training data</em> sampled from, <span class="math inline">\(\Pr(\mathbf{ y}, y)\)</span> <span class="math display">\[
-\mathbb{E}\left[ \left(y- f^*(\mathbf{ y})\right)^2 \right].
-\]</span> This can be decomposed into two parts, <span class="math display">\[
-\mathbb{E}\left[ \left(y- f(\mathbf{ y})\right)^2 \right] = \text{bias}\left[f^*(\mathbf{ y})\right]^2 + \text{variance}\left[f^*(\mathbf{ y})\right] +\sigma^2,
-\]</span> where the bias is given by <span class="math display">\[
-  \text{bias}\left[f^*(\mathbf{ y})\right] =
-\mathbb{E}\left[f^*(\mathbf{ y})\right] * f(\mathbf{ y})
-\]</span> and it summarizes error that arises from the model’s inability to represent the underlying complexity of the data. For example, if we were to model the marathon pace of the winning runner from the Olympics by computing the average pace across time, then that model would exhibit <em>bias</em> error because the reality of Olympic marathon pace is it is changing (typically getting faster).</p>
-<p>The variance term is given by <span class="math display">\[
-  \text{variance}\left[f^*(\mathbf{ y})\right] = \mathbb{E}\left[\left(f^*(\mathbf{ y}) - \mathbb{E}\left[f^*(\mathbf{ y})\right]\right)^2\right].
-  \]</span> The variance term is often described as arising from a model that is too complex, but we have to be careful with this idea. Is the model really too complex relative to the real world that generates the data? The real world is a complex place, and it is rare that we are constructing mathematical models that are more complex than the world around us. Rather, the ‘too complex’ refers to ability to estimate the parameters of the model given the data we have. Slight variations in the training set cause changes in prediction.</p>
-<p>Models that exhibit high variance are sometimes said to ‘overfit’ the data whereas models that exhibit high bias are sometimes described as ‘underfitting’ the data.</p>
-<h2 id="bias-vs-variance-error-plots">Bias vs Variance Error Plots</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-plots.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-plots.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Helper function for sampling data from two different classes.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<p>Helper function for plotting the decision boundary of the SVM.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/mlai.py&#39;</span>,<span class="st">&#39;mlai.py&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb14-2"><a href="#cb14-2"></a>font <span class="op">=</span> {<span class="st">&#39;family&#39;</span> : <span class="st">&#39;sans&#39;</span>,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>        <span class="st">&#39;weight&#39;</span> : <span class="st">&#39;bold&#39;</span>,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>        <span class="st">&#39;size&#39;</span>   : <span class="dv">22</span>}</span>
-<span id="cb14-5"><a href="#cb14-5"></a></span>
-<span id="cb14-6"><a href="#cb14-6"></a>matplotlib.rc(<span class="st">&#39;font&#39;</span>, <span class="op">**</span>font)</span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> sklearn <span class="im">import</span> svm</span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Create an instance of SVM and fit the data. </span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>C <span class="op">=</span> <span class="fl">100.0</span>  <span class="co"># SVM regularization parameter</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>gammas <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>]</span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a>per_class<span class="op">=</span><span class="dv">30</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a>num_samps <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="co"># Set-up 2x2 grid for plotting.</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">3</span>))</span>
-<span id="cb16-10"><a href="#cb16-10"></a>xlim<span class="op">=</span><span class="va">None</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a>ylim<span class="op">=</span><span class="va">None</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="cf">for</span> samp <span class="kw">in</span> <span class="bu">range</span>(num_samps):</span>
-<span id="cb16-13"><a href="#cb16-13"></a>    X, y<span class="op">=</span>create_data(per_class)</span>
-<span id="cb16-14"><a href="#cb16-14"></a>    models <span class="op">=</span> []</span>
-<span id="cb16-15"><a href="#cb16-15"></a>    titles <span class="op">=</span> []</span>
-<span id="cb16-16"><a href="#cb16-16"></a>    <span class="cf">for</span> gamma <span class="kw">in</span> gammas:</span>
-<span id="cb16-17"><a href="#cb16-17"></a>        models.append(svm.SVC(kernel<span class="op">=</span><span class="st">&#39;rbf&#39;</span>, gamma<span class="op">=</span>gamma, C<span class="op">=</span>C))</span>
-<span id="cb16-18"><a href="#cb16-18"></a>        titles.append(<span class="st">&#39;$\gamma=</span><span class="sc">{}</span><span class="st">$&#39;</span>.<span class="bu">format</span>(gamma))</span>
-<span id="cb16-19"><a href="#cb16-19"></a>    models <span class="op">=</span> (cl.fit(X, y) <span class="cf">for</span> cl <span class="kw">in</span> models)</span>
-<span id="cb16-20"><a href="#cb16-20"></a>    xlim, ylim <span class="op">=</span> decision_boundary_plot(models, X, y, </span>
-<span id="cb16-21"><a href="#cb16-21"></a>                           axs<span class="op">=</span>ax, </span>
-<span id="cb16-22"><a href="#cb16-22"></a>                           filename<span class="op">=</span><span class="st">&#39;bias-variance</span><span class="sc">{samp:0&gt;3}</span><span class="st">.svg&#39;</span>.<span class="bu">format</span>(samp<span class="op">=</span>samp), </span>
-<span id="cb16-23"><a href="#cb16-23"></a>                           directory<span class="op">=</span><span class="st">&#39;../slides/diagrams/ml&#39;</span></span>
-<span id="cb16-24"><a href="#cb16-24"></a>                           titles<span class="op">=</span>titles,</span>
-<span id="cb16-25"><a href="#cb16-25"></a>                          xlim<span class="op">=</span>xlim,</span>
-<span id="cb16-26"><a href="#cb16-26"></a>                          ylim<span class="op">=</span>ylim)</span></code></pre></div>
-<!---->
-<div class="figure">
-<div id="bias-variance-errors-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/bias-variance000.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/bias-variance010.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="bias-variance-errors-magnify" class="magnify" onclick="magnifyFigure(&#39;bias-variance-errors&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="bias-variance-errors-caption" class="caption-frame">
-<p>Figure: In each figure the simpler model is on the left, and the more complex model is on the right. Each fit is done to a different version of the data set. The simpler model is more consistent in its errors (bias error), whereas the more complex model is varying in its errors (variance error).</p>
-</div>
-</div>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
 <li>Section 1.5 of <span class="citation" data-cites="Rogers:book11">Rogers and Girolami (2011)</span></li>
