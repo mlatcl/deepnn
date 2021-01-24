@@ -435,7 +435,7 @@ E(\mathbf{ w},\sigma^2)= \frac{n}{2}\log\sigma^2 + \frac{\sum_{i=1}^{n}\left(y_i
 <p>In practice we should avoid solving these equations through direct use of the inverse. Instead we solve for <span class="math inline">\(\mathbf{ w}\)</span> in the following linear system.</p>
 <p><span class="math display">\[
   \left(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\right)\mathbf{ w}= \boldsymbol{ \Phi}^\top \mathbf{ y}
-\]</span> Compare this system with <em>solve for <span class="math inline">\(x\)</span></em> in <span class="math display">\[
+\]</span> Compare this system with <em>solve for</em> <span class="math inline">\(\mathbf{x}\)</span> in <span class="math display">\[
 \mathbf{A}\mathbf{x} = \mathbf{b}.
 \]</span> For example see the <code>numpy.linalg.solve</code> or <code>torch.linalg.solve</code>.</p>
 <p>But the correct and more stable approach is to make use of the QR decomposition.</p>
