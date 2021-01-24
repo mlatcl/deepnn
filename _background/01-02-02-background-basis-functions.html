@@ -246,23 +246,23 @@ f(x) = \color{red}{w_0}   + \color{magenta}{w_1 xH(x+1.0) } + \color{blue}{w_2 x
 </div>
 </div>
 <h2 id="hyperbolic-tangent-basis">Hyperbolic Tangent Basis</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/tanh-basis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/tanh-basis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/hyperbolic-tangent-basis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/hyperbolic-tangent-basis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>The rectified linear unit is a basis function that used to be used a lot for neural network models. It’s related to the sigmoid function by a scaling. <span class="math display">\[
 \phi_j(x) = \tanh(v_j x+ v_0)
 \]</span></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="im">from</span> mlai <span class="im">import</span> tanh</span></code></pre></div>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="im">from</span> mlai <span class="im">import</span> hyperbolic_tangent</span></code></pre></div>
 <p>Sigmoid or hyperbolic tangent basis was popular in the original generation of multilayer perceptron models, or deep networks. These basis functions start flat, rise and then saturate.</p>
 <div class="figure">
-<div id="tanh-basis-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/tanh_basis004.svg" width="80%" style=" ">
+<div id="hyperbolic_tangent-basis-2-figure" class="figure-frame">
+<object class="svgplot " data="../slides/diagrams/ml/hyperbolic_tangent_basis004.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="tanh-basis-2-magnify" class="magnify" onclick="magnifyFigure(&#39;tanh-basis-2&#39;)">
+<div id="hyperbolic_tangent-basis-2-magnify" class="magnify" onclick="magnifyFigure(&#39;hyperbolic_tangent-basis-2&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="tanh-basis-2-caption" class="caption-frame">
+<div id="hyperbolic_tangent-basis-2-caption" class="caption-frame">
 <p>Figure: The set of functions which are combined to form a <em>hyberbolic tangent</em> basis.</p>
 </div>
 </div>
@@ -271,14 +271,14 @@ f(x) = \color{red}{w_0}   + \color{magenta}{w_1 xH(x+1.0) } + \color{blue}{w_2 x
 f(x) = {\color{red}{w_0}}   + {\color{magenta}{w_1 \text{tanh}\left(x+1\right)}}  + {\color{blue}{w_2 \text{tanh}\left(x+0.33\right)}}  + {\color{green}{w_3 \text{tanh}\left(x-0.33\right)}} + {\color{cyan}{w_4 \text{tanh}\left(x-1\right)}}
 \]</span></p>
 <div class="figure">
-<div id="tanh-function-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/tanh_function002.svg" width="80%" style=" ">
+<div id="hyperbolic_tangent-function-2-figure" class="figure-frame">
+<object class="svgplot " data="../slides/diagrams/ml/hyperbolic_tangent_function002.svg" width="80%" style=" ">
 </object>
 </div>
-<div id="tanh-function-2-magnify" class="magnify" onclick="magnifyFigure(&#39;tanh-function-2&#39;)">
+<div id="hyperbolic_tangent-function-2-magnify" class="magnify" onclick="magnifyFigure(&#39;hyperbolic_tangent-function-2&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="tanh-function-2-caption" class="caption-frame">
+<div id="hyperbolic_tangent-function-2-caption" class="caption-frame">
 <p>Figure: A hyperbolic tangent basis is made up of s-shaped basis functions centered at different points.</p>
 </div>
 </div>
