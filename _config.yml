@@ -47,6 +47,10 @@ collections:
     permalink: /lectures/:title:output_ext
     output: true
     sort_by: week
+  background:
+    permalink: /background/:title:output_ext
+    output: true
+    sort_by: week
   special_topics:
     permalink: /special_topics/:title:output_ext
     output: true

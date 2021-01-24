@@ -1,24 +1,25 @@
 ---
-title: "Generalization and Neural Networks"
-venue: "Computer Laboratory, William Gates Building, 15 J. J. Thomson Avenue"
-abstract: "<p>This lecture will cover generalization in machine learning with a particular focus on neural architectures. We will review classical generalization and explore what’s different about neural network models.</p>"
+title: "Basis Functions"
+venue: "Zoom"
+abstract: "<p>In the last session we explored least squares for univariate and multivariate <em>regression</em>. We introduced <em>matrices</em>, <em>linear algebra</em> and <em>derivatives</em>.</p>
+<p>In this session we will introduce <em>basis functions</em> which allow us to implement <em>non-linear regression models</em>.</p>"
 author:
 - given: Neil D.
   family: Lawrence
   url: http://inverseprobability.com
   institute: 
-  twitter: 
-  gscholar: 
-  orcid: 
-edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/generalisation-and-neural-networks.md
+  twitter: lawrennd
+  gscholar: r3SJcvoAAAAJ
+  orcid: 0000-0001-9258-1030
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/background-basis-functions.md
 date: 2021-01-26
 published: 2021-01-26
-time: "14:00"
 week: 1
 session: 2
-reveal: 01-02-generalisation-and-neural-networks.slides.html
-ipynb: 01-02-generalisation-and-neural-networks.ipynb
-edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/generalisation-and-neural-networks.md
+reveal: 01-02-background-basis-functions.slides.html
+ipynb: 01-02-background-basis-functions.ipynb
+youtube: "PoNbOnUnOao"
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/background-basis-functions.md
 layout: lecture
 categories:
 - notes
@@ -35,10 +36,10 @@ categories:
 
 -->
 <h2 id="setup">Setup</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deepnn-notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deepnn-notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_notebooks/includes/notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_notebooks/includes/notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>First we download some libraries and files to support the notebook.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> urllib.request</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/ndlml.py&#39;</span>,<span class="st">&#39;ndlml.py&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/mlai.py&#39;</span>,<span class="st">&#39;mlai.py&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/teaching_plots.py&#39;</span>,<span class="st">&#39;teaching_plots.py&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/gp_tutorial.py&#39;</span>,<span class="st">&#39;gp_tutorial.py&#39;</span>)</span></code></pre></div>
 <!--setupplotcode{import seaborn as sns
@@ -55,6 +56,13 @@ sns.set_palette('colorblind')}-->
 <p>The code is also available on github: <a href="https://github.com/sods/ods" class="uri">https://github.com/sods/ods</a></p>
 <p>Once <code>pods</code> is installed, it can be imported in the usual manner.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<h2 id="nonlinear-regression">Nonlinear Regression</h2>
+<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/non-linear-regression-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/non-linear-regression-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p>We’ve now seen how we may perform linear regression. Now, we are going to consider how we can perform <em>non-linear</em> regression. However, before we get into the details of how to do that we first need to consider in what ways the regression can be non-linear. Multivariate linear regression allows us to build models that take many features into account when making our prediction. In this session we are going to introduce <em>basis functions</em>. The term seems complicted, but they are actually based on rather a simple idea. If we are doing a multivariate linear regression, we get extra features that <em>might</em> help us predict our required response varible (or target value), <span class="math inline">\(y\)</span>. But what if we only have one input value? We can actually artificially generate more input values with basis functions.</p>
+<h2 id="non-linear-in-the-inputs">Non-linear in the Inputs</h2>
+<p>When we refer to non-linear regression, we are normally referring to whether the regression is non-linear in the input space, or non-linear in the <em>covariates</em>. The covariates are the observations that move with the target (or <em>response</em>) variable. In our notation we have been using <span class="math inline">\(\mathbf{ x}_i\)</span> to represent a vector of the covariates associated with the <span class="math inline">\(i\)</span>th observation. The coresponding response variable is <span class="math inline">\(y_i\)</span>. If a model is non-linear in the inputs, it means that there is a non-linear function between the inputs and the response variable. Linear functions are functions that only involve multiplication and addition, in other words they can be represented through <em>linear algebra</em>. Linear regression involves assuming that a function takes the form <span class="math display">\[
+f(\mathbf{ x}) = \mathbf{ w}^\top \mathbf{ x}
+\]</span> where <span class="math inline">\(\mathbf{ w}\)</span> are our regression weights. A very easy way to make the linear regression non-linear is to introduce non-linear functions. When we are introducing non-linear regression these functions are known as <em>basis functions</em>.</p>
 <h1 id="basis-functions">Basis Functions</h1>
 <h2 id="basis-functions-1">Basis Functions</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/basis-functions-intro.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/basis-functions-intro.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
@@ -423,10 +431,13 @@ E(\mathbf{ w},\sigma^2)= \frac{n}{2}\log\sigma^2 + \frac{\sum_{i=1}^{n}\left(y_i
 <p><span class="math display">\[
   \left.\sigma^2\right.^{{*}}=\frac{\sum_{i=1}^{n}\left(y_i-\left.\mathbf{ w}^{*}\right.^{\top}\boldsymbol{ \phi}_i\right)^{2}}{n}.
   \]</span></p>
-<p>In practice we should avoid solving these equations through direct use of the inverse. The correct approach is to make use of the QR decomposition.</p>
+<p>In practice we should avoid solving these equations through direct use of the inverse. Instead we solve for <span class="math inline">\(\mathbf{ w}\)</span> in the following linear system.</p>
 <p><span class="math display">\[
   \left(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\right)\mathbf{ w}= \boldsymbol{ \Phi}^\top \mathbf{ y}
-  \]</span></p>
+\]</span> Compare this system with <em>solve for <span class="math inline">\(x\)</span></em> in <span class="math display">\[
+\mathbf{A}\mathbf{x} = \mathbf{b}.
+\]</span> For example see the <code>numpy.linalg.solve</code> or <code>torch.linalg.solve</code>.</p>
+<p>But the correct and more stable approach is to make use of the QR decomposition.</p>
 <h2 id="polynomial-fits-to-olympic-data">Polynomial Fits to Olympic Data</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -498,241 +509,33 @@ f(\mathbf{ x}) = \mathbf{ w}^\top \boldsymbol{ \phi}(\mathbf{ x};
 <p>Choose one of the basis functions you have explored above. Compute the design matrix on the covariates (or input data), <code>x</code>. Use the design matrix and the response variable <code>y</code> to solve the following linear system for the model parameters <code>w</code>. <span class="math display">\[
 \boldsymbol{ \phi}^\top\boldsymbol{ \phi}\mathbf{ w}= \boldsymbol{ \phi}^\top \mathbf{ y}
 \]</span> Compute the corresponding error on the training data. How does it compare to the error you were able to achieve fitting the basis above? Plot the form of your prediction function from the least squares estimate alongside the form of you prediction function you fitted by hand.</p>
+<h2 id="further-reading">Further Reading</h2>
 <ul>
-<li>Classical models of generalisation</li>
-<li>Double descent</li>
-<li>Generalisation as a function of the algorithm (route up table mountain)</li>
-<li>Conflating algoirthm with model</li>
+<li><p>Section 1.4 of <span class="citation" data-cites="Rogers:book11">Rogers and Girolami (2011)</span></p></li>
+<li><p>Chapter 1, pg 1-6 of <span class="citation" data-cites="Bishop:book06">Bishop (2006)</span></p></li>
+<li><p>Chapter 3, Section 3.1 up to pg 143 of <span class="citation" data-cites="Bishop:book06">Bishop (2006)</span></p></li>
 </ul>
-<h2 id="expected-loss">Expected Loss</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/expected-loss.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/expected-loss.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Our objective function so far has been the negative log likelihood, which we have minimized (via the sum of squares error) to obtain our model. However, there is an alternative perspective on an objective function, that of a <em>loss function</em>. A loss function is a cost function associated with the penalty you might need to pay for a particular incorrect decision. One approach to machine learning involves specifying a loss function and considering how much a particular model is likely to cost us across its lifetime. We can represent this with an expectation. If our loss function is given as <span class="math inline">\(L(y, x, \mathbf{ w})\)</span> for a particular model that predicts <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> and <span class="math inline">\(\mathbf{ w}\)</span> then we are interested in minimizing the expected loss under the likely distribution of <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. To understand this formally we define the <em>true</em> distribution of the data samples, <span class="math inline">\(y\)</span>, <span class="math inline">\(x\)</span>. This is a particularl distribution that we don’t have access to very often, and to represent that we define it with a variant of the letter ‘P’, <span class="math inline">\(\mathbb{P}(y, x)\)</span>. If we genuinely pay <span class="math inline">\(L(y, x, \mathbf{ w})\)</span> for every mistake we make, and the future test data is genuinely drawn from <span class="math inline">\(\mathbb{P}(y, x)\)</span> then we can define our expected loss, or risk, to be, <span class="math display">\[
-R(\mathbf{ w}) = \int L(y, x, \mathbf{ w}) \mathbb{P}(y, x) \text{d}y
-\text{d}x.
-\]</span> Of course, in practice, this value can’t be computed <em>but</em> it serves as a reminder of what it is we are aiming to minimize and under certain circumstances it can be approximated.</p>
-<h2 id="sample-based-approximations">Sample Based Approximations</h2>
-<p>A sample based approximation to an expectation involves replacing the true expectation with a sum over samples from the distribution.</p>
-<p><span class="math display">\[
-\int f(z) p(z) \text{d}z\approx \frac{1}{s}\sum_{i=1}^s f(z_i).
-\]</span> if <span class="math inline">\(\{z_i\}_{i=1}^s\)</span> are a set of <span class="math inline">\(s\)</span> independent and identically distributed samples from the distribution <span class="math inline">\(p(z)\)</span>. This approximation becomes better for larger <span class="math inline">\(s\)</span>, although the <em>rate of convergence</em> to the true integral will be very dependent on the distribution <span class="math inline">\(p(z)\)</span> <em>and</em> the function <span class="math inline">\(f(z)\)</span>.</p>
-<p>That said, this means we can approximate our true integral with the sum, <span class="math display">\[
-R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
-\]</span></p>
-<p>if <span class="math inline">\(y_i\)</span> and <span class="math inline">\(x_i\)</span> are independent samples from the true distribution <span class="math inline">\(\mathbb{P}(y, x)\)</span>. Minimizing this sum directly is known as <em>empirical risk minimization</em>. The sum of squares error we have been using can be recovered for this case by considering a <em>squared loss</em>, <span class="math display">\[
-L(y, x, \mathbf{ w}) = (y-\mathbf{ w}^\top\boldsymbol{\phi}(x))^2,
-\]</span> which gives an empirical risk of the form <span class="math display">\[
-R(\mathbf{ w}) \approx \frac{1}{n} \sum_{i=1}^{n}
-(y_i - \mathbf{ w}^\top \boldsymbol{\phi}(x_i))^2
-\]</span> which up to the constant <span class="math inline">\(\frac{1}{n}\)</span> is identical to the objective function we have been using so far.</p>
-<h2 id="estimating-risk-through-validation">Estimating Risk through Validation</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/empirical-risk-minimization.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/empirical-risk-minimization.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Unfortuantely, minimising the empirial risk only guarantees something about our performance on the training data. If we don’t have enough data for the approximation to the risk to be valid, then we can end up performing significantly worse on test data. Fortunately, we can also estimate the risk for test data through estimating the risk for unseen data. The main trick here is to ‘hold out’ a portion of our data from training and use the models performance on that sub-set of the data as a proxy for the true risk. This data is known as ‘validation’ data. It contrasts with test data, because its values are known at the model design time. However, in contrast to test date we don’t use it to fit our model. This means that it doesn’t exhibit the same bias that the empirical risk does when estimating the true risk.</p>
-<h2 id="validation">Validation</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/validation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/validation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>In this lab we will explore techniques for model selection that make use of validation data. Data that isn’t seen by the model in the learning (or fitting) phase, but is used to <em>validate</em> our choice of model from amoungst the different designs we have selected.</p>
-<p>In machine learning, we are looking to minimise the value of our objective function <span class="math inline">\(E\)</span> with respect to its parameters <span class="math inline">\(\mathbf{ w}\)</span>. We do this by considering our training data. We minimize the value of the objective function as it’s observed at each training point. However we are really interested in how the model will perform on future data. For evaluating that we choose to <em>hold out</em> a portion of the data for evaluating the quality of the model.</p>
-<p>We will review the different methods of model selection on the Olympics marathon data. Firstly we import the Olympic marathon data.</p>
-<h2 id="validation-on-the-olympic-marathon-data">Validation on the Olympic Marathon Data</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-validation-fit.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-validation-fit.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>The first thing we’ll do is fit a standard linear model to the data. We recall from previous lectures and lab classes that to do this we need to solve the system <span class="math display">\[
-\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top \mathbf{ y}
-\]</span> for <span class="math inline">\(\mathbf{ w}\)</span> and use the resulting vector to make predictions at the training points and test points, <span class="math display">\[
-\mathbf{ f}= \boldsymbol{ \Phi}\mathbf{ w}.
-\]</span> The prediction function can be used to compute the objective function, <span class="math display">\[
-E(\mathbf{ w}) = \sum_{i}^{n} (y_i - \mathbf{ w}^\top\phi(\mathbf{ y}_i))^2
-\]</span> by substituting in the prediction in vector form we have <span class="math display">\[
-E(\mathbf{ w}) =  (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
-\]</span></p>
-<h3 id="exercise-5">Exercise 5</h3>
-<p>In this question you will construct some flexible general code for fitting linear models.</p>
-<p>Create a python function that computes <span class="math inline">\(\boldsymbol{ \Phi}\)</span> for the linear basis, <span class="math display">\[\boldsymbol{ \Phi}= \begin{bmatrix} \mathbf{ y}&amp; \mathbf{1}\end{bmatrix}\]</span> Name your function <code>linear</code>. <code>Phi</code> should be in the form of a <em>design matrix</em> and <code>x</code> should be in the form of a <code>numpy</code> two dimensional array with <span class="math inline">\(n\)</span> rows and 1 column Calls to your function should be in the following form:</p>
-<p><code>Phi = linear(x)</code></p>
-<p>Create a python function that accepts, as arguments, a python function that defines a basis (like the one you’ve just created called <code>linear</code>) as well as a set of inputs and a vector of parameters. Your new python function should return a prediction. Name your function <code>prediction</code>. The return value <code>f</code> should be a two dimensional <code>numpy</code> array with <span class="math inline">\(n\)</span> rows and <span class="math inline">\(1\)</span> column, where <span class="math inline">\(n\)</span> is the number of data points. Calls to your function should be in the following form:</p>
-<p><code>f = prediction(w, x, linear)</code></p>
-<p>Create a python function that computes the sum of squares objective function (or error function). It should accept your input data (or covariates) and target data (or response variables) and your parameter vector <code>w</code> as arguments. It should also accept a python function that represents the basis. Calls to your function should be in the following form:</p>
-<p><code>e = objective(w, x, y, linear)</code></p>
-<p>Create a function that solves the linear system for the set of parameters that minimizes the sum of squares objective. It should accept input data, target data and a python function for the basis as the inputs. Calls to your function should be in the following form:</p>
-<p><code>w = fit(x, y, linear)</code></p>
-<p>Fit a linear model to the olympic data using these functions and plot the resulting prediction between 1890 and 2020. Set the title of the plot to be the error of the fit on the <em>training data</em>.</p>
-<h2 id="polynomial-fit-training-error">Polynomial Fit: Training Error</h2>
-<h3 id="exercise-6">Exercise 6</h3>
-<p>In this question we extend the code above to a non- linear basis (a quadratic function).</p>
-<p>Start by creating a python-function called <code>quadratic</code>. It should compute the quadratic basis. <span class="math display">\[
-\boldsymbol{ \Phi}= \begin{bmatrix} \mathbf{1} &amp; \mathbf{ y}&amp; \mathbf{ y}^2\end{bmatrix}
-\]</span> It should be called in the following form:</p>
-<p><code>Phi = quadratic(x)</code></p>
-<p>Use this to compute the quadratic fit for the model, again plotting the result titled by the error.</p>
-<h2 id="polynomial-fits-to-olympics-data">Polynomial Fits to Olympics Data</h2>
+<h2 id="lecture-on-basis-functions-from-gprs-uganda">Lecture on Basis Functions from GPRS Uganda</h2>
 <div class="figure">
-<div id="olympic-lm-polynomial-num-basis-26-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number026.svg" width="80%" style=" ">
-</object>
+<div id="basis-functions-gprs-uganda-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/PoNbOnUnOao?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
 </div>
-<div id="olympic-lm-polynomial-num-basis-26-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-lm-polynomial-num-basis-26&#39;)">
+<div id="basis-functions-gprs-uganda-magnify" class="magnify" onclick="magnifyFigure(&#39;basis-functions-gprs-uganda&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
-<div id="olympic-lm-polynomial-num-basis-26-caption" class="caption-frame">
-<p>Figure: Polynomial fit to olympic data with 26 basis functions.</p>
+<div id="basis-functions-gprs-uganda-caption" class="caption-frame">
+<p>Figure: Lecture on Basis functions from GPRS in Uganda in 2013.</p>
 </div>
 </div>
-<h2 id="hold-out-validation-on-olympic-marathon-data">Hold Out Validation on Olympic Marathon Data</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-hold-out-validation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-hold-out-validation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<div class="figure">
-<div id="olympic-val-extra-LM-polynomial-number-11-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number011.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="olympic-val-extra-LM-polynomial-number-11-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-val-extra-LM-polynomial-number-11&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="olympic-val-extra-LM-polynomial-number-11-caption" class="caption-frame">
-<p>Figure: Olympic marathon data with validation error for extrapolation.</p>
-</div>
-</div>
-<h2 id="extrapolation">Extrapolation</h2>
-<h2 id="interpolation">Interpolation</h2>
-<div class="figure">
-<div id="olympic-val-inter-LM-polynomial-number-11-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number011.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="olympic-val-inter-LM-polynomial-number-11-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-val-inter-LM-polynomial-number-11&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="olympic-val-inter-LM-polynomial-number-11-caption" class="caption-frame">
-<p>Figure: Olympic marathon data with validation error for interpolation.</p>
-</div>
-</div>
-<h2 id="choice-of-validation-set">Choice of Validation Set</h2>
-<h2 id="hold-out-data">Hold Out Data</h2>
-<p>You have a conclusion as to which model fits best under the training error, but how do the two models perform in terms of validation? In this section we consider <em>hold out</em> validation. In hold out validation we remove a portion of the training data for <em>validating</em> the model on. The remaining data is used for fitting the model (training). Because this is a time series prediction, it makes sense for us to hold out data at the end of the time series. This means that we are validating on future predictions. We will hold out data from after 1980 and fit the model to the data before 1980.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># select indices of data to &#39;hold out&#39;</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>indices_hold_out <span class="op">=</span> np.flatnonzero(x<span class="op">&gt;</span><span class="dv">1980</span>)</span>
-<span id="cb30-3"><a href="#cb30-3"></a></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="co"># Create a training set</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a>x_train <span class="op">=</span> np.delete(x, indices_hold_out, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb30-6"><a href="#cb30-6"></a>y_train <span class="op">=</span> np.delete(y, indices_hold_out, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb30-7"><a href="#cb30-7"></a></span>
-<span id="cb30-8"><a href="#cb30-8"></a><span class="co"># Create a hold out set</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a>x_valid <span class="op">=</span> np.take(x, indices_hold_out, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb30-10"><a href="#cb30-10"></a>y_valid <span class="op">=</span> np.take(y, indices_hold_out, axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div>
-<h3 id="exercise-7">Exercise 7</h3>
-<p>For both the linear and quadratic models, fit the model to the data up until 1980 and then compute the error on the held out data (from 1980 onwards). Which model performs better on the validation data?</p>
-<h2 id="richer-basis-set">Richer Basis Set</h2>
-<p>Now we have an approach for deciding which model to retain, we can consider the entire family of polynomial bases, with arbitrary degrees.</p>
-<h3 id="exercise-8">Exercise 8</h3>
-<p>Now we are going to build a more sophisticated form of basis function, one that can accept arguments to its inputs (similar to those we used in <a href="./week4.ipynb">this lab</a>). Here we will start with a polynomial basis.</p>
-<pre><code>def polynomial(x, degree, loc, scale):
-    degrees =np.arange(degree+1)
-    return ((x-loc)/scale)**degrees</code></pre>
-<p>The basis as we’ve defined it has three arguments as well as the input. The degree of the polynomial, the scale of the polynomial and the offset. These arguments need to be passed to the basis functions whenever they are called. Modify your code to pass these additional arguments to the python function for creating the basis. Do this for each of your functions <code>predict</code>, <code>fit</code> and <code>objective</code>. You will find <code>*args</code> (or <code>**kwargs</code>) useful.</p>
-<p>Write code that tries to fit different models to the data with polynomial basis. Use a maximum degree for your basis from 0 to 17. For each polynomial store the <em>hold out validation error</em> and the <em>training error</em>. When you have finished the computation plot the hold out error for your models and the training error for your p. When computing your polynomial basis use <code>offset=1956.</code> and <code>scale=120.</code> to ensure that the data is mapped (roughly) to the -1, 1 range.</p>
-<p>Which polynomial has the minimum training error? Which polynomial has the minimum validation error?</p>
-<h2 id="leave-one-out-validation">Leave One Out Validation</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-loo-validation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-loo-validation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Hold out validation uses a portion of the data to hold out and a portion of the data to train on. There is always a compromise between how much data to hold out and how much data to train on. The more data you hold out, the better the estimate of your performance at ‘run-time’ (when the model is used to make predictions in real applications). However, by holding out more data, you leave less data to train on, so you have a better validation, but a poorer quality model fit than you could have had if you’d used all the data for training. Leave one out cross validation leaves as much data in the training phase as possible: you only take <em>one point</em> out for your validation set. However, if you do this for hold-out validation, then the quality of your validation error is very poor because you are testing the model quality on one point only. In <em>cross validation</em> the approach is to improve this estimate by doing more than one model fit. In <em>leave one out cross validation</em> you fit <span class="math inline">\(n\)</span> different models, where <span class="math inline">\(n\)</span> is the number of your data. For each model fit you take out one data point, and train the model on the remaining <span class="math inline">\(n-1\)</span> data points. You validate the model on the data point you’ve held out, but you do this <span class="math inline">\(n\)</span> times, once for each different model. You then take the <em>average</em> of all the <span class="math inline">\(n\)</span> badly estimated hold out validation errors. The average of this estimate is a good estimate of performance of those models on the test data.</p>
-<h3 id="exercise-9">Exercise 9</h3>
-<p>Write code that computes the <em>leave one out</em> validation error for the olympic data and the polynomial basis. Use the functions you have created above: <code>objective</code>, <code>fit</code>, <code>polynomial</code>. Compute the <em>leave-one-out</em> cross validation error for basis functions containing a maximum degree from 0 to 17.</p>
-<h2 id="k-fold-cross-validation"><span class="math inline">\(k\)</span>-fold Cross Validation</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-k-fold-validation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-k-fold-validation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Leave one out cross validation produces a very good estimate of the performance at test time, and is particularly useful if you don’t have a lot of data. In these cases you need to make as much use of your data for model fitting as possible, and having a large hold out data set (to validate model performance) can have a significant effect on the size of the data set you have to fit your model, and correspondingly, the complexity of the model you can fit. However, leave one out cross validation involves fitting <span class="math inline">\(n\)</span> models, where <span class="math inline">\(n\)</span> is your number of training data. For the olympics example, this is only 27 model fits, but in practice many data sets consist thousands or millions of data points, and fitting many millions of models for estimating validation error isn’t really practical. One option is to return to <em>hold out</em> validation, but another approach is to perform <span class="math inline">\(k\)</span>-fold cross validation. In <span class="math inline">\(k\)</span>-fold cross validation you split your data into <span class="math inline">\(k\)</span> parts. Then you use <span class="math inline">\(k-1\)</span> of those parts for training, and hold out one part for validation. Just like we did for the hold out validation above. In <em>cross</em> validation, however, you repeat this process. You swap the part of the data you just used for validation back in to the training set and select another part for validation. You then fit the model to the new training data and validate on the portion of data you’ve just extracted. Each split of training/validation data is called a <em>fold</em> and since you do this process <span class="math inline">\(k\)</span> times, the procedure is known as <span class="math inline">\(k\)</span>-fold cross validation. The term <em>cross</em> refers to the fact that you cross over your validation portion back into the training data every time you perform a fold.</p>
-<h3 id="exercise-10">Exercise 10</h3>
-<p>Perform <span class="math inline">\(k\)</span>-fold cross validation on the olympic data with your polynomial basis. Use <span class="math inline">\(k\)</span> set to 5 (e.g. five fold cross validation). Do the different forms of validation select different models? Does five fold cross validation always select the same model?</p>
-<p><em>Note</em>: The data doesn’t divide into 5 equal size partitions for the five fold cross validation error. Don’t worry about this too much. Two of the partitions will have an extra data point. You might find <code>np.random.permutation?</code> useful.</p>
-<p>Bias variance dilemma <a href="https://www.mitpressjournals.org/doi/abs/10.1162/neco.1992.4.1.1" class="uri">https://www.mitpressjournals.org/doi/abs/10.1162/neco.1992.4.1.1</a></p>
-<h2 id="bias-variance-decomposition">Bias Variance Decomposition</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>The bias-variance decomposition considers the expected test error for different variations of the <em>training data</em> sampled from, <span class="math inline">\(\Pr(\mathbf{ y}, y)\)</span> <span class="math display">\[
-\mathbb{E}\left[ \left(y- f^*(\mathbf{ y})\right)^2 \right].
-\]</span> This can be decomposed into two parts, <span class="math display">\[
-\mathbb{E}\left[ \left(y- f(\mathbf{ y})\right)^2 \right] = \text{bias}\left[f^*(\mathbf{ y})\right]^2 + \text{variance}\left[f^*(\mathbf{ y})\right] +\sigma^2,
-\]</span> where the bias is given by <span class="math display">\[
-  \text{bias}\left[f^*(\mathbf{ y})\right] =
-\mathbb{E}\left[f^*(\mathbf{ y})\right] * f(\mathbf{ y})
-\]</span> and it summarizes error that arises from the model’s inability to represent the underlying complexity of the data. For example, if we were to model the marathon pace of the winning runner from the Olympics by computing the average pace across time, then that model would exhibit <em>bias</em> error because the reality of Olympic marathon pace is it is changing (typically getting faster).</p>
-<p>The variance term is given by <span class="math display">\[
-  \text{variance}\left[f^*(\mathbf{ y})\right] = \mathbb{E}\left[\left(f^*(\mathbf{ y}) - \mathbb{E}\left[f^*(\mathbf{ y})\right]\right)^2\right].
-  \]</span> The variance term is often described as arising from a model that is too complex, but we have to be careful with this idea. Is the model really too complex relative to the real world that generates the data? The real world is a complex place, and it is rare that we are constructing mathematical models that are more complex than the world around us. Rather, the ‘too complex’ refers to ability to estimate the parameters of the model given the data we have. Slight variations in the training set cause changes in prediction.</p>
-<p>Models that exhibit high variance are sometimes said to ‘overfit’ the data whereas models that exhibit high bias are sometimes described as ‘underfitting’ the data.</p>
-<h2 id="bias-vs-variance-error-plots">Bias vs Variance Error Plots</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-plots.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-plots.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Helper function for sampling data from two different classes.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<p>Helper function for plotting the decision boundary of the SVM.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/mlai.py&#39;</span>,<span class="st">&#39;mlai.py&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb34-2"><a href="#cb34-2"></a>font <span class="op">=</span> {<span class="st">&#39;family&#39;</span> : <span class="st">&#39;sans&#39;</span>,</span>
-<span id="cb34-3"><a href="#cb34-3"></a>        <span class="st">&#39;weight&#39;</span> : <span class="st">&#39;bold&#39;</span>,</span>
-<span id="cb34-4"><a href="#cb34-4"></a>        <span class="st">&#39;size&#39;</span>   : <span class="dv">22</span>}</span>
-<span id="cb34-5"><a href="#cb34-5"></a></span>
-<span id="cb34-6"><a href="#cb34-6"></a>matplotlib.rc(<span class="st">&#39;font&#39;</span>, <span class="op">**</span>font)</span>
-<span id="cb34-7"><a href="#cb34-7"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="im">from</span> sklearn <span class="im">import</span> svm</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># Create an instance of SVM and fit the data. </span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>C <span class="op">=</span> <span class="fl">100.0</span>  <span class="co"># SVM regularization parameter</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>gammas <span class="op">=</span> [<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>]</span>
-<span id="cb36-4"><a href="#cb36-4"></a></span>
-<span id="cb36-5"><a href="#cb36-5"></a></span>
-<span id="cb36-6"><a href="#cb36-6"></a>per_class<span class="op">=</span><span class="dv">30</span></span>
-<span id="cb36-7"><a href="#cb36-7"></a>num_samps <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb36-8"><a href="#cb36-8"></a><span class="co"># Set-up 2x2 grid for plotting.</span></span>
-<span id="cb36-9"><a href="#cb36-9"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">3</span>))</span>
-<span id="cb36-10"><a href="#cb36-10"></a>xlim<span class="op">=</span><span class="va">None</span></span>
-<span id="cb36-11"><a href="#cb36-11"></a>ylim<span class="op">=</span><span class="va">None</span></span>
-<span id="cb36-12"><a href="#cb36-12"></a><span class="cf">for</span> samp <span class="kw">in</span> <span class="bu">range</span>(num_samps):</span>
-<span id="cb36-13"><a href="#cb36-13"></a>    X, y<span class="op">=</span>create_data(per_class)</span>
-<span id="cb36-14"><a href="#cb36-14"></a>    models <span class="op">=</span> []</span>
-<span id="cb36-15"><a href="#cb36-15"></a>    titles <span class="op">=</span> []</span>
-<span id="cb36-16"><a href="#cb36-16"></a>    <span class="cf">for</span> gamma <span class="kw">in</span> gammas:</span>
-<span id="cb36-17"><a href="#cb36-17"></a>        models.append(svm.SVC(kernel<span class="op">=</span><span class="st">&#39;rbf&#39;</span>, gamma<span class="op">=</span>gamma, C<span class="op">=</span>C))</span>
-<span id="cb36-18"><a href="#cb36-18"></a>        titles.append(<span class="st">&#39;$\gamma=</span><span class="sc">{}</span><span class="st">$&#39;</span>.<span class="bu">format</span>(gamma))</span>
-<span id="cb36-19"><a href="#cb36-19"></a>    models <span class="op">=</span> (cl.fit(X, y) <span class="cf">for</span> cl <span class="kw">in</span> models)</span>
-<span id="cb36-20"><a href="#cb36-20"></a>    xlim, ylim <span class="op">=</span> decision_boundary_plot(models, X, y, </span>
-<span id="cb36-21"><a href="#cb36-21"></a>                           axs<span class="op">=</span>ax, </span>
-<span id="cb36-22"><a href="#cb36-22"></a>                           filename<span class="op">=</span><span class="st">&#39;bias-variance</span><span class="sc">{samp:0&gt;3}</span><span class="st">.svg&#39;</span>.<span class="bu">format</span>(samp<span class="op">=</span>samp), </span>
-<span id="cb36-23"><a href="#cb36-23"></a>                           directory<span class="op">=</span><span class="st">&#39;../slides/diagrams/ml&#39;</span></span>
-<span id="cb36-24"><a href="#cb36-24"></a>                           titles<span class="op">=</span>titles,</span>
-<span id="cb36-25"><a href="#cb36-25"></a>                          xlim<span class="op">=</span>xlim,</span>
-<span id="cb36-26"><a href="#cb36-26"></a>                          ylim<span class="op">=</span>ylim)</span></code></pre></div>
-<!---->
-<div class="figure">
-<div id="bias-variance-errors-figure" class="figure-frame">
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/bias-variance000.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/bias-variance010.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</div>
-<div id="bias-variance-errors-magnify" class="magnify" onclick="magnifyFigure(&#39;bias-variance-errors&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="bias-variance-errors-caption" class="caption-frame">
-<p>Figure: In each figure the simpler model is on the left, and the more complex model is on the right. Each fit is done to a different version of the data set. The simpler model is more consistent in its errors (bias error), whereas the more complex model is varying in its errors (variance error).</p>
-</div>
-</div>
-<p>Bootstrap Predication and Bayesian Misspecified Models: <a href="https://www.jstor.org/stable/3318894#metadata_info_tab_contents" class="uri">https://www.jstor.org/stable/3318894#metadata_info_tab_contents</a></p>
-<p>Edwin Fong and Chris Holmes: On the Marginal Likelihood and Cross Validation <a href="https://arxiv.org/abs/1905.08737" class="uri">https://arxiv.org/abs/1905.08737</a></p>
-<p>The lack of a priori distinction between learning algorithms (No free lunch) <a href="https://www.mitpressjournals.org/doi/abs/10.1162/neco.1996.8.7.1341" class="uri">https://www.mitpressjournals.org/doi/abs/10.1162/neco.1996.8.7.1341</a> <a href="https://link.springer.com/chapter/10.1007/978-1-4471-0123-9_3" class="uri">https://link.springer.com/chapter/10.1007/978-1-4471-0123-9_3</a></p>
-<p>David Hogg’s lecture <a href="https://speakerdeck.com/dwhgg/linear-regression-with-huge-numbers-of-parameters" class="uri">https://speakerdeck.com/dwhgg/linear-regression-with-huge-numbers-of-parameters</a></p>
-<p>Belkin on Bias/Variance <a href="https://www.pnas.org/content/116/32/15849.short" class="uri">https://www.pnas.org/content/116/32/15849.short</a> <a href="https://www.pnas.org/content/117/20/10625" class="uri">https://www.pnas.org/content/117/20/10625</a></p>
-<p>Belkin Talk: <a href="http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4" class="uri">http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4</a></p>
-<p>The Deep Bootstrap <a href="https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20" class="uri">https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20</a></p>
-<p>Aki Vehtari on Leave One Out Uncertainty: <a href="https://arxiv.org/abs/2008.10296" class="uri">https://arxiv.org/abs/2008.10296</a> (check for his references).</p>
-<p>Large models and memorisation: <a href="https://arxiv.org/abs/2012.07805" class="uri">https://arxiv.org/abs/2012.07805</a></p>
-<p><br />
-</p>
-<h2 id="double-descent">Double Descent</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/double-descent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/double-descent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>One of Breiman’s ideas for improving predictive performance is known as bagging <span class="citation" data-cites="Breiman:bagging96">(Breiman, 1996)</span>. The idea is to train a number of models on the data such that they overfit (high variance). Then average the predictions of these models. The models are trained on different bootstrap samples <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span> and their predictions are aggregated giving us the acronym, Bagging. By combining decision trees with bagging, we recover random forests <span class="citation" data-cites="Breiman-forests01">(Breiman, 2001)</span>.</p>
-<p>Bias and variance can also be estimated through Efron’s bootstrap <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span>, and the traditional view has been that there’s a form of Goldilocks effect, where the best predictions are given by the model that is ‘just right’ for the amount of data available. Not to simple, not too complex. The idea is that bias decreases with increasing model complexity and variance increases with increasing model complexity. Typically plots begin with the Mummy bear on the left (too much bias) end with the Daddy bear on the right (too much variance) and show a dip in the middle where the Baby bear (just) right finds themselves.</p>
-<p>The Daddy bear is typically positioned at the point where the model is able to exactly interpolate the data. For a generalized linear model <span class="citation" data-cites="McCullagh:gen_linear89">(McCullagh and Nelder, 1989)</span>, this is the point at which the number of parameters is equal to the number of data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. But the modern empirical finding is that when we move beyond Daddy bear, into the dark forest of the massively overparameterized model we can achieve good generalization.</p>
-<p>As <span class="citation" data-cites="Zhang:understanding17">Zhang et al. (2017)</span> starkly illustrated with their random labels experiment, within the dark forest there are some terrible places, big bad wolves of overfitting that will gobble up your model. But as empirical evidence shows there is also a safe and hospitable Grandma’s house where these highly overparameterized models are safely consumed. Fundamentally, it must be about the route you take through the forest, and the precautions you take to ensure the wolf doesn’t see where you’re going and beat you to the door.</p>
-<p>There are two implications of this empirical result. Firstly, that there is a great deal of new theory that needs to be developed. Secondly, that theory is now obliged to conflate two aspects to modelling that we generally like to keep separate: the model and the algorithm.</p>
-<p>Classical statistical theory around predictive generalization focusses specifically on the class of models that is being used for data fitting. Historically, whether that theory follows a Fisher-aligned estimation approach (see e.g. <span class="citation" data-cites="Vapnik:book98">Vapnik (1998)</span>) or model-based Bayesian approach (see e.g. <span class="citation" data-cites="Ghahramani:probabilistic15">Ghahramani (2015)</span>), neither is fully equipped to deal with these new circumstances because, to continue our rather tortured analogy, these theories provide us with a characterization of the <em>destination</em> of the algorithm, and seek to ensure that we reach that destination. Modern machine learning requires theories of the <em>journey</em> and what our route through the forest should be.</p>
-<p>Crucially, the destination is always associated with 100% accuracy on the training set. An objective that is always achievable for the overparameterized model.</p>
-<p>Intuitively, it seems that a highly overparameterized model places Grandma’s house on the edge of the dark forest. Making it easily and quickly accessible to the algorithm. The larger the model, the more exposed Grandma’s house becomes. Perhaps this is due to some form of blessing of dimensionality brings Grandma’s house closer to the edge of the forest in a high dimensional setting. Really, we should think of Grandma’s house as a low dimensional manifold of destinations that are safe. A path through the forest where the wolf of overfitting doesn’t venture. In the GLM case, we know already that when the number of parameters matches the number of data there is precisely one location in parameter space where accuracy on the training data is 100%. Our previous misunderstanding of generalization stemmed from the fact that (seemingly) it is highly unlikely that this single point is a good place to be from the perspective of generalization. Additionally, it is often difficult to find. Finding the precise polynomial coefficients in a least squares regression to exactly fit the basis to a small data set such as the Olympic marathon data requires careful consideration of the numerical properties and an orthogonalization of the design matrix <span class="citation" data-cites="Lawson:least95">(Lawson and Hanson, 1995)</span>.</p>
-<p>It seems that with a highly overparameterized model, these locations become easier to find and they provide good generalization properties. In machine learning this is known as the “double descent phenomenon” (see e.g. <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>).</p>
+<h2 id="use-of-qr-decomposition-for-numerical-stability">Use of QR Decomposition for Numerical Stability</h2>
+<p>In the last session we showed how rather than computing <span class="math inline">\(\mathbf{X}^\top\mathbf{X}\)</span> as an intermediate step to our solution, we could compute the solution to the regressiond directly through <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR-decomposition</a>. Now we will consider an example with non linear basis functions where such computation is critical for forming the right answer.</p>
+<p><em>TODO</em> example with polynomials.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>x <span class="op">=</span> np.random.normal(size<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>Phi <span class="op">=</span> mlai.fourier(x, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a>(np.dot(Phi.T,Phi))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>Phi<span class="op">*</span>Phi</span></code></pre></div>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
@@ -743,38 +546,11 @@ E(\mathbf{ w}) =  (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 </ul>
 <h1 class="unnumbered" id="references">References</h1>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
-<div id="ref-Belkin:reconciling19">
-<p>Belkin, M., Hsu, D., Ma, S., Soumik Mandal, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.</p>
+<div id="ref-Bishop:book06">
+<p>Bishop, C.M., 2006. Pattern recognition and machine learning. springer.</p>
 </div>
-<div id="ref-Breiman-forests01">
-<p>Breiman, L., 2001. Random forests. Mach. Learn. 45, 5–32. <a href="https://doi.org/10.1023/A:1010933404324">https://doi.org/10.1023/A:1010933404324</a></p>
-</div>
-<div id="ref-Breiman:bagging96">
-<p>Breiman, L., 1996. Bagging predictors. Machine Learning 24, 123–140. <a href="https://doi.org/10.1007/BF00058655">https://doi.org/10.1007/BF00058655</a></p>
-</div>
-<div id="ref-Efron:bootstrap79">
-<p>Efron, B., 1979. Bootstrap methods: Another look at the jackkife. Annals of Statistics 7, 1–26.</p>
-</div>
-<div id="ref-Ghahramani:probabilistic15">
-<p>Ghahramani, Z., 2015. Probabilistic machine learning and artificial intelligence. Nature 452–459.</p>
-</div>
-<div id="ref-Lawson:least95">
-<p>Lawson, C.L., Hanson, R.J., 1995. Solving least squares problems. SIAM. <a href="https://doi.org/10.1137/1.9781611971217">https://doi.org/10.1137/1.9781611971217</a></p>
-</div>
-<div id="ref-McCullagh:gen_linear89">
-<p>McCullagh, P., Nelder, J.A., 1989. Generalized linear models, 2nd ed. Chapman; Hall.</p>
-</div>
-<div id="ref-Vapnik:book98">
-<p>Vapnik, V.N., 1998. Statistical learning theory. wiley, New York.</p>
-</div>
-<div id="ref-Zhang:understanding17">
-<p>Zhang, C., Bengio, S., Hardt, M., Recht, B., Vinyals, O., 2017. Understanding deep learning requires rethinking generalization, in: https://openreview.net/forum?id=Sy8gdB9xx (Ed.), International Conference on Learning Representations.</p>
+<div id="ref-Rogers:book11">
+<p>Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC Press.</p>
 </div>
 </div>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>Assuming we are ignoring parameters in the link function and the distribution function.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 
