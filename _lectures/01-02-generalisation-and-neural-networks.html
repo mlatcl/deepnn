@@ -73,10 +73,10 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <h2 id="quadratic-loss">Quadratic Loss</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p><span class="math display">\[
-L(f) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i))^2
+R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
 \]</span></p>
 <p><span class="math display">\[
-L(f) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i)^2
+R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
 \]</span> ## Bracket Expansion</p>
 <p><span class="math display">\[
 \begin{align*}
@@ -159,9 +159,9 @@ a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span> from the rules of inner products. But what of our matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> of input data? At this point, we need to dust off <a href="http://en.wikipedia.org/wiki/Matrix_multiplication"><em>matrix-vector multiplication</em></a>. Matrix multiplication is simply a convenient way of performing many inner products together, and it’s exactly what we need to summarise the operation <span class="math display">\[
 f_i = \designVector_i^\top\mathbf{ w}.
-\]</span> {This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
+\]</span> This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
 \mathbf{c} = \mathbf{B}\mathbf{a},
-\]</span> {where <span class="math inline">\(\mathbf{c}\)</span> might be a <span class="math inline">\(k\)</span> dimensional vector (which we can intepret as a <span class="math inline">\(k\times 1\)</span> dimensional matrix), and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(k\times k\)</span> dimensional matrix and <span class="math inline">\(\mathbf{a}\)</span> is a <span class="math inline">\(k\)</span> dimensional vector (<span class="math inline">\(k\times 1\)</span> dimensional matrix).}</p>
+\]</span> where <span class="math inline">\(\mathbf{c}\)</span> might be a <span class="math inline">\(k\)</span> dimensional vector (which we can intepret as a <span class="math inline">\(k\times 1\)</span> dimensional matrix), and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(k\times k\)</span> dimensional matrix and <span class="math inline">\(\mathbf{a}\)</span> is a <span class="math inline">\(k\)</span> dimensional vector (<span class="math inline">\(k\times 1\)</span> dimensional matrix).</p>
 <p>The result of this multiplication is of the form <span class="math display">\[
 \begin{bmatrix}c_1\\c_2 \\ \vdots \\
 a_k\end{bmatrix} = 
@@ -174,7 +174,8 @@ b_{1, k}a_k\\
 b_{2, 1}a_1 + b_{2, 2}a_2 + \dots + b_{2, k}a_k \\ 
 \vdots\\
 b_{k, 1}a_1 + b_{k, 2}a_2 + \dots + b_{k, k}a_k\end{bmatrix}
-\]</span> so we see that each element of the result, <span class="math inline">\(\mathbf{a}\)</span> is simply the inner product between each <em>row</em> of <span class="math inline">\(\mathbf{B}\)</span> and the vector <span class="math inline">\(\mathbf{c}\)</span>. Because we have defined each element of <span class="math inline">\(\mathbf{ f}\)</span> to be given by the inner product between each <em>row</em> of the design matrix and the vector <span class="math inline">\(\mathbf{ w}\)</span> we now can write the full operation in one matrix multiplication, <span class="math display">\[
+\]</span> so we see that each element of the result, <span class="math inline">\(\mathbf{a}\)</span> is simply the inner product between each <em>row</em> of <span class="math inline">\(\mathbf{B}\)</span> and the vector <span class="math inline">\(\mathbf{c}\)</span>. Because we have defined each element of <span class="math inline">\(\mathbf{ f}\)</span> to be given by the inner product between each <em>row</em> of the design matrix and the vector <span class="math inline">\(\mathbf{ w}\)</span> we now can write the full operation in one matrix multiplication,</p>
+<p><span class="math display">\[
 \mathbf{ f}= \boldsymbol{ \Phi}\mathbf{ w}.
 \]</span></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
@@ -269,8 +270,8 @@ L(\mathbf{ w})=
 <p>This is one reason why linear models are so easy to work with.</p>
 <p>Because the curvature is constant everywhere, we know that the curvature at the minimum is given by <span class="math inline">\(2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span>.</p>
 <p>From univariate calculus you might recall that the optimum is a maximum if the curvature is negative, and a minimum if the curvature is positive. A similar theorem holds for multivariate calculus, but now the curvature must be <em>positive definite</em> for the point to be a minimum. The constant curvature also shows us also that the minimum is <em>unique</em>.</p>
-<p>Positive definite means that for any two vectors, $ of unit length <span class="math inline">\(\mathbf{u}^\top\mathbf{u}\)</span> we have that,} <span class="math display">\[
-\mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \forall \mathbf{u} \text{with} $\mathbf{u}^\top\mathbf{u}=1$
+<p>Positive definite means that for any two vectors, <span class="math inline">\(\mathbf{u}\)</span> of unit length <span class="math inline">\(\mathbf{u}^\top\mathbf{u}\)</span> we have that, <span class="math display">\[
+\mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \quad \forall \quad \mathbf{u} \quad \text{with}\quad \mathbf{u}^\top\mathbf{u}=1
 \]</span> The matrix <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span> (where we’ve dropped the 2) will satisfy this condition as long as the columns of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> are <em>linearly independent</em> and the number of basis functions is less or equal to the number of data.</p>
 <h2 id="eigendecomposition-of-hessian">Eigendecomposition of Hessian</h2>
 <p>Applying a vector <span class="math inline">\(\mathbf{u}\)</span> to the Hessian matrix gives us the curvature in a particular direction. So we can use this to look at the shape of the minimum by projecting onto the different directions, <span class="math inline">\(\mathbf{u}\)</span>.</p>
@@ -739,7 +740,10 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>The bias-variance decomposition <span class="citation" data-cites="Geman:biasvariance92">(Geman et al., 1992)</span> considers the expected test error for different variations of the <em>training data</em> sampled from, <span class="math inline">\(\mathbb{P}(\mathbf{ x}, y)\)</span> <span class="math display">\[
 \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
 \]</span> This can be decomposed into two parts, <span class="math display">\[
-\mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = \text{bias}\left[f^*(\mathbf{ x})\right]^2 + \text{variance}\left[f^*(\mathbf{ x})\right] +\sigma^2,
+\begin{align*}
+\mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = &amp; \text{bias}\left[f^*(\mathbf{ x})\right]^2 \\
+&amp; + \text{variance}\left[f^*(\mathbf{ x})\right] +\sigma^2,
+\end{align*}
 \]</span> where the bias is given by <span class="math display">\[
   \text{bias}\left[f^*(\mathbf{ x})\right] =
 \mathbb{E}\left[f^*(\mathbf{ x})\right] * f(\mathbf{ x})
@@ -761,9 +765,9 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Coefficient shrinkage is a technique where the parameters of the of the model are ‘encouraged’ to be small. In practice this is normally done by augmenting the objective function with a term that keeps the paremeters low, typically by penaalising a norm.</p>
 <h2 id="tikhonov-regularisation">Tikhonov Regularisation</h2>
 <p>In neural network models this approach is sometimes called ‘weight decay’. At every gradient step we reduce the value of the weight a little. This idea comes from an approach callled Tikhonov regularisation <span class="citation" data-cites="Tikhonov:book77">(Tikhonov and Arsenin, 1977)</span>, where the objective function is augmented by the L2 norm of the weights, <span class="math display">\[
-L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\lTwoNorm{\mathbf{W}}^2
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
 \]</span> with some weighting <span class="math inline">\(\alpha &gt;0\)</span>. This has the effect of changing the Hessian at the minimua to <span class="math display">\[
-$\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}$ + \alpha \mathbf{I}
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}+ \alpha \mathbf{I}
 \]</span> Which is always full rank. The minimal eigenvalues are now given by <span class="math inline">\(\alpha\)</span>.</p>
 <h2 id="lasso">Lasso</h2>
 <p>Other techniques for regularisation based on a norm of the parameters include the Lasso <span class="citation" data-cites="Tibshirani-lasso96">Tibshirani (1996)</span>, which is an L1 norm of the parameters</p>

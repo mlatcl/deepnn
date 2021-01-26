@@ -15,6 +15,70 @@
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
   <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
   <link rel="stylesheet" href="../assets/css/talks.css"/>
   <!-- Printing and PDF exports -->
@@ -84,18 +148,14 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <section id="quadratic-loss" class="slide level2">
 <h2>Quadratic Loss</h2>
 <p><span class="math display">\[
-L(f) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i))^2
+R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
 \]</span></p>
 </section>
 <section id="linear-model" class="slide level2">
 <h2>Linear Model</h2>
 <p><span class="math display">\[
-L(f) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i)^2
+R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
 \]</span></p>
-<!-- SECTION Multiple Input Solution with Linear Algebra -->
-</section>
-<section id="multiple-input-solution-with-linear-algebra" class="slide level2">
-<h2>Multiple Input Solution with Linear Algebra</h2>
 <!-- SECTION Design Matrix -->
 </section>
 <section id="design-matrix" class="slide level2">
@@ -109,15 +169,9 @@ L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
 <p><span class="math display">\[
 f(\mathbf{ x}_i; \mathbf{ w}) = \designVector_i^\top \mathbf{ w}.
 \]</span></p>
-<p><span class="math display">\[
-a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{ y}= \begin{bmatrix}y_1\\ y_2\\ \vdots \\ y_n\end{bmatrix}
-\]</span></p>
-<p><span class="math display">\[
-\mathbf{ f}(\mathbf{ x}_1; \mathbf{ w}) = \begin{bmatrix}f(\mathbf{ x}_1; \mathbf{ w})\\ f(\mathbf{ x}_2; \mathbf{ w})\\ \vdots \\ f(\mathbf{ x}_n; \mathbf{ w})\end{bmatrix}.
-\]</span></p>
+</section>
+<section id="stacking-vectors" class="slide level2">
+<h2>Stacking Vectors</h2>
 <p><span class="math display">\[
 \mathbf{ f}= \begin{bmatrix}f_1\\f_2\\
 \vdots \\ f_n\end{bmatrix}.
@@ -125,11 +179,12 @@ a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
 <p><span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span></p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
 <p><span class="math display">\[
-f_i = \designVector_i^\top\mathbf{ w}.
-\]</span> {This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
-\mathbf{c} = \mathbf{B}\mathbf{a},
-\]</span> {where <span class="math inline">\(\mathbf{c}\)</span> might be a <span class="math inline">\(k\)</span> dimensional vector (which we can intepret as a <span class="math inline">\(k\times 1\)</span> dimensional matrix), and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(k\times k\)</span> dimensional matrix and <span class="math inline">\(\mathbf{a}\)</span> is a <span class="math inline">\(k\)</span> dimensional vector (<span class="math inline">\(k\times 1\)</span> dimensional matrix).}</p>
+\mathbf{ f}= \boldsymbol{ \Phi}\mathbf{ w}.
+\]</span></p>
 <p><span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span></p>
@@ -184,8 +239,8 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <p><span class="math display">\[
 \frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
 \]</span></p>
-<p>of unit length <span class="math inline">\(\mathbf{u}^\top\mathbf{u}\)</span> we have that,} <span class="math display">\[
-\mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \forall \mathbf{u} \text{with} $\mathbf{u}^\top\mathbf{u}=1$
+<p><span class="math display">\[
+\mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \quad \forall \quad \mathbf{u} \quad \text{with}\quad \mathbf{u}^\top\mathbf{u}=1
 \]</span></p>
 </section>
 <section id="eigendecomposition-of-hessian" class="slide level2">
@@ -261,36 +316,6 @@ Location of the over thirty four thousand health facilities registered in the NM
 <aside class="notes">
 Residual values for the ratings from the prediction of the movie rating given the data from the film.
 </aside>
-</section>
-<section id="solution-with-qr-decomposition" class="slide level2">
-<h2>Solution with QR Decomposition</h2>
-<p><span class="math display">\[
-\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\boldsymbol{\beta} =
-\boldsymbol{ \Phi}^\top \mathbf{ y}
-\]</span> <span class="math display">\[
-(\mathbf{Q}\mathbf{R})^\top
-(\mathbf{Q}\mathbf{R})\boldsymbol{\beta} = (\mathbf{Q}\mathbf{R})^\top
-\mathbf{ y}
-\]</span> <span class="math display">\[
-\mathbf{R}^\top (\mathbf{Q}^\top \mathbf{Q}) \mathbf{R}
-\boldsymbol{\beta} = \mathbf{R}^\top \mathbf{Q}^\top \mathbf{ y}
-\]</span></p>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<p><span class="math display">\[
-\mathbf{R}^\top \mathbf{R} \boldsymbol{\beta} = \mathbf{R}^\top \mathbf{Q}^\top
-\mathbf{ y}
-\]</span> <span class="math display">\[
-\mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^\top \mathbf{ y}
-\]</span></p>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<ul>
-<li>More nummerically stable.</li>
-<li>Avoids the intermediate computation of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span>.</li>
-</ul>
 </section>
 <section id="basis-function-models" class="slide level2">
 <h2>Basis Function Models</h2>
@@ -454,7 +479,11 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <p><span class="math display">\[
 \mathbf{ y}, \mathbf{X}\sim \mathbb{P}(y, \mathbf{ x})
 \]</span></p>
-<p>```python def bootstrap(X): “Return a bootstrap sample from a data set.” n = X.shape[0] ind = np.random.choice(n, n, replace=True) # Sample randomly with replacement. return X[ind, :]</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> bootstrap(X):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="cf">return</span> X[ind, :]</span></code></pre></div>
 </section>
 <section id="bootstrap-and-olympic-marathon-data" class="slide level2">
 <h2>Bootstrap and Olympic Marathon Data</h2>
@@ -512,7 +541,10 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <p>Generalisation error <span class="math display">\[
 \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
 \]</span> Decompose as <span class="math display">\[
-\mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = \text{bias}\left[f^*(\mathbf{ x})\right]^2 + \text{variance}\left[f^*(\mathbf{ x})\right] +\sigma^2,
+\begin{align*}
+\mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = &amp; \text{bias}\left[f^*(\mathbf{ x})\right]^2 \\
+&amp; + \text{variance}\left[f^*(\mathbf{ x})\right] +\sigma^2,
+\end{align*}
 \]</span></p>
 </section>
 <section id="bias" class="slide level2">
@@ -545,10 +577,10 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <h2>Tikhonov Regularisation</h2>
 <ul>
 <li>Updated objective: <span class="math display">\[
-L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\lTwoNorm{\mathbf{W}}^2
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
 \]</span></li>
 <li>Hessian: <span class="math display">\[
-$\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}$ + \alpha \mathbf{I}
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}+ \alpha \mathbf{I}
 \]</span></li>
 </ul>
 </section>
