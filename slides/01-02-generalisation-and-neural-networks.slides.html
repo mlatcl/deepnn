@@ -81,22 +81,16 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 \]</span></p></li>
 </ul>
 </section>
-<section id="bracket-expansion" class="slide level2">
-<h2>Bracket Expansion</h2>
+<section id="quadratic-loss" class="slide level2">
+<h2>Quadratic Loss</h2>
 <p><span class="math display">\[
-\begin{align*}
-  E(\mathbf{ w},\sigma^2)  = &amp;
-\frac{n}{2}\log \sigma^2 + \frac{1}{2\sigma^2}\sum
-_{i=1}^{n}y_i^{2}-\frac{1}{\sigma^2}\sum
-_{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\frac{1}{2\sigma^2}\sum
-_{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}
-+\text{const}.\\
-    = &amp; \frac{n}{2}\log \sigma^2 + \frac{1}{2\sigma^2}\sum
-_{i=1}^{n}y_i^{2}-\frac{1}{\sigma^2}
-\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+\frac{1}{2\sigma^2}
-\mathbf{ w}^{\top}\left[\sum
-_{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}+\text{const}.
-\end{align*}
+L(f) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i))^2
+\]</span></p>
+</section>
+<section id="linear-model" class="slide level2">
+<h2>Linear Model</h2>
+<p><span class="math display">\[
+L(f) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i)^2
 \]</span></p>
 <!-- SECTION Multiple Input Solution with Linear Algebra -->
 </section>
@@ -110,7 +104,7 @@ _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}+\text{const}.
 <section id="writing-the-objective-with-linear-algebra" class="slide level2">
 <h2>Writing the Objective with Linear Algebra</h2>
 <p><span class="math display">\[
-E(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
+L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
 \]</span></p>
 <p><span class="math display">\[
 f(\mathbf{ x}_i; \mathbf{ w}) = \designVector_i^\top \mathbf{ w}.
@@ -129,7 +123,7 @@ a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
 \vdots \\ f_n\end{bmatrix}.
 \]</span></p>
 <p><span class="math display">\[
-E(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span></p>
 <p><span class="math display">\[
 f_i = \designVector_i^\top\mathbf{ w}.
@@ -137,7 +131,7 @@ f_i = \designVector_i^\top\mathbf{ w}.
 \mathbf{c} = \mathbf{B}\mathbf{a},
 \]</span> {where <span class="math inline">\(\mathbf{c}\)</span> might be a <span class="math inline">\(k\)</span> dimensional vector (which we can intepret as a <span class="math inline">\(k\times 1\)</span> dimensional matrix), and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(k\times k\)</span> dimensional matrix and <span class="math inline">\(\mathbf{a}\)</span> is a <span class="math inline">\(k\)</span> dimensional vector (<span class="math inline">\(k\times 1\)</span> dimensional matrix).}</p>
 <p><span class="math display">\[
-E(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span></p>
 <!-- SECTION Objective Optimisation -->
 </section>
@@ -188,7 +182,7 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <section id="hessian-matrix" class="slide level2">
 <h2>Hessian Matrix</h2>
 <p><span class="math display">\[
-\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} E(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
+\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
 \]</span></p>
 <p>of unit length <span class="math inline">\(\mathbf{u}^\top\mathbf{u}\)</span> we have that,} <span class="math display">\[
 \mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \forall \mathbf{u} \text{with} $\mathbf{u}^\top\mathbf{u}=1$
@@ -542,29 +536,31 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 </section>
 <section id="regularisation" class="slide level2">
 <h2>Regularisation</h2>
-</section>
-<section id="coefficient-shrinkage" class="slide level2">
-<h2>Coefficient Shrinkage</h2>
+<p>Linear system, solve:</p>
+<p><span class="math display">\[
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
+\]</span> But if <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> then this is not wel posed.</p>
 </section>
 <section id="tikhonov-regularisation" class="slide level2">
 <h2>Tikhonov Regularisation</h2>
-<p>Weight based regularisation</p>
-<p>L2, <span class="citation" data-cites="Tikhonov:book77">Tikhonov and Arsenin (1977)</span></p>
-</section>
-<section id="lasso" class="slide level2">
-<h2>Lasso</h2>
-<p>L1 <span class="citation" data-cites="Tibshirani-lasso96">Tibshirani (1996)</span></p>
-</section>
-<section id="training-with-noise" class="slide level2">
-<h2>Training with Noise</h2>
-<p><span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span></p>
+<ul>
+<li>Updated objective: <span class="math display">\[
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\lTwoNorm{\mathbf{W}}^2
+\]</span></li>
+<li>Hessian: <span class="math display">\[
+$\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}$ + \alpha \mathbf{I}
+\]</span></li>
+</ul>
 </section>
 <section id="splines-functions-hilbert-kernels" class="slide level2">
 <h2>Splines, Functions, Hilbert Kernels</h2>
-<p>function based regularisation</p>
-<p>Grace Wahba <span class="citation" data-cites="Kimeldorf:correspondence70">Kimeldorf and Wahba (1970)</span> <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span></p>
+<ul>
+<li>Can also regularise the function <span class="math inline">\(f(\cdot)\)</span> directly.</li>
+<li>This approach taken in <em>splines</em> and <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span> and kernels <span class="citation" data-cites="Scholkopf:learning01">Schölkopf and Smola (2001)</span>.</li>
+<li>Mathematically more elegant, but algorithmically less flexible and harder to scale.</li>
+</ul>
 </section>
-<section id="training-with-noise-1" class="slide level2">
+<section id="training-with-noise" class="slide level2">
 <h2>Training with Noise</h2>
 <ul>
 <li>Other regularisation approaches such as <em>dropout</em> <span class="citation" data-cites="Srivastava:dropout14">(Srivastava et al., 2014)</span></li>
@@ -664,17 +660,11 @@ f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1
 <div id="ref-Jacot-ntk18">
 <p>Jacot, A., Gabriel, F., Hongler, C., 2018. Neural tangent kernel: Convergence and generalization in neural networks, in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi, N., Garnett, R. (Eds.), Advances in Neural Information Processing Systems. Curran Associates, Inc., pp. 8571–8580.</p>
 </div>
-<div id="ref-Kimeldorf:correspondence70">
-<p>Kimeldorf, G.S., Wahba, G., 1970. A correspondence between Bayesian estimation of stochastic processes and smoothing by splines. Annals of Mathematical Statistics 41, 495–502.</p>
+<div id="ref-Scholkopf:learning01">
+<p>Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.</p>
 </div>
 <div id="ref-Srivastava:dropout14">
 <p>Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.</p>
-</div>
-<div id="ref-Tibshirani-lasso96">
-<p>Tibshirani, R., 1996. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society. Series B (Methodological) 58, 267–288.</p>
-</div>
-<div id="ref-Tikhonov:book77">
-<p>Tikhonov, A.N., Arsenin, V.Y., 1977. Solutions of ill-posed problems. V. H. Winston, Washington, DC.</p>
 </div>
 <div id="ref-Wahba:book90">
 <p>Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href="https://doi.org/10.1137/1.9781611970128">https://doi.org/10.1137/1.9781611970128</a></p>

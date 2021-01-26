@@ -72,6 +72,21 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 \]</span></p>
 <h2 id="bracket-expansion">Bracket Expansion</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p><span class="math display">\[
+\begin{align*}
+  L(\mathbf{ w},\sigma^2)  = &amp;
+\frac{n}{2}\log \sigma^2 + \frac{1}{2\sigma^2}\sum
+_{i=1}^{n}y_i^{2}-\frac{1}{\sigma^2}\sum
+_{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\frac{1}{2\sigma^2}\sum
+_{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}
++\text{const}.\\
+    = &amp; \frac{n}{2}\log \sigma^2 + \frac{1}{2\sigma^2}\sum
+_{i=1}^{n}y_i^{2}-\frac{1}{\sigma^2}
+\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+\frac{1}{2\sigma^2}
+\mathbf{ w}^{\top}\left[\sum
+_{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}+\text{const}.
+\end{align*}
+\]</span></p>
 <h1 id="multiple-input-solution-with-linear-algebra">Multiple Input Solution with Linear Algebra</h1>
 <p>You’ve now seen how slow it can be to perform a coordinate ascent on a system. Another approach to solving the system (which is not always possible, particularly in <em>non-linear</em> systems) is to go direct to the minimum. To do this we need to introduce <em>linear algebra</em>. We will represent all our errors and functions in the form of linear algebra. As we mentioned above, linear algebra is just a shorthand for performing lots of multiplications and additions simultaneously. What does it have to do with our system then? Well the first thing to note is that the linear function we were trying to fit has the following form: <span class="math display">\[
 f(x) = mx + c
@@ -122,12 +137,12 @@ x_i
 <span id="cb10-2"><a href="#cb10-2"></a><span class="bu">print</span>(Phi)</span></code></pre></div>
 <h2 id="writing-the-objective-with-linear-algebra">Writing the Objective with Linear Algebra</h2>
 <p>When we think of the objective function, we can think of it as the errors where the error is defined in a similar way to what it was in Legendre’s day <span class="math inline">\(y_i - f(\mathbf{ x}_i)\)</span>, in statistics these errors are also sometimes called <a href="http://en.wikipedia.org/wiki/Errors_and_residuals_in_statistics"><em>residuals</em></a>. So we can think as the objective and the prediction function as two separate parts, first we have, <span class="math display">\[
-E(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
+L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
 \]</span> where we’ve made the function <span class="math inline">\(f(\cdot)\)</span>’s dependence on the parameters <span class="math inline">\(\mathbf{ w}\)</span> explicit in this equation. Then we have the definition of the function itself, <span class="math display">\[
 f(\mathbf{ x}_i; \mathbf{ w}) = \designVector_i^\top \mathbf{ w}.
 \]</span> Let’s look again at these two equations and see if we can identify any inner products. The first equation is a sum of squares, which is promising. Any sum of squares can be represented by an inner product, <span class="math display">\[
 a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
-\]</span> so if we wish to represent <span class="math inline">\(E(\mathbf{ w})\)</span> in this way, all we need to do is convert the sum operator to an inner product. We can get a vector from that sum operator by placing both <span class="math inline">\(y_i\)</span> and <span class="math inline">\(f(\mathbf{ x}_i; \mathbf{ w})\)</span> into vectors, which we do by defining <span class="math display">\[
+\]</span> so if we wish to represent <span class="math inline">\(L(\mathbf{ w})\)</span> in this way, all we need to do is convert the sum operator to an inner product. We can get a vector from that sum operator by placing both <span class="math inline">\(y_i\)</span> and <span class="math inline">\(f(\mathbf{ x}_i; \mathbf{ w})\)</span> into vectors, which we do by defining <span class="math display">\[
 \mathbf{ y}= \begin{bmatrix}y_1\\ y_2\\ \vdots \\ y_n\end{bmatrix}
 \]</span> and defining <span class="math display">\[
 \mathbf{ f}(\mathbf{ x}_1; \mathbf{ w}) = \begin{bmatrix}f(\mathbf{ x}_1; \mathbf{ w})\\ f(\mathbf{ x}_2; \mathbf{ w})\\ \vdots \\ f(\mathbf{ x}_n; \mathbf{ w})\end{bmatrix}.
@@ -135,7 +150,7 @@ a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
 \mathbf{ f}= \begin{bmatrix}f_1\\f_2\\
 \vdots \\ f_n\end{bmatrix}.
 \]</span> This allows us to write our objective in the folowing, linear algebraic form, <span class="math display">\[
-E(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span> from the rules of inner products. But what of our matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> of input data? At this point, we need to dust off <a href="http://en.wikipedia.org/wiki/Matrix_multiplication"><em>matrix-vector multiplication</em></a>. Matrix multiplication is simply a convenient way of performing many inner products together, and it’s exactly what we need to summarise the operation <span class="math display">\[
 f_i = \designVector_i^\top\mathbf{ w}.
 \]</span> {This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
@@ -159,7 +174,7 @@ b_{k, 1}a_1 + b_{k, 2}a_2 + \dots + b_{k, k}a_k\end{bmatrix}
 <div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>f <span class="op">=</span> Phi<span class="op">@</span>w <span class="co"># The @ sign performs matrix multiplication</span></span></code></pre></div>
 <p>Combining this result with our objective function, <span class="math display">\[
-E(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span> we find we have defined the <em>model</em> with two equations. One equation tells us the form of our predictive function and how it depends on its parameters, the other tells us the form of our objective function.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>resid <span class="op">=</span> (y<span class="op">-</span>f)</span>
 <span id="cb13-2"><a href="#cb13-2"></a>E <span class="op">=</span> np.dot(resid.T, resid) <span class="co"># matrix multiplication on a single vector is equivalent to a dot product.</span></span>
@@ -169,9 +184,9 @@ E(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 <p>Our <em>model</em> has now been defined with two equations, the prediction function and the objective function. Next we will use multivariate calculus to define an <em>algorithm</em> to fit the model. The separation between model and algorithm is important and is often overlooked. Our model contains a function that shows how it will be used for prediction, and a function that describes the objective function we need to optimise to obtain a good set of parameters.</p>
 <p>The model linear regression model we have described is still the same as the one we fitted above with a coordinate ascent algorithm. We have only played with the notation to obtain the same model in a matrix and vector notation. However, we will now fit this model with a different algorithm, one that is much faster. It is such a widely used algorithm that from the end user’s perspective it doesn’t even look like an algorithm, it just appears to be a single operation (or function). However, underneath the computer calls an algorithm to find the solution. Further, the algorithm we obtain is very widely used, and because of this it turns out to be highly optimised.</p>
 <p>Once again we are going to try and find the stationary points of our objective by finding the <em>stationary points</em>. However, the stationary points of a multivariate function, are a little bit more complext to find. Once again we need to find the point at which the derivative is zero, but now we need to use <em>multivariate calculus</em> to find it. This involves learning a few additional rules of differentiation (that allow you to do the derivatives of a function with respect to vector), but in the end it makes things quite a bit easier. We define vectorial derivatives as follows, <span class="math display">\[
-\frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}} =
-\begin{bmatrix}\frac{\text{d}E(\mathbf{ w})}{\text{d}w_1}\\\frac{\text{d}E(\mathbf{ w})}{\text{d}w_2}\end{bmatrix}.
-\]</span> where <span class="math inline">\(\frac{\text{d}E(\mathbf{ w})}{\text{d}w_1}\)</span> is the <a href="http://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> of the error function with respect to <span class="math inline">\(w_1\)</span>.</p>
+\frac{\text{d}L(\mathbf{ w})}{\text{d}\mathbf{ w}} =
+\begin{bmatrix}\frac{\text{d}L(\mathbf{ w})}{\text{d}w_1}\\\frac{\text{d}L(\mathbf{ w})}{\text{d}w_2}\end{bmatrix}.
+\]</span> where <span class="math inline">\(\frac{\text{d}L(\mathbf{ w})}{\text{d}w_1}\)</span> is the <a href="http://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> of the error function with respect to <span class="math inline">\(w_1\)</span>.</p>
 <p>Differentiation through multiplications and additions is relatively straightforward, and since linear algebra is just multiplication and addition, then its rules of diffentiation are quite straightforward too, but slightly more complex than regular derivatives.</p>
 <h2 id="multivariate-derivatives">Multivariate Derivatives</h2>
 <p>We will need two rules of multivariate or <em>matrix</em> differentiation. The first is diffentiation of an inner product. By remembering that the inner product is made up of multiplication and addition, we can hope that its derivative is quite straightforward, and so it proves to be. We can start by thinking about the definition of the inner product, <span class="math display">\[
@@ -209,22 +224,22 @@ z_i,
 \]</span></p>
 <h2 id="differentiate-the-objective">Differentiate the Objective</h2>
 <p>First, we need to compute the full objective by substituting our prediction function into the objective function to obtain the objective in terms of <span class="math inline">\(\mathbf{ w}\)</span>. Doing this we obtain <span class="math display">\[
-E(\mathbf{ w})= (\mathbf{ y}- \boldsymbol{ \Phi}\mathbf{ w})^\top (\mathbf{ y}- \boldsymbol{ \Phi}\mathbf{ w}).
+L(\mathbf{ w})= (\mathbf{ y}- \boldsymbol{ \Phi}\mathbf{ w})^\top (\mathbf{ y}- \boldsymbol{ \Phi}\mathbf{ w}).
 \]</span> We now need to differentiate this <em>quadratic form</em> to find the minimum. We differentiate with respect to the <em>vector</em> <span class="math inline">\(\mathbf{ w}\)</span>. But before we do that, we’ll expand the brackets in the quadratic form to obtain a series of scalar terms. The rules for bracket expansion across the vectors are similar to those for the scalar system giving, <span class="math display">\[
 (\mathbf{a} - \mathbf{b})^\top
 (\mathbf{c} - \mathbf{d}) = \mathbf{a}^\top \mathbf{c} - \mathbf{a}^\top
 \mathbf{d} - \mathbf{b}^\top \mathbf{c} + \mathbf{b}^\top \mathbf{d}
 \]</span> which substituting for <span class="math inline">\(\mathbf{a} = \mathbf{c} = \mathbf{ y}\)</span> and <span class="math inline">\(\mathbf{b}=\mathbf{d} = \boldsymbol{ \Phi}\mathbf{ w}\)</span> gives <span class="math display">\[
-E(\mathbf{ w})=
+L(\mathbf{ w})=
 \mathbf{ y}^\top\mathbf{ y}- 2\mathbf{ y}^\top\boldsymbol{ \Phi}\mathbf{ w}+
 \mathbf{ w}^\top\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}
 \]</span> where we used the fact that <span class="math inline">\(\mathbf{ y}^\top\boldsymbol{ \Phi}\mathbf{ w}=\mathbf{ w}^\top\boldsymbol{ \Phi}^\top\mathbf{ y}\)</span>.</p>
 <p>Now we can use our rules of differentiation to compute the derivative of this form, which is, <span class="math display">\[
-\frac{\text{d}}{\text{d}\mathbf{ w}}E(\mathbf{ w})=- 2\boldsymbol{ \Phi}^\top \mathbf{ y}+
+\frac{\text{d}}{\text{d}\mathbf{ w}}L(\mathbf{ w})=- 2\boldsymbol{ \Phi}^\top \mathbf{ y}+
 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w},
 \]</span> where we have exploited the fact that <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> is symmetric to obtain this result.</p>
 <h3 id="exercise-1">Exercise 1</h3>
-<p>Use the equivalence between our vector and our matrix formulations of linear regression, alongside our definition of vector derivates, to match the gradients we’ve computed directly for <span class="math inline">\(\frac{\text{d}E(c, m)}{\text{d}c}\)</span> and <span class="math inline">\(\frac{\text{d}E(c, m)}{\text{d}m}\)</span> to those for <span class="math inline">\(\frac{\text{d}E(\mathbf{ w})}{\text{d}\mathbf{ w}}\)</span>.</p>
+<p>Use the equivalence between our vector and our matrix formulations of linear regression, alongside our definition of vector derivates, to match the gradients we’ve computed directly for <span class="math inline">\(\frac{\text{d}L(c, m)}{\text{d}c}\)</span> and <span class="math inline">\(\frac{\text{d}L(c, m)}{\text{d}m}\)</span> to those for <span class="math inline">\(\frac{\text{d}L(\mathbf{ w})}{\text{d}\mathbf{ w}}\)</span>.</p>
 <h1 id="update-equation-for-global-optimum">Update Equation for Global Optimum</h1>
 <p>Once again, we need to find the minimum of our objective function. Using our likelihood for multiple input regression we can now minimize for our parameter vector <span class="math inline">\(\mathbf{ w}\)</span>. Firstly, just as in the single input case, we seek stationary points by find parameter vectors that solve for when the gradients are zero, <span class="math display">\[
 \mathbf{0}=- 2\boldsymbol{ \Phi}^\top
@@ -234,13 +249,15 @@ E(\mathbf{ w})=
 \mathbf{ y}
 \]</span> where <span class="math inline">\(\mathbf{A}^{-1}\)</span> denotes <a href="http://en.wikipedia.org/wiki/Invertible_matrix"><em>matrix inverse</em></a>.</p>
 <h2 id="solving-the-multivariate-system">Solving the Multivariate System</h2>
-<p>The solution for <span class="math inline">\(\mathbf{ w}\)</span> is given in terms of a matrix inverse, but computation of a matrix inverse requires, in itself, an algorithm to resolve it. You’ll know this if you had to invert, by hand, a <span class="math inline">\(3\times 3\)</span> matrix in high school. From a numerical stability perspective, it is also best not to compute the matrix inverse directly, but rather to ask the computer to <em>solve</em> the system of linear equations given by <span class="math display">\[\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}\]</span> for <span class="math inline">\(\mathbf{ w}\)</span>.</p>
+<p>The solution for <span class="math inline">\(\mathbf{ w}\)</span> is given in terms of a matrix inverse, but computation of a matrix inverse requires, in itself, an algorithm to resolve it. You’ll know this if you had to invert, by hand, a <span class="math inline">\(3\times 3\)</span> matrix in high school. From a numerical stability perspective, it is also best not to compute the matrix inverse directly, but rather to ask the computer to <em>solve</em> the system of linear equations given by <span class="math display">\[
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
+\]</span> for <span class="math inline">\(\mathbf{ w}\)</span>.</p>
 <h2 id="multivariate-linear-regression">Multivariate Linear Regression</h2>
 <p>A major advantage of the new system is that we can build a linear regression on a multivariate system. The matrix calculus didn’t specify what the length of the vector <span class="math inline">\(\mathbf{ x}\)</span> should be, or equivalently the size of the design matrix.</p>
 <h2 id="hessian-matrix">Hessian Matrix</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>We can also compute the <em>Hessian</em> matrix, the curvature of the loss function. We simply take the second derivative of the loss function with respect to the parameter vector, <span class="math display">\[
-\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} E(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
+\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
 \]</span> So we see that the curvature is given by the design matrix.</p>
 <p>Note that for this linear model the curvature is <em>not</em> dependent on the values of the parameter vector, <span class="math inline">\(\mathbf{ w}\)</span>, or indeed on the <em>response</em> variables, <span class="math inline">\(\mathbf{ y}\)</span>. This is unusual, in general the curvature will depend on the parameters and the response variables. The linear model with quadratic loss is a special case because the overall loss function has a <em>quadratic form</em> which is the unique form with constant curvature across the whole space.</p>
 <p>This is one reason why linear models are so easy to work with.</p>
@@ -728,18 +745,25 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Also related on generalisation error is the so called ‘no free lunch theorem’, which refers to our inability to decide what a better learning algorithm is without making assumptions about the data <span class="citation" data-cites="Wolpert:lack96">(Wolpert, 1996)</span> (see also <span class="citation" data-cites="Wolpert-supervised02">Wolpert (2002)</span>).</p>
 <h2 id="regularisation">Regularisation</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p>The solution to the linear system is given by solving, <span class="math display">\[
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
+\]</span> for <span class="math inline">\(\mathbf{ w}\)</span>.</p>
+<p>But if <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> is not full rank, this system cannot be solved. This is reflective of an <em>underdetermined system</em> of equations. There are <em>infinite</em> solutions. This happens when there are more basis functions than data points, in effect the number of data we have is not enough to determine the parameters.</p>
+<p>Thinking about this in terms of the Hessian, if <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> is not full rank, then we are no longer at a minima. We are in some kind of trough, because <em>not full rank</em> implies that there are fewer eigenvectors than dimensions, in effect for those dimensions where there is no eigenvector, the objective function is ‘flat’. It is ambivalent to changes in parameters. This implies there are infinite valid solutions.</p>
+<p>One solution to this problem is to regularise the problem.</p>
 <h2 id="coefficient-shrinkage">Coefficient Shrinkage</h2>
+<p>Coefficient shrinkage is a technique where the parameters of the of the model are ‘encouraged’ to be small. In practice this is normally done by augmenting the objective function with a term that keeps the paremeters low, typically by penaalising a norm.</p>
 <h2 id="tikhonov-regularisation">Tikhonov Regularisation</h2>
-<p>Weight based regularisation</p>
-<p>L2, <span class="citation" data-cites="Tikhonov:book77">Tikhonov and Arsenin (1977)</span></p>
+<p>In neural network models this approach is sometimes called ‘weight decay’. At every gradient step we reduce the value of the weight a little. This idea comes from an approach callled Tikhonov regularisation <span class="citation" data-cites="Tikhonov:book77">(Tikhonov and Arsenin, 1977)</span>, where the objective function is augmented by the L2 norm of the weights, <span class="math display">\[
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\lTwoNorm{\mathbf{W}}^2
+\]</span> with some weighting <span class="math inline">\(\alpha &gt;0\)</span>. This has the effect of changing the Hessian at the minimua to <span class="math display">\[
+$\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}$ + \alpha \mathbf{I}
+\]</span> Which is always full rank. The minimal eigenvalues are now given by <span class="math inline">\(\alpha\)</span>.</p>
 <h2 id="lasso">Lasso</h2>
-<p>L1 <span class="citation" data-cites="Tibshirani-lasso96">Tibshirani (1996)</span></p>
-<h2 id="training-with-noise">Training with Noise</h2>
-<p><span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span></p>
+<p>Other techniques for regularisation based on a norm of the parameters include the Lasso <span class="citation" data-cites="Tibshirani-lasso96">Tibshirani (1996)</span>, which is an L1 norm of the parameters</p>
 <h2 id="splines-functions-hilbert-kernels">Splines, Functions, Hilbert Kernels</h2>
-<p>function based regularisation</p>
-<p>Grace Wahba <span class="citation" data-cites="Kimeldorf:correspondence70">Kimeldorf and Wahba (1970)</span> <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span></p>
-<h2 id="training-with-noise-1">Training with Noise</h2>
+<p>Regularisation of the parameters has the desired effect of making the solution viable, but it can sometimes be difficult to interpret, particularly if the parameters don’t have any inherent meaning (like in a neural network). An alternative approach is to regularise the function, <span class="math inline">\(\mathbf{ f}\)</span>, directly, (see e.g. <span class="citation" data-cites="Kimeldorf:correspondence70">Kimeldorf and Wahba (1970)</span> and <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span>). This is the approach taken by <em>spline models</em> which use energy based regularisation for <span class="math inline">\(f(\cdot)\)</span> and also <em>kernel methods</em> such as the support vector machine <span class="citation" data-cites="Scholkopf:learning01">(Schölkopf and Smola, 2001)</span>.</p>
+<h2 id="training-with-noise">Training with Noise</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>In practice, and across the last two waves of neural networks, other techniques for regularisation have been used which can be seen as perturbing the neural network in some way. For example, in dropout <span class="citation" data-cites="Srivastava:dropout14">(Srivastava et al., 2014)</span>, different basis functions are eliminated from the gradient computation at each gradient update.</p>
 <p>Many of these pertubations have some form of regularising effect. The exact nature of the effect is not always easy to characterise, but in some cases we can assess how these manipulations effect the model. For example, <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span> analyzed training with ‘noisy inputs’ and showed conditions under which it’s equivalent to Tikhonov regularisation.</p>
@@ -848,6 +872,9 @@ f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1
 </div>
 <div id="ref-McCullagh:gen_linear89">
 <p>McCullagh, P., Nelder, J.A., 1989. Generalized linear models, 2nd ed. Chapman; Hall.</p>
+</div>
+<div id="ref-Scholkopf:learning01">
+<p>Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.</p>
 </div>
 <div id="ref-Srivastava:dropout14">
 <p>Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.</p>
