@@ -284,6 +284,8 @@ E(\mathbf{ w})=
 \]</span></p>
 <p>So, in this course there are two reasons for looking at the shallow model. Firstly, it is easier to introduce the concepts of regulariation in the linear model regime. Secondly, the matrix forms we see (objects like <span class="math inline">\(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\)</span>) which represents the Hessian matrix for the linear model, appear in both models.</p>
 <p>For deep learning, we can no longer optimize the parameters of the model through solving a linear system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, we need to turn to non-linear optimization algorithms. For deep learning, that’s typically stochastic gradient descient.</p>
+<p>While it’s possible to compute the Hessian in a neural network, <span class="citation" data-cites="Bishop-exact92">Bishop (1992)</span>, we also find that it varies across the parameter space, and will not normally be positive definite. In practice, the number of parameter is also normally so large that storing the Hessian is impossible (it has quadratic cost in the number of parameters) due to memory constraints.</p>
+<p>This means that while the theory of minima in optimization is well understood, empirical experiments with large neural networks are hard and the lessons of small models do not all translate to the very large systems.</p>
 <h1 id="nigeria-nmis-data">Nigeria NMIS Data</h1>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>As an example data set we will use Nigerian Millenium Development Goals Information System Health Facility <span class="citation" data-cites="Nigeria-nmis14">(The Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs) and Columbia University, 2014)</span>. It can be found here <a href="https://energydata.info/dataset/nigeria-nmis-education-facility-data-2014" class="uri">https://energydata.info/dataset/nigeria-nmis-education-facility-data-2014</a>.</p>
@@ -432,6 +434,7 @@ f(x) = {\color{red}{w_0}} + {\color{magenta}{w_1 x}} + {\color{blue}{w_2 x^2}} +
 <p>The predictions from this model, <span class="math display">\[
 f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 \]</span> are <em>linear</em> in the parameters, <span class="math inline">\(\mathbf{ w}\)</span>, but <em>non-linear</em> in the input <span class="math inline">\(x^3\)</span>. Here we are showing a polynomial basis for a 1-dimensional input, <span class="math inline">\(x\)</span>, but basis functions can also be constructed for multidimensional inputs, <span class="math inline">\(\mathbf{ x}\)</span>.}</p>
+<p>In the neural network models, the “RELU function” is normally used as a basis function, but for illustration we will continue with the polynomial basis for these linear models.</p>
 <h2 id="olympic-marathon-data">Olympic Marathon Data</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/olympic-marathon-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/olympic-marathon-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <table>
@@ -609,8 +612,6 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <span id="cb48-3"><a href="#cb48-3"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
 <span id="cb48-4"><a href="#cb48-4"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
 <span id="cb48-5"><a href="#cb48-5"></a>    <span class="cf">return</span> X[ind, :]  </span></code></pre></div>
-<h2 id="the-jackknife">The Jackknife</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/the-jackknife.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/the-jackknife.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <h2 id="bootstrap-and-olympic-marathon-data">Bootstrap and Olympic Marathon Data</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-bootstrap-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-bootstrap-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>First we define a function to bootstrap resample our dataset.</p>
@@ -740,17 +741,31 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Grace Wahba <span class="citation" data-cites="Kimeldorf:correspondence70">Kimeldorf and Wahba (1970)</span> <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span></p>
 <h2 id="training-with-noise-1">Training with Noise</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p><span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span></p>
+<p>In practice, and across the last two waves of neural networks, other techniques for regularisation have been used which can be seen as perturbing the neural network in some way. For example, in dropout <span class="citation" data-cites="Srivastava:dropout14">(Srivastava et al., 2014)</span>, different basis functions are eliminated from the gradient computation at each gradient update.</p>
+<p>Many of these pertubations have some form of regularising effect. The exact nature of the effect is not always easy to characterise, but in some cases we can assess how these manipulations effect the model. For example, <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span> analyzed training with ‘noisy inputs’ and showed conditions under which it’s equivalent to Tikhonov regularisation.</p>
+<p>But in general these approaches can have different interpretations and they’ve also been related to ensemble learning (e.g. related to <em>bagging</em> or Bayesian approaches).</p>
 <h2 id="bayesian-interpretation-of-regularisation">Bayesian Interpretation of Regularisation</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bayesian-interpretation-of-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bayesian-interpretation-of-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>Bootstrap Predication and Bayesian Misspecified Models: <a href="https://www.jstor.org/stable/3318894#metadata_info_tab_contents" class="uri">https://www.jstor.org/stable/3318894#metadata_info_tab_contents</a></p>
 <p>Edwin Fong and Chris Holmes: On the Marginal Likelihood and Cross Validation <a href="https://arxiv.org/abs/1905.08737" class="uri">https://arxiv.org/abs/1905.08737</a></p>
-<p><br />
-</p>
+<h2 id="overparameterised-systems">Overparameterised Systems</h2>
+<p>If we could examine the Hessian of a neural network at its minimum, we can speculate about what we would find. In particular, we would find that it would have very many low (or negative) eigenvalues in many directions. This is indicative of the parameters being <em>badly determined</em> as a result of the neural network model being heavily <em>overparameterised</em>. So how does it generalise?</p>
+<p>Simply put, there is not enough regularisation encoded in the objective function of the neural network models we are using to explain the generalisation performance. There must be something in the algorithms we are using that causes these highly overparameterised models to generalise well.</p>
 <h2 id="double-descent">Double Descent</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/double-descent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/double-descent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>Belkin on Bias/Variance <a href="https://www.pnas.org/content/116/32/15849.short" class="uri">https://www.pnas.org/content/116/32/15849.short</a> <a href="https://www.pnas.org/content/117/20/10625" class="uri">https://www.pnas.org/content/117/20/10625</a></p>
-<p>Belkin Talk: <a href="http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4" class="uri">http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4</a></p>
+<div class="figure">
+<div id="double-descent-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/ml/double-descent.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="double-descent-magnify" class="magnify" onclick="magnifyFigure(&#39;double-descent&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="double-descent-caption" class="caption-frame">
+<p>Figure: <em>Left</em> traditional perspective on generalisation. There is a sweet spot of operation where the training error is still non-zero. Overfitting occurs when the variance increases. <em>Right</em> The double descent phenomenon, the modern models operate in an interpolation regime where they reconstruct the training data fully, but are well regularised in their interpolations for test data. Figure from <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>.</p>
+</div>
+</div>
 <p>But the modern empirical finding is that when we move beyond Daddy bear, into the dark forest of the massively overparameterized model we can achieve good generalization. Indeed, recent work is showing that large language models are even <em>memorising</em> data <span class="citation" data-cites="Carlini-extracting20">(Carlini et al., 2020)</span> like non-parametric models do.</p>
 <p>As <span class="citation" data-cites="Zhang:understanding17">Zhang et al. (2017)</span> starkly illustrated with their random labels experiment, within the dark forest there are some terrible places, big bad wolves of overfitting that will gobble up your model. But as empirical evidence shows there is also a safe and hospitable Grandma’s house where these highly overparameterized models are safely consumed. Fundamentally, it must be about the route you take through the forest, and the precautions you take to ensure the wolf doesn’t see where you’re going and beat you to the door.</p>
 <p>There are two implications of this empirical result. Firstly, that there is a great deal of new theory that needs to be developed. Secondly, that theory is now obliged to conflate two aspects to modelling that we generally like to keep separate: the model and the algorithm.</p>
@@ -758,10 +773,23 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Crucially, the destination is always associated with 100% accuracy on the training set. An objective that is always achievable for the overparameterized model.</p>
 <p>Intuitively, it seems that a highly overparameterized model places Grandma’s house on the edge of the dark forest. Making it easily and quickly accessible to the algorithm. The larger the model, the more exposed Grandma’s house becomes. Perhaps this is due to some form of blessing of dimensionality brings Grandma’s house closer to the edge of the forest in a high dimensional setting. Really, we should think of Grandma’s house as a low dimensional manifold of destinations that are safe. A path through the forest where the wolf of overfitting doesn’t venture. In the GLM case, we know already that when the number of parameters matches the number of data there is precisely one location in parameter space where accuracy on the training data is 100%. Our previous misunderstanding of generalization stemmed from the fact that (seemingly) it is highly unlikely that this single point is a good place to be from the perspective of generalization. Additionally, it is often difficult to find. Finding the precise polynomial coefficients in a least squares regression to exactly fit the basis to a small data set such as the Olympic marathon data requires careful consideration of the numerical properties and an orthogonalization of the design matrix <span class="citation" data-cites="Lawson:least95">(Lawson and Hanson, 1995)</span>.</p>
 <p>It seems that with a highly overparameterized model, these locations become easier to find and they provide good generalization properties. In machine learning this is known as the “double descent phenomenon” (see e.g. <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>).</p>
+<p>See also this talk by Misha Belkin: <a href="http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4" class="uri">http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4</a> and these related papers <a href="https://www.pnas.org/content/116/32/15849.short" class="uri">https://www.pnas.org/content/116/32/15849.short</a>, <a href="https://www.pnas.org/content/117/20/10625" class="uri">https://www.pnas.org/content/117/20/10625</a></p>
 <h2 id="neural-tangent-kernel">Neural Tangent Kernel</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/neural-tangent-kernel.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/neural-tangent-kernel.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p>Another approach to analysis exploits the fact that optimization is occuring in a very high dimensional parameter space. By considering initialisations that involve small random weights (known as the NTK initialisation) and noting that small updates in the learning mean that the model doesn’t move far from this initialisation <span class="citation" data-cites="Jacot-ntk18">(Jacot et al., 2018)</span>.</p>
+<p>For very wide neural networks, when these conditions are fulfilled, the network can be approximately represented by a <em>kernel</em> known as the neural tangent kernel. A kernel is a regulariser that operates in <em>function space</em> rather than <em>feature space</em>.</p>
 <h2 id="regularisation-in-optimisation">Regularisation in Optimisation</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/regularisation-in-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/regularisation-in-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p>Another interesting theoretical direction is to study the path that neural network algorithms take when finding the optima. For certain simple linear systems, you can analytically study the ‘gradient flow’.</p>
+<p>Neural networks are normally trained by (stochastic) gradient descent. This is a discrete optimisation algorithm where at each point, a step in the direction of the (approximate) gradient is taken.</p>
+<p>Gradient flow replaces this discrete update with a differential equation, where the step at any point is considered to be an exact gradient update. As a result the path of the optimsation can be studied as a <em>differential equation</em>.</p>
+<p>By making assumptions about the initialisation, the optima that gradient flow will find can be characterised. For a highly overparameterised linear model, <span class="citation" data-cites="Gunasekar-implicit2017">Gunasekar et al. (2017)</span> show in matrix factorization, that for particular initialisations, the optima will be a <em>global</em> optima of the objective that minimises the L2-norm.</p>
+<p>By reparameterising the linear model so that each <span class="math inline">\(w_i = u_i^2 - v_i^2\)</span> and optimising in the space defined by <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span> <span class="citation" data-cites="Woodworth-kernel20">Woodworth et al. (2020)</span> show that the L1 norm is found.</p>
+<p>Other papers have looked at <em>deep linear models</em> <span class="citation" data-cites="Arora-convergence19">(Arora et al., 2019)</span>, where <span class="math display">\[
+f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 \mathbf{ x}.
+\]</span> {In these models, a gradient flow analysis shows that the model finds solutions where the linear mapping, <span class="math display">\[
+\mathbf{W}= \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 
+\]</span> is very low rank. This is highly suggestive of another type of regularisation that could be occurring in deep neural networks. Low rank parameter matrices mean that the effective capacity of the neural network is reduced. Indeed empirical observations of the rank of deep nets trained on data suggest that they may be finding such solutions.</p>
 <h2 id="thanks">Thanks!</h2>
 <p>For more information on these subjects and more you might want to check the following resources.</p>
 <ul>
@@ -776,11 +804,17 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>The Deep Bootstrap <a href="https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20" class="uri">https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20</a></p>
 <p>Aki Vehtari on Leave One Out Uncertainty: <a href="https://arxiv.org/abs/2008.10296" class="uri">https://arxiv.org/abs/2008.10296</a> (check for his references).</p>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-Arora-convergence19">
+<p>Arora, S., Cohen, N., Golowich, N., Hu, W., 2019. A convergence analysis of gradient descent for deep linear neural networks, in: International Conference on Learning Representations.</p>
+</div>
 <div id="ref-Belkin:reconciling19">
 <p>Belkin, M., Hsu, D., Ma, S., Soumik Mandal, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.</p>
 </div>
 <div id="ref-Bishop:noise95">
 <p>Bishop, C.M., 1995. Training with noise is equivalent to Tikhonov regularization. Neural Computation 7, 108–116. <a href="https://doi.org/10.1162/neco.1995.7.1.108">https://doi.org/10.1162/neco.1995.7.1.108</a></p>
+</div>
+<div id="ref-Bishop-exact92">
+<p>Bishop, C.M., 1992. Exact calculation of the hessian matrix for the multilayer perceptron. Neural Computation 4, 494–501. <a href="https://doi.org/10.1162/neco.1992.4.4.494">https://doi.org/10.1162/neco.1992.4.4.494</a></p>
 </div>
 <div id="ref-Breiman-forests01">
 <p>Breiman, L., 2001. Random forests. Mach. Learn. 45, 5–32. <a href="https://doi.org/10.1023/A:1010933404324">https://doi.org/10.1023/A:1010933404324</a></p>
@@ -800,6 +834,12 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <div id="ref-Ghahramani:probabilistic15">
 <p>Ghahramani, Z., 2015. Probabilistic machine learning and artificial intelligence. Nature 452–459.</p>
 </div>
+<div id="ref-Gunasekar-implicit2017">
+<p>Gunasekar, S., Woodworth, B., Bhojanapalli, S., Neyshabur, B., Srebro, N., 2017. Implicit regularization in matrix factorization.</p>
+</div>
+<div id="ref-Jacot-ntk18">
+<p>Jacot, A., Gabriel, F., Hongler, C., 2018. Neural tangent kernel: Convergence and generalization in neural networks, in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi, N., Garnett, R. (Eds.), Advances in Neural Information Processing Systems. Curran Associates, Inc., pp. 8571–8580.</p>
+</div>
 <div id="ref-Kimeldorf:correspondence70">
 <p>Kimeldorf, G.S., Wahba, G., 1970. A correspondence between Bayesian estimation of stochastic processes and smoothing by splines. Annals of Mathematical Statistics 41, 495–502.</p>
 </div>
@@ -808,6 +848,9 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <div id="ref-McCullagh:gen_linear89">
 <p>McCullagh, P., Nelder, J.A., 1989. Generalized linear models, 2nd ed. Chapman; Hall.</p>
+</div>
+<div id="ref-Srivastava:dropout14">
+<p>Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.</p>
 </div>
 <div id="ref-Nigeria-nmis14">
 <p>The Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs), Columbia University, 2014. Nigeria NMIS facility database.</p>
@@ -829,6 +872,9 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <div id="ref-Wolpert:lack96">
 <p>Wolpert, D.H., 1996. The lack of a priori distinctions between learning algorithms. Neural Computation 8. <a href="https://doi.org/10.1162/neco.1996.8.7.1341">https://doi.org/10.1162/neco.1996.8.7.1341</a></p>
+</div>
+<div id="ref-Woodworth-kernel20">
+<p>Woodworth, B., Gunasekar, S., Lee, J.D., Moroshko, E., Savarese, P., Golan, I., Soudry, D., Srebro, N., 2020. Kernel and rich regimes in overparametrized models.</p>
 </div>
 <div id="ref-Zhang:understanding17">
 <p>Zhang, C., Bengio, S., Hardt, M., Recht, B., Vinyals, O., 2017. Understanding deep learning requires rethinking generalization, in: https://openreview.net/forum?id=Sy8gdB9xx (Ed.), International Conference on Learning Representations.</p>

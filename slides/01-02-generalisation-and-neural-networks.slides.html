@@ -226,6 +226,9 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
     \mathbf{ w}&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
 \end{align*}
 \]</span></p>
+</section>
+<section id="neural-network-prediction-function" class="slide level2">
+<h2>Neural Network Prediction Function</h2>
 <p><span class="math display">\[
  f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right)
 \]</span></p>
@@ -264,10 +267,6 @@ Location of the over thirty four thousand health facilities registered in the NM
 <aside class="notes">
 Residual values for the ratings from the prediction of the movie rating given the data from the film.
 </aside>
-<!-- SECTION Aside -->
-</section>
-<section id="aside" class="slide level2">
-<h2>Aside</h2>
 </section>
 <section id="solution-with-qr-decomposition" class="slide level2">
 <h2>Solution with QR Decomposition</h2>
@@ -463,9 +462,6 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 \]</span></p>
 <p>```python def bootstrap(X): “Return a bootstrap sample from a data set.” n = X.shape[0] ind = np.random.choice(n, n, replace=True) # Sample randomly with replacement. return X[ind, :]</p>
 </section>
-<section id="the-jackknife" class="slide level2">
-<h2>The Jackknife</h2>
-</section>
 <section id="bootstrap-and-olympic-marathon-data" class="slide level2">
 <h2>Bootstrap and Olympic Marathon Data</h2>
 </section>
@@ -570,25 +566,77 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 </section>
 <section id="training-with-noise-1" class="slide level2">
 <h2>Training with Noise</h2>
-<p><span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span></p>
+<ul>
+<li>Other regularisation approaches such as <em>dropout</em> <span class="citation" data-cites="Srivastava:dropout14">(Srivastava et al., 2014)</span></li>
+<li>Often perturbing the neural network structure or inputs.</li>
+<li>Can have elegant interpretations (see e.g. <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span>)</li>
+<li>Also interpreted as <em>ensemble</em> or <em>Bayesian</em> methods.</li>
+</ul>
 </section>
 <section id="bayesian-interpretation-of-regularisation" class="slide level2">
 <h2>Bayesian Interpretation of Regularisation</h2>
 <p>Bootstrap Predication and Bayesian Misspecified Models: <a href="https://www.jstor.org/stable/3318894#metadata_info_tab_contents" class="uri">https://www.jstor.org/stable/3318894#metadata_info_tab_contents</a></p>
 <p>Edwin Fong and Chris Holmes: On the Marginal Likelihood and Cross Validation <a href="https://arxiv.org/abs/1905.08737" class="uri">https://arxiv.org/abs/1905.08737</a></p>
-<p><br />
-</p>
+</section>
+<section id="overparameterised-systems" class="slide level2">
+<h2>Overparameterised Systems</h2>
+<ul>
+<li>Neural networks are highly overparameterised.</li>
+<li>If we <em>could</em> examine their Hessian at “optimum”
+<ul>
+<li>Very low (or negative) eigenvalues.</li>
+<li>Error function is not sensitive to changes in parameters.</li>
+<li>Implies parmeters are <em>badly determined</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="whence-generalisation" class="slide level2">
+<h2>Whence Generalisation?</h2>
+<ul>
+<li>Not enough regularisation in our objective functions to explain.</li>
+<li>Neural network models are <em>not</em> using traditional generalisation approaches.</li>
+<li>The ability of these models to generalise <em>must</em> be coming somehow from the algorithm*</li>
+<li>How to explain it and control it is perhaps the most interesting theoretical question for neural networks.</li>
+</ul>
 </section>
 <section id="double-descent" class="slide level2">
 <h2>Double Descent</h2>
-<p>Belkin on Bias/Variance <a href="https://www.pnas.org/content/116/32/15849.short" class="uri">https://www.pnas.org/content/116/32/15849.short</a> <a href="https://www.pnas.org/content/117/20/10625" class="uri">https://www.pnas.org/content/117/20/10625</a></p>
-<p>Belkin Talk: <a href="http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4" class="uri">http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4</a></p>
+<div class="figure">
+<div id="double-descent-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/ml/double-descent.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+<em>Left</em> traditional perspective on generalisation. There is a sweet spot of operation where the training error is still non-zero. Overfitting occurs when the variance increases. <em>Right</em> The double descent phenomenon, the modern models operate in an interpolation regime where they reconstruct the training data fully, but are well regularised in their interpolations for test data. Figure from <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>.
+</aside>
 </section>
 <section id="neural-tangent-kernel" class="slide level2">
 <h2>Neural Tangent Kernel</h2>
+<ul>
+<li>Consider very wide neural networks.</li>
+<li>Consider particular initialisation.</li>
+<li>Deep neural network is regularising with a particular <em>kernel</em>.</li>
+<li>This is known as the neural tangent kernel <span class="citation" data-cites="Jacot-ntk18">(Jacot et al., 2018)</span>.</li>
+</ul>
 </section>
 <section id="regularisation-in-optimisation" class="slide level2">
 <h2>Regularisation in Optimisation</h2>
+<ul>
+<li>Gradient flow methods allow us to study nature of optima.</li>
+<li>In particular systems, with given initialisations, we can show L1 and L2 norms are minimised.</li>
+<li>In other cases the rank of <span class="math inline">\(\mathbf{W}\)</span> is minimised.</li>
+<li>Questions remain over the nature of this regularisation in neural networks.</li>
+</ul>
+</section>
+<section id="deep-linear-models" class="slide level2">
+<h2>Deep Linear Models</h2>
+<p><span class="math display">\[
+f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 \mathbf{ x}.
+\]</span> {In these models, a gradient flow analysis shows that the model finds solutions where the linear mapping, <span class="math display">\[
+\mathbf{W}= \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 
+\]</span></p>
 </section>
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
@@ -607,11 +655,20 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <p>The Deep Bootstrap <a href="https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20" class="uri">https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20</a></p>
 <p>Aki Vehtari on Leave One Out Uncertainty: <a href="https://arxiv.org/abs/2008.10296" class="uri">https://arxiv.org/abs/2008.10296</a> (check for his references).</p>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-Belkin:reconciling19">
+<p>Belkin, M., Hsu, D., Ma, S., Soumik Mandal, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.</p>
+</div>
 <div id="ref-Bishop:noise95">
 <p>Bishop, C.M., 1995. Training with noise is equivalent to Tikhonov regularization. Neural Computation 7, 108–116. <a href="https://doi.org/10.1162/neco.1995.7.1.108">https://doi.org/10.1162/neco.1995.7.1.108</a></p>
 </div>
+<div id="ref-Jacot-ntk18">
+<p>Jacot, A., Gabriel, F., Hongler, C., 2018. Neural tangent kernel: Convergence and generalization in neural networks, in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi, N., Garnett, R. (Eds.), Advances in Neural Information Processing Systems. Curran Associates, Inc., pp. 8571–8580.</p>
+</div>
 <div id="ref-Kimeldorf:correspondence70">
 <p>Kimeldorf, G.S., Wahba, G., 1970. A correspondence between Bayesian estimation of stochastic processes and smoothing by splines. Annals of Mathematical Statistics 41, 495–502.</p>
+</div>
+<div id="ref-Srivastava:dropout14">
+<p>Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.</p>
 </div>
 <div id="ref-Tibshirani-lasso96">
 <p>Tibshirani, R., 1996. Regression shrinkage and selection via the lasso. Journal of the Royal Statistical Society. Series B (Methodological) 58, 267–288.</p>
