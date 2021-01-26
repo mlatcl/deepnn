@@ -70,8 +70,14 @@ R(\mathbf{ w}) = \int L(y, x, \mathbf{ w}) \mathbb{P}(y, x) \text{d}y
 <p>That said, this means we can approximate our true integral with the sum, <span class="math display">\[
 R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 \]</span></p>
-<h2 id="bracket-expansion">Bracket Expansion</h2>
+<h2 id="quadratic-loss">Quadratic Loss</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<p><span class="math display">\[
+L(f) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i))^2
+\]</span></p>
+<p><span class="math display">\[
+L(f) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i)^2
+\]</span> ## Bracket Expansion</p>
 <p><span class="math display">\[
 \begin{align*}
   L(\mathbf{ w},\sigma^2)  = &amp;
