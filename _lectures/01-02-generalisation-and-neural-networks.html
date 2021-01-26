@@ -264,20 +264,22 @@ L(\mathbf{ w})=
 <h2 id="hessian-matrix">Hessian Matrix</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
 <p>We can also compute the <em>Hessian</em> matrix, the curvature of the loss function. We simply take the second derivative of the loss function with respect to the parameter vector, <span class="math display">\[
-\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
+\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}.
 \]</span> So we see that the curvature is given by the design matrix.</p>
 <p>Note that for this linear model the curvature is <em>not</em> dependent on the values of the parameter vector, <span class="math inline">\(\mathbf{ w}\)</span>, or indeed on the <em>response</em> variables, <span class="math inline">\(\mathbf{ y}\)</span>. This is unusual, in general the curvature will depend on the parameters and the response variables. The linear model with quadratic loss is a special case because the overall loss function has a <em>quadratic form</em> which is the unique form with constant curvature across the whole space.</p>
 <p>This is one reason why linear models are so easy to work with.</p>
-<p>Because the curvature is constant everywhere, we know that the curvature at the minimum is given by <span class="math inline">\(2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span>.</p>
+<p>Because the curvature is constant everywhere, we know that the curvature at the minimum is given by <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span>.</p>
 <p>From univariate calculus you might recall that the optimum is a maximum if the curvature is negative, and a minimum if the curvature is positive. A similar theorem holds for multivariate calculus, but now the curvature must be <em>positive definite</em> for the point to be a minimum. The constant curvature also shows us also that the minimum is <em>unique</em>.</p>
 <p>Positive definite means that for any two vectors, <span class="math inline">\(\mathbf{u}\)</span> of unit length <span class="math inline">\(\mathbf{u}^\top\mathbf{u}\)</span> we have that, <span class="math display">\[
 \mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \quad \forall \quad \mathbf{u} \quad \text{with}\quad \mathbf{u}^\top\mathbf{u}=1
-\]</span> The matrix <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span> (where we’ve dropped the 2) will satisfy this condition as long as the columns of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> are <em>linearly independent</em> and the number of basis functions is less or equal to the number of data.</p>
+\]</span> The matrix <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> (where we’ve dropped the 2) will satisfy this condition as long as the columns of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> are <em>linearly independent</em> and the number of basis functions is less or equal to the number of data.</p>
 <h2 id="eigendecomposition-of-hessian">Eigendecomposition of Hessian</h2>
 <p>Applying a vector <span class="math inline">\(\mathbf{u}\)</span> to the Hessian matrix gives us the curvature in a particular direction. So we can use this to look at the shape of the minimum by projecting onto the different directions, <span class="math inline">\(\mathbf{u}\)</span>.</p>
 <p>Recall the eigendecomposition of a matrix, <span class="math display">\[
 \mathbf{A}\mathbf{u} = \lambda\mathbf{u}
-\]</span> If we allow <span class="math inline">\(\mathbf{u}_i\)</span> to be an <em>eigenvector</em> of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span> then the curvature in that direction is given by the corresponding eigenvalue, <span class="math inline">\(\lambda_i\)</span>.</p>
+\]</span> If we allow <span class="math inline">\(\mathbf{u}_i\)</span> to be an <em>eigenvector</em> of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span> then the curvature in that direction is given by the corresponding eigenvalue, <span class="math inline">\(\lambda_i\)</span>. <span class="math display">\[
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{u}_i = \lambda_i \mathbf{u}_i
+\]</span></p>
 <p>So the eigendecomposition of the Hessian is a convenient representation of the nature of these minima. The principal eigenvector (the one associated with the largest eigenvalue), <span class="math inline">\(\mathbf{u}_1\)</span> is associated with the direction of <em>highest curvature</em>. While the minor eigenvector shows us the flattest direction, where the curvature is smallest.</p>
 <h2 id="shallow-and-deep-learning">Shallow and Deep Learning</h2>
 <p>So far we have been talking about <em>linear models</em> or <em>shallow learning</em> as we might think of it. Let’s pause for a moment and consider a <em>fully connected</em> deep neural network model to relate the two ideas.</p>
@@ -300,13 +302,13 @@ L(\mathbf{ w})=
     \mathbf{ h}_{1} &amp;= \phi\left(\mathbf{W}_1 \mathbf{ x}\right)\\
     \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{ h}_{1}\right)\\
     \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{ h}_{2}\right)\\
-    \mathbf{ w}&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
+    f&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
 \end{align*}
 \]</span></p>
 <p>Under our basis function perspective, we can see that our deep neural network is mathematical composition of basis function models. Each layer contains a separate basis function set, so <span class="math display">\[
  f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right)
 \]</span></p>
-<p>So, in this course there are two reasons for looking at the shallow model. Firstly, it is easier to introduce the concepts of regulariation in the linear model regime. Secondly, the matrix forms we see (objects like <span class="math inline">\(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\)</span>) which represents the Hessian matrix for the linear model, appear in both models.</p>
+<p>So, in this course there are two reasons for looking at the shallow model. Firstly, it is easier to introduce the concepts of regularisation in the linear model regime. Secondly, the matrix forms we see, e.g. expressions like <span class="math inline">\(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\)</span>, appear in both models.</p>
 <p>For deep learning, we can no longer optimize the parameters of the model through solving a linear system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, we need to turn to non-linear optimization algorithms. For deep learning, that’s typically stochastic gradient descient.</p>
 <p>While it’s possible to compute the Hessian in a neural network, <span class="citation" data-cites="Bishop-exact92">Bishop (1992)</span>, we also find that it varies across the parameter space, and will not normally be positive definite. In practice, the number of parameter is also normally so large that storing the Hessian is impossible (it has quadratic cost in the number of parameters) due to memory constraints.</p>
 <p>This means that while the theory of minima in optimization is well understood, empirical experiments with large neural networks are hard and the lessons of small models do not all translate to the very large systems.</p>
@@ -584,34 +586,14 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Figure: Fit of a 9 degree polynomial to the olympic marathon data.</p>
 </div>
 </div>
-<h2 id="th-degree-polynomial-fit-1">26th Degree Polynomial Fit</h2>
-<p>Now we’ll try a 26th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">27</span>, <span class="co"># basis up to x^26</span></span>
+<h2 id="th-degree-polynomial-fit-1">16th Degree Polynomial Fit</h2>
+<p>Now we’ll try a 16th degree polynomial fit to the data.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">17</span>, <span class="co"># basis up to x^16</span></span>
 <span id="cb43-2"><a href="#cb43-2"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
 <span id="cb43-3"><a href="#cb43-3"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
 <span id="cb43-4"><a href="#cb43-4"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
 <div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
 <span id="cb44-2"><a href="#cb44-2"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
-<div class="figure">
-<div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
-</object>
-</div>
-<div id="olympic-marathon-polynomial-27-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-27&#39;)">
-<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
-</div>
-<div id="olympic-marathon-polynomial-27-caption" class="caption-frame">
-<p>Figure: Fit of a 26 degree polynomial to the olympic marathon data.</p>
-</div>
-</div>
-<h2 id="th-degree-polynomial-fit-2">16th Degree Polynomial Fit</h2>
-<p>Now we’ll try a 16th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">17</span>, <span class="co"># basis up to x^16</span></span>
-<span id="cb45-2"><a href="#cb45-2"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb45-3"><a href="#cb45-3"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb45-4"><a href="#cb45-4"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb46-2"><a href="#cb46-2"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-polynomial-17-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
@@ -622,6 +604,26 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <div id="olympic-marathon-polynomial-17-caption" class="caption-frame">
 <p>Figure: Fit of a 16 degree polynomial to the olympic marathon data.</p>
+</div>
+</div>
+<h2 id="th-degree-polynomial-fit-2">26th Degree Polynomial Fit</h2>
+<p>Now we’ll try a 26th degree polynomial fit to the data.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">27</span>, <span class="co"># basis up to x^26</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb45-3"><a href="#cb45-3"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb45-4"><a href="#cb45-4"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb46-2"><a href="#cb46-2"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
+<div class="figure">
+<div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
+<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
+</object>
+</div>
+<div id="olympic-marathon-polynomial-27-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-27&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="olympic-marathon-polynomial-27-caption" class="caption-frame">
+<p>Figure: Fit of a 26 degree polynomial to the olympic marathon data.</p>
 </div>
 </div>
 <h2 id="the-bootstrap">The Bootstrap</h2>
@@ -766,7 +768,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <h2 id="tikhonov-regularisation">Tikhonov Regularisation</h2>
 <p>In neural network models this approach is sometimes called ‘weight decay’. At every gradient step we reduce the value of the weight a little. This idea comes from an approach callled Tikhonov regularisation <span class="citation" data-cites="Tikhonov:book77">(Tikhonov and Arsenin, 1977)</span>, where the objective function is augmented by the L2 norm of the weights, <span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
-\]</span> with some weighting <span class="math inline">\(\alpha &gt;0\)</span>. This has the effect of changing the Hessian at the minimua to <span class="math display">\[
+\]</span> with some weighting <span class="math inline">\(\alpha &gt;0\)</span>. This has the effect of changing the Hessian at the minimum to <span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}+ \alpha \mathbf{I}
 \]</span> Which is always full rank. The minimal eigenvalues are now given by <span class="math inline">\(\alpha\)</span>.</p>
 <h2 id="lasso">Lasso</h2>

@@ -237,7 +237,7 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <section id="hessian-matrix" class="slide level2">
 <h2>Hessian Matrix</h2>
 <p><span class="math display">\[
-\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}.
+\frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}.
 \]</span></p>
 <p><span class="math display">\[
 \mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \quad \forall \quad \mathbf{u} \quad \text{with}\quad \mathbf{u}^\top\mathbf{u}=1
@@ -248,9 +248,9 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <p><span class="math display">\[
 \mathbf{A}\mathbf{u} = \lambda\mathbf{u}
 \]</span></p>
-<ul>
-<li><span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \lambda\mathbf{u}\)</span></li>
-</ul>
+<p><span class="math display">\[
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{u}_i = \lambda_i \mathbf{u}_i
+\]</span></p>
 </section>
 <section id="shallow-and-deep-learning" class="slide level2">
 <h2>Shallow and Deep Learning</h2>
@@ -272,7 +272,7 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
     \mathbf{ h}_{1} &amp;= \phi\left(\mathbf{W}_1 \mathbf{ x}\right)\\
     \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{ h}_{1}\right)\\
     \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{ h}_{2}\right)\\
-    \mathbf{ w}&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
+    f&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
 \end{align*}
 \]</span></p>
 </section>
@@ -451,18 +451,6 @@ Fit of a 9 degree polynomial to the olympic marathon data.
 </aside>
 </section>
 <section id="th-degree-polynomial-fit-1" class="slide level2">
-<h2>26th Degree Polynomial Fit</h2>
-<div class="figure">
-<div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
-</object>
-</div>
-</div>
-<aside class="notes">
-Fit of a 26 degree polynomial to the olympic marathon data.
-</aside>
-</section>
-<section id="th-degree-polynomial-fit-2" class="slide level2">
 <h2>16th Degree Polynomial Fit</h2>
 <div class="figure">
 <div id="olympic-marathon-polynomial-17-figure" class="figure-frame">
@@ -472,6 +460,18 @@ Fit of a 26 degree polynomial to the olympic marathon data.
 </div>
 <aside class="notes">
 Fit of a 16 degree polynomial to the olympic marathon data.
+</aside>
+</section>
+<section id="th-degree-polynomial-fit-2" class="slide level2">
+<h2>26th Degree Polynomial Fit</h2>
+<div class="figure">
+<div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
+<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
+</object>
+</div>
+</div>
+<aside class="notes">
+Fit of a 26 degree polynomial to the olympic marathon data.
 </aside>
 </section>
 <section id="the-bootstrap" class="slide level2">
