@@ -156,15 +156,17 @@ L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
 <p><span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
 \]</span></p>
+</section>
+<section id="bracket-expansion" class="slide level2">
+<h2>Bracket Expansion</h2>
 <p><span class="math display">\[
 \begin{align*}
   L(\mathbf{ w},\sigma^2)  = &amp; \sum
-_{i=1}^{n}y_i^{2}-\sum
+_{i=1}^{n}y_i^{2}- 2\sum
 _{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\sum
 _{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}\\
-    = &amp; \sum
-_{i=1}^{n}y_i^{2}-
-\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+
+    = &amp; \sum_{i=1}^{n}y_i^{2}-
+2 \mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+
 \mathbf{ w}^{\top}\left[\sum
 _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
 \end{align*}
@@ -176,10 +178,10 @@ _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
 <p><span class="math display">\[
 \boldsymbol{ \Phi}
 = \begin{bmatrix} 
-\designVector_1^\top \\\ 
-\designVector_2^\top \\\ 
+\mathbf{ x}_1^\top \\\ 
+\mathbf{ x}_2^\top \\\ 
 \vdots \\\
-\designVector_n^\top
+\mathbf{ x}_n^\top
 \end{bmatrix} = \begin{bmatrix}
 1 &amp; x_1 \\\
 1 &amp; x_2 \\\
@@ -195,7 +197,7 @@ _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
 L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
 \]</span></p>
 <p><span class="math display">\[
-f(\mathbf{ x}_i; \mathbf{ w}) = \designVector_i^\top \mathbf{ w}.
+f(\mathbf{ x}_i; \mathbf{ w}) = \mathbf{ x}_i^\top \mathbf{ w}.
 \]</span></p>
 </section>
 <section id="stacking-vectors" class="slide level2">
@@ -255,12 +257,8 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <section id="update-equations" class="slide level2">
 <h2>Update Equations</h2>
 <ul>
-<li>Update for <span class="math inline">\(\mathbf{ w}^{*}\)</span>. <span class="math display">\[\mathbf{ w}^{*} = \left(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\right)^{-1} \boldsymbol{ \Phi}^\top \mathbf{ y}\]</span></li>
-<li>The equation for <span class="math inline">\(\left.\sigma^2\right.^{*}\)</span> may also be found <span class="math display">\[\left.\sigma^2\right.^{{*}}=\frac{\sum_{i=1}^{n}\left(y_i-\left.\mathbf{ w}^{*}\right.^{\top}\mathbf{ x}_i\right)^{2}}{n}.\]</span></li>
+<li>Solve the matrix equation for <span class="math inline">\(\mathbf{ w}\)</span>. <span class="math display">\[\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\mathbf{ w}=  \boldsymbol{ \Phi}^\top \mathbf{ y}\]</span></li>
 </ul>
-</section>
-<section id="solving-the-multivariate-system" class="slide level2">
-<h2>Solving the Multivariate System</h2>
 </section>
 <section id="hessian-matrix" class="slide level2">
 <h2>Hessian Matrix</h2>

@@ -83,12 +83,11 @@ L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
 <p><span class="math display">\[
 \begin{align*}
   L(\mathbf{ w},\sigma^2)  = &amp; \sum
-_{i=1}^{n}y_i^{2}-\sum
+_{i=1}^{n}y_i^{2}- 2\sum
 _{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\sum
 _{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}\\
-    = &amp; \sum
-_{i=1}^{n}y_i^{2}-
-\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+
+    = &amp; \sum_{i=1}^{n}y_i^{2}-
+2 \mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+
 \mathbf{ w}^{\top}\left[\sum
 _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
 \end{align*}
@@ -103,12 +102,12 @@ f(x) = mx + c
 f(x) = m \times x +
 c \times 1,
 \]</span> in other words we’ve extracted the unit value, from the offset, <span class="math inline">\(c\)</span>. We can think of this unit value like an extra item of data, because it is always given to us, and it is always set to 1 (unlike regular data, which is likely to vary!). We can therefore write each input data location, <span class="math inline">\(\mathbf{ x}\)</span>, as a vector <span class="math display">\[
-\boldsymbol{ \phi}= \begin{bmatrix} 1\\ x\end{bmatrix}.
+\mathbf{ x}= \begin{bmatrix} 1\\ x\end{bmatrix}.
 \]</span></p>
 <p>Now we choose to also turn our parameters into a vector. The parameter vector will be defined to contain <span class="math display">\[
 \mathbf{ w}= \begin{bmatrix} c \\ m\end{bmatrix}
 \]</span> because if we now take the inner product between these to vectors we recover <span class="math display">\[
-\boldsymbol{ \phi}\cdot\mathbf{ w}= 1 \times c + x \times m = mx + c
+\mathbf{ x}\cdot\mathbf{ w}= 1 \times c + x \times m = mx + c
 \]</span> In <code>numpy</code> we can define this vector as follows</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># define the vector w</span></span>
@@ -116,9 +115,9 @@ c \times 1,
 <span id="cb8-3"><a href="#cb8-3"></a>w[<span class="dv">0</span>] <span class="op">=</span> m</span>
 <span id="cb8-4"><a href="#cb8-4"></a>w[<span class="dv">1</span>] <span class="op">=</span> c</span></code></pre></div>
 <p>This gives us the equivalence between original operation and an operation in vector space. Whilst the notation here isn’t a lot shorter, the beauty is that we will be able to add as many features as we like and still keep the seame representation. In general, we are now moving to a system where each of our predictions is given by an inner product. When we want to represent a linear product in linear algebra, we tend to do it with the transpose operation, so since we have <span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = \mathbf{a}^\top\mathbf{b}\)</span> we can write <span class="math display">\[
-f(\mathbf{ x}_i) = \designVector_i^\top\mathbf{ w}.
-\]</span> Where we’ve assumed that each data point, <span class="math inline">\(\designVector_i\)</span>, is now written by appending a 1 onto the original vector <span class="math display">\[
-\designVector_i = \begin{bmatrix} 
+f(\mathbf{ x}_i) = \mathbf{ x}_i^\top\mathbf{ w}.
+\]</span> Where we’ve assumed that each data point, <span class="math inline">\(\mathbf{ x}_i\)</span>, is now written by appending a 1 onto the original vector <span class="math display">\[
+\mathbf{ x}_i = \begin{bmatrix} 
 1 \\
 x_i
 \end{bmatrix}
@@ -127,10 +126,10 @@ x_i
 <p>We can do this for the entire data set to form a <a href="http://en.wikipedia.org/wiki/Design_matrix"><em>design matrix</em></a> <span class="math inline">\(\boldsymbol{ \Phi}\)</span>, <span class="math display">\[
 \boldsymbol{ \Phi}
 = \begin{bmatrix} 
-\designVector_1^\top \\\ 
-\designVector_2^\top \\\ 
+\mathbf{ x}_1^\top \\\ 
+\mathbf{ x}_2^\top \\\ 
 \vdots \\\
-\designVector_n^\top
+\mathbf{ x}_n^\top
 \end{bmatrix} = \begin{bmatrix}
 1 &amp; x_1 \\\
 1 &amp; x_2 \\\
@@ -146,7 +145,7 @@ x_i
 <p>When we think of the objective function, we can think of it as the errors where the error is defined in a similar way to what it was in Legendre’s day <span class="math inline">\(y_i - f(\mathbf{ x}_i)\)</span>, in statistics these errors are also sometimes called <a href="http://en.wikipedia.org/wiki/Errors_and_residuals_in_statistics"><em>residuals</em></a>. So we can think as the objective and the prediction function as two separate parts, first we have, <span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
 \]</span> where we’ve made the function <span class="math inline">\(f(\cdot)\)</span>’s dependence on the parameters <span class="math inline">\(\mathbf{ w}\)</span> explicit in this equation. Then we have the definition of the function itself, <span class="math display">\[
-f(\mathbf{ x}_i; \mathbf{ w}) = \designVector_i^\top \mathbf{ w}.
+f(\mathbf{ x}_i; \mathbf{ w}) = \mathbf{ x}_i^\top \mathbf{ w}.
 \]</span> Let’s look again at these two equations and see if we can identify any inner products. The first equation is a sum of squares, which is promising. Any sum of squares can be represented by an inner product, <span class="math display">\[
 a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
 \]</span> so if we wish to represent <span class="math inline">\(L(\mathbf{ w})\)</span> in this way, all we need to do is convert the sum operator to an inner product. We can get a vector from that sum operator by placing both <span class="math inline">\(y_i\)</span> and <span class="math inline">\(f(\mathbf{ x}_i; \mathbf{ w})\)</span> into vectors, which we do by defining <span class="math display">\[
@@ -159,7 +158,7 @@ a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
 \]</span> This allows us to write our objective in the folowing, linear algebraic form, <span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span> from the rules of inner products. But what of our matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> of input data? At this point, we need to dust off <a href="http://en.wikipedia.org/wiki/Matrix_multiplication"><em>matrix-vector multiplication</em></a>. Matrix multiplication is simply a convenient way of performing many inner products together, and it’s exactly what we need to summarise the operation <span class="math display">\[
-f_i = \designVector_i^\top\mathbf{ w}.
+f_i = \mathbf{ x}_i^\top\mathbf{ w}.
 \]</span> This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
 \mathbf{c} = \mathbf{B}\mathbf{a},
 \]</span> where <span class="math inline">\(\mathbf{c}\)</span> might be a <span class="math inline">\(k\)</span> dimensional vector (which we can intepret as a <span class="math inline">\(k\times 1\)</span> dimensional matrix), and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(k\times k\)</span> dimensional matrix and <span class="math inline">\(\mathbf{a}\)</span> is a <span class="math inline">\(k\)</span> dimensional vector (<span class="math inline">\(k\times 1\)</span> dimensional matrix).</p>
@@ -249,22 +248,22 @@ L(\mathbf{ w})=
 <h3 id="exercise-1">Exercise 1</h3>
 <p>Use the equivalence between our vector and our matrix formulations of linear regression, alongside our definition of vector derivates, to match the gradients we’ve computed directly for <span class="math inline">\(\frac{\text{d}L(c, m)}{\text{d}c}\)</span> and <span class="math inline">\(\frac{\text{d}L(c, m)}{\text{d}m}\)</span> to those for <span class="math inline">\(\frac{\text{d}L(\mathbf{ w})}{\text{d}\mathbf{ w}}\)</span>.</p>
 <h1 id="update-equation-for-global-optimum">Update Equation for Global Optimum</h1>
-<p>Once again, we need to find the minimum of our objective function. Using our likelihood for multiple input regression we can now minimize for our parameter vector <span class="math inline">\(\mathbf{ w}\)</span>. Firstly, just as in the single input case, we seek stationary points by find parameter vectors that solve for when the gradients are zero, <span class="math display">\[
+<p>We need to find the minimum of our objective function. Using our objective function we can minimize for our parameter vector <span class="math inline">\(\mathbf{ w}\)</span>. Firstly, we seek stationary points by find parameter vectors that solve for when the gradients are zero, <span class="math display">\[
 \mathbf{0}=- 2\boldsymbol{ \Phi}^\top
 \mathbf{ y}+ 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w},
 \]</span> where <span class="math inline">\(\mathbf{0}\)</span> is a <em>vector</em> of zeros. Rearranging this equation we find the solution to be <span class="math display">\[
-\mathbf{ w}= \left[\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\right]^{-1} \boldsymbol{ \Phi}^\top
+\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top
 \mathbf{ y}
-\]</span> where <span class="math inline">\(\mathbf{A}^{-1}\)</span> denotes <a href="http://en.wikipedia.org/wiki/Invertible_matrix"><em>matrix inverse</em></a>.</p>
+\]</span> which is a matrix equation of the familiar form <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span>.</p>
 <h2 id="solving-the-multivariate-system">Solving the Multivariate System</h2>
-<p>The solution for <span class="math inline">\(\mathbf{ w}\)</span> is given in terms of a matrix inverse, but computation of a matrix inverse requires, in itself, an algorithm to resolve it. You’ll know this if you had to invert, by hand, a <span class="math inline">\(3\times 3\)</span> matrix in high school. From a numerical stability perspective, it is also best not to compute the matrix inverse directly, but rather to ask the computer to <em>solve</em> the system of linear equations given by <span class="math display">\[
+<p>The solution for <span class="math inline">\(\mathbf{ w}\)</span> can be written matematically in terms of a matrix inverse of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span>, but computation of a matrix inverse requires, in itself, an algorithm to resolve it. You’ll know this if you had to invert, by hand, a <span class="math inline">\(3\times 3\)</span> matrix in high school. From a numerical stability perspective, it is also best not to compute the matrix inverse directly, but rather to ask the computer to <em>solve</em> the system of linear equations given by <span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
 \]</span> for <span class="math inline">\(\mathbf{ w}\)</span>.</p>
 <h2 id="multivariate-linear-regression">Multivariate Linear Regression</h2>
 <p>A major advantage of the new system is that we can build a linear regression on a multivariate system. The matrix calculus didn’t specify what the length of the vector <span class="math inline">\(\mathbf{ x}\)</span> should be, or equivalently the size of the design matrix.</p>
 <h2 id="hessian-matrix">Hessian Matrix</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>We can also compute the <em>Hessian</em> matrix, the curvature of the loss function. We simply take the second derivative of the loss function with respect to the parameter vector, <span class="math display">\[
+<p>We can also compute the <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian matrix</a>, the curvature of the loss function. To do this we take the second derivative of the loss function with respect to the parameter vector, <span class="math display">\[
 \frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}.
 \]</span> So we see that the curvature is given by the design matrix.</p>
 <p>Note that for this linear model the curvature is <em>not</em> dependent on the values of the parameter vector, <span class="math inline">\(\mathbf{ w}\)</span>, or indeed on the <em>response</em> variables, <span class="math inline">\(\mathbf{ y}\)</span>. This is unusual, in general the curvature will depend on the parameters and the response variables. The linear model with quadratic loss is a special case because the overall loss function has a <em>quadratic form</em> which is the unique form with constant curvature across the whole space.</p>
