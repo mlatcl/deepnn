@@ -73,31 +73,31 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 \]</span></p>
 <h2 id="quadratic-loss">Quadratic Loss</h2>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p><span class="math display">\[
-R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
-\]</span></p>
-<p><span class="math display">\[
-R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
-\]</span> ## Bracket Expansion</p>
+<p>Now we’ve identified the empirical risk with the loss, we’ll use <span class="math inline">\(L(\mathbf{ w})\)</span> to represent our objective function. <span class="math display">\[
+L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
+\]</span> gives us our objective.</p>
+<p>In the case of the linear prediction function we can substitute <span class="math inline">\(f(\mathbf{ x}_i, \mathbf{ w}) = \mathbf{ w}^\top \mathbf{ x}_i\)</span>. <span class="math display">\[
+L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
+\]</span> To compute the gradient of the objective, we first of all expand the brackets.</p>
+<h2 id="bracket-expansion">Bracket Expansion</h2>
 <p><span class="math display">\[
 \begin{align*}
-  L(\mathbf{ w},\sigma^2)  = &amp;
-\frac{n}{2}\log \sigma^2 + \frac{1}{2\sigma^2}\sum
-_{i=1}^{n}y_i^{2}-\frac{1}{\sigma^2}\sum
-_{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\frac{1}{2\sigma^2}\sum
-_{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}
-+\text{const}.\\
-    = &amp; \frac{n}{2}\log \sigma^2 + \frac{1}{2\sigma^2}\sum
-_{i=1}^{n}y_i^{2}-\frac{1}{\sigma^2}
-\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+\frac{1}{2\sigma^2}
+  L(\mathbf{ w},\sigma^2)  = &amp; \sum
+_{i=1}^{n}y_i^{2}-\sum
+_{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\sum
+_{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}\\
+    = &amp; \sum
+_{i=1}^{n}y_i^{2}-
+\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+
 \mathbf{ w}^{\top}\left[\sum
-_{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}+\text{const}.
+_{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
 \end{align*}
 \]</span></p>
-<h1 id="multiple-input-solution-with-linear-algebra">Multiple Input Solution with Linear Algebra</h1>
-<p>You’ve now seen how slow it can be to perform a coordinate ascent on a system. Another approach to solving the system (which is not always possible, particularly in <em>non-linear</em> systems) is to go direct to the minimum. To do this we need to introduce <em>linear algebra</em>. We will represent all our errors and functions in the form of linear algebra. As we mentioned above, linear algebra is just a shorthand for performing lots of multiplications and additions simultaneously. What does it have to do with our system then? Well the first thing to note is that the linear function we were trying to fit has the following form: <span class="math display">\[
+<h1 id="solution-with-linear-algebra">Solution with Linear Algebra</h1>
+<p>In this section we’re going compute the minimum of the quadratic loss with respect to the parameters. When we do this we’ll also review <em>linear algebra</em>. We will represent all our errors and functions in the form of matrices and vectors.</p>
+<p>Linear algebra is just a shorthand for performing lots of multiplications and additions simultaneously. What does it have to do with our system then? Well the first thing to note is that the classic linear function we fit for a one dimensional regression has the form: <span class="math display">\[
 f(x) = mx + c
-\]</span> the classical form for a straight line. From a linear algebraic perspective we are looking for multiplications and additions. We are also looking to separate our parameters from our data. The data is the <em>givens</em> remember, in French the word is données literally translated means <em>givens</em> that’s great, because we don’t need to change the data, what we need to change are the parameters (or variables) of the model. In this function the data comes in through <span class="math inline">\(x\)</span>, and the parameters are <span class="math inline">\(m\)</span> and <span class="math inline">\(c\)</span>.</p>
+\]</span> the classical form for a straight line. From a linear algebraic perspective we are looking for multiplications and additions. We are also looking to separate our parameters from our data. The data is the <em>givens</em>. In French the word is données literally translated means <em>givens</em> that’s great, because we don’t need to change the data, what we need to change are the parameters (or variables) of the model. In this function the data comes in through <span class="math inline">\(x\)</span>, and the parameters are <span class="math inline">\(m\)</span> and <span class="math inline">\(c\)</span>.</p>
 <p>What we’d like to create is a vector of parameters and a vector of data. Then we could represent the system with vectors that represent the data, and vectors that represent the parameters.</p>
 <p>We look to turn the multiplications and additions into a linear algebraic form, we have one multiplication (<span class="math inline">\(m\times c\)</span>) and one addition (<span class="math inline">\(mx + c\)</span>). But we can turn this into a inner product by writing it in the following way, <span class="math display">\[
 f(x) = m \times x +
@@ -124,8 +124,8 @@ x_i
 \end{bmatrix}
 \]</span></p>
 <h1 id="design-matrix">Design Matrix</h1>
-<p>We can do this for the entire data set to form a <a href="http://en.wikipedia.org/wiki/Design_matrix"><em>design matrix</em></a> <span class="math inline">\(\boldsymbol{ \Phi}\)</span>,</p>
-<p><span class="math display">\[\boldsymbol{ \Phi}
+<p>We can do this for the entire data set to form a <a href="http://en.wikipedia.org/wiki/Design_matrix"><em>design matrix</em></a> <span class="math inline">\(\boldsymbol{ \Phi}\)</span>, <span class="math display">\[
+\boldsymbol{ \Phi}
 = \begin{bmatrix} 
 \designVector_1^\top \\\ 
 \designVector_2^\top \\\ 
@@ -137,8 +137,8 @@ x_i
 \vdots
 &amp; \vdots \\\
 1 &amp; x_n
-\end{bmatrix},\]</span></p>
-<p>which in <code>numpy</code> can be done with the following commands:</p>
+\end{bmatrix},
+\]</span> which in <code>numpy</code> can be done with the following commands:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>Phi <span class="op">=</span> np.hstack((np.ones_like(x), x))</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="bu">print</span>(Phi)</span></code></pre></div>
@@ -311,7 +311,7 @@ L(\mathbf{ w})=
 \]</span></p>
 <p>So, in this course there are two reasons for looking at the shallow model. Firstly, it is easier to introduce the concepts of regularisation in the linear model regime. Secondly, the matrix forms we see, e.g. expressions like <span class="math inline">\(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\)</span>, appear in both models.</p>
 <p>For deep learning, we can no longer optimize the parameters of the model through solving a linear system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, we need to turn to non-linear optimization algorithms. For deep learning, that’s typically stochastic gradient descient.</p>
-<p>While it’s possible to compute the Hessian in a neural network, <span class="citation" data-cites="Bishop-exact92">Bishop (1992)</span>, we also find that it varies across the parameter space, and will not normally be positive definite. In practice, the number of parameter is also normally so large that storing the Hessian is impossible (it has quadratic cost in the number of parameters) due to memory constraints.</p>
+<p>While it’s possible to compute the Hessian in a neural network, <span class="citation" data-cites="Bishop-exact92">Bishop (1992)</span>, we also find that it varies across the parameter space, and will not normally be positive definite. In practice, the number of parameters is normally so large that storing the Hessian is impossible (it has quadratic cost in the number of weights/parameters) due to memory constraints.</p>
 <p>This means that while the theory of minima in optimization is well understood, empirical experiments with large neural networks are hard and the lessons of small models do not all translate to the very large systems.</p>
 <h1 id="nigeria-nmis-data">Nigeria NMIS Data</h1>
 <p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>

@@ -148,18 +148,46 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <section id="quadratic-loss" class="slide level2">
 <h2>Quadratic Loss</h2>
 <p><span class="math display">\[
-R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
+L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
 \]</span></p>
 </section>
 <section id="linear-model" class="slide level2">
 <h2>Linear Model</h2>
 <p><span class="math display">\[
-R(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
+L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
+\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+  L(\mathbf{ w},\sigma^2)  = &amp; \sum
+_{i=1}^{n}y_i^{2}-\sum
+_{i=1}^{n}y_i\mathbf{ w}^{\top}\mathbf{ x}_i\\&amp;+\sum
+_{i=1}^{n}\mathbf{ w}^{\top}\mathbf{ x}_i\mathbf{ x}_i^{\top}\mathbf{ w}\\
+    = &amp; \sum
+_{i=1}^{n}y_i^{2}-
+\mathbf{ w}^\top\sum_{i=1}^{n}\mathbf{ x}_iy_i\\&amp;+
+\mathbf{ w}^{\top}\left[\sum
+_{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
+\end{align*}
 \]</span></p>
 <!-- SECTION Design Matrix -->
 </section>
 <section id="design-matrix" class="slide level2">
 <h2>Design Matrix</h2>
+<p><span class="math display">\[
+\boldsymbol{ \Phi}
+= \begin{bmatrix} 
+\designVector_1^\top \\\ 
+\designVector_2^\top \\\ 
+\vdots \\\
+\designVector_n^\top
+\end{bmatrix} = \begin{bmatrix}
+1 &amp; x_1 \\\
+1 &amp; x_2 \\\
+\vdots
+&amp; \vdots \\\
+1 &amp; x_n
+\end{bmatrix}
+\]</span></p>
 </section>
 <section id="writing-the-objective-with-linear-algebra" class="slide level2">
 <h2>Writing the Objective with Linear Algebra</h2>
