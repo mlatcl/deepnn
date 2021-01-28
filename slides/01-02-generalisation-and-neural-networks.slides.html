@@ -265,9 +265,6 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <p><span class="math display">\[
 \frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}.
 \]</span></p>
-<p><span class="math display">\[
-\mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \quad \forall \quad \mathbf{u} \quad \text{with}\quad \mathbf{u}^\top\mathbf{u}=1
-\]</span></p>
 </section>
 <section id="eigendecomposition-of-hessian" class="slide level2">
 <h2>Eigendecomposition of Hessian</h2>
@@ -276,36 +273,6 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 \]</span></p>
 <p><span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{u}_i = \lambda_i \mathbf{u}_i
-\]</span></p>
-</section>
-<section id="shallow-and-deep-learning" class="slide level2">
-<h2>Shallow and Deep Learning</h2>
-</section>
-<section id="deep-neural-network" class="slide level2">
-<h2>Deep Neural Network</h2>
-<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn1.svg" width="50%" style=" ">
-</object>
-</section>
-<section id="deep-neural-network-1" class="slide level2">
-<h2>Deep Neural Network</h2>
-<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn2.svg" width="50%" style=" ">
-</object>
-</section>
-<section id="mathematically" class="slide level2">
-<h2>Mathematically</h2>
-<p><span class="math display">\[
-\begin{align*}
-    \mathbf{ h}_{1} &amp;= \phi\left(\mathbf{W}_1 \mathbf{ x}\right)\\
-    \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{ h}_{1}\right)\\
-    \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{ h}_{2}\right)\\
-    f&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
-\end{align*}
-\]</span></p>
-</section>
-<section id="neural-network-prediction-function" class="slide level2">
-<h2>Neural Network Prediction Function</h2>
-<p><span class="math display">\[
- f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right)
 \]</span></p>
 <!-- SECTION Nigeria NMIS Data -->
 </section>
@@ -343,14 +310,41 @@ Location of the over thirty four thousand health facilities registered in the NM
 Residual values for the ratings from the prediction of the movie rating given the data from the film.
 </aside>
 </section>
+<section id="shallow-and-deep-learning" class="slide level2">
+<h2>Shallow and Deep Learning</h2>
+</section>
+<section id="deep-neural-network" class="slide level2">
+<h2>Deep Neural Network</h2>
+<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn1.svg" width="50%" style=" ">
+</object>
+</section>
+<section id="deep-neural-network-1" class="slide level2">
+<h2>Deep Neural Network</h2>
+<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn2.svg" width="50%" style=" ">
+</object>
+</section>
+<section id="mathematically" class="slide level2">
+<h2>Mathematically</h2>
+<p><span class="math display">\[
+\begin{align*}
+    \mathbf{ h}_{1} &amp;= \phi\left(\mathbf{W}_1 \mathbf{ x}\right)\\
+    \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{ h}_{1}\right)\\
+    \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{ h}_{2}\right)\\
+    f&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
+\end{align*}
+\]</span></p>
+</section>
+<section id="neural-network-prediction-function" class="slide level2">
+<h2>Neural Network Prediction Function</h2>
+<p><span class="math display">\[
+ f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right)
+\]</span></p>
+</section>
 <section id="basis-function-models" class="slide level2">
 <h2>Basis Function Models</h2>
 </section>
 <section id="polynomial-basis" class="slide level2">
 <h2>Polynomial Basis</h2>
-<ul>
-<li></li>
-</ul>
 <p><span class="math display">\[
 \phi_j(x) = x^j
 \]</span></p>
@@ -439,9 +433,15 @@ Olympic marathon pace times since 1896.
 </section>
 <section id="polynomial-fits-to-olympic-marthon-data" class="slide level2">
 <h2>Polynomial Fits to Olympic Marthon Data</h2>
+<ul>
+<li>Fit linear model with polynomial basis to marathon data.</li>
+<li>Try different numbers of basis functions (different degress of polynomial).</li>
+<li>Check the quality of fit.</li>
+</ul>
 </section>
 <section id="linear-fit" class="slide level2">
 <h2>Linear Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1x\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-2-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-2.svg" width="80%" style=" ">
@@ -454,6 +454,7 @@ Fit of a 1 degree polynomial (a linear model) to the olympic marathon data.
 </section>
 <section id="cubic-fit" class="slide level2">
 <h2>Cubic Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-4-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-4.svg" width="80%" style=" ">
@@ -466,6 +467,7 @@ Fit of a 3 degree polynomial (a cubic model) to the olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit" class="slide level2">
 <h2>9th Degree Polynomial Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_9 x^9\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-10-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-10.svg" width="80%" style=" ">
@@ -478,6 +480,7 @@ Fit of a 9 degree polynomial to the olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-1" class="slide level2">
 <h2>16th Degree Polynomial Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{16} x^{16}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-17-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
@@ -490,6 +493,7 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-2" class="slide level2">
 <h2>26th Degree Polynomial Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{26} x^{26}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
@@ -505,6 +509,9 @@ Fit of a 26 degree polynomial to the olympic marathon data.
 <p><span class="math display">\[
 \mathbf{ y}, \mathbf{X}\sim \mathbb{P}(y, \mathbf{ x})
 \]</span></p>
+</section>
+<section id="resample-dataset" class="slide level2">
+<h2>Resample Dataset</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> bootstrap(X):</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
@@ -516,6 +523,7 @@ Fit of a 26 degree polynomial to the olympic marathon data.
 </section>
 <section id="linear-fit-1" class="slide level2">
 <h2>Linear Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-2-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-2.svg" width="80%" style=" ">
@@ -528,6 +536,7 @@ Fit of a 1 degree polynomial (a linear model) to the olympic marathon data.
 </section>
 <section id="cubic-fit-1" class="slide level2">
 <h2>Cubic Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + w_{3} x^3\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-4-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-4.svg" width="80%" style=" ">
@@ -540,6 +549,7 @@ Fit of a 3 degree polynomial (a cubic model) to the olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-3" class="slide level2">
 <h2>9th Degree Polynomial Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{9} x^{9}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-10-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-10.svg" width="80%" style=" ">
@@ -552,6 +562,7 @@ Fit of a 9 degree polynomial to the olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-4" class="slide level2">
 <h2>16th Degree Polynomial Fit</h2>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{16} x^{16}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-17-figure" class="figure-frame">
 <object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-17.svg" width="80%" style=" ">
@@ -564,12 +575,17 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 </section>
 <section id="bias-variance-decomposition" class="slide level2">
 <h2>Bias Variance Decomposition</h2>
-<p>Generalisation error <span class="math display">\[
-\mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
-\]</span> Decompose as <span class="math display">\[
+<p>Generalisation error <span class="math display">\[\begin{align*}
+R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \mathbf{ x}) \text{d}y\text{d}\mathbf{ x}\\
+&amp; \triangleq &amp; \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
+\end{align*}\]</span></p>
+</section>
+<section id="decompose" class="slide level2">
+<h2>Decompose</h2>
+<p>Decompose as <span class="math display">\[
 \begin{align*}
 \mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = &amp; \text{bias}\left[f^*(\mathbf{ x})\right]^2 \\
-&amp; + \text{variance}\left[f^*(\mathbf{ x})\right] +\sigma^2,
+&amp; + \text{variance}\left[f^*(\mathbf{ x})\right] \\ \\ &amp;+\sigma^2,
 \end{align*}
 \]</span></p>
 </section>
