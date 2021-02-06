@@ -16,6 +16,7 @@ time: "14:00"
 week: 3
 session: 1
 reveal: 03-01-hardware.slides.html
+ipynb: 03-01-hardware.ipynb
 youtube: "-IXnGgDbE-M"
 layout: lecture
 categories:
@@ -147,6 +148,13 @@ Eniac, 1950s SoTA Hardware
 </ul>
 <p>:::</p>
 <div class="cell code" data-scrolled="false" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> custom_imports <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>our_custom_net <span class="op">=</span> BasicFCModel()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>our_custom_net.cpu()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># OR</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">&#39;cpu&#39;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>our_custom_net.to(device)</span></code></pre></div>
 <h2 id="graphics-processing-unit">Graphics Processing Unit</h2>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
@@ -165,6 +173,12 @@ Eniac, 1950s SoTA Hardware
 </ul>
 </div>
 <div class="cell code" data-scrolled="false" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}">
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    our_custom_net.cuda()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OR</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    device <span class="op">=</span> torch.device(<span class="st">&#39;cuda:0&#39;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    our_custom_net.to(device)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember to do the same for all inputs to the network</span></span></code></pre></div>
 <h2 id="graphics-processing-unit-1">Graphics Processing Unit</h2>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
@@ -273,7 +287,16 @@ Eniac, 1950s SoTA Hardware
 <p>Credits: Karl Rupp (<a href="https://github.com/karlrupp/microprocessor-trend-data" class="uri">https://github.com/karlrupp/microprocessor-trend-data</a>)</p>
 <h2 id="processor-comparison-based-on-parallelism">Processor comparison based on parallelism</h2>
 </div>
-<p>::: {.cell .code execution_count=“3” scrolled=“false”} </p>
+<p>::: {.cell .code execution_count=“3” scrolled=“false”}</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;CPU matrix multiplication&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> [torch.rand(<span class="dv">2</span><span class="op">**</span><span class="dv">10</span>, <span class="dv">2</span><span class="op">**</span><span class="dv">10</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">*</span> b</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;CPU took </span><span class="sc">{</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss"> seconds&#39;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;GPU matrix multiplication&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>a <span class="op">*</span> b</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;GPU took </span><span class="sc">{</span>time() <span class="op">-</span> start<span class="sc">}</span><span class="ss"> seconds&#39;</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>CPU matrix multiplication
 CPU took 0.0005156993865966797 seconds
@@ -390,6 +413,12 @@ GPU took 0.0002989768981933594 seconds</code></pre>
 <li>Overpowered CPU threads are scrambling to juggle the many nodes / channels they need to compute.</li>
 <li>The CPU is slowed down considerably by the fact that it needs to access its own L3 cache many more times than the GPU would, due to its lower memory access bandwidth.</li>
 </ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;CPU training code&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;CPU training of the above-defined model short example of how long it takes&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>our_custom_net.cpu()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>train(lenet, MNIST_trainloader)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;CPU took </span><span class="sc">{</span>time()<span class="op">-</span>start<span class="sc">:.2f}</span><span class="ss"> seconds&#39;</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>CPU training code
 CPU training of the above-defined model short example of how long it takes</code></pre>
@@ -431,6 +460,15 @@ Epoch 2, iter 469, loss 0.932: : 469it [00:02, 182.58it/s]</code></pre>
 <li>GPU cores are engaged at all times as they sequentially push through the training examples all at the same time.</li>
 <li>All threads need to sync-up at the end of each layer computation so that their outputs can become the inputs to the next layer.</li>
 </ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;GPU training&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;GPU training of the same example as in CPU&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>lenet.cuda()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">512</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>gpu_trainloader <span class="op">=</span> make_MNIST_loader(batch_size<span class="op">=</span>batch_size)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>gpu_train(lenet, gpu_trainloader)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;GPU took </span><span class="sc">{</span>time()<span class="op">-</span>start<span class="sc">:.2f}</span><span class="ss"> seconds&#39;</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>GPU training
 GPU training of the same example as in CPU</code></pre>
@@ -550,6 +588,16 @@ Each <strong>thread <u>block</u></strong> is computing <br>one square sub-matrix
 </ul></li>
 </ul>
 <h2 id="multi-gpu-training-1">Multi-GPU training</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;multi-GPU training&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;GPU training of the same example as in single GPU but with two GPUs&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>our_custom_net_dp <span class="op">=</span> lenet</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>our_custom_net_dp.cuda()</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>our_custom_net_dp <span class="op">=</span> nn.DataParallel(our_custom_net_dp, device_ids<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">1024</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>multigpu_trainloader <span class="op">=</span> make_MNIST_loader(batch_size<span class="op">=</span>batch_size)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>gpu_train(our_custom_net_dp, multigpu_trainloader)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;2 GPUs took </span><span class="sc">{</span>time()<span class="op">-</span>start<span class="sc">:.2f}</span><span class="ss"> seconds&#39;</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>multi-GPU training
 GPU training of the same example as in single GPU but with two GPUs</code></pre>
@@ -619,6 +667,17 @@ Epoch 2, iter 59, iter loss 0.736: : 59it [00:01, 31.70it/s]</code></pre>
 </ul></li>
 <li>The accelerator starves if it waits idly for its inputs due for example to slow CPU, I/O buses, or storage interface (SATA, SSD, NVMe).</li>
 </ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;starving GPUs&quot;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;show in-code what starving GPU looks like&quot;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Deliberately slow down data flow into the gpu </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Do you have any suggestions how to do this in a more realistic way than just to force waiting?</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Using only 1 worker for the dataloader, the time the GPU takes increases.&#39;</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>lenet.cuda()</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">64</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>gpu_trainloader <span class="op">=</span> make_MNIST_loader(batch_size<span class="op">=</span>batch_size, num_workers<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>gpu_train(lenet, gpu_trainloader)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;GPU took </span><span class="sc">{</span>time()<span class="op">-</span>start<span class="sc">:.2f}</span><span class="ss"> seconds&#39;</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>starving GPUs
 show in-code what starving GPU looks like
@@ -645,6 +704,13 @@ Epoch 2, iter 938, iter loss 0.619: : 938it [00:04, 208.96it/s]</code></pre>
 <li>Closing messages</li>
 </ul>
 <h2 id="deep-learning-resource-characterisation">Deep Learning resource characterisation</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;profiling demo&quot;</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;in-house DL training resource profiling code &amp; output - based on the above model and training loop&quot;</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#for both of the below produce one figure for inference and one for training</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#MACs profiling - first slide; show as piechard</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>lenet.cpu()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>profile_ops(lenet, shape<span class="op">=</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">28</span>,<span class="dv">28</span>))</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>profiling demo
 in-house DL training resource profiling code &amp; output - based on the above model and training loop
@@ -677,6 +743,12 @@ Input size: (1, 1, 28, 28)
 <li>Parameters (weights &amp; biases)</li>
 </ul></li>
 </ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;working set profiling&quot;</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the per-layer required memory:</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># memory to load weights, to load inputs, to save oputputs</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize as a per-layer bar chart, each bar consists of three sections - the inputs, outputs, weights</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>profile_layer_mem(lenet)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>working set profiling</code></pre>
 </div>
@@ -684,6 +756,15 @@ Input size: (1, 1, 28, 28)
 <p><img src="af6e0bd6b0755f5ccb33f3a4845521ef02a83120.png" /></p>
 </div>
 <h2 id="working-set-requirement-exceeding-ram">Working Set requirement exceeding RAM</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;exceeding RAM+Swap demo&quot;</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;exceeding working set experiment - see the latency spike over a couple of bytes of working set&quot;</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sample* a training speed of a model whose layer working sets just first in the memory</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bump up layer dimensions which are far from reaching the RAM limit - see that the effect on latency is limited</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># bump up the layer(s) that are at the RAM limit - observe the latency spike rapidly</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add profiling graphs for each of the cases, print out latency numbers.</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># *train for an epoch or two, give the latency &amp; give a reasonable estimate of how long would the full training take (assuming X epochs)</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>estimate_training_for(LeNet, <span class="dv">1000</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>exceeding RAM+Swap demo
 exceeding working set experiment - see the latency spike over a couple of bytes of working set
@@ -699,6 +780,16 @@ Using 6144 hidden nodes took 13.21 seconds,        training for 1000 epochs woul
 <p><img src="7e50f30ae5d9101c770d18fd37f3f335e9107616.png" /></p>
 </div>
 <h2 id="working-set-requirement-exceeding-ram-swap">Working Set requirement exceeding RAM + Swap</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;OOM - massive images&quot;</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;show in-code how this can hapen - say massive images; maybe show error message&quot;</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># How could we do this without affecting the recording process?</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Loading too many images at once causes errors.&#39;</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>lenet.cuda()</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> <span class="dv">6000</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>gpu_trainloader <span class="op">=</span> make_MNIST_loader(batch_size<span class="op">=</span>batch_size, num_workers<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>gpu_train(lenet, gpu_trainloader)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&#39;GPU took </span><span class="sc">{</span>time()<span class="op">-</span>start<span class="sc">:.2f}</span><span class="ss"> seconds&#39;</span>)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>OOM - massive images
 show in-code how this can hapen - say massive images; maybe show error message
@@ -815,6 +906,11 @@ Systolic system matrix multiplication
 <li>Alex Krizhevsky used two GTX 580 GPUs, each with 3GB of memory.</li>
 <li>Theoretical AlexNet (without mid-way split) working set profiling:</li>
 </ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;profile AlexNet layers - show memory requirements&quot;</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;per-layer profiling of AlexNet - connects to the preceding slide&quot;</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torchvision.models <span class="im">import</span> alexnet <span class="im">as</span> net</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>anet <span class="op">=</span> net()</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>profile_layer_alexnet(anet)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>profile AlexNet layers - show memory requirements
 per-layer profiling of AlexNet - connects to the preceding slide</code></pre>
@@ -892,6 +988,10 @@ All-optical NN (2019)
 </ul>
 <h1 id="thank-you-for-your-attention">Thank you for your attention!</h1>
 <h2 id="deep-learning-resource-characterisation-1">Deep Learning resource characterisation</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># memory requirements profiling - second slide; show as piechard</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show proportion of data required for input, parameters and outputs</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>profile_mem(lenet)</span></code></pre></div>
 <div class="output display_data">
 <p><img src="11d23715eb81c04c09c465d3757cb818e4d44bfd.png" /></p>
 </div>
