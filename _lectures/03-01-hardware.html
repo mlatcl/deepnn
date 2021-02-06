@@ -729,9 +729,6 @@ LeNet/ReLU[relu5]/onnx::Relu           20
 Input size: (1, 1, 28, 28)
 295,700 FLOPs or approx. 0.00 GFLOPs</code></pre>
 </div>
-<div class="output display_data">
-<p><img src="fa2e484acf0b3be23b09b17472a1346d6489ca12.png" /></p>
-</div>
 <h2 id="deep-learning-working-set">Deep Learning working set</h2>
 <ul>
 <li>Working set - a collection of all elements needed for executing a given DL layer
@@ -748,9 +745,6 @@ Input size: (1, 1, 28, 28)
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>profile_layer_mem(lenet)</span></code></pre></div>
 <div class="output stream stdout">
 <pre><code>working set profiling</code></pre>
-</div>
-<div class="output display_data">
-<p><img src="af6e0bd6b0755f5ccb33f3a4845521ef02a83120.png" /></p>
 </div>
 <h2 id="working-set-requirement-exceeding-ram">Working Set requirement exceeding RAM</h2>
 <div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;exceeding RAM+Swap demo&quot;</span>)</span>
@@ -772,9 +766,6 @@ Using 1024 hidden nodes took 2.56 seconds,        training for 1000 epochs would
 Using 2048 hidden nodes took 3.10 seconds,        training for 1000 epochs would take ~3098.113536834717s
 Using 4096 hidden nodes took 7.20 seconds,        training for 1000 epochs would take ~7196.521997451782s
 Using 6144 hidden nodes took 13.21 seconds,        training for 1000 epochs would take ~13207.558155059814s</code></pre>
-</div>
-<div class="output display_data">
-<p><img src="7e50f30ae5d9101c770d18fd37f3f335e9107616.png" /></p>
 </div>
 <h2 id="working-set-requirement-exceeding-ram-swap">Working Set requirement exceeding RAM + Swap</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;OOM - massive images&quot;</span>)</span>
@@ -912,9 +903,6 @@ Systolic system matrix multiplication
 <pre><code>profile AlexNet layers - show memory requirements
 per-layer profiling of AlexNet - connects to the preceding slide</code></pre>
 </div>
-<div class="output display_data">
-<p><img src="2371c2a192ef69113ac6e04527cd20ce276e13af.png" /></p>
-</div>
 <h2 id="the-actual-alexnet-architecture">The actual AlexNet architecture</h2>
 <p>AlexNet's architecture had to be split down the middle to accommodate the 3GB limit per unit in its two GPUs.</p>
 <center>
@@ -989,8 +977,4 @@ All-optical NN (2019)
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show proportion of data required for input, parameters and outputs</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>profile_mem(lenet)</span></code></pre></div>
-<div class="output display_data">
-<p><img src="11d23715eb81c04c09c465d3757cb818e4d44bfd.png" /></p>
-</div>
-<p>:::</p>
 
