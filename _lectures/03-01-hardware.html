@@ -178,10 +178,17 @@ Eniac, 1950s SoTA Hardware
 </div>
 <ul>
 <li>Register (per thread)</li>
-<li>An automatic variable in kernel function * Low latency, high bandwidth * Local Memory (per thread) * Variable in a kernel but can not be fitted in register</li>
+<li>An automatic variable in kernel function</li>
+<li>Low latency, high bandwidth * Local Memory (per thread)</li>
+<li>Variable in a kernel but can not be fitted in register</li>
 <li>Shared Memory (between thread blocks)</li>
-<li>All threads faster than local and global memory * Use for inter-thread communication</li>
-<li>physically shared with L1 cache * Constant memory * Per Device Read-only memory * Texture Memory * Per SM, read-only cache, optimized for 2D spatial locality</li>
+<li>All threads faster than local and global memory</li>
+<li>Use for inter-thread communication</li>
+<li>physically shared with L1 cache</li>
+<li>Constant memory</li>
+<li>Per Device Read-only memory</li>
+<li>Texture Memory</li>
+<li>Per SM, read-only cache, optimized for 2D spatial locality</li>
 <li>Global Memory</li>
 </ul>
 <h2 id="a-typical-organisation-of-a-dl-system">A typical organisation of a DL system</h2>
@@ -240,8 +247,8 @@ Eniac, 1950s SoTA Hardware
 <img class="" src="../slides/diagrams/hardware/provisional_memoryInversion.png" width="45%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <ul>
-<li>CPU has faster I/O bus than GPU, but it has lower bandwidth than GPU. <pp>CPU can fetch small pieces of data very fast, GPU fetches them slower but in bulk.</pp> * GPU has more lower-level memory than CPU. <pp>Even though each individual thread and thread block have less memory than the</pp> <pp>CPU threads and cores do, there are just so much more threads in the GPU that</pp><br />
-<pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp></li>
+<li>CPU has faster I/O bus than GPU, but it has lower bandwidth than GPU. <pp>CPU can fetch small pieces of data very fast, GPU fetches them slower but in bulk.</pp></li>
+<li>GPU has more lower-level memory than CPU. <pp>Even though each individual thread and thread block have less memory than the</pp> <pp>CPU threads and cores do, there are just so much more threads in the GPU that</pp> <pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp></li>
 </ul>
 <h2 id="the-case-for-parallelism---moores-law-is-slowing-down">The case for parallelism - Moore's law is slowing down</h2>
 <ul>
@@ -276,8 +283,6 @@ Eniac, 1950s SoTA Hardware
 </center>
 <p>Credits: Karl Rupp (<a href="https://github.com/karlrupp/microprocessor-trend-data" class="uri">https://github.com/karlrupp/microprocessor-trend-data</a>)</p>
 <h2 id="processor-comparison-based-on-parallelism">Processor comparison based on parallelism</h2>
-<p>:::</p>
-<p>::: {.cell .code execution_count=“3” scrolled=“false”}</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;CPU matrix multiplication&quot;</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> [torch.rand(<span class="dv">2</span><span class="op">**</span><span class="dv">10</span>, <span class="dv">2</span><span class="op">**</span><span class="dv">10</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> time()</span>
