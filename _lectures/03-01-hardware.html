@@ -135,9 +135,9 @@ Eniac, 1950s SoTA Hardware
 </tr>
 </table>
 <h2 id="central-processing-unit-cpu">Central Processing Unit (CPU)</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_CPU.png" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
 <li>General-purpose processor (in use since mid-1950s)</li>
 <li>CPU is composed of cores, each of which consists of several threads.</li>
@@ -151,6 +151,14 @@ Eniac, 1950s SoTA Hardware
 <li>L3 cache:     <strong>64 MB</strong></li>
 </ul></li>
 </ul>
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_CPU.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> custom_imports <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>our_custom_net <span class="op">=</span> BasicFCModel()</span>
@@ -159,9 +167,9 @@ Eniac, 1950s SoTA Hardware
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">&#39;cpu&#39;</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>our_custom_net.to(device)</span></code></pre></div>
 <h2 id="graphics-processing-unit">Graphics Processing Unit</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
 <li>Parallelism-exploiting Accelerator</li>
 <li>Originally used for graphics processing (in use since 1970s)</li>
@@ -171,7 +179,15 @@ Eniac, 1950s SoTA Hardware
 <li>NVIDIA GEFORCE RTX 3090</li>
 <li>No. Threads:   <strong>10496</strong></li>
 <li>Clock speed:   <strong>1.4GHz</strong>, boost up to <strong>1.7GHz</strong></li>
-<li>L2 cache:     <strong>24 GB</strong></li>
+<li>L2 cache:     <strong>24 GB</strong>
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table></li>
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
@@ -181,53 +197,78 @@ Eniac, 1950s SoTA Hardware
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    our_custom_net.to(device)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember to do the same for all inputs to the network</span></span></code></pre></div>
 <h2 id="graphics-processing-unit-1">Graphics Processing Unit</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
-<li>Register (per thread)</li>
+<li>Register (per thread)
+<ul>
 <li>An automatic variable in kernel function</li>
-<li>Low latency, high bandwidth * Local Memory (per thread)</li>
+<li>Low latency, high bandwidth</li>
+</ul></li>
+<li>Local Memory (per thread)
+<ul>
 <li>Variable in a kernel but can not be fitted in register</li>
-<li>Shared Memory (between thread blocks)</li>
+</ul></li>
+<li>Shared Memory (between thread blocks)
+<ul>
 <li>All threads faster than local and global memory</li>
 <li>Use for inter-thread communication</li>
 <li>physically shared with L1 cache</li>
-<li>Constant memory</li>
+</ul></li>
+<li>Constant memory
+<ul>
 <li>Per Device Read-only memory</li>
-<li>Texture Memory</li>
+</ul></li>
+<li>Texture Memory
+<ul>
 <li>Per SM, read-only cache, optimized for 2D spatial locality</li>
-<li>Global Memory</li>
+</ul></li>
+<li>Global Memory
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table></li>
 </ul>
 <h2 id="a-typical-organisation-of-a-dl-system">A typical organisation of a DL system</h2>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/provisional_hardwareOrg.png" width="52.5%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <ul>
-<li>Processors</li>
+<li>Processors
+<ul>
 <li>CPU sits at the centre of the system</li>
+</ul></li>
 <li><u><strong>Accelerators</strong></u><br />
-</li>
+
+<ul>
 <li>GPUs, TPUs, Eyeriss, other specialised</li>
-<li>Specialised hardware can be designed with exploiting <u><strong>parallelism</strong></u> in mind<br />
-</li>
-<li><u><strong>Memory hierarchy</strong></u></li>
+<li>Specialised hardware can be designed with exploiting <u><strong>parallelism</strong></u> in mind</li>
+</ul></li>
+<li><u><strong>Memory hierarchy</strong></u>
+<ul>
 <li>Caches - smallest and fastest</li>
 <li>Random Access Memory (RAM) - largest and slowest</li>
-<li>Disk / SSD - storage<br />
-</li>
+<li>Disk / SSD - storage
+<ul>
 <li>Stores the dataset; in crisis it supplements RAM up to Swap</li>
 <li><u><strong>Bandwidth</strong></u> can be serious a bottleneck</li>
-<li>System, memory, and I/O buses</li>
-<li>Closer to processor - faster<br />
-</li>
-<li>Designed to transport fixed-size data chunks<br />
-</li>
-<li>Word size is a key system parameter 4 bytes (32 bit) or 8 bytes (64 bit) </pp><br />
-</li>
-<li>Auxiliary hardware</li>
-<li>Mouse, keyboard, display<br />
-</li>
+</ul></li>
+<li>System, memory, and I/O buses
+<ul>
+<li>Closer to processor - faster</li>
+<li>Designed to transport fixed-size data chunks</li>
+<li>Word size is a key system parameter 4 bytes (32 bit) or 8 bytes (64 bit) </pp></li>
+</ul></li>
+<li>Auxiliary hardware
+<ul>
+<li>Mouse, keyboard, display</li>
+</ul></li>
+</ul></li>
 </ul>
 <h2 id="data-movement-parallelism">Data Movement &amp; Parallelism</h2>
 <center>
