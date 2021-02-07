@@ -179,9 +179,8 @@ Eniac, 1950s SoTA Hardware
 <li>L3 cache:     <strong>64 MB</strong></li>
 </ul></li>
 </ul>
-<p>:::</p>
 </section>
-<section id="graphics-processing-unit" class="slide level2 cell code" data-scrolled="false" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}">
+<section id="graphics-processing-unit" class="slide level2">
 <h2>Graphics Processing Unit</h2>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
@@ -199,7 +198,6 @@ Eniac, 1950s SoTA Hardware
 </ul></li>
 </ul>
 </section>
-<div class="cell code" data-scrolled="false" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}">
 <section id="graphics-processing-unit-1" class="slide level2">
 <h2>Graphics Processing Unit</h2>
 <div class="centered" style="">
@@ -211,8 +209,7 @@ Eniac, 1950s SoTA Hardware
 <li>Shared Memory (between thread blocks)</li>
 <li>All threads faster than local and global memory * Use for inter-thread communication</li>
 <li>physically shared with L1 cache * Constant memory * Per Device Read-only memory * Texture Memory * Per SM, read-only cache, optimized for 2D spatial locality</li>
-<li>Global Memory
-<p></li>
+<li>Global Memory</li>
 </ul>
 </section>
 <section id="a-typical-organisation-of-a-dl-system" class="slide level2">
@@ -243,8 +240,7 @@ Eniac, 1950s SoTA Hardware
 </li>
 <li>Auxiliary hardware</li>
 <li>Mouse, keyboard, display<br />
-
-<p></li>
+</li>
 </ul>
 </section>
 <section id="data-movement-parallelism" class="slide level2">
@@ -282,8 +278,7 @@ Eniac, 1950s SoTA Hardware
 </div>
 <ul>
 <li>CPU has faster I/O bus than GPU, but it has lower bandwidth than GPU. <pp>CPU can fetch small pieces of data very fast, GPU fetches them slower but in bulk.</pp> * GPU has more lower-level memory than CPU. <pp>Even though each individual thread and thread block have less memory than the</pp> <pp>CPU threads and cores do, there are just so much more threads in the GPU that</pp><br />
-<pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp>
-<p></li>
+<pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp></li>
 </ul>
 </section>
 <section id="the-case-for-parallelism---moores-law-is-slowing-down" class="slide level2">
@@ -326,8 +321,7 @@ Eniac, 1950s SoTA Hardware
 </section>
 <section id="processor-comparison-based-on-parallelism" class="slide level2">
 <h2>Processor comparison based on parallelism</h2>
-</section>
-</div>
+<p>:::</p>
 <p>::: {.cell .code execution_count=“3” scrolled=“false”}</p>
 <div class="output stream stdout">
 <pre><code>CPU matrix multiplication
@@ -335,6 +329,7 @@ CPU took 0.0005156993865966797 seconds
 GPU matrix multiplication
 GPU took 0.0002989768981933594 seconds</code></pre>
 </div>
+</section>
 <section id="plan-for-the-day-3" class="slide level2">
 <h2>Plan for the Day</h2>
 <ul>

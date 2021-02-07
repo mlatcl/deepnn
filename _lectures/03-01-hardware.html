@@ -143,8 +143,6 @@ Eniac, 1950s SoTA Hardware
 <li>L3 cache:     <strong>64 MB</strong></li>
 </ul></li>
 </ul>
-<p>:::</p>
-<div class="cell code" data-scrolled="false" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}">
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> custom_imports <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>our_custom_net <span class="op">=</span> BasicFCModel()</span>
@@ -168,8 +166,6 @@ Eniac, 1950s SoTA Hardware
 <li>L2 cache:     <strong>24 GB</strong></li>
 </ul></li>
 </ul>
-</div>
-<div class="cell code" data-scrolled="false" data-slideshow="{&quot;slide_type&quot;:&quot;-&quot;}">
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    our_custom_net.cuda()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OR</span></span>
@@ -186,8 +182,7 @@ Eniac, 1950s SoTA Hardware
 <li>Shared Memory (between thread blocks)</li>
 <li>All threads faster than local and global memory * Use for inter-thread communication</li>
 <li>physically shared with L1 cache * Constant memory * Per Device Read-only memory * Texture Memory * Per SM, read-only cache, optimized for 2D spatial locality</li>
-<li>Global Memory
-<p></li>
+<li>Global Memory</li>
 </ul>
 <h2 id="a-typical-organisation-of-a-dl-system">A typical organisation of a DL system</h2>
 <div class="centered" style="">
@@ -216,8 +211,7 @@ Eniac, 1950s SoTA Hardware
 </li>
 <li>Auxiliary hardware</li>
 <li>Mouse, keyboard, display<br />
-
-<p></li>
+</li>
 </ul>
 <h2 id="data-movement-parallelism">Data Movement &amp; Parallelism</h2>
 <center>
@@ -247,8 +241,7 @@ Eniac, 1950s SoTA Hardware
 </div>
 <ul>
 <li>CPU has faster I/O bus than GPU, but it has lower bandwidth than GPU. <pp>CPU can fetch small pieces of data very fast, GPU fetches them slower but in bulk.</pp> * GPU has more lower-level memory than CPU. <pp>Even though each individual thread and thread block have less memory than the</pp> <pp>CPU threads and cores do, there are just so much more threads in the GPU that</pp><br />
-<pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp>
-<p></li>
+<pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp></li>
 </ul>
 <h2 id="the-case-for-parallelism---moores-law-is-slowing-down">The case for parallelism - Moore's law is slowing down</h2>
 <ul>
@@ -283,7 +276,7 @@ Eniac, 1950s SoTA Hardware
 </center>
 <p>Credits: Karl Rupp (<a href="https://github.com/karlrupp/microprocessor-trend-data" class="uri">https://github.com/karlrupp/microprocessor-trend-data</a>)</p>
 <h2 id="processor-comparison-based-on-parallelism">Processor comparison based on parallelism</h2>
-</div>
+<p>:::</p>
 <p>::: {.cell .code execution_count=“3” scrolled=“false”}</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;CPU matrix multiplication&quot;</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> [torch.rand(<span class="dv">2</span><span class="op">**</span><span class="dv">10</span>, <span class="dv">2</span><span class="op">**</span><span class="dv">10</span>) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)]</span>
