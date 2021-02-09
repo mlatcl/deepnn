@@ -16,7 +16,7 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/white.css" id="theme">
-  <link rel="stylesheet" href="../assets/css/talks.css"/>
+  <link rel="stylesheet" href="../assets/css/talks-small.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -124,7 +124,7 @@ Eniac, 1950s SoTA Hardware
 </td>
 </tr>
 </table>
-<p><small><span style="text-align:right">Thanks to: Our World in Data</span></small></p>
+<p>{<span style="text-align:right"><em>Credit</em>: <a href="https://ourworldindata.org/technological-progress">Our World in Data</a></span>}</p>
 </section>
 <section id="plan-for-the-day-1" class="slide level2">
 <h2>Plan for the Day</h2>
@@ -171,9 +171,9 @@ Eniac, 1950s SoTA Hardware
 </section>
 <section id="central-processing-unit-cpu" class="slide level2">
 <h2>Central Processing Unit (CPU)</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_CPU.png" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
 <li>General-purpose processor (in use since mid-1950s)</li>
 <li>CPU is composed of cores, each of which consists of several threads.</li>
@@ -187,12 +187,20 @@ Eniac, 1950s SoTA Hardware
 <li>L3 cache:     <strong>64 MB</strong></li>
 </ul></li>
 </ul>
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_CPU.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table>
 </section>
 <section id="graphics-processing-unit" class="slide level2">
 <h2>Graphics Processing Unit</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
 <li>Parallelism-exploiting Accelerator</li>
 <li>Originally used for graphics processing (in use since 1970s)</li>
@@ -202,62 +210,102 @@ Eniac, 1950s SoTA Hardware
 <li>NVIDIA GEFORCE RTX 3090</li>
 <li>No. Threads:   <strong>10496</strong></li>
 <li>Clock speed:   <strong>1.4GHz</strong>, boost up to <strong>1.7GHz</strong></li>
-<li>L2 cache:     <strong>24 GB</strong></li>
+<li>L2 cache:     <strong>24 GB</strong>
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table></li>
 </ul></li>
 </ul>
 </section>
 <section id="graphics-processing-unit-1" class="slide level2">
 <h2>Graphics Processing Unit</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="35%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
-<li>Register (per thread)</li>
+<li>Register (per thread)
+<ul>
 <li>An automatic variable in kernel function</li>
-<li>Low latency, high bandwidth * Local Memory (per thread)</li>
+<li>Low latency, high bandwidth</li>
+</ul></li>
+<li>Local Memory (per thread)
+<ul>
 <li>Variable in a kernel but can not be fitted in register</li>
-<li>Shared Memory (between thread blocks)</li>
+</ul></li>
+<li>Shared Memory (between thread blocks)
+<ul>
 <li>All threads faster than local and global memory</li>
 <li>Use for inter-thread communication</li>
 <li>physically shared with L1 cache</li>
-<li>Constant memory</li>
+</ul></li>
+<li>Constant memory
+<ul>
 <li>Per Device Read-only memory</li>
-<li>Texture Memory</li>
+</ul></li>
+<li>Texture Memory
+<ul>
 <li>Per SM, read-only cache, optimized for 2D spatial locality</li>
-<li>Global Memory</li>
+</ul></li>
+<li>Global Memory
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table></li>
 </ul>
 </section>
 <section id="a-typical-organisation-of-a-dl-system" class="slide level2">
 <h2>A typical organisation of a DL system</h2>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_hardwareOrg.png" width="52.5%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
+<table>
+<tr>
+<td width="60%">
 <ul>
-<li>Processors</li>
+<li>Processors
+<ul>
 <li>CPU sits at the centre of the system</li>
-<li><u><strong>Accelerators</strong></u><br />
-</li>
+</ul></li>
+<li><u><strong>Accelerators</strong></u>
+<ul>
 <li>GPUs, TPUs, Eyeriss, other specialised</li>
-<li>Specialised hardware can be designed with exploiting <u><strong>parallelism</strong></u> in mind<br />
-</li>
-<li><u><strong>Memory hierarchy</strong></u></li>
+<li>Specialised hardware can be designed with exploiting <u><strong>parallelism</strong></u> in mind</li>
+</ul></li>
+<li><u><strong>Memory hierarchy</strong></u>
+<ul>
 <li>Caches - smallest and fastest</li>
 <li>Random Access Memory (RAM) - largest and slowest</li>
-<li>Disk / SSD - storage<br />
-</li>
+<li>Disk / SSD - storage
+<ul>
 <li>Stores the dataset; in crisis it supplements RAM up to Swap</li>
 <li><u><strong>Bandwidth</strong></u> can be serious a bottleneck</li>
-<li>System, memory, and I/O buses</li>
-<li>Closer to processor - faster<br />
-</li>
-<li>Designed to transport fixed-size data chunks<br />
-</li>
-<li>Word size is a key system parameter 4 bytes (32 bit) or 8 bytes (64 bit) </pp><br />
-</li>
-<li>Auxiliary hardware</li>
-<li>Mouse, keyboard, display<br />
-</li>
+</ul></li>
+<li>System, memory, and I/O buses
+<ul>
+<li>Closer to processor - faster</li>
+<li>Designed to transport fixed-size data chunks</li>
+<li>Word size is a key system parameter 4 bytes (32 bit) or 8 bytes (64 bit) </pp></li>
+</ul></li>
+<li>Auxiliary hardware
+<ul>
+<li>Mouse, keyboard, display</li>
+</ul></li>
+</ul></li>
 </ul>
+</td>
+<td width="40%">
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_hardwareOrg.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</td>
+</tr>
+</table>
 </section>
 <section id="data-movement-parallelism" class="slide level2">
 <h2>Data Movement &amp; Parallelism</h2>
@@ -294,7 +342,7 @@ Eniac, 1950s SoTA Hardware
 </div>
 <ul>
 <li>CPU has faster I/O bus than GPU, but it has lower bandwidth than GPU. <pp>CPU can fetch small pieces of data very fast, GPU fetches them slower but in bulk.</pp></li>
-<li>GPU has more lower-level memory than CPU. <pp>Even though each individual thread and thread block have less memory than the</pp> <pp>CPU threads and cores do, there are just so much more threads in the GPU that</pp> <pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp></li>
+<li>GPU has more lower-level memory than CPU. <pp>Even though each individual thread and thread block have less memory than the</pp> <pp>CPU threads and cores do, there are just so much more threads in the GPU that</pp> <pp></pp> <pp><strong>taken as a whole</strong> they have much more lower-level memory.</pp> <pp>This is memory inversion.</pp></li>
 </ul>
 </section>
 <section id="the-case-for-parallelism---moores-law-is-slowing-down" class="slide level2">
@@ -307,7 +355,7 @@ Eniac, 1950s SoTA Hardware
 <img class="" src="../slides/diagrams/hardware/Moores_Law.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
-<p><small><span style="text-align:right">Thanks to: Our World in Data</span></small></p>
+<p>{<span style="text-align:right"><em>Credit</em>: <a href="https://ourworldindata.org/technological-progress">Our World in Data</a></span>}</p>
 </section>
 <section id="plan-for-the-day-2" class="slide level2">
 <h2>Plan for the Day</h2>
@@ -333,7 +381,7 @@ Eniac, 1950s SoTA Hardware
 <img class="" src="../slides/diagrams/hardware/Moores_Law2.png" width="65%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
-<p><small><span style="text-align:right">Thanks to: Karl Rupp</span></small></p>
+<p>{<span style="text-align:right"><em>Credit</em>: <a href="https://github.com/karlrupp/microprocessor-trend-data">Karl Rupp</a></span>}</p>
 </section>
 <section id="processor-comparison-based-on-parallelism" class="slide level2">
 <h2>Processor comparison based on parallelism</h2>
@@ -535,77 +583,43 @@ Epoch 2, iter 118, iter loss 0.760: : 118it [00:02, 57.48it/s]</code></pre>
 <h2>GPU parallelism: matrix multiplication example</h2>
 <table>
 <tr>
-<td>
+<td width>
 <center>
-<h2>
 GPU
-</h2>
+</center>
+<center>
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
+<center>
+<em>12 thread blocks, each with 16 threads.</em>
 </center>
 </td>
-<td>
+<td width>
 <center>
-<h2>
 Naive implementation
-</h2>
+</center>
+<center>
+<div class="centered" style="">
+<img class="" src="../slides/diagrams/hardware/provisional_matmulVOsharedMemory.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
+<center>
+<em>Each <strong>thread</strong> reads one row of A, one <br>column of B and returns one element of C.</em>
 </center>
 </td>
-<td>
+<td width>
 <center>
-<h2>
 Shared memory implementation
-</h2>
 </center>
-</td>
-</tr>
-<tr>
-<td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_GPU.png" width="45%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="../slides/diagrams/hardware/provisional_matmul.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
-</td>
-<td>
 <center>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_matmulVOsharedMemory.png" width="45%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</center>
-</td>
-<td>
-<center>
-<div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/provisional_matmul.png" width="45%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</center>
-</td>
-</tr>
-<tr>
-<td>
-<center>
-<pp>
-<h6>
-12 thread blocks, each with 16 threads.
-</h6>
-</pp>
-</center>
-</td>
-<td>
-<center>
-<pp>
-<h6>
-Each <strong>thread</strong> reads one row of A, one <br>column of B and returns one element of C.
-</h6>
-</pp>
-</center>
-</td>
-<td>
-<center>
-<pp>
-<h6>
-Each <strong>thread <u>block</u></strong> is computing <br>one square sub-matrix.
-</h6>
-</pp>
+<em>Each <strong>thread <u>block</u></strong> is computing <br>one square sub-matrix.</em>
 </center>
 </td>
 </tr>
@@ -700,14 +714,18 @@ Epoch 2, iter 59, iter loss 0.736: : 59it [00:01, 31.70it/s]</code></pre>
 <img class="" src="../slides/diagrams/hardware/distributed_bottlenecks4.png" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <ul>
-<li>DL-training hardware needs to synchronize and communicate very frequently</li>
+<li>DL-training hardware needs to synchronize and communicate very frequently
+<ul>
 <li>Model nodes are heavily interconnected at each model layer.</li>
 <li>Data nodes are interconnected by batch-norm-style layers</li>
 <li>Data nodes are interconnected at gradient computation</li>
-<li>This communication occurs between</li>
+</ul></li>
+<li>This communication occurs between
+<ul>
 <li>Threads in a core (CPU and GPU)</li>
 <li>Cores within a chip</li>
 <li>Pieces of hardware <em>example: SLI bridge is a connector and a protocol for such a communication</em></li>
+</ul></li>
 </ul>
 </section>
 <section id="bottlenecks-beyond-parallelism" class="slide level2">
@@ -827,7 +845,7 @@ Epoch 2, iter 2, iter loss 0.592: : 2it [00:01,  1.69it/s]</code></pre>
 </td>
 <td width="49%">
 <center>
-Systolic system matrix multiplication
+<strong>Systolic system matrix multiplication</strong>
 </center>
 <center>
 <video width="100%" height="" controls preload="none">
@@ -840,25 +858,19 @@ Systolic system matrix multiplication
 </section>
 <section id="mapping-deep-models-to-hardware-weight-input-and-output-stationarity" class="slide level2">
 <h2>Mapping Deep Models to hardware: weight, input, and output stationarity</h2>
-</section>
-<section id="weight-stationary-design" class="slide level2">
-<h2>Weight stationary design</h2>
+<p><strong>Weight stationary design</strong></p>
 <center>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/weight_stationary.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
-</section>
-<section id="input-stationary-design" class="slide level2">
-<h2>Input stationary design</h2>
+<p><strong>Input stationary design</strong></p>
 <center>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/input_stationary.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
-</section>
-<section id="output-stationary-design" class="slide level2">
-<h2>Output stationary design</h2>
+<p><strong>Output stationary design</strong></p>
 <center>
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/hardware/output_stationary.png" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
@@ -967,35 +979,29 @@ per-layer profiling of AlexNet - connects to the preceding slide</code></pre>
 <section id="the-hardware-and-the-software-lotteries" class="slide level2">
 <h2>The Hardware and the Software Lotteries</h2>
 <center>
-<strong><i>The software and hardware lottery describes the success of a software or a piece of hardware resulting not from its universal superiority, but, rather, from its fit to the broader hardware and software ecosystem.</i></strong>
+<strong>The software and hardware lottery describes the success of a software or a piece of hardware resulting not from its universal superiority, but, rather, from its fit to the broader hardware and software ecosystem.</strong>
 </center>
 <table>
 <tr>
-<td>
+<td width="49%">
 <center>
-<h2>
 Eniac (1950s)
-</h2>
 </center>
-</td>
-<td>
 <center>
-<h2>
-All-optical NN (2019)
-</h2>
+<div class="centered centered" style="">
+<img class="" src="../slides/diagrams/hardware/Eniac.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
 </center>
 </td>
-</tr>
-<tr>
-<td>
-<div class="centered centered" style="">
-<img class="" src="../slides/diagrams/hardware/Eniac.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
-</div>
-</td>
-<td>
+<td width="49%">
+<center>
+All-optical NN (2019)
+</center>
+<center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/hardware/futureDL.png" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="../slides/diagrams/hardware/futureDL.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
+</center>
 </td>
 </tr>
 </table>
