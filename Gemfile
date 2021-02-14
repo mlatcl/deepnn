@@ -9,6 +9,7 @@ group :jekyll_plugins do
   gem 'jekyll-seo'
   gem 'jekyll-remote-theme'
   gem 'jekyll-include-cache'
+  gem 'webrick'
 end
 
 # gem "rails"
