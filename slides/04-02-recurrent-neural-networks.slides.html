@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="dcterms.date" content="2021-02-16">
+  <title>Recurrent Neural Networks</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="../assets/css/talks.css"/>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://unpkg.com/reveal.js@3.9.2/css/print/pdf.css' : 'https://unpkg.com/reveal.js@3.9.2/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    TeX: {
+         extensions: ["color.js"]
+      }
+    });
+  </script>
+  <script src="../assets/js/figure-animate.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Recurrent Neural Networks</h1>
+  <p class="author" style="text-align:center"><a href="https://www.inference.vc/about/">Ferenc Huszár</a></p>
+  <p class="date" style="text-align:center"><time>2021-02-16</time></p>
+  <p class="venue" style="text-align:center">Zoom</p>
+</section>
+
+<section class="slide level2">
+
+
+</section>
+<section id="different-from-what-we-had-before" class="slide level2">
+<h2>Different from what we had before:</h2>
+<ul>
+<li>different input type (sequences)</li>
+<li>different network building blocks
+<ul>
+<li>multiplicative interactions</li>
+<li>gating</li>
+<li>skip connections</li>
+</ul></li>
+<li>different objective
+<ul>
+<li>maximum likelihood</li>
+<li>generative modelling</li>
+</ul></li>
+</ul>
+</section>
+<section id="modelling-sequences" class="slide level2">
+<h2>Modelling sequences</h2>
+<ul>
+<li>input to the network: <span class="math inline">\(x_1, x_3, \ldots, x_T\)</span></li>
+<li>sequences of different length</li>
+<li>sometimes ‘EOS’ symbol</li>
+<li>sequence classification (e.g. text classification)</li>
+<li>sequence generation (e.g. language generation)</li>
+<li>sequence-to-sequence (e.g. translation)</li>
+</ul>
+<h3 id="recurrent-neural-network">Recurrent Neural Network</h3>
+<p><img data-src="https://i.imgur.com/UJYrL7I.png" /></p>
+<h3 id="rnn-unrolled-through-time">RNN: Unrolled through time</h3>
+<p><img data-src="https://i.imgur.com/YnkgS5P.png" /></p>
+<h3 id="rnn-different-uses">RNN: different uses</h3>
+<p><img data-src="https://i.imgur.com/WGl90lv.jpg" /></p>
+<p>figure from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s blog post</a></p>
+<h3 id="generating-sequences">Generating sequences</h3>
+<p>Goal: model the distribution of sequences</p>
+<p><span class="math display">\[
+p(x_{1:T}) = p(x_1, \ldots, x_T)
+\]</span></p>
+<p>Idea: model it one-step-at-a-time:</p>
+<p><span class="math display">\[
+p(x_{1:T}) = p(x_T\vert x_{1:T-1}) p(x_{T-1} \vert x_{1:T-2}) \cdots p(x_1)
+\]</span></p>
+<h3 id="modeling-sequence-distributions">Modeling sequence distributions</h3>
+<p><img data-src="https://i.imgur.com/WfPwnjZ.png" /></p>
+<h3 id="training-maximum-likelihood">Training: maximum likelihood</h3>
+<p><img data-src="https://i.imgur.com/Z8sLsQI.png" /></p>
+<h3 id="sampling-sequences">Sampling sequences</h3>
+<p><img data-src="https://i.imgur.com/c9WcaD0.png" /></p>
+<h3 id="char-rnn-shakespeare">Char-RNN: Shakespeare</h3>
+<p>from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s 2015 blog post</a></p>
+<p><img data-src="https://i.imgur.com/cN25jUL.png" /></p>
+<h3 id="char-rnn-wikipedia">Char-RNN: Wikipedia</h3>
+<p>from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s 2015 blog post</a></p>
+<p><img data-src="https://i.imgur.com/Nr0UjtR.png" /></p>
+<h3 id="char-rnn-wikipedia-1">Char-RNN: Wikipedia</h3>
+<p>from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s 2015 blog post</a></p>
+<p><img data-src="https://i.imgur.com/R91pDeJ.png" /></p>
+<h3 id="char-rnn-example-random-xml">Char-RNN example: random XML</h3>
+<p>from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s 2015 blog post</a></p>
+<p><img data-src="https://i.imgur.com/H3b3QjC.png" /></p>
+<h3 id="char-rnn-example-latex">Char-RNN example: LaTeX</h3>
+<p>from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s 2015 blog post</a></p>
+<p><img data-src="https://i.imgur.com/GgXRG4n.jpg" /></p>
+<h3 id="but-it-was-not-that-easy">But, it was not that easy</h3>
+<ul>
+<li>vanilla RNNs forget too quickly</li>
+<li>vanishing gradients problem</li>
+<li>exploding gradients problem</li>
+<li>colab illustration</li>
+</ul>
+<h3 id="vanishing-gradient-problem">Vanishing gradient problem</h3>
+<p><img data-src="https://i.imgur.com/cLhmhjv.png" /></p>
+<h3 id="vanishingexploding-gradients-problem">Vanishing/exploding gradients problem</h3>
+<p>Vanilla RNN:</p>
+<p><span class="math display">\[
+\mathbf{h}_{t+1} = \sigma(W_h \mathbf{h}_t + W_x \mathbf{x}_t + \mathbf{b_h})
+\]</span></p>
+<p><span class="math display">\[
+\hat{y} = \phi(W_y \mathbf{h}_{T} + \mathbf{b}_y)
+\]</span></p>
+<h3 id="the-gradients-of-the-loss-are">The gradients of the loss are</h3>
+<p><span class="math display">\[\begin{align}
+\frac{\partial \hat{L}}{\partial \mathbf{h}_t} &amp;= \frac{\partial \hat{L}}{\mathbf{h}_T} \prod_{s=t}^{T-1} \frac{\partial h_{t+1}}{\partial h_t} \\
+&amp;= \frac{\partial \hat{L}}{\mathbf{h}_T} \prod_{s=t}^{T-1} D_s W^{T-t}_h,
+\end{align}\]</span></p>
+<p>where * <span class="math inline">\(D_t = \operatorname{diag} \left[\sigma&#39;(W_t \mathbf{h}_{t-1} + + W_x \mathbf{x}_t + \mathbf{b_h})\right]\)</span> * if <span class="math inline">\(\sigma\)</span> is ReLU, <span class="math inline">\(\sigma&#39;(z) \in \{0, 1\}\)</span></p>
+<h3 id="the-norm-of-the-gradient-is-upper-bounded">The norm of the gradient is upper bounded</h3>
+<p><span class="math display">\[\begin{align}
+\left\|\frac{\partial \hat{L}}{\partial \mathbf{h}_t}\right\| &amp;\leq \left\|\frac{\partial \hat{L}}{\mathbf{h}_T}\right\| \prod_{s=t}^{T-1} \left\|D_s\right\| \left\|W_h\right\|^{T-t},
+\end{align}\]</span></p>
+<ul>
+<li>the norm of <span class="math inline">\(D_s\)</span> is less than 1 (ReLU)</li>
+<li>the norm of <span class="math inline">\(W_h\)</span> can cause gradients to explode</li>
+</ul>
+<p><img data-src="https://i.imgur.com/DVFyskJ.png" /></p>
+<h3 id="unitary-evolution-rnns">Unitary Evolution RNNs</h3>
+<p>Idea: constrain <span class="math inline">\(W_h\)</span> to be unit-norm.</p>
+<p><img data-src="https://i.imgur.com/9Thc6AS.png" /></p>
+<h3 id="unitary-evolution-rnns-1">Unitary Evolution RNNs</h3>
+<p>Compose weight matrix out of simple unitary transforms:</p>
+<p><span class="math display">\[
+W_h = D_3R_2\mathcal{F}^{-1}D_2\Pi R_1\mathcal{F}D_1
+\]</span></p>
+<h3 id="more-typical-solution-gating">More typical solution: gating</h3>
+<p>Vanilla RNN:</p>
+<p><span class="math display">\[
+\mathbf{h}_{t+1} = \sigma(W_h \mathbf{h}_t + W_x \mathbf{x}_t + \mathbf{b_h})
+\]</span></p>
+<p>Gated Recurrent Unit:</p>
+<p><span class="math display">\[\begin{align}
+\mathbf{h}_{t+1} &amp;= \mathbf{z}_t \odot \mathbf{h}_t + (1 - \mathbf{z}_t) \tilde{\mathbf{h}}_t \\
+\tilde{\mathbf{h}}_t &amp;= \phi\left(W\mathbf{x}_t + U(\mathbf{r}_t \odot \mathbf{h}_t)\right)\\
+\mathbf{r}_t &amp;= \sigma(W_r\mathbf{x}_t + U_r\mathbf{h}_t)\\
+\mathbf{z}_t &amp;= \sigma(W_z\mathbf{x}_t + U_z\mathbf{h}_t)\\
+\end{align}\]</span></p>
+</section>
+<section id="gru-diagram" class="slide level2">
+<h2>GRU diagram</h2>
+<p><img data-src="https://i.imgur.com/TrhwIcC.png" /></p>
+<h3 id="lstm-long-short-term-memory">LSTM: Long Short-Term Memory</h3>
+<ul>
+<li>by Hochreiter and Schmidhuber (1997)</li>
+<li>improved/tweaked several times since</li>
+<li>more gates to control behaviour</li>
+<li>2009: Alex Graves, ICDAR connected handwriting recognition competition</li>
+<li>2013: sets new record in natural speech dataset</li>
+<li>2014: GRU proposed (simplified LSTM)</li>
+<li>2016: neural machine translation</li>
+</ul>
+<h3 id="side-note-dealing-with-depth">Side note: dealing with depth</h3>
+<p><img data-src="https://i.imgur.com/sTaW6fT.png" /></p>
+<h3 id="side-note-dealing-with-depth-1">Side note: dealing with depth</h3>
+<p><img data-src="https://i.imgur.com/2oCXEIh.png" /></p>
+<h3 id="side-note-dealing-with-depth-2">Side note: dealing with depth</h3>
+<p><img data-src="https://i.imgur.com/w8BmEfS.png%20=260x" /></p>
+<h3 id="deep-residual-networks-resnets">Deep Residual Networks (ResNets)</h3>
+<p><img data-src="https://i.imgur.com/hJK6Rx4.png" /></p>
+<h3 id="deep-residual-networks-resnets-1">Deep Residual Networks (ResNets)</h3>
+<p><img data-src="https://i.imgur.com/wjBWNn9.png" /></p>
+<h3 id="resnets">ResNets</h3>
+<ul>
+<li>allow for much deeper networks (101, 152 layer)</li>
+<li>performance increases with depth</li>
+<li>new record in benchmarks (ImageNet, COCO)</li>
+<li>used almost everywhere now</li>
+</ul>
+<h3 id="resnets-behave-like-ensembles">Resnets behave like ensembles</h3>
+<p><img data-src="https://i.imgur.com/LNPB4e8.png" /></p>
+<p>from (<a href="https://arxiv.org/pdf/1605.06431.pdf">Veit et al, 2016</a>)</p>
+<h3 id="densenets">DenseNets</h3>
+<p><img data-src="https://i.imgur.com/Eyyx1uK.png" /></p>
+<h3 id="densenets-1">DenseNets</h3>
+<p><img data-src="https://i.imgur.com/a5dQUl8.png" /></p>
+<h3 id="back-to-rnns">Back to RNNs</h3>
+<ul>
+<li>like ResNets, LSTMs and GRU create “shortcuts”</li>
+<li>allows information to skip processing</li>
+<li>data-dependent gating</li>
+<li>data-dependent shortcuts</li>
+</ul>
+</section>
+<section id="different-from-what-we-had-before-1" class="slide level2">
+<h2>Different from what we had before:</h2>
+<ul>
+<li>different input type (sequences)</li>
+<li>different network building blocks
+<ul>
+<li>multiplicative interactions</li>
+<li>gating</li>
+<li>skip connections</li>
+</ul></li>
+<li>different objective
+<ul>
+<li>maximum likelihood</li>
+<li>generative modelling</li>
+</ul></li>
+</ul>
+<h3 id="rnn-different-uses-1">RNN: different uses</h3>
+<p><img data-src="https://i.imgur.com/WGl90lv.jpg" /></p>
+<p>figure from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s blog post</a></p>
+<h3 id="to-engage-with-this-material-at-home">To engage with this material at home</h3>
+<p>Try the <a href="https://github.com/udacity/deep-learning-v2-pytorch/blob/master/recurrent-neural-networks/char-rnn/Character_Level_RNN_Exercise.ipynb">char-RNN Exercise</a> from Udacity.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/head.min.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Transition style
+        transition: 'None', // none/fade/slide/convex/concave/zoom
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://unpkg.com/reveal.js@3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/math/math.js', async: true },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
