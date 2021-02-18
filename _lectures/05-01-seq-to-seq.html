@@ -32,7 +32,11 @@ categories:
 
 -->
 <h3 id="rnn-recap">RNN: Recap</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/YnkgS5P.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="the-state-update-rule-naive">The state update rule: naive</h3>
 <p><span class="math display">\[
 \mathbf{h}_{t+1} = \phi(W_h \mathbf{h}_t + W_x \mathbf{x}_t + \mathbf{b_h})
@@ -60,9 +64,17 @@ else:
 \mathbf{z}_t &amp;= \sigma(W_z\mathbf{x}_t + U_z\mathbf{h}_t)\\
 \end{align}\]</span></p>
 <h3 id="side-note-dealing-with-depth">Side note: dealing with depth</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/n72rvhO.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="side-note-dealing-with-depth-1">Side note: dealing with depth</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/w8BmEfS.png" width="260px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="very-deep-networks-are-hard-to-train">Very deep networks are hard to train</h3>
 <ul>
 <li>exploding/vanishing gradients</li>
@@ -70,9 +82,17 @@ else:
 <li>VGG19: 19-layer ConvNet</li>
 </ul>
 <h3 id="deep-residual-networks-resnets">Deep Residual Networks (ResNets)</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/wjBWNn9.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="deep-residual-networks-resnets-1">Deep Residual Networks (ResNets)</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/hJK6Rx4.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="resnets">ResNets</h3>
 <ul>
 <li>allow for much deeper networks (101, 152 layer)</li>
@@ -81,9 +101,18 @@ else:
 <li>used almost everywhere now</li>
 </ul>
 <h3 id="resnets-behave-like-ensembles">Resnets behave like ensembles</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/LNPB4e8.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>from (<a href="https://arxiv.org/pdf/1605.06431.pdf">Veit et al, 2016</a>)</p>
 <h3 id="densenets">DenseNets</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/4aTzmR7.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="back-to-rnns">Back to RNNs</h3>
 <ul>
 <li>like ResNets, LSTMs create “shortcuts”</li>
@@ -94,40 +123,120 @@ else:
 <h3 id="visualising-rnn-behaviours">Visualising RNN behaviours</h3>
 <p>See this <a href="https://distill.pub/2019/memorization-in-rnns/">distill post</a></p>
 <h3 id="rnn-different-uses">RNN: different uses</h3>
+<center>
+<div class="centered centered" style="">
+<img class="" src="https://i.imgur.com/WGl90lv.jpg" width="nnegate" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>figure from <a href="https://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy’s blog post</a></p>
 <h3 id="rnns-for-images">RNNs for images</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://karpathy.github.io/assets/rnn/house_read.gif" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/abs/1412.7755">Ba et al, 2014</a>)</p>
 <h3 id="rnns-for-images-1">RNNs for images</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://karpathy.github.io/assets/rnn/house_generate.gif" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/abs/1502.04623">Gregor et al, 2015</a>)</p>
 <h3 id="rnns-for-painting">RNNs for painting</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/DhbBAl2.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://learning-to-paint.github.io/">Mellor et al, 2019</a>)</p>
 <h3 id="rnns-for-painting-1">RNNs for painting</h3>
-
+<center>
+<div class="centered centered" style="">
+<img class="" src="https://i.imgur.com/KKg33WR.jpg" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="spatial-lstms">Spatial LSTMs</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/4fOP3FR.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/pdf/1506.03478.pdf">Theis et al, 2015</a>)</p>
 <h3 id="spatial-lstms-generating-textures">Spatial LSTMs generating textures</h3>
-
+<center>
+<div class="centered centered" style="">
+<img class="" src="https://i.imgur.com/uLYyB3l.jpg" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="seq2seq-sequence-to-sequence">Seq2Seq: sequence-to-sequence</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/Ki8xpvY.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/pdf/1409.3215.pdf">Sutskever et al, 2014</a>)</p>
 <h3 id="seq2seq-neural-machine-translation">Seq2Seq: neural machine translation</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/WrZg5r4.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="show-and-tell-image2seq">Show and Tell: “Image2Seq”</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/hyUtUjl.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/pdf/1411.4555.pdf">Vinyals et al, 2015</a>)</p>
 <h3 id="show-and-tell-image2seq-1">Show and Tell: “Image2Seq”</h3>
+<center>
+<div class="centered centered" style="">
+<img class="" src="https://i.imgur.com/MSU5mIw.jpg" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/pdf/1411.4555.pdf">Vinyals et al, 2015</a>)</p>
 <h3 id="sentence-to-parsing-tree-seq2tree">Sentence to Parsing tree “Seq2Tree”</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/ywwmSCK.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/abs/1412.7449">Vinyals et al, 2014</a>)</p>
 <h3 id="general-algorithms-as-seq2seq">General algorithms as Seq2Seq</h3>
 <p>travelling salesman</p>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/B8jsaMt.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>(<a href="https://arxiv.org/abs/1506.03134">Vinyals et al, 2015</a>)</p>
 <h3 id="general-algorithms-as-seq2seq-1">General algorithms as Seq2Seq</h3>
 <p>convex hull and triangulation</p>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/mTQhCTi.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="pointer-networks">Pointer networks</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/JhFpOkZ.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="revisiting-the-basic-idea">Revisiting the basic idea</h3>
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/Ki8xpvY.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <p>“Asking the network too much”</p>
 <h3 id="attention-layer">Attention layer</h3>
-
+<center>
+<div class="centered" style="">
+<img class="" src="https://i.imgur.com/nskRYts.png" width="" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</center>
 <h3 id="attention-layer-1">Attention layer</h3>
 <p>Attention weights:</p>
 <p><span class="math display">\[
@@ -138,7 +247,9 @@ else:
 \mathbf{c}_s = \sum_{t=1}^T \alpha_{t,s} \mathbf{e}_t
 \]</span></p>
 <h3 id="attention-layer-visualised">Attention layer visualised</h3>
-\centeralign{
+<center>
+</center>
+{
 <div class="centered" style="">
 <img class="" src="https://i.imgur.com/MVt50yl.png.png" width="500px)" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
