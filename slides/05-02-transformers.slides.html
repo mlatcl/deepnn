@@ -114,10 +114,11 @@
 </section>
 <section id="learning-alignment---the-first-attention" class="slide level2">
 <h2>Learning Alignment - the first Attention</h2>
-<span style="text-align:right"></span>{
+<span style="text-align:right">
 <div class="centered" style="">
 <img class="" src="../slides/diagrams/deepnn/rnnAttention.png" width="600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
+<p></span></p>
 <ul>
 <li>Fixed-length context vector was a key performance bottleneck in 2015.</li>
 <li>Bahdanau et al. (2015) propose to (soft-)search for parts of a source <br>sentence that are relevant to predicting a target word.</li>
@@ -126,10 +127,7 @@
 <ul>
 <li><strong>Encoder:</strong> bi-directional RNN.</li>
 <li><strong>Decoder:</strong> gated RNN.</li>
-<li><strong>Innovation:</strong> each time-step gets its own separate context vector:</li>
-<li><pp> <span class="math inline">\(\large c_t = \sum_{j=1}^{T} ( \alpha_{t,j} h_t)\)</span> </pp></li>
-<li><pp> <span class="math inline">\(\large \alpha_{t,j} = \frac{exp(e_{t,j})} {\sum_{k=1}^{T}e_{t,k}}\)</span> </pp></li>
-<li><pp> <span class="math inline">\(\large e_{t,j} = f(s_{t-1}, h_j)\)</span> </pp></li>
+<li><strong>Innovation:</strong> each time-step gets its own separate context vector: <span class="math display">\[\large c_t = \sum_{j=1}^{\top} ( \alpha_{t,j} h_t)\]</span> <span class="math display">\[\large \alpha_{t,j} = \frac{exp(e_{t,j})} {\sum_{k=1}^{\top}e_{t,k}}\]</span> <span class="math display">\[\large e_{t,j} = f(s_{t-1}, h_j)\]</span></li>
 </ul></li>
 </ul>
 <p><em>Function <span class="math inline">\(f\)</span> implemented as a fully connected layer.</em></p>
@@ -180,7 +178,7 @@
 <ul>
 <li>Scaled dot-product attention (no parameters):</li>
 </ul>
-<p><span class="math display">\[ \text{attention}(Q,K,V)=\text{softmax}\left(\frac{QK^{T}}{\sqrt{d_{K}}}\right) V\]</span></p>
+<p><span class="math display">\[ \text{attention}(Q,K,V)=\text{softmax}\left(\frac{QK^{\top}}{\sqrt{d_{K}}}\right) V\]</span></p>
 </section>
 <section id="attention-is-all-you-need-2" class="slide level2">
 <h2>Attention is All You Need</h2>
@@ -200,7 +198,7 @@
 <ul>
 <li>Scaled dot-product attention (no parameters):</li>
 </ul>
-<p><span class="math display">\[ \text{attention}(Q,K,V)=\text{softmax}\left(\frac{QK^{T}}{\sqrt{d_{K}}}\right) V\]</span></p>
+<p><span class="math display">\[ \text{attention}(Q,K,V)=\text{softmax}\left(\frac{QK^{\top}}{\sqrt{d_{K}}}\right) V\]</span></p>
 <ul>
 <li>Multi-head attention (parameters: <span class="math inline">\(W_0, W_1^Q, W_1^K, W_1^V, \dots\)</span>): <span class="math inline">\(\text{MultiHead}(Q,K,V)=\text{concat}(\text{head}_{1},\dots,\text{head}_{h}) W_{0}\)</span> <span class="math inline">\(\text{head}_i=\text{attention}(QW_i\^Q, KW_i\^K, VW_i\^V)\)</span></li>
 </ul>
@@ -297,7 +295,7 @@
 <h2>Linformers</h2>
 <ul>
 <li><p>Basic attention (no parameters):</p>
-<p><span class="math display">\[ \text{attention}(Q,K,V)=\underbrace{\text{softmax}(\frac{QK^{T}}{\sqrt{d_{K}}})}_\text{P} V\]</span></p></li>
+<p><span class="math display">\[ \text{attention}(Q,K,V)=\underbrace{\text{softmax}\left(\frac{QK^{\top}}{\sqrt{d_{K}}}\right)}_\text{P} V\]</span></p></li>
 <li><p>Wang et al. prove theoretically and check empirically that P is low rank.</p></li>
 </ul>
 <center>
