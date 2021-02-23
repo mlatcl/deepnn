@@ -157,7 +157,7 @@ categories:
 </ul>
 <p><span class="math display">\[ \text{attention}(Q,K,V)=\text{softmax}\left(\frac{QK^{\top}}{\sqrt{d_{K}}}\right) V\]</span></p>
 <ul>
-<li>Multi-head attention (parameters: <span class="math inline">\(W_0, W_1^Q, W_1^K, W_1^V, \dots\)</span>): <span class="math inline">\(\text{MultiHead}(Q,K,V)=\text{concat}(\text{head}_{1},\dots,\text{head}_{h}) W_{0}\)</span> <span class="math inline">\(\text{head}_i=\text{attention}(QW_i\^Q, KW_i\^K, VW_i\^V)\)</span></li>
+<li>Multi-head attention (parameters: <span class="math inline">\(W_0, W_1^Q, W_1^K, W_1^V, \dots\)</span>): <span class="math inline">\(\text{MultiHead}(Q,K,V)=\text{concat}(\text{head}_{1},\dots,\text{head}_{h}) W_{0}\)</span> <span class="math inline">\(\text{head}_i=\text{attention}(QW_i^Q, KW_i^K, VW_i^V)\)</span></li>
 </ul>
 <h2 id="attention-is-all-you-need-the-transformer">Attention is All You Need: the Transformer</h2>
 <center>
@@ -225,7 +225,7 @@ categories:
 </div>
 </center>
 <center>
-<em>Loss: log-likelyhood and perplexity expressed in bits per dimension.</em>
+<em>Loss: log-likelihood and perplexity expressed in bits per dimension.</em>
 </center>
 <h2 id="linformers">Linformers</h2>
 <center>
