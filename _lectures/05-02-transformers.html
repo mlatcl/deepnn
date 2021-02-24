@@ -96,7 +96,7 @@ categories:
 <ul>
 <li><strong>Encoder:</strong> bi-directional RNN.</li>
 <li><strong>Decoder:</strong> gated RNN.</li>
-<li><strong>Innovation:</strong> each time-step gets its own separate context vector: <span class="math display">\[\large c_t = \sum_{j=1}^{\top} ( \alpha_{t,j} h_t)\]</span> <span class="math display">\[\large \alpha_{t,j} = \frac{exp(e_{t,j})} {\sum_{k=1}^{\top}e_{t,k}}\]</span> <span class="math display">\[\large e_{t,j} = f(s_{t-1}, h_j)\]</span></li>
+<li><strong>Innovation:</strong> each time-step gets its own separate context vector: <span class="math display">\[\large c_t = \sum_{j=1}^{\top} ( \alpha_{t,j} h_t)\]</span> <span class="math display">\[\large \alpha_{t,j} = \frac{\exp(e_{t,j})} {\sum_{k=1}^{\top}\exp(e_{t,k})}\]</span> <span class="math display">\[\large e_{t,j} = f(s_{t-1}, h_j)\]</span></li>
 </ul></li>
 </ul>
 <p><em>Function <span class="math inline">\(f\)</span> implemented as a fully connected layer.</em></p>
