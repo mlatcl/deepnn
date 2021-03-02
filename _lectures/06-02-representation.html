@@ -16,6 +16,7 @@ time: "14:00"
 week: 6
 session: 2
 reveal: 06-02-representation.slides.html
+youtube: "OTcrDGQQcZY"
 layout: lecture
 categories:
 - notes
@@ -225,7 +226,14 @@ p_\theta(x) = \int p_\theta(x\vert z) p_\theta(z) dz
 <p><strong>Predicting What you Already Know Helps: Provable Self-Supervised Learning</strong></p>
 <p><a href="https://arxiv.org/abs/2008.01064">(Lee et al, 2020)</a></p>
 <h2 id="provable-self-supervised-learning">Provable Self-Supervised Learning</h2>
-<p>Assumptions: * observable <span class="math inline">\(X\)</span> decomposes into <span class="math inline">\(X_1, X_2\)</span> * pretext: only given <span class="math inline">\((X_1, X_2)\)</span> pairs * downstream: we will want to predict <span class="math inline">\(Y\)</span> * <span class="math inline">\(X_1 \perp \!\!\! \perp X_2 \vert Y, Z\)</span> * (+1 additional strong assumption)</p>
+<p>Assumptions:</p>
+<ul>
+<li>observable <span class="math inline">\(X\)</span> decomposes into <span class="math inline">\(X_1, X_2\)</span></li>
+<li>pretext: only given <span class="math inline">\((X_1, X_2)\)</span> pairs</li>
+<li>downstream: we will want to predict <span class="math inline">\(Y\)</span></li>
+<li><span class="math inline">\(X_1 \perp \!\!\! \perp X_2 \vert Y, Z\)</span></li>
+<li>(+1 additional strong assumption)</li>
+</ul>
 <h2 id="provable-self-supervised-learning-1">Provable Self-Supervised Learning</h2>
 <center>
 <div class="centered" style="">
