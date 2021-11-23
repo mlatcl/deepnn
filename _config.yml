@@ -83,12 +83,9 @@ remote_theme: lawrennd/proceedings
 #
 # exclude:
 exclude:
-  - slides/reveal.js/plugin/markdown/example
-  - slides/reveal.js/plugin/markdown/example
-  - slides/reveal.js-3.8.0/plugin/markdown/example
-  - slides/reveal.js-3.8.0/test/
-  - slides/reveal.js-3.8.0/css/theme/
-  - slides/plugin/markdown/example
+  - slides/reveal.js/examples/
+  - slides/reveal.js/test/
+  - slides/reveal.js/css/theme
   - .sass-cache/
   - .jekyll-cache/
   - gemfiles/
