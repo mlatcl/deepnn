@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-venue: "Zoom"
+venue: "LT1, William Gates Building"
 abstract: "<p>This lecture will give the background to what this course is about, and how it fits in to other material you can find on deep neural network models. It explains deep neural networks are, how they fit into the wider context of the field and why they are successful.</p>"
 author:
 - given: Neil D.
@@ -10,14 +10,16 @@ author:
   twitter: 
   gscholar: 
   orcid: 
-date: 2021-01-21
-published: 2021-01-21
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/introduction.md
+date: 2022-01-20
+published: 2022-01-20
 time: "14:00"
 week: 1
 session: 1
 reveal: 01-01-introduction.slides.html
 ipynb: 01-01-introduction.ipynb
 youtube: "9pjIhoeXlnI"
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/introduction.md
 layout: lecture
 categories:
 - notes
@@ -34,7 +36,9 @@ categories:
 
 -->
 <h2 id="course-overview">Course Overview</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/overview-2020.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/overview-2020.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/overview-2021.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/overview-2021.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Deep Neural Networks is an eight we course that introduces you to the fundamental concepts behind deep learning with neural networks. Over the last decade, deep neural network models have been behind some of the most impressive feats in machine learning. From the <a href="https://en.wikipedia.org/wiki/AlexNet">convolutional neural networks</a> that made breakthrough progess on the <a href="https://en.wikipedia.org/wiki/ImageNet">ImageNet challenge</a>, object detection and the image net challenge, and most recently with the <a href="https://predictioncenter.org/casp14/doc/CASP14_press_release.html">CASP14 Protein Folding result from DeepMind</a>.</p>
 <p>Welcome to this course, which is designed to introduce you to the principles and ideas behind deep neural network models.</p>
 <p>Due to widespread international interest in neural networks there is now a great deal of material to help you train and deploy these models. It is not our aim to substitute this material but to augment it with deeper understanding of the reasons why deep learning is successful and the context in which that success has occurred.</p>
@@ -64,7 +68,7 @@ circle {
 <title>
 Ferenc Huszar
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="../slides/diagrams/people/ferenc-huszar.jpg" clip-path="url(#clip0)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.com/deepnn/./slides/diagrams//people/ferenc-huszar.jpg" clip-path="url(#clip0)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip1">
@@ -77,7 +81,7 @@ circle {
 <title>
 Nic Lane
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="../slides/diagrams/people/nic-lane.jpg" clip-path="url(#clip1)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.com/deepnn/./slides/diagrams//people/nic-lane.jpg" clip-path="url(#clip1)"/>
 </svg>
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip2">
@@ -90,7 +94,7 @@ circle {
 <title>
 Neil Lawrence
 </title>
-<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="../slides/diagrams/people/neil-lawrence.png" clip-path="url(#clip2)"/>
+<image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.com/deepnn/./slides/diagrams//people/neil-lawrence.png" clip-path="url(#clip2)"/>
 </svg>
 </div>
 <p>Our course is taught by Ferenc Huszár, Nic Lane and Neil Lawrence.</p>
@@ -136,7 +140,9 @@ Neil Lawrence
 <p>Weeks 6-8 will involve a series of guest lectures and discussion sessions to relate the fundamental material you’ve learnt about to how people are deploying these models in the real world and how they are innovating with these models to extend their capabilities.</p>
 <p>The two assignments will make up the entire mark of the module. They should be submitted via Moodle.</p>
 <h1 id="what-is-machine-learning">What is Machine Learning?</h1>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>What is machine learning? At its most basic level machine learning is a combination of</p>
 <p><span class="math display">\[\text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
 <p>where <em>data</em> is our observations. They can be actively or passively acquired (meta-data). The <em>model</em> contains our assumptions, based on previous experience. That experience can be other data, it can come from transfer learning, or it can merely be our beliefs about the regularities of the universe. In humans our models include our inductive biases. The <em>prediction</em> is an action to be taken or a categorization or a quality score. The reason that machine learning has become a mainstay of artificial intelligence is the importance of predictions in artificial intelligence. The data and the model are combined through computation.</p>
@@ -145,13 +151,17 @@ Neil Lawrence
 <p><strong>an objective function</strong> a function which defines the cost of misprediction. Typically it includes knowledge about the world’s generating processes (probabilistic objectives) or the costs we pay for mispredictions (empiricial risk minimization).</p>
 <p>The combination of data and model through the prediction function and the objective function leads to a <em>learning algorithm</em>. The class of prediction functions and objective functions we can make use of is restricted by the algorithms they lead to. If the prediction function or the objective function are too complex, then it can be difficult to find an appropriate learning algorithm. Much of the acdemic field of machine learning is the quest for new learning algorithms that allow us to bring different types of models and data together.</p>
 <p>A useful reference for state of the art in machine learning is the UK Royal Society Report, <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a>.</p>
-<p>You can also check my post blog post on <a href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What is Machine Learning?</a>..</p>
+<p>You can also check my post blog post on <a href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What is Machine Learning?</a>.</p>
 <h2 id="ingredients">Ingredients</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/introduction.mdtmp.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/introduction.mdtmp.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/introduction.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/introduction.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>So the three key ingredients of machine learning are a model, data and compute. Note, that this necessarily implies that an <em>algorithm</em> exists to combine the model with the data and that algorithm is what consumes the compute.</p>
 <p>So how do these ingredients pan out in our recipe for deep learning? To better understand this, we’re going to add more historical context and go back go 1997 when, here in Cambridge, there was a six month programme at the Isaac Newton Institute run on Machine Learning, Neural Networks and Generalisation.</p>
 <h2 id="cybernetics-neural-networks-and-the-ratio-club">Cybernetics, Neural Networks and the Ratio Club</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/cybernetics-ratio-club.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/cybernetics-ratio-club.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/cybernetics-ratio-club.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/cybernetics-ratio-club.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>This is certainly not the first wave of excitment in neural networks. This history of neural networks predates the history of the computer, and papers on neural networks predate papers on the digital computer.</p>
 <div class="figure">
 <div id="russell-pitts-mcculloch-figure" class="figure-frame">
@@ -159,17 +169,17 @@ Neil Lawrence
 <tr>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/philosophy/Bertrand_Russell_1957.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//philosophy/Bertrand_Russell_1957.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/Lettvin_Pitts.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/Lettvin_Pitts.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/warren_mcculloch.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/warren_mcculloch.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
@@ -191,17 +201,17 @@ Neil Lawrence
 <tr>
 <td width="30%">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/physics/james-clerk-maxwell.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//physics/james-clerk-maxwell.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/physics/j-w-gibbs.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//physics/j-w-gibbs.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/physics/Norbert_wiener.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//physics/Norbert_wiener.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
@@ -221,7 +231,7 @@ Neil Lawrence
 <div class="figure">
 <div id="donald-maccrimmon-mackay-figure" class="figure-frame">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/physics/dmaccrimmonmackay.jpg" width="30%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//physics/dmaccrimmonmackay.jpg" width="30%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="donald-maccrimmon-mackay-magnify" class="magnify" onclick="magnifyFigure(&#39;donald-maccrimmon-mackay&#39;)">
@@ -249,17 +259,17 @@ Neil Lawrence
 <tr>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/w-ross-ashby.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/w-ross-ashby.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/physics/JohnvonNeumann-LosAlamos.gif" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//physics/JohnvonNeumann-LosAlamos.gif" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/Frank_Rosenblatt.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//Frank_Rosenblatt.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
@@ -278,13 +288,15 @@ Neil Lawrence
 <p>One of the great ironies of modern artificial intelligence is that it is almost wholly reliant on deep neural network methodologies for the recent breakthroughs. But the dawn of the term artificial intelligence is associated with a period of around three decades when those methods (and the community that originated them) was actively marginalised.</p>
 <p>There were many reasons for this, including personal enimities between Wiener and McCulloch, the untimely death of Frank Rosenblatt in a sailing accident. But regardless of these personal tragedies and tales of academic politics, the principal reason that neural networks were eclipsed was the dominance of the digital computer. From 1956 to 1986 we saw the rise of the computer from a tool for science and big business to a personal machine, available to individual researchers.</p>
 <h2 id="the-connectionists">The Connectionists</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/connectionist-revival.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/connectionist-revival.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/connectionist-revival.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/connectionist-revival.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>By the early 1980s, some disillusionment was creeping into the artificial intelligence agenda that stemmed from the Dartmouth Meeting. At the same time, an emerging group was re-examining the ideas of the Cyberneticists. This group became known as the connectionists, because of their focus on neural network models with their myriad of connections.</p>
 <p>By the second half of the decade, some of their principles had come together to form a movement. Meetings including the Snowbird Workshop, Neural Informaton Processing Systems and the connectionist summer school provided a venue for these researchers to come together.</p>
 <div class="figure">
 <div id="-figure" class="figure-frame">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/connectionist-summer-school.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/connectionist-summer-school.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="-magnify" class="magnify" onclick="magnifyFigure(&#39;&#39;)">
@@ -305,7 +317,7 @@ Neil Lawrence
 <div class="figure">
 <div id="pdp-volume-1-figure" class="figure-frame">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/pdp_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/pdp_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="pdp-volume-1-magnify" class="magnify" onclick="magnifyFigure(&#39;pdp-volume-1&#39;)">
@@ -319,7 +331,7 @@ Neil Lawrence
 <div class="figure">
 <div id="nc-cover-lecun-figure" class="figure-frame">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/nc_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/nc_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="nc-cover-lecun-magnify" class="magnify" onclick="magnifyFigure(&#39;nc-cover-lecun&#39;)">
@@ -339,7 +351,7 @@ Neil Lawrence
 <div class="figure">
 <div id="neil-newton-institute-figure" class="figure-frame">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/people/1997-08-02-neil-newton-institute.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//people/1997-08-02-neil-newton-institute.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="neil-newton-institute-magnify" class="magnify" onclick="magnifyFigure(&#39;neil-newton-institute&#39;)">
@@ -352,7 +364,7 @@ Neil Lawrence
 <div class="figure">
 <div id="le-net-5-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/le-net-5.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/le-net-5.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="le-net-5-magnify" class="magnify" onclick="magnifyFigure(&#39;le-net-5&#39;)">
@@ -365,7 +377,7 @@ Neil Lawrence
 <div class="figure">
 <div id="le-net-5-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/le-net-translate.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/le-net-translate.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="le-net-5-magnify" class="magnify" onclick="magnifyFigure(&#39;le-net-5&#39;)">
@@ -378,7 +390,7 @@ Neil Lawrence
 <div class="figure">
 <div id="le-net-5-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/le-net-scale.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/le-net-scale.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="le-net-5-magnify" class="magnify" onclick="magnifyFigure(&#39;le-net-5&#39;)">
@@ -395,17 +407,17 @@ Neil Lawrence
 <tr>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/corinna-cortes.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/corinna-cortes.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/isabelle-guyon.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/isabelle-guyon.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/ml/vladmir-vapnik.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/vladmir-vapnik.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
@@ -429,12 +441,12 @@ Neil Lawrence
 <tr>
 <td width="50%">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/olga-russakovsky.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olga-russakovsky.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="50%">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/fei-fei-li.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/fei-fei-li.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
@@ -496,7 +508,7 @@ Neil Lawrence
 <h1 class="unnumbered" id="references">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Ashby-design52" class="csl-entry" role="doc-biblioentry">
-Ashby, W.R., 1952. Design for a brain: The origin of adaptive behaviour. Chapman &amp; Hall.
+Ashby, W.R., 1952. Design for a brain: The origin of adaptive behaviour. Chapman &amp; Hall, London.
 </div>
 <div id="ref-Boser-optimal92" class="csl-entry" role="doc-biblioentry">
 Boser, B.E., Guyon, I.M., Vapnik, V.N., 1992. A training algorithm for optimal margin classifiers, in: Proceedings of the Fifth Annual Workshop on Computational Learning Theory, COLT ’92. Association for Computing Machinery, New York, NY, USA, pp. 144–152. <a href="https://doi.org/10.1145/130385.130401">https://doi.org/10.1145/130385.130401</a>

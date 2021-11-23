@@ -1,6 +1,6 @@
 ---
 title: "Generalization and Neural Networks"
-venue: "Zoom"
+venue: "LT1, William Gates Building"
 abstract: "<p>This lecture will cover generalization in machine learning with a particular focus on neural architectures. We will review classical generalization and explore what’s different about neural network models.</p>"
 author:
 - given: Neil D.
@@ -10,14 +10,17 @@ author:
   twitter: 
   gscholar: 
   orcid: 
-date: 2021-01-26
-published: 2021-01-26
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/generalisation-and-neural-networks.md
+date: 2022-01-25
+published: 2022-01-25
 time: "14:00"
 week: 1
 session: 2
 reveal: 01-02-generalisation-and-neural-networks.slides.html
 ipynb: 01-02-generalisation-and-neural-networks.ipynb
+hackmdslides: fhuszar/r1HxvooMd#/
 youtube: "tk9qM00Bs_o"
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/generalisation-and-neural-networks.md
 layout: lecture
 categories:
 - notes
@@ -34,30 +37,43 @@ categories:
 
 -->
 <h2 id="setup">Setup</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deepnn-notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deepnn-notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deepnn-notebook-setup.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deepnn-notebook-setup.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>First we download some libraries and files to support the notebook.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/mlai.py&#39;</span>,<span class="st">&#39;mlai.py&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/teaching_plots.py&#39;</span>,<span class="st">&#39;teaching_plots.py&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://raw.githubusercontent.com/lawrennd/talks/gh-pages/gp_tutorial.py&#39;</span>,<span class="st">&#39;gp_tutorial.py&#39;</span>)</span></code></pre></div>
 <!--setupplotcode{import seaborn as sns
 sns.set_style('darkgrid')
 sns.set_context('paper')
 sns.set_palette('colorblind')}-->
 <h2 id="pods">pods</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_data-science/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_software/includes/pods-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_software/includes/pods-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>In Sheffield we created a suite of software tools for ‘Open Data Science.’ Open data science is an approach to sharing code, models and data that should make it easier for companies, health professionals and scientists to gain access to data science techniques.</p>
 <p>You can also check this blog post on <a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a>.</p>
 <p>The software can be installed using</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install <span class="op">--</span>upgrade git<span class="op">+</span>https:<span class="op">//</span>github.com<span class="op">/</span>sods<span class="op">/</span>ods</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pods</span></code></pre></div>
 <p>from the command prompt where you can access your python installation.</p>
-<p>The code is also available on github: <a href="https://github.com/sods/ods" class="uri">https://github.com/sods/ods</a></p>
+<p>The code is also available on github: <a href="https://github.com/lawrennd/ods" class="uri">https://github.com/lawrennd/ods</a></p>
 <p>Once <code>pods</code> is installed, it can be imported in the usual manner.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<h2 id="mlai">mlai</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_software/includes/mlai-software.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_software/includes/mlai-software.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>The <code>mlai</code> software is a suite of helper functions for teaching and demonstrating machine learning algorithms. It was first used in the Machine Learning and Adaptive Intelligence course in Sheffield in 2013.</p>
+<p>The software can be installed using</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install mlai</span></code></pre></div>
+<p>from the command prompt where you can access your python installation.</p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/mlai" class="uri">https://github.com/lawrennd/mlai</a></p>
+<p>Once <code>mlai</code> is installed, it can be imported in the usual manner.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
 <h2 id="quadratic-loss-and-linear-system">Quadratic Loss and Linear System</h2>
 <p>We will consider a simplified system, to remind us of some of the linear algebra involved, and introduce some of the fundamental issues.</p>
 <h2 id="expected-loss">Expected Loss</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/expected-loss.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/expected-loss.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/expected-loss.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/expected-loss.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Our objective function so far has been the negative log likelihood, which we have minimized (via the sum of squares error) to obtain our model. However, there is an alternative perspective on an objective function, that of a <em>loss function</em>. A loss function is a cost function associated with the penalty you might need to pay for a particular incorrect decision. One approach to machine learning involves specifying a loss function and considering how much a particular model is likely to cost us across its lifetime. We can represent this with an expectation. If our loss function is given as <span class="math inline">\(L(y, x, \mathbf{ w})\)</span> for a particular model that predicts <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span> and <span class="math inline">\(\mathbf{ w}\)</span> then we are interested in minimizing the expected loss under the likely distribution of <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. To understand this formally we define the <em>true</em> distribution of the data samples, <span class="math inline">\(y\)</span>, <span class="math inline">\(x\)</span>. This is a particular distribution that we don’t typically have access to. To represent it we define a variant of the letter ‘P,’ <span class="math inline">\(\mathbb{P}(y, x)\)</span>. If we genuinely pay <span class="math inline">\(L(y, x, \mathbf{ w})\)</span> for every mistake we make, and the future test data is genuinely drawn from <span class="math inline">\(\mathbb{P}(y, x)\)</span> then we can define our expected loss, or risk, to be, <span class="math display">\[
 R(\mathbf{ w}) = \int L(y, x, \mathbf{ w}) \mathbb{P}(y, x) \text{d}y
 \text{d}x.
@@ -70,7 +86,9 @@ R(\mathbf{ w}) = \int L(y, x, \mathbf{ w}) \mathbb{P}(y, x) \text{d}y
 R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 \]</span></p>
 <h2 id="quadratic-loss">Quadratic Loss</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-direct-solution.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Now we’ve identified the empirical risk with the loss, we’ll use <span class="math inline">\(L(\mathbf{ w})\)</span> to represent our objective function. <span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
 \]</span> gives us our objective.</p>
@@ -107,11 +125,11 @@ c \times 1,
 \]</span> because if we now take the inner product between these to vectors we recover <span class="math display">\[
 \mathbf{ x}\cdot\mathbf{ w}= 1 \times c + x \times m = mx + c
 \]</span> In <code>numpy</code> we can define this vector as follows</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the vector w</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.zeros(shape<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">0</span>] <span class="op">=</span> m</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">1</span>] <span class="op">=</span> c</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the vector w</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.zeros(shape<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">0</span>] <span class="op">=</span> m</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">1</span>] <span class="op">=</span> c</span></code></pre></div>
 <p>This gives us the equivalence between original operation and an operation in vector space. Whilst the notation here isn’t a lot shorter, the beauty is that we will be able to add as many features as we like and still keep the seame representation. In general, we are now moving to a system where each of our predictions is given by an inner product. When we want to represent a linear product in linear algebra, we tend to do it with the transpose operation, so since we have <span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = \mathbf{a}^\top\mathbf{b}\)</span> we can write <span class="math display">\[
 f(\mathbf{ x}_i) = \mathbf{ x}_i^\top\mathbf{ w}.
 \]</span> Where we’ve assumed that each data point, <span class="math inline">\(\mathbf{ x}_i\)</span>, is now written by appending a 1 onto the original vector <span class="math display">\[
@@ -136,9 +154,9 @@ x_i
 1 &amp; x_n
 \end{bmatrix},
 \]</span> which in <code>numpy</code> can be done with the following commands:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> np.hstack((np.ones_like(x), x))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Phi)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> np.hstack((np.ones_like(x), x))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Phi)</span></code></pre></div>
 <h2 id="writing-the-objective-with-linear-algebra">Writing the Objective with Linear Algebra</h2>
 <p>When we think of the objective function, we can think of it as the errors where the error is defined in a similar way to what it was in Legendre’s day <span class="math inline">\(y_i - f(\mathbf{ x}_i)\)</span>, in statistics these errors are also sometimes called <a href="http://en.wikipedia.org/wiki/Errors_and_residuals_in_statistics"><em>residuals</em></a>. So we can think as the objective and the prediction function as two separate parts, first we have, <span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
@@ -176,16 +194,18 @@ b_{k, 1}a_1 + b_{k, 2}a_2 + \dots + b_{k, k}a_k\end{bmatrix}
 <p><span class="math display">\[
 \mathbf{ f}= \boldsymbol{ \Phi}\mathbf{ w}.
 \]</span></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Phi<span class="op">@</span>w <span class="co"># The @ sign performs matrix multiplication</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> Phi<span class="op">@</span>w <span class="co"># The @ sign performs matrix multiplication</span></span></code></pre></div>
 <p>Combining this result with our objective function, <span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 \]</span> we find we have defined the <em>model</em> with two equations. One equation tells us the form of our predictive function and how it depends on its parameters, the other tells us the form of our objective function.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> (y<span class="op">-</span>f)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.dot(resid.T, resid) <span class="co"># matrix multiplication on a single vector is equivalent to a dot product.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Error function is:&quot;</span>, E)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> (y<span class="op">-</span>f)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> np.dot(resid.T, resid) <span class="co"># matrix multiplication on a single vector is equivalent to a dot product.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Error function is:&quot;</span>, E)</span></code></pre></div>
 <h1 id="objective-optimisation">Objective Optimisation</h1>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-objective-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-objective-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-objective-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-objective-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Our <em>model</em> has now been defined with two equations, the prediction function and the objective function. Next we will use multivariate calculus to define an <em>algorithm</em> to fit the model. The separation between model and algorithm is important and is often overlooked. Our model contains a function that shows how it will be used for prediction, and a function that describes the objective function we need to optimise to obtain a good set of parameters.</p>
 <p>The model linear regression model we have described is still the same as the one we fitted above with a coordinate ascent algorithm. We have only played with the notation to obtain the same model in a matrix and vector notation. However, we will now fit this model with a different algorithm, one that is much faster. It is such a widely used algorithm that from the end user’s perspective it doesn’t even look like an algorithm, it just appears to be a single operation (or function). However, underneath the computer calls an algorithm to find the solution. Further, the algorithm we obtain is very widely used, and because of this it turns out to be highly optimised.</p>
 <p>Once again we are going to try and find the stationary points of our objective by finding the <em>stationary points</em>. However, the stationary points of a multivariate function, are a little bit more complext to find. Once again we need to find the point at which the derivative is zero, but now we need to use <em>multivariate calculus</em> to find it. This involves learning a few additional rules of differentiation (that allow you to do the derivatives of a function with respect to vector), but in the end it makes things quite a bit easier. We define vectorial derivatives as follows, <span class="math display">\[
@@ -260,7 +280,9 @@ L(\mathbf{ w})=
 <h2 id="multivariate-linear-regression">Multivariate Linear Regression</h2>
 <p>A major advantage of the new system is that we can build a linear regression on a multivariate system. The matrix calculus didn’t specify what the length of the vector <span class="math inline">\(\mathbf{ x}\)</span> should be, or equivalently the size of the design matrix.</p>
 <h2 id="hessian-matrix">Hessian Matrix</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-hessian.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>We can also compute the <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian matrix</a>, the curvature of the loss function. To do this we take the second derivative of the loss function with respect to the parameter vector, <span class="math display">\[
 \frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}.
 \]</span> So we see that the curvature is given by the design matrix.</p>
@@ -280,8 +302,10 @@ L(\mathbf{ w})=
 \]</span></p>
 <p>So the eigendecomposition of the Hessian is a convenient representation of the nature of these minima. The principal eigenvector (the one associated with the largest eigenvalue), <span class="math inline">\(\mathbf{u}_1\)</span> is associated with the direction of <em>highest curvature</em>. While the minor eigenvector shows us the flattest direction, where the curvature is smallest.</p>
 <h1 id="nigeria-nmis-data">Nigeria NMIS Data</h1>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>As an example data set we will use Nigerian Millenium Development Goals Information System Health Facility <span class="citation" data-cites="Nigeria-nmis14">(The Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs) and Columbia University, 2014)</span>. It can be found here <a href="https://energydata.info/dataset/nigeria-nmis-education-facility-data-2014" class="uri">https://energydata.info/dataset/nigeria-nmis-education-facility-data-2014</a>.</p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>As an example data set we will use Nigerian Millennium Development Goals Information System Health Facility <span class="citation" data-cites="Nigeria-nmis14">(The Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs) and Columbia University, 2014)</span>. It can be found here <a href="https://energydata.info/dataset/nigeria-nmis-education-facility-data-2014" class="uri">https://energydata.info/dataset/nigeria-nmis-education-facility-data-2014</a>.</p>
 <p>Taking from the information on the site,</p>
 <blockquote>
 <p>The Nigeria MDG (Millennium Development Goals) Information System – NMIS health facility data is collected by the Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs) in partner with the Sustainable Engineering Lab at Columbia University. A rigorous, geo-referenced baseline facility inventory across Nigeria is created spanning from 2009 to 2011 with an additional survey effort to increase coverage in 2014, to build Nigeria’s first nation-wide inventory of health facility. The database includes 34,139 health facilities info in Nigeria.</p>
@@ -291,61 +315,63 @@ L(\mathbf{ w})=
 <p>Suggested citation: Nigeria NMIS facility database (2014), the Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs) &amp; Columbia University</p>
 </blockquote>
 <p>For ease of use we’ve packaged this data set in the <code>pods</code> library</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigeria_nmis()[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
-<p>Alternatively you can access the data directly with the following commands.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://energydata.info/dataset/f85d1796-e7f2-4630-be84-79420174e3bd/resource/6e640a13-cab4-457b-b9e6-0336051bac27/download/healthmopupandbaselinenmisfacility.csv&#39;</span>, <span class="st">&#39;healthmopupandbaselinenmisfacility.csv&#39;</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&#39;healthmopupandbaselinenmisfacility.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.nigeria_nmis()[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div>
+<p>Alternatively, you can access the data directly with the following commands.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> urllib.request</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>urllib.request.urlretrieve(<span class="st">&#39;https://energydata.info/dataset/f85d1796-e7f2-4630-be84-79420174e3bd/resource/6e640a13-cab4-457b-b9e6-0336051bac27/download/healthmopupandbaselinenmisfacility.csv&#39;</span>, <span class="st">&#39;healthmopupandbaselinenmisfacility.csv&#39;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&#39;healthmopupandbaselinenmisfacility.csv&#39;</span>)</span></code></pre></div>
 <p>Once it is loaded in the data can be summarized using the <code>describe</code> method in pandas.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div>
-<p>In python and jupyter notebook it is possible to see a list of all possible functions and attributes by typing the name of the object followed by <code>.&lt;Tab&gt;</code> for example in the above case if we type <code>data.&lt;Tab&gt;</code> it show the columns available (these are attributes in pandas dataframes) such as <code>num_nurses_fulltime</code>, and also functions, such as <code>.describe()</code>.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div>
+<p>In python and the Jupyter notebook it is possible to see a list of all possible functions and attributes by typing the name of the object followed by <code>.&lt;Tab&gt;</code> for example in the above case if we type <code>data.&lt;Tab&gt;</code> it show the columns available (these are attributes in pandas dataframes) such as <code>num_nurses_fulltime</code>, and also functions, such as <code>.describe()</code>.</p>
 <p>For functions we can also see the documentation about the function by following the name with a question mark. This will open a box with documentation at the bottom which can be closed with the x button.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data.describe?</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data.describe?</span></code></pre></div>
 <div class="figure">
 <div id="nigerian-health-facilities-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/nigerian-health-facilities.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/nigerian-health-facilities.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="nigerian-health-facilities-magnify" class="magnify" onclick="magnifyFigure(&#39;nigerian-health-facilities&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="nigerian-health-facilities-caption" class="caption-frame">
-<p>Figure: Location of the over thirty four thousand health facilities registered in the NMIS data across Nigeria. Each facility plotted according to its latitude and longitude.</p>
+<p>Figure: Location of the over thirty-four thousand health facilities registered in the NMIS data across Nigeria. Each facility plotted according to its latitude and longitude.</p>
 </div>
 </div>
 <h2 id="multivariate-regression-on-nigeria-nmis-data">Multivariate Regression on Nigeria NMIS Data</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/nigeria-nmis-linear-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/nigeria-nmis-linear-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/nigeria-nmis-linear-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/nigeria-nmis-linear-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Now we will build a design matrix based on the numeric features that include the number of nurses, and the number of midwives, the latitude and longitude. These are our <em>covariates</em>. The response variable will be thenumber of doctors. We build the design matrix as follows:</p>
 <p>Bias as an additional feature.</p>
 <p>First of all we select the covariates and response variables and drop any rows where there are missing values using the <code>pandas</code> <code>dropna</code> method.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>covariates <span class="op">=</span> [<span class="st">&#39;num_nurses_fulltime&#39;</span>, <span class="st">&#39;num_nursemidwives_fulltime&#39;</span>, <span class="st">&#39;latitude&#39;</span>, <span class="st">&#39;longitude&#39;</span>]</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> [<span class="st">&#39;num_doctors_fulltime&#39;</span>]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>data_without_missing <span class="op">=</span> data[covariates <span class="op">+</span> response].dropna()</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>covariates <span class="op">=</span> [<span class="st">&#39;num_nurses_fulltime&#39;</span>, <span class="st">&#39;num_nursemidwives_fulltime&#39;</span>, <span class="st">&#39;latitude&#39;</span>, <span class="st">&#39;longitude&#39;</span>]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> [<span class="st">&#39;num_doctors_fulltime&#39;</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data_without_missing <span class="op">=</span> data[covariates <span class="op">+</span> response].dropna()</span></code></pre></div>
 <p>We can see how many rows we have dropped and have a quick sanity check on our new data frame with <code>len</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(data) <span class="op">-</span> <span class="bu">len</span>(data_without_missing))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(data) <span class="op">-</span> <span class="bu">len</span>(data_without_missing))</span></code></pre></div>
 <p>So we see that 2,735 of the entries had missing values in one of our variables of interest.</p>
 <p>You may also want to use <code>describe</code> or other functions to exlore the new data frame.</p>
 <p>Now let’s perform a linear regression. But this time, we will create a pandas data frame for the result so we can store it in a form that we can visualise easily.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> data_without_missing[covariates]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Phi[<span class="st">&#39;Eins&#39;</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># add a column for the offset</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data_without_missing[response]</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>np.linalg.solve(Phi.T<span class="op">@</span>Phi, Phi.T<span class="op">@</span>y),  <span class="co"># solve linear regression here</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                 index <span class="op">=</span> Phi.columns,  <span class="co"># columns of Phi become rows of w</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 columns<span class="op">=</span>[<span class="st">&#39;regression_coefficient&#39;</span>]) <span class="co"># the column of Phi is the value of regression coefficient</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> data_without_missing[covariates]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Phi[<span class="st">&#39;Eins&#39;</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># add a column for the offset</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data_without_missing[response]</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>np.linalg.solve(Phi.T<span class="op">@</span>Phi, Phi.T<span class="op">@</span>y),  <span class="co"># solve linear regression here</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                 index <span class="op">=</span> Phi.columns,  <span class="co"># columns of Phi become rows of w</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                 columns<span class="op">=</span>[<span class="st">&#39;regression_coefficient&#39;</span>]) <span class="co"># the column of Phi is the value of regression coefficient</span></span></code></pre></div>
 <p>We can check the residuals to see how good our estimates are. First we create a pandas data frame containing the predictions and use it to compute the residuals.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>(Phi<span class="op">@</span>w).values, columns<span class="op">=</span>[<span class="st">&#39;num_doctors_fulltime&#39;</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> y<span class="op">-</span>ypred</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>(Phi<span class="op">@</span>w).values, columns<span class="op">=</span>[<span class="st">&#39;num_doctors_fulltime&#39;</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> y<span class="op">-</span>ypred</span></code></pre></div>
 <p>Let’s take a look at the residuals. We can use <code>describe</code> to get a summary.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>resid.describe()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>resid.describe()</span></code></pre></div>
 <p>We can see that while the standard deviation of our residuals is around 3, (this is equivalent to a root mean square error). The smallest and largest residual sow there are some significant outliers that our regression isn’t picking up.</p>
 <div class="figure">
 <div id="nigeria-nmis-num-doctors-residuals-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/nigeria-nmis-num-doctors-residuals.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/nigeria-nmis-num-doctors-residuals.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="nigeria-nmis-num-doctors-residuals-magnify" class="magnify" onclick="magnifyFigure(&#39;nigeria-nmis-num-doctors-residuals&#39;)">
@@ -356,12 +382,14 @@ L(\mathbf{ w})=
 </div>
 </div>
 <p>Which shows our model <em>hasn’t</em> yet done a great job of representation, because the spread of values is large. We can check what the rating is dominated by in terms of regression coefficients.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>w</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>w</span></code></pre></div>
 <p>Checking our regression coefficients, we see that the number of doctors is positively influenced by the number of nurses and the number of midwives. The latitude and longitude have a smaller effect. The bias term (‘eins’) is a small positive offset.</p>
 <h1 id="aside">Aside</h1>
 <p>Just for informational purposes, the actual approach used in software for fitting a linear model <em>should</em> be a QR decomposition.</p>
 <h2 id="solution-with-qr-decomposition">Solution with QR Decomposition</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/qr-decomposition-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/qr-decomposition-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/qr-decomposition-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/qr-decomposition-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Performing a solve instead of a matrix inverse is the more numerically stable approach, but we can do even better. A <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR-decomposition</a> of a matrix factorises it into a matrix which is an orthogonal matrix <span class="math inline">\(\mathbf{Q}\)</span>, so that <span class="math inline">\(\mathbf{Q}^\top \mathbf{Q} = \mathbf{I}\)</span>. And a matrix which is upper triangular, <span class="math inline">\(\mathbf{R}\)</span>. <span class="math display">\[
 \boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\boldsymbol{\beta} =
 \boldsymbol{ \Phi}^\top \mathbf{ y}
@@ -381,19 +409,21 @@ L(\mathbf{ w})=
 \]</span></p>
 <p>This is a more numerically stable solution because it removes the need to compute <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> as an intermediate. Computing <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> is a bad idea because it involves squaring all the elements of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> and thereby potentially reducing the numerical precision with which we can represent the solution. Operating on <span class="math inline">\(\boldsymbol{ \Phi}\)</span> directly preserves the numerical precision of the model.</p>
 <p>This can be more particularly seen when we begin to work with <em>basis functions</em> in the next session. Some systems that can be resolved with the QR decomposition can not be resolved by using solve directly.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Q, R <span class="op">=</span> np.linalg.qr(Phi)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> sp.linalg.solve_triangular(R, Q.T<span class="op">@</span>y) </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.DataFrame(w, index<span class="op">=</span>Phi.columns)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>w</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Q, R <span class="op">=</span> np.linalg.qr(Phi)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> sp.linalg.solve_triangular(R, Q.T<span class="op">@</span>y) </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.DataFrame(w, index<span class="op">=</span>Phi.columns)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>w</span></code></pre></div>
 <h2 id="shallow-and-deep-learning">Shallow and Deep Learning</h2>
 <p>So far we have been talking about <em>linear models</em> or <em>shallow learning</em> as we might think of it. Let’s pause for a moment and consider a <em>fully connected</em> deep neural network model to relate the two ideas.</p>
 <h2 id="deep-neural-network">Deep Neural Network</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deep-neural-network.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deep-neural-network.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install daft</span></code></pre></div>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deep-neural-network.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deep-neural-network.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install daft</span></code></pre></div>
 <div class="figure">
 <div id="deep-neural-network-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn2.svg" width="70%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//deepgp/deep-nn2.svg" width="70%" style=" ">
 </object>
 </div>
 <div id="deep-neural-network-magnify" class="magnify" onclick="magnifyFigure(&#39;deep-neural-network&#39;)">
@@ -422,16 +452,19 @@ L(\mathbf{ w})=
 <h2 id="basis-function-models">Basis Function Models</h2>
 <p>We are reviewing models that are <em>linear</em> in the parameters. Very often we are interested in <em>non-linear</em> predictions. We can make models that are linear in the parameters and given non-linear predictions by introducing non-linear <em>basis functions</em>. A common example is the polynomial basis.</p>
 <h2 id="polynomial-basis">Polynomial Basis</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/polynomial-basis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/polynomial-basis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/polynomial-basis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/polynomial-basis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>The polynomial basis combines higher order polynomials together to create the function. For example the fourth order polynomial has five components to its basis function. <span class="math display">\[
 \phi_j(x) = x^j
 \]</span></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> polynomial</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> polynomial</span></code></pre></div>
 <div class="figure">
 <div id="polynomial-basis-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_basis004.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_basis004.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="polynomial-basis-2-magnify" class="magnify" onclick="magnifyFigure(&#39;polynomial-basis-2&#39;)">
@@ -447,7 +480,7 @@ f(x) = {\color{red}{w_0}} + {\color{magenta}{w_1 x}} + {\color{blue}{w_2 x^2}} +
 \]</span></p>
 <div class="figure">
 <div id="polynomial-function-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_function002.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_function002.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="polynomial-function-2-magnify" class="magnify" onclick="magnifyFigure(&#39;polynomial-function-2&#39;)">
@@ -462,7 +495,9 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 \]</span> are <em>linear</em> in the parameters, <span class="math inline">\(\mathbf{ w}\)</span>, but <em>non-linear</em> in the input <span class="math inline">\(x^3\)</span>. Here we are showing a polynomial basis for a 1-dimensional input, <span class="math inline">\(x\)</span>, but basis functions can also be constructed for multidimensional inputs, <span class="math inline">\(\mathbf{ x}\)</span>.}</p>
 <p>In the neural network models, the “RELU function” is normally used as a basis function, but for illustration we will continue with the polynomial basis for these linear models.</p>
 <h2 id="olympic-marathon-data">Olympic Marathon Data</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/olympic-marathon-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/olympic-marathon-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/olympic-marathon-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/olympic-marathon-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <table>
 <tr>
 <td width="70%">
@@ -475,25 +510,25 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <small>Image from Wikimedia Commons <a href="http://bit.ly/16kMKHQ" class="uri">http://bit.ly/16kMKHQ</a></small>
 </td>
 </tr>
 </table>
 <p>The first thing we will do is load a standard data set for regression modelling. The data consists of the pace of Olympic Gold Medal Marathon winners for the Olympics from 1896 to present. First we load in the data and plot.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>offset <span class="op">=</span> y.mean()</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>scale <span class="op">=</span> np.sqrt(y.var())</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">&#39;X&#39;</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">&#39;Y&#39;</span>]</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>offset <span class="op">=</span> y.mean()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>scale <span class="op">=</span> np.sqrt(y.var())</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>yhat <span class="op">=</span> (y <span class="op">-</span> offset)<span class="op">/</span>scale</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/datasets/olympic-marathon.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//datasets/olympic-marathon.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon&#39;)">
@@ -506,38 +541,41 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Things to notice about the data include the outlier in 1904, in this year, the olympics was in St Louis, USA. Organizational problems and challenges with dust kicked up by the cars following the race meant that participants got lost, and only very few participants completed.</p>
 <p>More recent years see more consistently quick marathons.</p>
 <h2 id="polynomial-fits-to-olympic-marthon-data">Polynomial Fits to Olympic Marthon Data</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <p>Define the polynomial basis function.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> polynomial</span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> polynomial(x, num_basis<span class="op">=</span><span class="dv">4</span>, data_limits<span class="op">=</span>[<span class="op">-</span><span class="fl">1.</span>, <span class="fl">1.</span>]):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Polynomial basis&quot;</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    centre <span class="op">=</span> data_limits[<span class="dv">0</span>]<span class="op">/</span><span class="fl">2.</span> <span class="op">+</span> data_limits[<span class="dv">1</span>]<span class="op">/</span><span class="fl">2.</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    span <span class="op">=</span> data_limits[<span class="dv">1</span>] <span class="op">-</span> data_limits[<span class="dv">0</span>]</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.asarray(x, dtype<span class="op">=</span><span class="bu">float</span>) <span class="op">-</span> centre</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>z<span class="op">/</span>span   <span class="co"># scale the inputs to be within -1, 1 where polynomials are well behaved</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> np.zeros((x.shape[<span class="dv">0</span>], num_basis))</span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_basis):</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        Phi[:, i:i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> z<span class="op">**</span>i</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Phi</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mlai</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mlai <span class="im">import</span> polynomial</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> polynomial(x, num_basis<span class="op">=</span><span class="dv">4</span>, data_limits<span class="op">=</span>[<span class="op">-</span><span class="fl">1.</span>, <span class="fl">1.</span>]):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Polynomial basis&quot;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    centre <span class="op">=</span> data_limits[<span class="dv">0</span>]<span class="op">/</span><span class="fl">2.</span> <span class="op">+</span> data_limits[<span class="dv">1</span>]<span class="op">/</span><span class="fl">2.</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    span <span class="op">=</span> data_limits[<span class="dv">1</span>] <span class="op">-</span> data_limits[<span class="dv">0</span>]</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.asarray(x, dtype<span class="op">=</span><span class="bu">float</span>) <span class="op">-</span> centre</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>z<span class="op">/</span>span   <span class="co"># scale the inputs to be within -1, 1 where polynomials are well behaved</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> np.zeros((x.shape[<span class="dv">0</span>], num_basis))</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_basis):</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        Phi[:, i:i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> z<span class="op">**</span>i</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Phi</span></code></pre></div>
 <p>Now we include the solution for the linear regression through QR-decomposition.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> basis_fit(Phi, y):</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Use QR decomposition to fit the basis.&quot;</span><span class="st">&quot;&quot;</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    Q, R <span class="op">=</span> np.linalg.qr(Phi)</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sp.linalg.solve_triangular(R, Q.T<span class="op">@</span>y) </span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> basis_fit(Phi, y):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Use QR decomposition to fit the basis.&quot;</span><span class="st">&quot;&quot;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    Q, R <span class="op">=</span> np.linalg.qr(Phi)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sp.linalg.solve_triangular(R, Q.T<span class="op">@</span>y) </span></code></pre></div>
 <h2 id="linear-fit">Linear Fit</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">2</span>, <span class="co"># two basis functions (1 and x)</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">2</span>, <span class="co"># two basis functions (1 and x)</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
 <p>Now we make some predictions for the fit.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x_pred <span class="op">=</span> np.linspace(xlim[<span class="dv">0</span>], xlim[<span class="dv">1</span>], <span class="dv">400</span>)[:, np.newaxis]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>x_pred <span class="op">=</span> np.linspace(xlim[<span class="dv">0</span>], xlim[<span class="dv">1</span>], <span class="dv">400</span>)[:, np.newaxis]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-polynomial-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-2.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-2.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-polynomial-2-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-2&#39;)">
@@ -548,15 +586,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 </div>
 <h2 id="cubic-fit">Cubic Fit</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">4</span>, <span class="co"># four basis: 1, x, x^2, x^3</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">4</span>, <span class="co"># four basis: 1, x, x^2, x^3</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-polynomial-4-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-4.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-4.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-polynomial-4-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-4&#39;)">
@@ -568,15 +606,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <h2 id="th-degree-polynomial-fit">9th Degree Polynomial Fit</h2>
 <p>Now we’ll try a 9th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">10</span>, <span class="co"># basis up to x^9</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">10</span>, <span class="co"># basis up to x^9</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-polynomial-10-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-10.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-10.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-polynomial-10-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-10&#39;)">
@@ -588,15 +626,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <h2 id="th-degree-polynomial-fit-1">16th Degree Polynomial Fit</h2>
 <p>Now we’ll try a 16th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">17</span>, <span class="co"># basis up to x^16</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">17</span>, <span class="co"># basis up to x^16</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-polynomial-17-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-polynomial-17-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-17&#39;)">
@@ -608,15 +646,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <h2 id="th-degree-polynomial-fit-2">26th Degree Polynomial Fit</h2>
 <p>Now we’ll try a 26th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">27</span>, <span class="co"># basis up to x^26</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">27</span>, <span class="co"># basis up to x^26</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> basis_fit(Phi, y)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>w</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-polynomial-27-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-polynomial-27&#39;)">
@@ -627,45 +665,49 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 </div>
 <h2 id="the-bootstrap">The Bootstrap</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/the-bootstrap.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/the-bootstrap.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/the-bootstrap.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/the-bootstrap.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Bootstrap sampling <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span> is an approach to assessing the sensitivity of the model to different variations on a data set. In an ideal world, we’d like to be able to look at different realisations from the original data generating distribution <span class="math inline">\(\mathbb{P}(y, \mathbf{ x})\)</span>, but this is not available to us.</p>
 <p>In bootstrap sampling, we take the sample we have, <span class="math display">\[
 \mathbf{ y}, \mathbf{X}\sim \mathbb{P}(y, \mathbf{ x})
 \]</span> and resample from that data, rather than from the true distribution. So we have a new data set, <span class="math inline">\(\hat{\mathbf{ y}}\)</span>, <span class="math inline">\(\hat{\mathbf{X}}\)</span> which is sampled from the original <em>with</em> replacement.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X):</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X[ind, :]  </span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X):</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X[ind, :]  </span></code></pre></div>
 <h2 id="bootstrap-and-olympic-marathon-data">Bootstrap and Olympic Marathon Data</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-bootstrap-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-bootstrap-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-bootstrap-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-bootstrap-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>First we define a function to bootstrap resample our dataset.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X, y):</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X[ind, :], y[ind, :]</span></code></pre></div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>num_bootstraps <span class="op">=</span> <span class="dv">10</span></span></code></pre></div>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap_fit(Phi, y, size):</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> np.zeros((Phi.shape[<span class="dv">1</span>], size))</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size):</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>        Phi_hat, y_hat <span class="op">=</span> bootstrap(Phi, y)</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>        W[:, i:i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> basis_fit(Phi_hat, y_hat)</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> W</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X, y):</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X[ind, :], y[ind, :]</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>num_bootstraps <span class="op">=</span> <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap_fit(Phi, y, size):</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> np.zeros((Phi.shape[<span class="dv">1</span>], size))</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(size):</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>        Phi_hat, y_hat <span class="op">=</span> bootstrap(Phi, y)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>        W[:, i:i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> basis_fit(Phi_hat, y_hat)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> W</span></code></pre></div>
 <h2 id="linear-fit-1">Linear Fit</h2>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">2</span>, <span class="co"># two basis functions (1 and x)</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">2</span>, <span class="co"># two basis functions (1 and x)</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
 <p>Now we make some predictions for the fit.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>x_pred <span class="op">=</span> np.linspace(xlim[<span class="dv">0</span>], xlim[<span class="dv">1</span>], <span class="dv">400</span>)[:, np.newaxis]</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>x_pred <span class="op">=</span> np.linspace(xlim[<span class="dv">0</span>], xlim[<span class="dv">1</span>], <span class="dv">400</span>)[:, np.newaxis]</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-2.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-2.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-bootstrap-polynomial-2-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-bootstrap-polynomial-2&#39;)">
@@ -676,15 +718,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 </div>
 <h2 id="cubic-fit-1">Cubic Fit</h2>
-<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">4</span>, <span class="co"># four basis: 1, x, x^2, x^3</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">4</span>, <span class="co"># four basis: 1, x, x^2, x^3</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-4-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-4.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-4.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-bootstrap-polynomial-4-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-bootstrap-polynomial-4&#39;)">
@@ -696,15 +738,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <h2 id="th-degree-polynomial-fit-3">9th Degree Polynomial Fit</h2>
 <p>Now we’ll try a 9th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">10</span>, <span class="co"># basis up to x^9</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">10</span>, <span class="co"># basis up to x^9</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-10-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-10.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-10.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-bootstrap-polynomial-10-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-bootstrap-polynomial-10&#39;)">
@@ -716,15 +758,15 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <h2 id="th-degree-polynomial-fit-4">16th Degree Polynomial Fit</h2>
 <p>Now we’ll try a 16th degree polynomial fit to the data.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">17</span>, <span class="co"># basis up to x^16</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
-<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>poly_args <span class="op">=</span> {<span class="st">&#39;num_basis&#39;</span>:<span class="dv">17</span>, <span class="co"># basis up to x^16</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;data_limits&#39;</span>:xlim}</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> polynomial(x, <span class="op">**</span>poly_args)</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>W_hat <span class="op">=</span> bootstrap_fit(Phi, y, num_bootstraps)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>Phi_pred <span class="op">=</span> polynomial(x_pred, <span class="op">**</span>poly_args)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>f_pred <span class="op">=</span> Phi_pred<span class="op">@</span>W_hat</span></code></pre></div>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-17-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-17.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-17.svg" width="80%" style=" ">
 </object>
 </div>
 <div id="olympic-marathon-bootstrap-polynomial-17-magnify" class="magnify" onclick="magnifyFigure(&#39;olympic-marathon-bootstrap-polynomial-17&#39;)">
@@ -735,7 +777,9 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 </div>
 <h2 id="bias-variance-decomposition">Bias Variance Decomposition</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/bias-variance-dilemma.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>One of Breiman’s ideas for improving predictive performance is known as bagging <span class="citation" data-cites="Breiman:bagging96">(Breiman, 1996)</span>. The idea is to train a number of models on the data such that they overfit (high variance). Then average the predictions of these models. The models are trained on different bootstrap samples <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span> and their predictions are aggregated giving us the acronym, Bagging. By combining decision trees with bagging, we recover random forests <span class="citation" data-cites="Breiman-forests01">(Breiman, 2001)</span>.</p>
 <p>Bias and variance can also be estimated through Efron’s bootstrap <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span>, and the traditional view has been that there’s a form of Goldilocks effect, where the best predictions are given by the model that is ‘just right’ for the amount of data available. Not to simple, not too complex. The idea is that bias decreases with increasing model complexity and variance increases with increasing model complexity. Typically plots begin with the Mummy bear on the left (too much bias) end with the Daddy bear on the right (too much variance) and show a dip in the middle where the Baby bear (just) right finds themselves.</p>
 <p>The Daddy bear is typically positioned at the point where the model is able to exactly interpolate the data. For a generalized linear model <span class="citation" data-cites="McCullagh:gen_linear89">(McCullagh and Nelder, 1989)</span>, this is the point at which the number of parameters is equal to the number of data<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
@@ -757,7 +801,9 @@ R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \ma
 <p>Models that exhibit high variance are sometimes said to ‘overfit’ the data whereas models that exhibit high bias are sometimes described as ‘underfitting’ the data.</p>
 <p>Also related on generalisation error is the so called ‘no free lunch theorem,’ which refers to our inability to decide what a better learning algorithm is without making assumptions about the data <span class="citation" data-cites="Wolpert:lack96">(Wolpert, 1996)</span> (see also <span class="citation" data-cites="Wolpert-supervised02">Wolpert (2002)</span>).</p>
 <h2 id="regularisation">Regularisation</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>The solution to the linear system is given by solving, <span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
 \]</span> for <span class="math inline">\(\mathbf{ w}\)</span>.</p>
@@ -777,8 +823,10 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <h2 id="splines-functions-hilbert-kernels">Splines, Functions, Hilbert Kernels</h2>
 <p>Regularisation of the parameters has the desired effect of making the solution viable, but it can sometimes be difficult to interpret, particularly if the parameters don’t have any inherent meaning (like in a neural network). An alternative approach is to regularise the function, <span class="math inline">\(\mathbf{ f}\)</span>, directly, (see e.g. <span class="citation" data-cites="Kimeldorf:correspondence70">Kimeldorf and Wahba (1970)</span> and <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span>). This is the approach taken by <em>spline models</em> which use energy based regularisation for <span class="math inline">\(f(\cdot)\)</span> and also <em>kernel methods</em> such as the support vector machine <span class="citation" data-cites="Scholkopf:learning01">(Schölkopf and Smola, 2001)</span>.</p>
 <h2 id="training-with-noise">Training with Noise</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
-<p>In practice, and across the last two waves of neural networks, other techniques for regularisation have been used which can be seen as perturbing the neural network in some way. For example, in dropout <span class="citation" data-cites="Srivastava:dropout14">(Srivastava et al., 2014)</span>, different basis functions are eliminated from the gradient computation at each gradient update.</p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>In practice, and across the last two waves of neural networks, other techniques for regularisation have been used which can be seen as perturbing the neural network in some way. For example, in dropout <span class="citation" data-cites="Srivastava:dropout14">(<strong>Srivastava:dropout14?</strong>)</span>, different basis functions are eliminated from the gradient computation at each gradient update.</p>
 <p>Many of these pertubations have some form of regularising effect. The exact nature of the effect is not always easy to characterise, but in some cases we can assess how these manipulations effect the model. For example, <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span> analyzed training with ‘noisy inputs’ and showed conditions under which it’s equivalent to Tikhonov regularisation.</p>
 <p>But in general these approaches can have different interpretations and they’ve also been related to ensemble learning (e.g. related to <em>bagging</em> or Bayesian approaches).</p>
 <!--include{_ml/includes/bayesian-interpretation-of-regularisation.md}-->
@@ -786,11 +834,13 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <p>If we could examine the Hessian of a neural network at its minimum, we can speculate about what we would find. In particular, we would find that it would have very many low (or negative) eigenvalues in many directions. This is indicative of the parameters being <em>badly determined</em> as a result of the neural network model being heavily <em>overparameterised</em>. So how does it generalise?</p>
 <p>Simply put, there is not enough regularisation encoded in the objective function of the neural network models we are using to explain the generalisation performance. There must be something in the algorithms we are using that causes these highly overparameterised models to generalise well.</p>
 <h2 id="double-descent">Double Descent</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/double-descent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/double-descent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/double-descent.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/double-descent.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <div class="figure">
 <div id="double-descent-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/double-descent.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/double-descent.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 <div id="double-descent-magnify" class="magnify" onclick="magnifyFigure(&#39;double-descent&#39;)">
@@ -809,11 +859,15 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <p>It seems that with a highly overparameterized model, these locations become easier to find and they provide good generalization properties. In machine learning this is known as the “double descent phenomenon” (see e.g. <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>).</p>
 <p>See also this talk by Misha Belkin: <a href="http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4" class="uri">http://www.ipam.ucla.edu/abstract/?tid=15552&amp;pcode=GLWS4</a> and these related papers <a href="https://www.pnas.org/content/116/32/15849.short" class="uri">https://www.pnas.org/content/116/32/15849.short</a>, <a href="https://www.pnas.org/content/117/20/10625" class="uri">https://www.pnas.org/content/117/20/10625</a></p>
 <h2 id="neural-tangent-kernel">Neural Tangent Kernel</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/neural-tangent-kernel.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/neural-tangent-kernel.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/neural-tangent-kernel.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/neural-tangent-kernel.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Another approach to analysis exploits the fact that optimization is occuring in a very high dimensional parameter space. By considering initialisations that involve small random weights (known as the NTK initialisation) and noting that small updates in the learning mean that the model doesn’t move far from this initialisation <span class="citation" data-cites="Jacot-ntk18">(Jacot et al., 2018)</span>.</p>
 <p>For very wide neural networks, when these conditions are fulfilled, the network can be approximately represented by a <em>kernel</em> known as the neural tangent kernel. A kernel is a regulariser that operates in <em>function space</em> rather than <em>feature space</em>.</p>
 <h2 id="regularisation-in-optimisation">Regularisation in Optimisation</h2>
-<p><span style="text-align:right"><span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/regularisation-in-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/regularisation-in-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span></span></p>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/regularisation-in-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/regularisation-in-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <p>Another interesting theoretical direction is to study the path that neural network algorithms take when finding the optima. For certain simple linear systems, you can analytically study the ‘gradient flow.’</p>
 <p>Neural networks are normally trained by (stochastic) gradient descent. This is a discrete optimisation algorithm where at each point, a step in the direction of the (approximate) gradient is taken.</p>
 <p>Gradient flow replaces this discrete update with a differential equation, where the step at any point is considered to be an exact gradient update. As a result the path of the optimsation can be studied as a <em>differential equation</em>.</p>
@@ -839,10 +893,7 @@ f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1
 <p>Aki Vehtari on Leave One Out Uncertainty: <a href="https://arxiv.org/abs/2008.10296" class="uri">https://arxiv.org/abs/2008.10296</a> (check for his references).</p>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Arora-convergence19" class="csl-entry" role="doc-biblioentry">
-Arora, S., Cohen, N., Golowich, N., Hu, W., 2019. A convergence analysis of gradient descent for deep linear neural networks.
-</div>
-<div id="ref-Arora-convergence19" class="csl-entry" role="doc-biblioentry">
-Arora, S., Cohen, N., Golowich, N., Hu, W., 2019. A convergence analysis of gradient descent for deep linear neural networks.
+Arora, S., Cohen, N., Golowich, N., Hu, W., 2019. A convergence analysis of gradient descent for deep linear neural networks, in: International Conference on Learning Representations.
 </div>
 <div id="ref-Belkin:reconciling19" class="csl-entry" role="doc-biblioentry">
 Belkin, M., Hsu, D., Ma, S., Soumik Mandal, and, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.
@@ -888,12 +939,6 @@ McCullagh, P., Nelder, J.A., 1989. Generalized linear models, 2nd ed. Chapman; H
 </div>
 <div id="ref-Scholkopf:learning01" class="csl-entry" role="doc-biblioentry">
 Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.
-</div>
-<div id="ref-Srivastava:dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
-</div>
-<div id="ref-Srivastava:dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
 </div>
 <div id="ref-Nigeria-nmis14" class="csl-entry" role="doc-biblioentry">
 The Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs), Columbia University, 2014. Nigeria <span>NMIS</span> facility database.

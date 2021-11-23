@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="dcterms.date" content="2021-01-26">
+  <meta name="dcterms.date" content="2022-01-25">
   <title>Generalization and Neural Networks</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2//css/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/reveal.css">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -79,18 +80,18 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2//css/theme/black.css" id="theme">
-  <link rel="stylesheet" href="../assets/css/talks.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://inverseprobability.com/assets/css/talks.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://unpkg.com/reveal.js@3.9.2//css/print/pdf.css' : 'https://unpkg.com/reveal.js@3.9.2//css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://unpkg.com/reveal.js@3.9.2/css/print/pdf.css' : 'https://unpkg.com/reveal.js@3.9.2/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
   <!--[if lt IE 9]>
-  <script src="https://unpkg.com/reveal.js@3.9.2//lib/js/html5shiv.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/html5shiv.js"></script>
   <![endif]-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
@@ -109,8 +110,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="title-slide">
   <h1 class="title">Generalization and Neural Networks</h1>
   <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
-  <p class="date" style="text-align:center"><time>2021-01-26</time></p>
-  <p class="venue" style="text-align:center">Zoom</p>
+  <p class="date" style="text-align:center"><time>2022-01-25</time></p>
+  <p class="venue" style="text-align:center">LT1, William Gates Building</p>
 </section>
 
 <section class="slide level2">
@@ -232,7 +233,10 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 </section>
 <section id="differentiate-the-objective" class="slide level2">
 <h2>Differentiate the Objective</h2>
-<p><span style="text-align:left">Differentiating with respect to the vector <span class="math inline">\(\mathbf{ w}\)</span> we obtain</span> <span class="math display">\[
+<div style="text-align:left">
+Differentiating with respect to the vector <span class="math inline">\(\mathbf{ w}\)</span> we obtain
+</div>
+<p><span class="math display">\[
 \frac{\partial L\left(\mathbf{ w},\sigma^2 \right)}{\partial
 \mathbf{ w}}=\frac{1}{\sigma^2} \sum _{i=1}^{n}\mathbf{ x}_i y_i-\frac{1}{\sigma^2}
 \left[\sum _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}
@@ -284,12 +288,12 @@ _{i=1}^{n}\mathbf{ x}_iy_i,
 <div class="figure">
 <div id="nigerian-health-facilities-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/nigerian-health-facilities.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/nigerian-health-facilities.png" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
 <aside class="notes">
-Location of the over thirty four thousand health facilities registered in the NMIS data across Nigeria. Each facility plotted according to its latitude and longitude.
+Location of the over thirty-four thousand health facilities registered in the NMIS data across Nigeria. Each facility plotted according to its latitude and longitude.
 </aside>
 </section>
 <section id="multivariate-regression-on-nigeria-nmis-data" class="slide level2">
@@ -302,7 +306,7 @@ Location of the over thirty four thousand health facilities registered in the NM
 <h2>Residuals</h2>
 <div class="figure">
 <div id="nigeria-nmis-num-doctors-residuals-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/nigeria-nmis-num-doctors-residuals.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/nigeria-nmis-num-doctors-residuals.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -315,12 +319,12 @@ Residual values for the ratings from the prediction of the movie rating given th
 </section>
 <section id="deep-neural-network" class="slide level2">
 <h2>Deep Neural Network</h2>
-<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn1.svg" width="50%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//deepgp/deep-nn1.svg" width="50%" style=" ">
 </object>
 </section>
 <section id="deep-neural-network-1" class="slide level2">
 <h2>Deep Neural Network</h2>
-<object class="svgplot " data="../slides/diagrams/deepgp/deep-nn2.svg" width="50%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//deepgp/deep-nn2.svg" width="50%" style=" ">
 </object>
 </section>
 <section id="mathematically" class="slide level2">
@@ -353,23 +357,23 @@ showDivs(0, 'polynomial_basis');
 </script>
 <p><small></small> <input id="range-polynomial_basis" type="range" min="0" max="4" value="0" onchange="setDivs('polynomial_basis')" oninput="setDivs('polynomial_basis')"> <button onclick="plusDivs(-1, 'polynomial_basis')">❮</button> <button onclick="plusDivs(1, 'polynomial_basis')">❯</button></p>
 <div class="polynomial_basis" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_basis000.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_basis000.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="polynomial_basis" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_basis001.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_basis001.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="polynomial_basis" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_basis002.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_basis002.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="polynomial_basis" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_basis003.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_basis003.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="polynomial_basis" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_basis004.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_basis004.svg" width="80%" style=" ">
 </object>
 </div>
 </section>
@@ -383,15 +387,15 @@ showDivs(0, 'polynomial_function');
 </script>
 <p><small></small> <input id="range-polynomial_function" type="range" min="0" max="3" value="0" onchange="setDivs('polynomial_function')" oninput="setDivs('polynomial_function')"> <button onclick="plusDivs(-1, 'polynomial_function')">❮</button> <button onclick="plusDivs(1, 'polynomial_function')">❯</button></p>
 <div class="polynomial_function" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_function000.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_function000.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="polynomial_function" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_function001.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_function001.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="polynomial_function" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/polynomial_function002.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/polynomial_function002.svg" width="80%" style=" ">
 </object>
 </div>
 <ul>
@@ -412,7 +416,7 @@ showDivs(0, 'polynomial_function');
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <small>Image from Wikimedia Commons <a href="http://bit.ly/16kMKHQ" class="uri">http://bit.ly/16kMKHQ</a></small>
 </td>
@@ -423,7 +427,7 @@ showDivs(0, 'polynomial_function');
 <h2>Olympic Marathon Data</h2>
 <div class="figure">
 <div id="olympic-marathon-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/datasets/olympic-marathon.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//datasets/olympic-marathon.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -444,7 +448,7 @@ Olympic marathon pace times since 1896.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1x\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-2.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-2.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -457,7 +461,7 @@ Fit of a 1 degree polynomial (a linear model) to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-4-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-4.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-4.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -470,7 +474,7 @@ Fit of a 3 degree polynomial (a cubic model) to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_9 x^9\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-10-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-10.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-10.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -483,7 +487,7 @@ Fit of a 9 degree polynomial to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{16} x^{16}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-17-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -496,7 +500,7 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{26} x^{26}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -526,7 +530,7 @@ Fit of a 26 degree polynomial to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-2-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-2.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-2.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -539,7 +543,7 @@ Fit of a 1 degree polynomial (a linear model) to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + w_{3} x^3\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-4-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-4.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-4.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -552,7 +556,7 @@ Fit of a 3 degree polynomial (a cubic model) to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{9} x^{9}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-10-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-10.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-10.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -565,7 +569,7 @@ Fit of a 9 degree polynomial to the olympic marathon data.
 <p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{16} x^{16}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-bootstrap-polynomial-17-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/ml/olympic-marathon-bootstrap-polynomial-17.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-17.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -637,7 +641,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <section id="training-with-noise" class="slide level2">
 <h2>Training with Noise</h2>
 <ul>
-<li>Other regularisation approaches such as <em>dropout</em> <span class="citation" data-cites="Srivastava:dropout14">(Srivastava et al., 2014)</span></li>
+<li>Other regularisation approaches such as <em>dropout</em> <span class="citation" data-cites="Srivastava:dropout14">(<strong>Srivastava:dropout14?</strong>)</span></li>
 <li>Often perturbing the neural network structure or inputs.</li>
 <li>Can have elegant interpretations (see e.g. <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span>)</li>
 <li>Also interpreted as <em>ensemble</em> or <em>Bayesian</em> methods.</li>
@@ -670,7 +674,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <div class="figure">
 <div id="double-descent-figure" class="figure-frame">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/ml/double-descent.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.com/deepnn/./slides/diagrams//ml/double-descent.png" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
@@ -724,41 +728,14 @@ f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1
 <div id="ref-Belkin:reconciling19" class="csl-entry" role="doc-biblioentry">
 Belkin, M., Hsu, D., Ma, S., Soumik Mandal, and, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.
 </div>
-<div id="ref-Belkin:reconciling19" class="csl-entry" role="doc-biblioentry">
-Belkin, M., Hsu, D., Ma, S., Soumik Mandal, and, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.
-</div>
-<div id="ref-Bishop:noise95" class="csl-entry" role="doc-biblioentry">
-Bishop, C.M., 1995. Training with noise is equivalent to <span>T</span>ikhonov regularization. Neural Computation 7, 108–116. <a href="https://doi.org/10.1162/neco.1995.7.1.108">https://doi.org/10.1162/neco.1995.7.1.108</a>
-</div>
 <div id="ref-Bishop:noise95" class="csl-entry" role="doc-biblioentry">
 Bishop, C.M., 1995. Training with noise is equivalent to <span>T</span>ikhonov regularization. Neural Computation 7, 108–116. <a href="https://doi.org/10.1162/neco.1995.7.1.108">https://doi.org/10.1162/neco.1995.7.1.108</a>
 </div>
 <div id="ref-Jacot-ntk18" class="csl-entry" role="doc-biblioentry">
 Jacot, A., Gabriel, F., Hongler, C., 2018. Neural tangent kernel: Convergence and generalization in neural networks, in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi, N., Garnett, R. (Eds.), Advances in Neural Information Processing Systems. Curran Associates, Inc., pp. 8571–8580.
 </div>
-<div id="ref-Jacot-ntk18" class="csl-entry" role="doc-biblioentry">
-Jacot, A., Gabriel, F., Hongler, C., 2018. Neural tangent kernel: Convergence and generalization in neural networks, in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi, N., Garnett, R. (Eds.), Advances in Neural Information Processing Systems. Curran Associates, Inc., pp. 8571–8580.
-</div>
 <div id="ref-Scholkopf:learning01" class="csl-entry" role="doc-biblioentry">
 Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.
-</div>
-<div id="ref-Scholkopf:learning01" class="csl-entry" role="doc-biblioentry">
-Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.
-</div>
-<div id="ref-Srivastava:dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
-</div>
-<div id="ref-Srivastava:dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
-</div>
-<div id="ref-Srivastava:dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
-</div>
-<div id="ref-Srivastava:dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
-</div>
-<div id="ref-Wahba:book90" class="csl-entry" role="doc-biblioentry">
-Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href="https://doi.org/10.1137/1.9781611970128">https://doi.org/10.1137/1.9781611970128</a>
 </div>
 <div id="ref-Wahba:book90" class="csl-entry" role="doc-biblioentry">
 Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href="https://doi.org/10.1137/1.9781611970128">https://doi.org/10.1137/1.9781611970128</a>
@@ -768,8 +745,8 @@ Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href=
     </div>
   </div>
 
-  <script src="https://unpkg.com/reveal.js@3.9.2//lib/js/head.min.js"></script>
-  <script src="https://unpkg.com/reveal.js@3.9.2//js/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/head.min.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/js/reveal.js"></script>
 
   <script>
 
@@ -778,8 +755,6 @@ Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href=
       Reveal.initialize({
         // Push each slide change to the browser history
         history: true,
-        // Transition style
-        transition: 'None', // none/fade/slide/convex/concave/zoom
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',
@@ -799,10 +774,10 @@ Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href=
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'https://unpkg.com/reveal.js@3.9.2//lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://unpkg.com/reveal.js@3.9.2//plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://unpkg.com/reveal.js@3.9.2//plugin/math/math.js', async: true },
-          { src: 'https://unpkg.com/reveal.js@3.9.2//plugin/notes/notes.js', async: true }
+          { src: 'https://unpkg.com/reveal.js@3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/math/math.js', async: true },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/notes/notes.js', async: true }
         ]
       });
     </script>
