@@ -1,0 +1,50 @@
+---
+layout: post
+---
+
+<script src="{{ "/assets/js/figure-magnify.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/figure-animate.js" | relative_url }}"></script>
+    
+<div id="modal-frame" class="modal">
+  <span class="close" onclick="closeMagnify()">&times;</span>
+  <div class="modal-figure">
+    <div class="figure-frame">
+      <div class="modal-content" id="modal01"></div>
+      <!--<img class="modal-content" id="object01">-->
+    </div>
+    <div class="caption-frame" id="modal-caption"></div>
+  </div>
+</div>	  
+
+<div class="post">
+
+  <article class="post-content">
+
+    {% include talklinks.html %}
+    <div id="authors">
+      {% assign lastone = page.author | last %}
+      {% for person in page.author %}
+      {% include listfullperson.html %}
+      {% endfor %}
+    </div>
+    
+    {% if page.tagline %}
+    <p><b>{{ page.tagline }}</b> </p>
+    {% endif %}
+
+
+  {% if page.abstract %}
+  <h4>Abstract</h4>
+    
+  <p>{{ page.abstract | markdownify }}</p>
+  {% endif %}
+
+  {{ content }}
+    
+  {%- if site.disqus.shortname -%}
+  {%- include disqus_comments.html -%}
+  {%- endif -%}
+
+  </article>
+
+</div>
