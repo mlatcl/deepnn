@@ -3,30 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="dcterms.date" content="2021-01-26">
+  <meta name="dcterms.date" content="2022-02-27">
   <title>Generalization: Model Validation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/reveal.css">
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
-  <link rel="stylesheet" href="../assets/css/talks.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="https://inverseprobability.com/assets/css/talks.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://unpkg.com/reveal.js@3.9.2/css/print/pdf.css' : 'https://unpkg.com/reveal.js@3.9.2/css/print/paper.css';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
   <!--[if lt IE 9]>
-  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/html5shiv.js"></script>
   <![endif]-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
@@ -44,9 +44,7 @@
 
 <section id="title-slide">
   <h1 class="title">Generalization: Model Validation</h1>
-  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
-  <p class="date" style="text-align:center"><time>2021-01-26</time></p>
-  <p class="venue" style="text-align:center">Zoom</p>
+  <p class="date" style="text-align:center"><time>2022-02-27</time></p>
 </section>
 
 <section class="slide level2">
@@ -76,12 +74,12 @@ sns.set_palette('colorblind')}-->
 <tr>
 <td width="50%">
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/turing-times.gif" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//turing-times.gif" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="50%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/turing-run.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//turing-run.jpg" width="50%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
@@ -89,7 +87,7 @@ sns.set_palette('colorblind')}-->
 </div>
 </div>
 <aside class="notes">
-Alan Turing, in 1946 he was only 11 minutes slower than the winner of the 1948 games. Would he have won a hypothetical games held in 1946? Source: <a href="http://www.turing.org.uk/scrapbook/run.html" target="_blank" >Alan Turing Internet Scrapbook</a>.
+Alan Turing, in 1946 he was only 11 minutes slower than the winner of the 1948 games. Would he have won a hypothetical games held in 1946? Source: <a href="http://www.turing.org.uk/scrapbook/run.html" target="_blank">Alan Turing Internet Scrapbook</a>.
 </aside>
 </section>
 <section id="probability-winning-olympics" class="slide level2">
@@ -153,7 +151,7 @@ R(\mathbf{ w}) \approx \frac{1}{n} \sum_{i=1}^{n}
 </td>
 <td width="30%">
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <small>Image from Wikimedia Commons <a href="http://bit.ly/16kMKHQ" class="uri">http://bit.ly/16kMKHQ</a></small>
 </td>
@@ -164,7 +162,7 @@ R(\mathbf{ w}) \approx \frac{1}{n} \sum_{i=1}^{n}
 <h2>Olympic Marathon Data</h2>
 <div class="figure">
 <div id="olympic-marathon-figure" class="figure-frame">
-<object class="svgplot " data="../slides/diagrams/datasets/olympic-marathon.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//datasets/olympic-marathon.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
@@ -186,107 +184,107 @@ showDivs(1, 'olympic_LM_polynomial_number');
 </script>
 <p><small></small> <input id="range-olympic_LM_polynomial_number" type="range" min="1" max="26" value="1" onchange="setDivs('olympic_LM_polynomial_number')" oninput="setDivs('olympic_LM_polynomial_number')"> <button onclick="plusDivs(-1, 'olympic_LM_polynomial_number')">❮</button> <button onclick="plusDivs(1, 'olympic_LM_polynomial_number')">❯</button></p>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number001.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number001.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number002.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number002.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number003.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number003.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number004.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number004.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number005.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number005.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number006.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number006.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number007.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number007.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number008.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number008.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number009.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number009.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number010.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number010.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number011.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number011.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number012.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number012.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number013.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number013.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number014.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number014.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number015.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number015.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number016.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number016.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number017.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number017.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number018.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number018.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number019.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number019.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number020.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number020.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number021.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number021.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number022.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number022.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number023.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number023.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number024.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number024.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number025.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number025.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_LM_polynomial_number026.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_LM_polynomial_number026.svg" width="80%" style=" ">
 </object>
 </div>
 </section>
@@ -308,47 +306,47 @@ showDivs(1, 'olympic_val_extra_LM_polynomial_number');
 </script>
 <p><small></small> <input id="range-olympic_val_extra_LM_polynomial_number" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_val_extra_LM_polynomial_number')" oninput="setDivs('olympic_val_extra_LM_polynomial_number')"> <button onclick="plusDivs(-1, 'olympic_val_extra_LM_polynomial_number')">❮</button> <button onclick="plusDivs(1, 'olympic_val_extra_LM_polynomial_number')">❯</button></p>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number001.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number001.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number002.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number002.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number003.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number003.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number004.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number004.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number005.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number005.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number006.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number006.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number007.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number007.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number008.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number008.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number009.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number009.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number010.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number010.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_extra_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_extra_LM_polynomial_number011.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_extra_LM_polynomial_number011.svg" width="80%" style=" ">
 </object>
 </div>
 </section>
@@ -380,47 +378,47 @@ showDivs(1, 'olympic_val_inter_LM_polynomial_number');
 </script>
 <p><small></small> <input id="range-olympic_val_inter_LM_polynomial_number" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_val_inter_LM_polynomial_number')" oninput="setDivs('olympic_val_inter_LM_polynomial_number')"> <button onclick="plusDivs(-1, 'olympic_val_inter_LM_polynomial_number')">❮</button> <button onclick="plusDivs(1, 'olympic_val_inter_LM_polynomial_number')">❯</button></p>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number001.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number001.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number002.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number002.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number003.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number003.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number004.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number004.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number005.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number005.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number006.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number006.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number007.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number007.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number008.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number008.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number009.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number009.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number010.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number010.svg" width="80%" style=" ">
 </object>
 </div>
 <div class="olympic_val_inter_LM_polynomial_number" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_val_inter_LM_polynomial_number011.svg" width="80%" style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_val_inter_LM_polynomial_number011.svg" width="80%" style=" ">
 </object>
 </div>
 </section>
@@ -459,47 +457,47 @@ showDivs(1, 'olympic_loo000_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_loo000_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_loo000_LM_polynomial')" oninput="setDivs('olympic_loo000_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_loo000_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_loo000_LM_polynomial')">❯</button></p>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo000_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo000_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo000_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -509,47 +507,47 @@ showDivs(1, 'olympic_loo001_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_loo001_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_loo001_LM_polynomial')" oninput="setDivs('olympic_loo001_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_loo001_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_loo001_LM_polynomial')">❯</button></p>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo001_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo001_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo001_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -559,47 +557,47 @@ showDivs(1, 'olympic_loo002_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_loo002_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_loo002_LM_polynomial')" oninput="setDivs('olympic_loo002_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_loo002_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_loo002_LM_polynomial')">❯</button></p>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo002_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo002_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo002_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -609,47 +607,47 @@ showDivs(1, 'olympic_loo003_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_loo003_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_loo003_LM_polynomial')" oninput="setDivs('olympic_loo003_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_loo003_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_loo003_LM_polynomial')">❯</button></p>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo003_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo003_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo003_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -659,47 +657,47 @@ showDivs(1, 'olympic_loo004_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_loo004_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_loo004_LM_polynomial')" oninput="setDivs('olympic_loo004_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_loo004_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_loo004_LM_polynomial')">❯</button></p>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo004_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo004_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo004_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -709,47 +707,47 @@ showDivs(1, 'olympic_loo005_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_loo005_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_loo005_LM_polynomial')" oninput="setDivs('olympic_loo005_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_loo005_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_loo005_LM_polynomial')">❯</button></p>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_loo005_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_loo005_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_loo005_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -774,47 +772,47 @@ showDivs(1, 'olympic_5cv00_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_5cv00_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_5cv00_LM_polynomial')" oninput="setDivs('olympic_5cv00_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_5cv00_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_5cv00_LM_polynomial')">❯</button></p>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv00_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv00_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv00_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -824,47 +822,47 @@ showDivs(1, 'olympic_5cv01_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_5cv01_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_5cv01_LM_polynomial')" oninput="setDivs('olympic_5cv01_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_5cv01_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_5cv01_LM_polynomial')">❯</button></p>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv01_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv01_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv01_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -874,47 +872,47 @@ showDivs(1, 'olympic_5cv02_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_5cv02_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_5cv02_LM_polynomial')" oninput="setDivs('olympic_5cv02_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_5cv02_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_5cv02_LM_polynomial')">❯</button></p>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv02_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv02_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv02_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -924,47 +922,47 @@ showDivs(1, 'olympic_5cv03_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_5cv03_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_5cv03_LM_polynomial')" oninput="setDivs('olympic_5cv03_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_5cv03_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_5cv03_LM_polynomial')">❯</button></p>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv03_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv03_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv03_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -974,47 +972,47 @@ showDivs(1, 'olympic_5cv04_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_5cv04_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_5cv04_LM_polynomial')" oninput="setDivs('olympic_5cv04_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_5cv04_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_5cv04_LM_polynomial')">❯</button></p>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv04_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv04_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv04_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -1024,47 +1022,47 @@ showDivs(1, 'olympic_5cv05_LM_polynomial');
 </script>
 <p><small>num basis</small> <input id="range-olympic_5cv05_LM_polynomial" type="range" min="1" max="11" value="1" onchange="setDivs('olympic_5cv05_LM_polynomial')" oninput="setDivs('olympic_5cv05_LM_polynomial')"> <button onclick="plusDivs(-1, 'olympic_5cv05_LM_polynomial')">❮</button> <button onclick="plusDivs(1, 'olympic_5cv05_LM_polynomial')">❯</button></p>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number001.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number001.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number002.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number002.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number003.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number003.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number004.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number004.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number005.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number005.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number006.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number006.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number007.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number007.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number008.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number008.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number009.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number009.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number010.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number010.svg" width style=" ">
 </object>
 </div>
 <div class="olympic_5cv05_LM_polynomial" style="text-align:center;">
-<object class="svgplot " data="../slides/diagrams/ml/olympic_5cv05_LM_polynomial_number011.svg" width style=" ">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic_5cv05_LM_polynomial_number011.svg" width style=" ">
 </object>
 </div>
 </div>
@@ -1078,26 +1076,25 @@ showDivs(1, 'olympic_5cv05_LM_polynomial');
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
-<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></p></li>
-<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
-<li><p>blog posts:</p>
-<p><a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a></p></li>
+<li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
+<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
 </section>
 <section id="references" class="slide level2 unnumbered scrollable">
 <h2 class="unnumbered scrollable">References</h2>
-<div id="refs" class="references hanging-indent" role="doc-bibliography">
-<div id="ref-Rogers:book11">
-<p>Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC Press.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Rogers:book11" class="csl-entry" role="doc-biblioentry">
+Rogers, S., Girolami, M., 2011. A first course in machine learning. CRC Press.
 </div>
 </div>
 </section>
     </div>
   </div>
 
-  <script src="reveal.js/lib/js/head.min.js"></script>
-  <script src="reveal.js/js/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/head.min.js"></script>
+  <script src="https://unpkg.com/reveal.js@3.9.2/js/reveal.js"></script>
 
   <script>
 
@@ -1106,8 +1103,6 @@ showDivs(1, 'olympic_5cv05_LM_polynomial');
       Reveal.initialize({
         // Push each slide change to the browser history
         history: true,
-        // Transition style
-        transition: 'None', // none/fade/slide/convex/concave/zoom
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',
@@ -1127,10 +1122,10 @@ showDivs(1, 'olympic_5cv05_LM_polynomial');
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
-          { src: 'reveal.js/plugin/math/math.js', async: true },
-          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+          { src: 'https://unpkg.com/reveal.js@3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/zoom-js/zoom.js', async: true },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/math/math.js', async: true },
+          { src: 'https://unpkg.com/reveal.js@3.9.2/plugin/notes/notes.js', async: true }
         ]
       });
     </script>

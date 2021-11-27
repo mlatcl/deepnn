@@ -1,6 +1,5 @@
 ---
 title: "Convolutional Neural Networks"
-venue: "Zoom"
 abstract: "<p>This lecture will introduce convolutional neural networks.</p>"
 author:
 - given: Nic
@@ -10,14 +9,16 @@ author:
   twitter: 
   gscholar: 
   orcid: 
-date: 2021-02-11
-published: 2021-02-11
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/convolutional-neural-networks.md
+date: 2022-02-10
+published: 2022-02-10
 time: "14:00"
 week: 4
 session: 1
 reveal: 04-01-convolutional-neural-networks.slides.html
 ipynb: 04-01-convolutional-neural-networks.ipynb
 youtube: "Ed-bk1p6Gzo"
+edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/convolutional-neural-networks.md
 layout: lecture
 categories:
 - notes
@@ -73,20 +74,20 @@ categories:
 <h2 id="inductive-bias-1">Inductive bias</h2>
 <center>
 <div class="centered centered" style="">
-<img class="" src="../slides/diagrams/convnets/frame_1.jpg" width="2000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/frame_1.jpg" width="2000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <h2 id="inductive-bias-in-nns">Inductive bias in NNs</h2>
 <p><i>A simple universal approximator that makes no assumptions about its input structure.</i></p>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/fc_s.png" width="1800px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/fc_s.png" width="1800px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <h2 id="inductive-bias-in-nns-1">Inductive bias in NNs</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/ferenc.png" width="900px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/ferenc.png" width="900px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <ul>
@@ -145,14 +146,14 @@ categories:
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/MNIST.gif" width="750px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/MNIST.gif" width="750px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/translation_invariance.gif" width="970px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/translation_invariance.gif" width="970px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -176,20 +177,20 @@ Output
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/CNN_image2.png" width="500px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/CNN_image2.png" width="500px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/CNN_kernel2.png" width="250px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/CNN_kernel2.png" width="250px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
-<video controls loop src="../slides/diagrams/convnets/convolution_schematic.mp4" width="800px"/>
+<video controls loop src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/convolution_schematic.mp4" width="800px"/>
 </center>
 </td>
 </tr>
@@ -212,21 +213,21 @@ Padding (1)
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/image9.gif" width="590px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/image9.gif" width="590px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/image10.gif" width="630px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/image10.gif" width="630px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/image12.gif" width="530px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/image12.gif" width="530px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -237,13 +238,13 @@ Padding (1)
 <tr>
 <td>
 <center>
-<video controls loop src="../slides/diagrams/convnets/weightShare.mp4" width="800px"/>
+<video controls loop src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/weightShare.mp4" width="800px"/>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/Picture9.png" width="1200px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/Picture9.png" width="1200px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -251,7 +252,7 @@ Padding (1)
 </table>
 <h2 id="numerical-example-of-a-cnn">Numerical example of a CNN</h2>
 <center>
-<video controls loop src="../slides/diagrams/convnets/numCNN.mp4" width="1000px"/>
+<video controls loop src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/numCNN.mp4" width="1000px"/>
 </center>
 <h2 id="numerical-example-of-a-cnn---code">Numerical example of a CNN - code</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> show_car(CIFAR10_trainset)</span></code></pre></div>
@@ -370,7 +371,7 @@ Padding (1)
 </ul>
 <h2 id="parameter-free-convolution-pooling">Parameter-free convolution: pooling</h2>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/Picture8.png" width="1300px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/Picture8.png" width="1300px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <ul>
 <li><p>Kernel application</p>
@@ -412,12 +413,12 @@ Padding (1)
 <h2 id="revisitting-alexnet">Revisitting AlexNet</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/AlexNet.png" width="2000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/AlexNet.png" width="2000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <h2 id="convolutions-vs.-fully-connected-layers">Convolutions vs. fully connected layers</h2>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/Picture7.png" width="800px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/Picture7.png" width="800px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 <ul>
 <li>Setup:
@@ -464,14 +465,14 @@ depth-wise separable convolution
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/conv.png" width="600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/conv.png" width="600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/DW_conv.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/DW_conv.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -500,14 +501,14 @@ Performance
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/MN1.png" width="600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/MN1.png" width="600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/MN2.png" width="650px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/MN2.png" width="650px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -517,7 +518,7 @@ Performance
 <h2 id="channel-shuffle-the-shufflenets">Channel shuffle &amp; the ShuffleNet(s)</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/MobileVShuffle.png" width="1600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/MobileVShuffle.png" width="1600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <h2 id="channel-shuffle-the-shufflenets-1">Channel shuffle &amp; the ShuffleNet(s)</h2>
@@ -534,14 +535,14 @@ Performance
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/SN1.png" width="1300px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/SN1.png" width="1300px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/SN2.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/SN2.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -562,14 +563,14 @@ High Resolution
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/lowRes.png" width="500px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/lowRes.png" width="500px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/highRes.png" width="500px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/highRes.png" width="500px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -577,20 +578,20 @@ High Resolution
 </table>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/SR_survey.png" width="1800px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/SR_survey.png" width="1800px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <h2 id="pixel-shuffle">Pixel-shuffle</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/SRGAN2.png" width="1400px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/SRGAN2.png" width="1400px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <p>Wenzhe Shi, Jose Caballero, <strong>Ferenc Huszar</strong>, Johannes Totz, Andrew P. Aitken, Rob Bishop, Daniel Rueckert, Zehan Wang (2016)</p>
 <h2 id="super-resolution-srgan">Super resolution: SRGAN</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/SRGAN.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/SRGAN.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <p>Christian Ledig, Lucas Theis, <strong>Ferenc Huszar</strong>, Jose Caballero, Andrew Cunningham, Alejandro Acosta, Andrew Aitken, Alykhan Tejani, Johannes Totz, Zehan Wang, Wenzhe Shi (2017)</p>
@@ -601,7 +602,7 @@ High Resolution
 <h2 id="graph-convolution---data-structure">Graph convolution - data structure</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/graph.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/graph.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <ul>
@@ -621,7 +622,7 @@ High Resolution
 <h2 id="graph-convolution---tasks">Graph convolution - tasks</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/Fisetin-3D-balls.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/Fisetin-3D-balls.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <ul>
@@ -657,14 +658,14 @@ Template Matching GCNNs
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/GCNN_spectral.png" width="940px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/GCNN_spectral.png" width="940px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/GCNN_matching.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/GCNN_matching.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -693,7 +694,7 @@ Template Matching GCNNs
 <h2 id="alphafold---the-protein-folding-problem">AlphaFold - the protein folding problem</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/proteins.gif" width="1600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/proteins.gif" width="1600px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 <h2 id="alphafold-1">AlphaFold 1</h2>
@@ -702,14 +703,14 @@ Template Matching GCNNs
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/AlphaFold1a.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/AlphaFold1a.png" width="1100px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
 <td>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/AlphaFold1.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/AlphaFold1.png" width="1000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 </td>
@@ -718,7 +719,7 @@ Template Matching GCNNs
 <h2 id="alphafold-2">AlphaFold 2</h2>
 <center>
 <div class="centered" style="">
-<img class="" src="../slides/diagrams/convnets/AlphaFold2.png" width="2000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//convnets/AlphaFold2.png" width="2000px" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </center>
 
