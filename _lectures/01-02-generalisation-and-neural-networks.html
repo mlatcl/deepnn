@@ -54,7 +54,7 @@ sns.set_palette('colorblind')}-->
 <p>The software can be installed using</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pip install pods</span></code></pre></div>
 <p>from the command prompt where you can access your python installation.</p>
-<p>The code is also available on github: <a href="https://github.com/lawrennd/ods" class="uri">https://github.com/lawrennd/ods</a></p>
+<p>The code is also available on GitHub: <a href="https://github.com/lawrennd/ods" class="uri">https://github.com/lawrennd/ods</a></p>
 <p>Once <code>pods</code> is installed, it can be imported in the usual manner.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <h2 id="notutils">notutils</h2>
@@ -89,8 +89,8 @@ sns.set_palette('colorblind')}-->
 R(\mathbf{ w}) = \int L(y, x, \mathbf{ w}) \mathbb{P}(y, x) \text{d}y
 \text{d}x.
 \]</span> Of course, in practice, this value can’t be computed <em>but</em> it serves as a reminder of what it is we are aiming to minimize and under certain circumstances it can be approximated.</p>
-<h2 id="sample-based-approximations">Sample Based Approximations</h2>
-<p>A sample based approximation to an expectation involves replacing the true expectation with a sum over samples from the distribution. <span class="math display">\[
+<h2 id="sample-based-approximations">Sample-Based Approximations</h2>
+<p>A sample-based approximation to an expectation involves replacing the true expectation with a sum over samples from the distribution. <span class="math display">\[
 \int f(z) p(z) \text{d}z\approx \frac{1}{s}\sum_{i=1}^s f(z_i).
 \]</span> if <span class="math inline">\(\{z_i\}_{i=1}^s\)</span> are a set of <span class="math inline">\(s\)</span> independent and identically distributed samples from the distribution <span class="math inline">\(p(z)\)</span>. This approximation becomes better for larger <span class="math inline">\(s\)</span>, although the <em>rate of convergence</em> to the true integral will be very dependent on the distribution <span class="math inline">\(p(z)\)</span> <em>and</em> the function <span class="math inline">\(f(z)\)</span>.</p>
 <p>That said, this means we can approximate our true integral with the sum, <span class="math display">\[
@@ -103,8 +103,7 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <p>Laplace had the idea to augment the observations by noise, that is equivalent to considering a probability density whose mean is given by the <em>prediction function</em> <span class="math display">\[p\left(y_i|x_i\right)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{\left(y_i-f\left(x_i\right)\right)^{2}}{2\sigma^2}\right).\]</span></p>
 <p>This is known as <em>stochastic process</em>. It is a function that is corrupted by noise. Laplace didn’t suggest the Gaussian density for that purpose, that was an innovation from Carl Friederich Gauss, which is what gives the Gaussian density its name.</p>
 <h2 id="height-as-a-function-of-weight">Height as a Function of Weight</h2>
-<p>In the standard Gaussian, parametized by mean and variance.</p>
-<p>Make the mean a linear function of an <em>input</em>.</p>
+<p>In the standard Gaussian, parametized by mean and variance, make the mean a linear function of an <em>input</em>.</p>
 <p>This leads to a regression model. <span class="math display">\[
 \begin{align*}
   y_i=&amp;f\left(x_i\right)+\epsilon_i,\\
@@ -121,9 +120,9 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <td width="70%">
 <ul>
 <li>Gold medal times for Olympic Marathon since 1896.</li>
-<li>Marathons before 1924 didn’t have a standardised distance.</li>
+<li>Marathons before 1924 didn’t have a standardized distance.</li>
 <li>Present results using pace per km.</li>
-<li>In 1904 Marathon was badly organised leading to very slow times.</li>
+<li>In 1904 Marathon was badly organized leading to very slow times.</li>
 </ul>
 </td>
 <td width="30%">
@@ -134,7 +133,7 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 </td>
 </tr>
 </table>
-<p>The first thing we will do is load a standard data set for regression modelling. The data consists of the pace of Olympic Gold Medal Marathon winners for the Olympics from 1896 to present. First we load in the data and plot.</p>
+<p>The first thing we will do is load a standard data set for regression modelling. The data consists of the pace of Olympic Gold Medal Marathon winners for the Olympics from 1896 to present. Let’s load in the data and plot.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
@@ -156,14 +155,13 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <p>Figure: Olympic marathon pace times since 1896.</p>
 </div>
 </div>
-<p>Things to notice about the data include the outlier in 1904, in this year, the olympics was in St Louis, USA. Organizational problems and challenges with dust kicked up by the cars following the race meant that participants got lost, and only very few participants completed.</p>
-<p>More recent years see more consistently quick marathons.</p>
+<p>Things to notice about the data include the outlier in 1904, in that year the Olympics was in St Louis, USA. Organizational problems and challenges with dust kicked up by the cars following the race meant that participants got lost, and only very few participants completed. More recent years see more consistently quick marathons.</p>
 <h2 id="running-example-olympic-marathons">Running Example: Olympic Marathons</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-linear-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-linear-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
 <p>Note that <code>x</code> and <code>y</code> are not <code>pandas</code> data frames for this example, they are just arrays of dimensionality <span class="math inline">\(n\times 1\)</span>, where <span class="math inline">\(n\)</span> is the number of data.</p>
-<p>The aim of this lab is to have you coding linear regression in python. We will do it in two ways, once using iterative updates (coordinate ascent) and then using linear algebra. The linear algebra approach will not only work much better, it is easy to extend to multiple input linear regression and <em>non-linear</em> regression using basis functions.</p>
+<p>The aim of this lab is to have you coding linear regression in python. We will do it in two ways, once using iterative updates (coordinate ascent) and then using linear algebra. The linear algebra approach will not only work much better, it is also easy to extend to multiple input linear regression and <em>non-linear</em> regression using basis functions.</p>
 <h2 id="maximum-likelihood-iterative-solution">Maximum Likelihood: Iterative Solution</h2>
 <p>Now we will take the maximum likelihood approach we derived in the lecture to fit a line, <span class="math inline">\(y_i=mx_i + c\)</span>, to the data you’ve plotted. We are trying to minimize the error function: <span class="math display">\[
 L(m, c) =  \sum_{i=1}^n(y_i-mx_i-c)^2
@@ -178,9 +176,9 @@ L(m, c) =  \sum_{i=1}^n(y_i-mx_i-c)^2
 <p>Now we’ve identified the empirical risk with the loss, we’ll use <span class="math inline">\(L(\mathbf{ w})\)</span> to represent our objective function. <span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - f(\mathbf{ x}_i, \mathbf{ w})\right)^2
 \]</span> gives us our objective.</p>
-<p>In the case of the linear prediction function we can substitute <span class="math inline">\(f(\mathbf{ x}_i, \mathbf{ w}) = \mathbf{ w}^\top \mathbf{ x}_i\)</span>. <span class="math display">\[
+<p>In the case of the linear prediction function, we can substitute <span class="math inline">\(f(\mathbf{ x}_i, \mathbf{ w}) = \mathbf{ w}^\top \mathbf{ x}_i\)</span>. <span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n\left(y_i - \mathbf{ w}^\top \mathbf{ x}_i\right)^2
-\]</span> To compute the gradient of the objective, we first of all expand the brackets.</p>
+\]</span> To compute the gradient of the objective, we first expand the brackets.</p>
 <h2 id="bracket-expansion">Bracket Expansion</h2>
 <p><span class="math display">\[
 \begin{align*}
@@ -589,9 +587,9 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <td width="70%">
 <ul>
 <li>Gold medal times for Olympic Marathon since 1896.</li>
-<li>Marathons before 1924 didn’t have a standardised distance.</li>
+<li>Marathons before 1924 didn’t have a standardized distance.</li>
 <li>Present results using pace per km.</li>
-<li>In 1904 Marathon was badly organised leading to very slow times.</li>
+<li>In 1904 Marathon was badly organized leading to very slow times.</li>
 </ul>
 </td>
 <td width="30%">
@@ -602,7 +600,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </td>
 </tr>
 </table>
-<p>The first thing we will do is load a standard data set for regression modelling. The data consists of the pace of Olympic Gold Medal Marathon winners for the Olympics from 1896 to present. First we load in the data and plot.</p>
+<p>The first thing we will do is load a standard data set for regression modelling. The data consists of the pace of Olympic Gold Medal Marathon winners for the Olympics from 1896 to present. Let’s load in the data and plot.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pods</span></code></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pods.datasets.olympic_marathon_men()</span>
@@ -624,8 +622,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Figure: Olympic marathon pace times since 1896.</p>
 </div>
 </div>
-<p>Things to notice about the data include the outlier in 1904, in this year, the olympics was in St Louis, USA. Organizational problems and challenges with dust kicked up by the cars following the race meant that participants got lost, and only very few participants completed.</p>
-<p>More recent years see more consistently quick marathons.</p>
+<p>Things to notice about the data include the outlier in 1904, in that year the Olympics was in St Louis, USA. Organizational problems and challenges with dust kicked up by the cars following the race meant that participants got lost, and only very few participants completed. More recent years see more consistently quick marathons.</p>
 <h2 id="polynomial-fits-to-olympic-marthon-data">Polynomial Fits to Olympic Marthon Data</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/olympic-marathon-polynomial.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
