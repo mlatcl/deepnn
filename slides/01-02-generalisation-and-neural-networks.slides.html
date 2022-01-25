@@ -146,6 +146,64 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 \]</span></p></li>
 </ul>
 </section>
+<section id="basis-function-models" class="slide level2">
+<h2>Basis Function Models</h2>
+</section>
+<section id="polynomial-basis" class="slide level2">
+<h2>Polynomial Basis</h2>
+<p><span class="math display">\[
+\phi_j(x) = x^j
+\]</span></p>
+<script>
+showDivs(0, 'polynomial_basis');
+</script>
+<p><small></small> <input id="range-polynomial_basis" type="range" min="0" max="4" value="0" onchange="setDivs('polynomial_basis')" oninput="setDivs('polynomial_basis')"> <button onclick="plusDivs(-1, 'polynomial_basis')">❮</button> <button onclick="plusDivs(1, 'polynomial_basis')">❯</button></p>
+<div class="polynomial_basis" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_basis000.svg" width="80%" style=" ">
+</object>
+</div>
+<div class="polynomial_basis" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_basis001.svg" width="80%" style=" ">
+</object>
+</div>
+<div class="polynomial_basis" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_basis002.svg" width="80%" style=" ">
+</object>
+</div>
+<div class="polynomial_basis" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_basis003.svg" width="80%" style=" ">
+</object>
+</div>
+<div class="polynomial_basis" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_basis004.svg" width="80%" style=" ">
+</object>
+</div>
+</section>
+<section id="functions-derived-from-polynomial-basis" class="slide level2">
+<h2>Functions Derived from Polynomial Basis</h2>
+<p><span class="math display">\[
+f(x) = {\color{cyan}{w_0}} + {\color{green}{w_1 x}} + {\color{yellow}{w_2 x^2}} + {\color{magenta}{w_3 x^3}} + {\color{red}{w_4 x^4}}
+\]</span></p>
+<script>
+showDivs(0, 'polynomial_function');
+</script>
+<p><small></small> <input id="range-polynomial_function" type="range" min="0" max="3" value="0" onchange="setDivs('polynomial_function')" oninput="setDivs('polynomial_function')"> <button onclick="plusDivs(-1, 'polynomial_function')">❮</button> <button onclick="plusDivs(1, 'polynomial_function')">❯</button></p>
+<div class="polynomial_function" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_function000.svg" width="80%" style=" ">
+</object>
+</div>
+<div class="polynomial_function" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_function001.svg" width="80%" style=" ">
+</object>
+</div>
+<div class="polynomial_function" style="text-align:center;">
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_function002.svg" width="80%" style=" ">
+</object>
+</div>
+<ul>
+<li>_2 ^2 + _3 ^3 + _4 ^4 $$ are <em>linear</em> in the parameters, <span class="math inline">\(\mathbf{ w}\)</span>, but <em>non-linear</em> in the input <span class="math inline">\(x^3\)</span>. Here we are showing a polynomial basis for a 1-dimensional input, <span class="math inline">\(x\)</span>, but basis functions can also be constructed for multidimensional inputs, <span class="math inline">\(\mathbf{ x}\)</span>.}</li>
+</ul>
+</section>
 <section id="olympic-marathon-data" class="slide level2">
 <h2>Olympic Marathon Data</h2>
 <table>
@@ -391,6 +449,36 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <li>Also interpreted as <em>ensemble</em> or <em>Bayesian</em> methods.</li>
 </ul>
 <!--include{_ml/includes/bayesian-interpretation-of-regularisation.md}-->
+</section>
+<section id="shallow-and-deep-learning" class="slide level2">
+<h2>Shallow and Deep Learning</h2>
+</section>
+<section id="deep-neural-network" class="slide level2">
+<h2>Deep Neural Network</h2>
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//deepgp/deep-nn1.svg" width="50%" style=" ">
+</object>
+</section>
+<section id="deep-neural-network-1" class="slide level2">
+<h2>Deep Neural Network</h2>
+<object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//deepgp/deep-nn2.svg" width="50%" style=" ">
+</object>
+</section>
+<section id="mathematically" class="slide level2">
+<h2>Mathematically</h2>
+<p><span class="math display">\[
+\begin{align*}
+    \mathbf{ h}_{1} &amp;= \phi\left(\mathbf{W}_1 \mathbf{ x}\right)\\
+    \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{ h}_{1}\right)\\
+    \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{ h}_{2}\right)\\
+    f&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
+\end{align*}
+\]</span></p>
+</section>
+<section id="neural-network-prediction-function" class="slide level2">
+<h2>Neural Network Prediction Function</h2>
+<p><span class="math display">\[
+ f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right).
+\]</span></p>
 </section>
 <section id="overparameterised-systems" class="slide level2">
 <h2>Overparameterised Systems</h2>
