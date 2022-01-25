@@ -356,15 +356,15 @@ R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \ma
 <li><p>Slight variations in the training set cause changes in the prediction. Error due to variance is error in the model due to an overly complex model.</p></li>
 </ul>
 </section>
-<section id="regularisation" class="slide level2">
-<h2>Regularisation</h2>
+<section id="regularization" class="slide level2">
+<h2>Regularization</h2>
 <p>Linear system, solve:</p>
 <p><span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
 \]</span> But if <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> then this is not well posed.</p>
 </section>
-<section id="tikhonov-regularisation" class="slide level2">
-<h2>Tikhonov Regularisation</h2>
+<section id="tikhonov-regularization" class="slide level2">
+<h2>Tikhonov Regularization</h2>
 <ul>
 <li>Updated objective: <span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
@@ -377,7 +377,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <section id="splines-functions-hilbert-kernels" class="slide level2">
 <h2>Splines, Functions, Hilbert Kernels</h2>
 <ul>
-<li>Can also regularise the function <span class="math inline">\(f(\cdot)\)</span> directly.</li>
+<li>Can also regularize the function <span class="math inline">\(f(\cdot)\)</span> directly.</li>
 <li>This approach taken in <em>splines</em> and <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span> and kernels <span class="citation" data-cites="Scholkopf:learning01">Schölkopf and Smola (2001)</span>.</li>
 <li>Mathematically more elegant, but algorithmically less flexible and harder to scale.</li>
 </ul>
@@ -423,7 +423,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 </div>
 </div>
 <aside class="notes">
-<em>Left</em> traditional perspective on generalisation. There is a sweet spot of operation where the training error is still non-zero. Overfitting occurs when the variance increases. <em>Right</em> The double descent phenomenon, the modern models operate in an interpolation regime where they reconstruct the training data fully, but are well regularised in their interpolations for test data. Figure from <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>.
+<em>Left</em> traditional perspective on generalization. There is a sweet spot of operation where the training error is still non-zero. Overfitting occurs when the variance increases. <em>Right</em> The double descent phenomenon, the modern models operate in an interpolation regime where they reconstruct the training data fully but are well regularized in their interpolations for test data. Figure from <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>.
 </aside>
 </section>
 <section id="neural-tangent-kernel" class="slide level2">
@@ -435,8 +435,8 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <li>This is known as the neural tangent kernel <span class="citation" data-cites="Jacot-ntk18">(Jacot et al., 2018)</span>.</li>
 </ul>
 </section>
-<section id="regularisation-in-optimisation" class="slide level2">
-<h2>Regularisation in Optimisation</h2>
+<section id="regularization-in-optimization" class="slide level2">
+<h2>Regularization in Optimization</h2>
 <ul>
 <li>Gradient flow methods allow us to study nature of optima.</li>
 <li>In particular systems, with given initialisations, we can show L1 and L2 norms are minimised.</li>
