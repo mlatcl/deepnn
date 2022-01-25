@@ -826,7 +826,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/training-with-noise-tikhonov-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>In practice, and across the last two waves of neural networks, other techniques for regularisation have been used which can be seen as perturbing the neural network in some way. For example, in dropout <span class="citation" data-cites="Srivastava:dropout14">(<strong>Srivastava:dropout14?</strong>)</span>, different basis functions are eliminated from the gradient computation at each gradient update.</p>
+<p>In practice, and across the last two waves of neural networks, other techniques for regularisation have been used which can be seen as perturbing the neural network in some way. For example, in dropout <span class="citation" data-cites="Srivastava-dropout14">(Srivastava et al., 2014)</span>, different basis functions are eliminated from the gradient computation at each gradient update.</p>
 <p>Many of these pertubations have some form of regularising effect. The exact nature of the effect is not always easy to characterise, but in some cases we can assess how these manipulations effect the model. For example, <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span> analyzed training with ‘noisy inputs’ and showed conditions under which it’s equivalent to Tikhonov regularisation.</p>
 <p>But in general these approaches can have different interpretations and they’ve also been related to ensemble learning (e.g. related to <em>bagging</em> or Bayesian approaches).</p>
 <!--include{_ml/includes/bayesian-interpretation-of-regularisation.md}-->
@@ -939,6 +939,9 @@ McCullagh, P., Nelder, J.A., 1989. Generalized linear models, 2nd ed. Chapman; H
 </div>
 <div id="ref-Scholkopf:learning01" class="csl-entry" role="doc-biblioentry">
 Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.
+</div>
+<div id="ref-Srivastava-dropout14" class="csl-entry" role="doc-biblioentry">
+Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
 </div>
 <div id="ref-Nigeria-nmis14" class="csl-entry" role="doc-biblioentry">
 The Office of the Senior Special Assistant to the President on the Millennium Development Goals (OSSAP-MDGs), Columbia University, 2014. Nigeria <span>NMIS</span> facility database.
