@@ -360,8 +360,8 @@ R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \ma
 <h2>Regularisation</h2>
 <p>Linear system, solve:</p>
 <p><span class="math display">\[
-\designMatrix^\top\designMatrix \mathbf{ w}= \designMatrix^\top\mathbf{ y}
-\]</span> But if <span class="math inline">\(\designMatrix^\top\designMatrix\)</span> then this is not well posed.</p>
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
+\]</span> But if <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> then this is not well posed.</p>
 </section>
 <section id="tikhonov-regularisation" class="slide level2">
 <h2>Tikhonov Regularisation</h2>
@@ -370,7 +370,7 @@ R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \ma
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
 \]</span></li>
 <li>Hessian: <span class="math display">\[
-\designMatrix^\top\designMatrix + \alpha \mathbf{I}
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}+ \alpha \mathbf{I}
 \]</span></li>
 </ul>
 </section>
