@@ -193,20 +193,20 @@ _{i=1}^{n}\mathbf{ x}_i\mathbf{ x}_i^{\top}\right]\mathbf{ w}.
 \end{align*}
 \]</span></p>
 <h1 id="solution-with-linear-algebra">Solution with Linear Algebra</h1>
-<p>In this section we’re going compute the minimum of the quadratic loss with respect to the parameters. When we do this we’ll also review <em>linear algebra</em>. We will represent all our errors and functions in the form of matrices and vectors.</p>
-<p>Linear algebra is just a shorthand for performing lots of multiplications and additions simultaneously. What does it have to do with our system then? Well the first thing to note is that the classic linear function we fit for a one dimensional regression has the form: <span class="math display">\[
+<p>In this section we’re going compute the minimum of the quadratic loss with respect to the parameters. When we do this, we’ll also review <em>linear algebra</em>. We will represent all our errors and functions in the form of matrices and vectors.</p>
+<p>Linear algebra is just a shorthand for performing lots of multiplications and additions simultaneously. What does it have to do with our system then? Well, the first thing to note is that the classic linear function we fit for a one dimensional regression has the form: <span class="math display">\[
 f(x) = mx + c
-\]</span> the classical form for a straight line. From a linear algebraic perspective we are looking for multiplications and additions. We are also looking to separate our parameters from our data. The data is the <em>givens</em>. In French the word is données literally translated means <em>givens</em> that’s great, because we don’t need to change the data, what we need to change are the parameters (or variables) of the model. In this function the data comes in through <span class="math inline">\(x\)</span>, and the parameters are <span class="math inline">\(m\)</span> and <span class="math inline">\(c\)</span>.</p>
+\]</span> the classical form for a straight line. From a linear algebraic perspective, we are looking for multiplications and additions. We are also looking to separate our parameters from our data. The data is the <em>givens</em>. In French the word is données literally translated means <em>givens</em> that’s great, because we don’t need to change the data, what we need to change are the parameters (or variables) of the model. In this function the data comes in through <span class="math inline">\(x\)</span>, and the parameters are <span class="math inline">\(m\)</span> and <span class="math inline">\(c\)</span>.</p>
 <p>What we’d like to create is a vector of parameters and a vector of data. Then we could represent the system with vectors that represent the data, and vectors that represent the parameters.</p>
-<p>We look to turn the multiplications and additions into a linear algebraic form, we have one multiplication (<span class="math inline">\(m\times c\)</span>) and one addition (<span class="math inline">\(mx + c\)</span>). But we can turn this into a inner product by writing it in the following way, <span class="math display">\[
+<p>We look to turn the multiplications and additions into a linear algebraic form, we have one multiplication (<span class="math inline">\(m\times c\)</span>) and one addition (<span class="math inline">\(mx + c\)</span>). But we can turn this into an inner product by writing it in the following way, <span class="math display">\[
 f(x) = m \times x +
 c \times 1,
-\]</span> in other words we’ve extracted the unit value, from the offset, <span class="math inline">\(c\)</span>. We can think of this unit value like an extra item of data, because it is always given to us, and it is always set to 1 (unlike regular data, which is likely to vary!). We can therefore write each input data location, <span class="math inline">\(\mathbf{ x}\)</span>, as a vector <span class="math display">\[
+\]</span> in other words, we’ve extracted the unit value from the offset, <span class="math inline">\(c\)</span>. We can think of this unit value like an extra item of data, because it is always given to us, and it is always set to 1 (unlike regular data, which is likely to vary!). We can therefore write each input data location, <span class="math inline">\(\mathbf{ x}\)</span>, as a vector <span class="math display">\[
 \mathbf{ x}= \begin{bmatrix} 1\\ x\end{bmatrix}.
 \]</span></p>
 <p>Now we choose to also turn our parameters into a vector. The parameter vector will be defined to contain <span class="math display">\[
 \mathbf{ w}= \begin{bmatrix} c \\ m\end{bmatrix}
-\]</span> because if we now take the inner product between these to vectors we recover <span class="math display">\[
+\]</span> because if we now take the inner product between these two vectors we recover <span class="math display">\[
 \mathbf{ x}\cdot\mathbf{ w}= 1 \times c + x \times m = mx + c
 \]</span> In <code>numpy</code> we can define this vector as follows</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
@@ -214,7 +214,7 @@ c \times 1,
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.zeros(shape<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">0</span>] <span class="op">=</span> m</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>w[<span class="dv">1</span>] <span class="op">=</span> c</span></code></pre></div>
-<p>This gives us the equivalence between original operation and an operation in vector space. Whilst the notation here isn’t a lot shorter, the beauty is that we will be able to add as many features as we like and still keep the seame representation. In general, we are now moving to a system where each of our predictions is given by an inner product. When we want to represent a linear product in linear algebra, we tend to do it with the transpose operation, so since we have <span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = \mathbf{a}^\top\mathbf{b}\)</span> we can write <span class="math display">\[
+<p>This gives us the equivalence between original operation and an operation in vector space. Whilst the notation here isn’t a lot shorter, the beauty is that we will be able to add as many features as we like and keep the same representation. In general, we are now moving to a system where each of our predictions is given by an inner product. When we want to represent a linear product in linear algebra, we tend to do it with the transpose operation, so since we have <span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = \mathbf{a}^\top\mathbf{b}\)</span> we can write <span class="math display">\[
 f(\mathbf{ x}_i) = \mathbf{ x}_i^\top\mathbf{ w}.
 \]</span> Where we’ve assumed that each data point, <span class="math inline">\(\mathbf{ x}_i\)</span>, is now written by appending a 1 onto the original vector <span class="math display">\[
 \mathbf{ x}_i = \begin{bmatrix} 
@@ -242,24 +242,24 @@ x_i
 <div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> np.hstack((np.ones_like(x), x))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Phi)</span></code></pre></div>
 <h2 id="writing-the-objective-with-linear-algebra">Writing the Objective with Linear Algebra</h2>
-<p>When we think of the objective function, we can think of it as the errors where the error is defined in a similar way to what it was in Legendre’s day <span class="math inline">\(y_i - f(\mathbf{ x}_i)\)</span>, in statistics these errors are also sometimes called <a href="http://en.wikipedia.org/wiki/Errors_and_residuals_in_statistics"><em>residuals</em></a>. So we can think as the objective and the prediction function as two separate parts, first we have, <span class="math display">\[
+<p>When we think of the objective function, we can think of it as the errors where the error is defined in a similar way to what it was in Legendre’s day <span class="math inline">\(y_i - f(\mathbf{ x}_i)\)</span>, in statistics these errors are also sometimes called <a href="http://en.wikipedia.org/wiki/Errors_and_residuals_in_statistics"><em>residuals</em></a>. So, we can think as the objective and the prediction function as two separate parts, first we have, <span class="math display">\[
 L(\mathbf{ w}) = \sum_{i=1}^n(y_i - f(\mathbf{ x}_i; \mathbf{ w}))^2,
 \]</span> where we’ve made the function <span class="math inline">\(f(\cdot)\)</span>’s dependence on the parameters <span class="math inline">\(\mathbf{ w}\)</span> explicit in this equation. Then we have the definition of the function itself, <span class="math display">\[
 f(\mathbf{ x}_i; \mathbf{ w}) = \mathbf{ x}_i^\top \mathbf{ w}.
 \]</span> Let’s look again at these two equations and see if we can identify any inner products. The first equation is a sum of squares, which is promising. Any sum of squares can be represented by an inner product, <span class="math display">\[
-a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b},
-\]</span> so if we wish to represent <span class="math inline">\(L(\mathbf{ w})\)</span> in this way, all we need to do is convert the sum operator to an inner product. We can get a vector from that sum operator by placing both <span class="math inline">\(y_i\)</span> and <span class="math inline">\(f(\mathbf{ x}_i; \mathbf{ w})\)</span> into vectors, which we do by defining <span class="math display">\[
+a = \sum_{i=1}^{k} b^2_i = \mathbf{b}^\top\mathbf{b}.
+\]</span> If we wish to represent <span class="math inline">\(L(\mathbf{ w})\)</span> in this way, all we need to do is convert the sum operator to an inner product. We can get a vector from that sum operator by placing both <span class="math inline">\(y_i\)</span> and <span class="math inline">\(f(\mathbf{ x}_i; \mathbf{ w})\)</span> into vectors, which we do by defining <span class="math display">\[
 \mathbf{ y}= \begin{bmatrix}y_1\\ y_2\\ \vdots \\ y_n\end{bmatrix}
 \]</span> and defining <span class="math display">\[
 \mathbf{ f}(\mathbf{ x}_1; \mathbf{ w}) = \begin{bmatrix}f(\mathbf{ x}_1; \mathbf{ w})\\ f(\mathbf{ x}_2; \mathbf{ w})\\ \vdots \\ f(\mathbf{ x}_n; \mathbf{ w})\end{bmatrix}.
-\]</span> The second of these is actually a vector-valued function. This term may appear intimidating, but the idea is straightforward. A vector valued function is simply a vector whose elements are themselves defined as <em>functions</em>, i.e. it is a vector of functions, rather than a vector of scalars. The idea is so straightforward, that we are going to ignore it for the moment, and barely use it in the derivation. But it will reappear later when we introduce <em>basis functions</em>. So we will, for the moment, ignore the dependence of <span class="math inline">\(\mathbf{ f}\)</span> on <span class="math inline">\(\mathbf{ w}\)</span> and <span class="math inline">\(\boldsymbol{ \Phi}\)</span> and simply summarise it by a vector of numbers <span class="math display">\[
+\]</span> The second of these is a vector-valued function. This term may appear intimidating, but the idea is straightforward. A vector valued function is simply a vector whose elements are themselves defined as <em>functions</em>, i.e., it is a vector of functions, rather than a vector of scalars. The idea is so straightforward, that we are going to ignore it for the moment, and barely use it in the derivation. But it will reappear later when we introduce <em>basis functions</em>. So, we will for the moment ignore the dependence of <span class="math inline">\(\mathbf{ f}\)</span> on <span class="math inline">\(\mathbf{ w}\)</span> and <span class="math inline">\(\boldsymbol{ \Phi}\)</span> and simply summarise it by a vector of numbers <span class="math display">\[
 \mathbf{ f}= \begin{bmatrix}f_1\\f_2\\
 \vdots \\ f_n\end{bmatrix}.
 \]</span> This allows us to write our objective in the folowing, linear algebraic form, <span class="math display">\[
 L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
-\]</span> from the rules of inner products. But what of our matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> of input data? At this point, we need to dust off <a href="http://en.wikipedia.org/wiki/Matrix_multiplication"><em>matrix-vector multiplication</em></a>. Matrix multiplication is simply a convenient way of performing many inner products together, and it’s exactly what we need to summarise the operation <span class="math display">\[
+\]</span> from the rules of inner products. But what of our matrix <span class="math inline">\(\boldsymbol{ \Phi}\)</span> of input data? At this point, we need to dust off <a href="http://en.wikipedia.org/wiki/Matrix_multiplication"><em>matrix-vector multiplication</em></a>. Matrix multiplication is simply a convenient way of performing many inner products together, and it’s exactly what we need to summarize the operation <span class="math display">\[
 f_i = \mathbf{ x}_i^\top\mathbf{ w}.
-\]</span> This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
+\]</span> This operation tells us that each element of the vector <span class="math inline">\(\mathbf{ f}\)</span> (our vector valued function) is given by an inner product between <span class="math inline">\(\mathbf{ x}_i\)</span> and <span class="math inline">\(\mathbf{ w}\)</span>. In other words, it is a series of inner products. Let’s look at the definition of matrix multiplication, it takes the form <span class="math display">\[
 \mathbf{c} = \mathbf{B}\mathbf{a},
 \]</span> where <span class="math inline">\(\mathbf{c}\)</span> might be a <span class="math inline">\(k\)</span> dimensional vector (which we can intepret as a <span class="math inline">\(k\times 1\)</span> dimensional matrix), and <span class="math inline">\(\mathbf{B}\)</span> is a <span class="math inline">\(k\times k\)</span> dimensional matrix and <span class="math inline">\(\mathbf{a}\)</span> is a <span class="math inline">\(k\)</span> dimensional vector (<span class="math inline">\(k\times 1\)</span> dimensional matrix).</p>
 <p>The result of this multiplication is of the form <span class="math display">\[
@@ -273,8 +273,8 @@ b_{k, 1} &amp; b_{k, 2} &amp; \dots &amp; b_{k, k} \end{bmatrix} \begin{bmatrix}
 b_{1, k}a_k\\
 b_{2, 1}a_1 + b_{2, 2}a_2 + \dots + b_{2, k}a_k \\ 
 \vdots\\
-b_{k, 1}a_1 + b_{k, 2}a_2 + \dots + b_{k, k}a_k\end{bmatrix}
-\]</span> so we see that each element of the result, <span class="math inline">\(\mathbf{a}\)</span> is simply the inner product between each <em>row</em> of <span class="math inline">\(\mathbf{B}\)</span> and the vector <span class="math inline">\(\mathbf{c}\)</span>. Because we have defined each element of <span class="math inline">\(\mathbf{ f}\)</span> to be given by the inner product between each <em>row</em> of the design matrix and the vector <span class="math inline">\(\mathbf{ w}\)</span> we now can write the full operation in one matrix multiplication,</p>
+b_{k, 1}a_1 + b_{k, 2}a_2 + \dots + b_{k, k}a_k\end{bmatrix}.
+\]</span> We see that each element of the result, <span class="math inline">\(\mathbf{a}\)</span> is simply the inner product between each <em>row</em> of <span class="math inline">\(\mathbf{B}\)</span> and the vector <span class="math inline">\(\mathbf{c}\)</span>. Because we have defined each element of <span class="math inline">\(\mathbf{ f}\)</span> to be given by the inner product between each <em>row</em> of the design matrix and the vector <span class="math inline">\(\mathbf{ w}\)</span> we now can write the full operation in one matrix multiplication,</p>
 <p><span class="math display">\[
 \mathbf{ f}= \boldsymbol{ \Phi}\mathbf{ w}.
 \]</span></p>
@@ -290,31 +290,31 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f})
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-objective-optimisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-objective-optimisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Our <em>model</em> has now been defined with two equations, the prediction function and the objective function. Next we will use multivariate calculus to define an <em>algorithm</em> to fit the model. The separation between model and algorithm is important and is often overlooked. Our model contains a function that shows how it will be used for prediction, and a function that describes the objective function we need to optimise to obtain a good set of parameters.</p>
-<p>The model linear regression model we have described is still the same as the one we fitted above with a coordinate ascent algorithm. We have only played with the notation to obtain the same model in a matrix and vector notation. However, we will now fit this model with a different algorithm, one that is much faster. It is such a widely used algorithm that from the end user’s perspective it doesn’t even look like an algorithm, it just appears to be a single operation (or function). However, underneath the computer calls an algorithm to find the solution. Further, the algorithm we obtain is very widely used, and because of this it turns out to be highly optimised.</p>
-<p>Once again we are going to try and find the stationary points of our objective by finding the <em>stationary points</em>. However, the stationary points of a multivariate function, are a little bit more complext to find. Once again we need to find the point at which the derivative is zero, but now we need to use <em>multivariate calculus</em> to find it. This involves learning a few additional rules of differentiation (that allow you to do the derivatives of a function with respect to vector), but in the end it makes things quite a bit easier. We define vectorial derivatives as follows, <span class="math display">\[
+<p>Our <em>model</em> has now been defined with two equations: the prediction function and the objective function. Now we will use multivariate calculus to define an <em>algorithm</em> to fit the model. The separation between model and algorithm is important and is often overlooked. Our model contains a function that shows how it will be used for prediction, and a function that describes the objective function we need to optimise to obtain a good set of parameters.</p>
+<p>The model linear regression model we have described is still the same as the one we fitted above with a coordinate ascent algorithm. We have only played with the notation to obtain the same model in a matrix and vector notation. However, we will now fit this model with a different algorithm, one that is much faster. It is such a widely used algorithm that from the end user’s perspective it doesn’t even look like an algorithm, it just appears to be a single operation (or function). However, underneath the computer calls an algorithm to find the solution. Further, the algorithm we obtain is very widely used, and because of this it turns out to be highly optimized.</p>
+<p>Once again, we are going to try and find the stationary points of our objective by finding the <em>stationary points</em>. However, the stationary points of a multivariate function, are a little bit more complex to find. As before we need to find the point at which the gradient is zero, but now we need to use <em>multivariate calculus</em> to find it. This involves learning a few additional rules of differentiation (that allow you to do the derivatives of a function with respect to vector), but in the end it makes things quite a bit easier. We define vectorial derivatives as follows, <span class="math display">\[
 \frac{\text{d}L(\mathbf{ w})}{\text{d}\mathbf{ w}} =
 \begin{bmatrix}\frac{\text{d}L(\mathbf{ w})}{\text{d}w_1}\\\frac{\text{d}L(\mathbf{ w})}{\text{d}w_2}\end{bmatrix}.
 \]</span> where <span class="math inline">\(\frac{\text{d}L(\mathbf{ w})}{\text{d}w_1}\)</span> is the <a href="http://en.wikipedia.org/wiki/Partial_derivative">partial derivative</a> of the error function with respect to <span class="math inline">\(w_1\)</span>.</p>
-<p>Differentiation through multiplications and additions is relatively straightforward, and since linear algebra is just multiplication and addition, then its rules of diffentiation are quite straightforward too, but slightly more complex than regular derivatives.</p>
+<p>Differentiation through multiplications and additions is relatively straightforward, and since linear algebra is just multiplication and addition, then its rules of differentiation are quite straightforward too, but slightly more complex than regular derivatives.</p>
 <h2 id="multivariate-derivatives">Multivariate Derivatives</h2>
-<p>We will need two rules of multivariate or <em>matrix</em> differentiation. The first is diffentiation of an inner product. By remembering that the inner product is made up of multiplication and addition, we can hope that its derivative is quite straightforward, and so it proves to be. We can start by thinking about the definition of the inner product, <span class="math display">\[
+<p>We will need two rules of multivariate or <em>matrix</em> differentiation. The first is differentiation of an inner product. By remembering that the inner product is made up of multiplication and addition, we can hope that its derivative is quite straightforward, and so it proves to be. We can start by thinking about the definition of the inner product, <span class="math display">\[
 \mathbf{a}^\top\mathbf{z} = \sum_{i} a_i
 z_i,
-\]</span> which if we were to take the derivative with respect to <span class="math inline">\(z_k\)</span> would simply return the gradient of the one term in the sum for which the derivative was non zero, that of <span class="math inline">\(a_k\)</span>, so we know that <span class="math display">\[
+\]</span> which if we were to take the derivative with respect to <span class="math inline">\(z_k\)</span> would simply return the gradient of the one term in the sum for which the derivative was non-zero, that of <span class="math inline">\(a_k\)</span>, so we know that <span class="math display">\[
 \frac{\text{d}}{\text{d}z_k} \mathbf{a}^\top \mathbf{z} = a_k
-\]</span> and by our definition of multivariate derivatives we can simply stack all the partial derivatives of this form in a vector to obtain the result that <span class="math display">\[
+\]</span> and by our definition for multivariate derivatives, we can simply stack all the partial derivatives of this form in a vector to obtain the result that <span class="math display">\[
 \frac{\text{d}}{\text{d}\mathbf{z}}
 \mathbf{a}^\top \mathbf{z} = \mathbf{a}.
 \]</span> The second rule that’s required is differentiation of a ‘matrix quadratic.’ A scalar quadratic in <span class="math inline">\(z\)</span> with coefficient <span class="math inline">\(c\)</span> has the form <span class="math inline">\(cz^2\)</span>. If <span class="math inline">\(\mathbf{z}\)</span> is a <span class="math inline">\(k\times 1\)</span> vector and <span class="math inline">\(\mathbf{C}\)</span> is a <span class="math inline">\(k \times k\)</span> <em>matrix</em> of coefficients then the matrix quadratic form is written as <span class="math inline">\(\mathbf{z}^\top \mathbf{C}\mathbf{z}\)</span>, which is itself a <em>scalar</em> quantity, but it is a function of a <em>vector</em>.</p>
 <h3 id="matching-dimensions-in-matrix-multiplications">Matching Dimensions in Matrix Multiplications</h3>
-<p>There’s a trick for telling that it’s a scalar result. When you are doing maths with matrices, it’s always worth pausing to perform a quick sanity check on the dimensions. Matrix multplication only works when the dimensions match. To be precise, the ‘inner’ dimension of the matrix must match. What is the inner dimension. If we multiply two matrices <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>, the first of which has <span class="math inline">\(k\)</span> rows and <span class="math inline">\(\ell\)</span> columns and the second of which has <span class="math inline">\(p\)</span> rows and <span class="math inline">\(q\)</span> columns, then we can check whether the multiplication works by writing the dimensionalities next to each other, <span class="math display">\[
+<p>There’s a trick for telling a multiplication leads to a scalar result. When you are doing mathematics with matrices, it’s always worth pausing to perform a quick sanity check on the dimensions. Matrix multplication only works when the dimensions match. To be precise, the ‘inner’ dimension of the matrix must match. What is the inner dimension? If we multiply two matrices <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>, the first of which has <span class="math inline">\(k\)</span> rows and <span class="math inline">\(\ell\)</span> columns and the second of which has <span class="math inline">\(p\)</span> rows and <span class="math inline">\(q\)</span> columns, then we can check whether the multiplication works by writing the dimensionalities next to each other, <span class="math display">\[
 \mathbf{A} \mathbf{B} \rightarrow (k \times
 \underbrace{\ell)(p}_\text{inner dimensions} \times q) \rightarrow (k\times q).
 \]</span> The inner dimensions are the two inside dimensions, <span class="math inline">\(\ell\)</span> and <span class="math inline">\(p\)</span>. The multiplication will only work if <span class="math inline">\(\ell=p\)</span>. The result of the multiplication will then be a <span class="math inline">\(k\times q\)</span> matrix: this dimensionality comes from the ‘outer dimensions.’ Note that matrix multiplication is not <a href="http://en.wikipedia.org/wiki/Commutative_property"><em>commutative</em></a>. And if you change the order of the multiplication, <span class="math display">\[
 \mathbf{B} \mathbf{A} \rightarrow (\ell \times \underbrace{k)(q}_\text{inner dimensions} \times p) \rightarrow (\ell \times p).
-\]</span> firstly it may no longer even work, because now the condition is that <span class="math inline">\(k=q\)</span>, and secondly the result could be of a different dimensionality. An exception is if the matrices are square matrices (e.g. same number of rows as columns) and they are both <em>symmetric</em>. A symmetric matrix is one for which <span class="math inline">\(\mathbf{A}=\mathbf{A}^\top\)</span>, or equivalently, <span class="math inline">\(a_{i,j} = a_{j,i}\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
-<p>You will need to get used to working with matrices and vectors applying and developing new machine learning techniques. You should have come across them before, but you may not have used them as extensively as we will now do in this course. You should get used to using this trick to check your work and ensure you know what the dimension of an output matrix should be. For our matrix quadratic form, it turns out that we can see it as a special type of inner product. <span class="math display">\[
+\]</span> Firstly, it may no longer even work, because now the condition is that <span class="math inline">\(k=q\)</span>, and secondly the result could be of a different dimensionality. An exception is if the matrices are square matrices (e.g., same number of rows as columns) and they are both <em>symmetric</em>. A symmetric matrix is one for which <span class="math inline">\(\mathbf{A}=\mathbf{A}^\top\)</span>, or equivalently, <span class="math inline">\(a_{i,j} = a_{j,i}\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+<p>For applying and developing machine learning algorithms you should get familiar with working with matrices and vectors. You should have come across them before, but you may not have used them as extensively as we are doing now. It’s worth getting used to using this trick to check your work and ensure you know what the dimension of an output matrix should be. For our matrix quadratic form, it turns out that we can see it as a special type of inner product. <span class="math display">\[
 \mathbf{z}^\top\mathbf{C}\mathbf{z} \rightarrow (1\times
 \underbrace{k) (k}_\text{inner dimensions}\times k) (k\times 1) \rightarrow
 \mathbf{b}^\top\mathbf{z}
@@ -350,15 +350,15 @@ L(\mathbf{ w})=
 <h3 id="exercise-1">Exercise 1</h3>
 <p>Use the equivalence between our vector and our matrix formulations of linear regression, alongside our definition of vector derivates, to match the gradients we’ve computed directly for <span class="math inline">\(\frac{\text{d}L(c, m)}{\text{d}c}\)</span> and <span class="math inline">\(\frac{\text{d}L(c, m)}{\text{d}m}\)</span> to those for <span class="math inline">\(\frac{\text{d}L(\mathbf{ w})}{\text{d}\mathbf{ w}}\)</span>.</p>
 <h1 id="update-equation-for-global-optimum">Update Equation for Global Optimum</h1>
-<p>We need to find the minimum of our objective function. Using our objective function we can minimize for our parameter vector <span class="math inline">\(\mathbf{ w}\)</span>. Firstly, we seek stationary points by find parameter vectors that solve for when the gradients are zero, <span class="math display">\[
+<p>We need to find the minimum of our objective function. Using our objective function, we can minimize for our parameter vector <span class="math inline">\(\mathbf{ w}\)</span>. Firstly, we seek stationary points by find parameter vectors that solve for when the gradients are zero, <span class="math display">\[
 \mathbf{0}=- 2\boldsymbol{ \Phi}^\top
 \mathbf{ y}+ 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w},
-\]</span> where <span class="math inline">\(\mathbf{0}\)</span> is a <em>vector</em> of zeros. Rearranging this equation we find the solution to be <span class="math display">\[
+\]</span> where <span class="math inline">\(\mathbf{0}\)</span> is a <em>vector</em> of zeros. Rearranging this equation, we find the solution to be <span class="math display">\[
 \boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top
 \mathbf{ y}
 \]</span> which is a matrix equation of the familiar form <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span>.</p>
 <h2 id="solving-the-multivariate-system">Solving the Multivariate System</h2>
-<p>The solution for <span class="math inline">\(\mathbf{ w}\)</span> can be written matematically in terms of a matrix inverse of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span>, but computation of a matrix inverse requires, in itself, an algorithm to resolve it. You’ll know this if you had to invert, by hand, a <span class="math inline">\(3\times 3\)</span> matrix in high school. From a numerical stability perspective, it is also best not to compute the matrix inverse directly, but rather to ask the computer to <em>solve</em> the system of linear equations given by <span class="math display">\[
+<p>The solution for <span class="math inline">\(\mathbf{ w}\)</span> can be written mathematically in terms of a matrix inverse of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span>, but computation of a matrix inverse requires an algorithm to resolve it. You’ll know this if you had to invert, by hand, a <span class="math inline">\(3\times 3\)</span> matrix in high school. From a numerical stability perspective, it is also best not to compute the matrix inverse directly, but rather to ask the computer to <em>solve</em> the system of linear equations given by <span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
 \]</span> for <span class="math inline">\(\mathbf{ w}\)</span>.</p>
 <h2 id="multivariate-linear-regression">Multivariate Linear Regression</h2>
@@ -369,22 +369,22 @@ L(\mathbf{ w})=
 </div>
 <p>We can also compute the <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian matrix</a>, the curvature of the loss function. To do this we take the second derivative of the loss function with respect to the parameter vector, <span class="math display">\[
 \frac{\text{d}^2}{\text{d}\mathbf{ w}\text{d}\mathbf{ w}^\top} L(\mathbf{ w}) = 2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}.
-\]</span> So we see that the curvature is given by the design matrix.</p>
+\]</span> So, we see that the curvature is only dependent on the design matrix.</p>
 <p>Note that for this linear model the curvature is <em>not</em> dependent on the values of the parameter vector, <span class="math inline">\(\mathbf{ w}\)</span>, or indeed on the <em>response</em> variables, <span class="math inline">\(\mathbf{ y}\)</span>. This is unusual, in general the curvature will depend on the parameters and the response variables. The linear model with quadratic loss is a special case because the overall loss function has a <em>quadratic form</em> which is the unique form with constant curvature across the whole space.</p>
 <p>This is one reason why linear models are so easy to work with.</p>
 <p>Because the curvature is constant everywhere, we know that the curvature at the minimum is given by <span class="math inline">\(2\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span>.</p>
 <p>From univariate calculus you might recall that the optimum is a maximum if the curvature is negative, and a minimum if the curvature is positive. A similar theorem holds for multivariate calculus, but now the curvature must be <em>positive definite</em> for the point to be a minimum. The constant curvature also shows us also that the minimum is <em>unique</em>.</p>
 <p>Positive definite means that for any two vectors, <span class="math inline">\(\mathbf{u}\)</span> of unit length <span class="math inline">\(\mathbf{u}^\top\mathbf{u}\)</span> we have that, <span class="math display">\[
 \mathbf{u}^\top\mathbf{A} \mathbf{u} &gt; 0 \quad \forall \quad \mathbf{u} \quad \text{with}\quad \mathbf{u}^\top\mathbf{u}=1
-\]</span> The matrix <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> (where we’ve dropped the 2) will satisfy this condition as long as the columns of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> are <em>linearly independent</em> and the number of basis functions is less or equal to the number of data.</p>
+\]</span> The matrix <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> (where we’ve dropped the 2) will satisfy this condition as long as the columns of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> are <em>linearly independent</em> and the number of basis functions is less or equal to the number of data points.</p>
 <h2 id="eigendecomposition-of-hessian">Eigendecomposition of Hessian</h2>
 <p>Applying a vector <span class="math inline">\(\mathbf{u}\)</span> to the Hessian matrix gives us the curvature in a particular direction. So we can use this to look at the shape of the minimum by projecting onto the different directions, <span class="math inline">\(\mathbf{u}\)</span>.</p>
 <p>Recall the eigendecomposition of a matrix, <span class="math display">\[
 \mathbf{A}\mathbf{u} = \lambda\mathbf{u}
 \]</span> If we allow <span class="math inline">\(\mathbf{u}_i\)</span> to be an <em>eigenvector</em> of <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}\)</span> then the curvature in that direction is given by the corresponding eigenvalue, <span class="math inline">\(\lambda_i\)</span>. <span class="math display">\[
-\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{u}_i = \lambda_i \mathbf{u}_i
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{u}_i = \lambda_i \mathbf{u}_i.
 \]</span></p>
-<p>So the eigendecomposition of the Hessian is a convenient representation of the nature of these minima. The principal eigenvector (the one associated with the largest eigenvalue), <span class="math inline">\(\mathbf{u}_1\)</span> is associated with the direction of <em>highest curvature</em>. While the minor eigenvector shows us the flattest direction, where the curvature is smallest.</p>
+<p>The eigendecomposition of the Hessian is a convenient representation of the nature of these minima. The principal eigenvector (the one associated with the largest eigenvalue), <span class="math inline">\(\mathbf{u}_1\)</span> is associated with the direction of <em>highest curvature</em>. While the minor eigenvector shows us the flattest direction, where the curvature is smallest.</p>
 <h1 id="nigeria-nmis-data">Nigeria NMIS Data</h1>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_datasets/includes/nigeria-nmis-data.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -429,17 +429,17 @@ L(\mathbf{ w})=
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/nigeria-nmis-linear-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/nigeria-nmis-linear-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Now we will build a design matrix based on the numeric features that include the number of nurses, and the number of midwives, the latitude and longitude. These are our <em>covariates</em>. The response variable will be thenumber of doctors. We build the design matrix as follows:</p>
+<p>Now we will build a design matrix based on the numeric features that include the number of nurses, and the number of midwives, the latitude and longitude. These are our <em>covariates</em>. The response variable will be the number of doctors. We build the design matrix as follows:</p>
 <p>Bias as an additional feature.</p>
-<p>First of all we select the covariates and response variables and drop any rows where there are missing values using the <code>pandas</code> <code>dropna</code> method.</p>
+<p>First we select the covariates and response variables and drop any rows where there are missing values using the <code>pandas</code> <code>dropna</code> method.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>covariates <span class="op">=</span> [<span class="st">&#39;num_nurses_fulltime&#39;</span>, <span class="st">&#39;num_nursemidwives_fulltime&#39;</span>, <span class="st">&#39;latitude&#39;</span>, <span class="st">&#39;longitude&#39;</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> [<span class="st">&#39;num_doctors_fulltime&#39;</span>]</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>data_without_missing <span class="op">=</span> data[covariates <span class="op">+</span> response].dropna()</span></code></pre></div>
 <p>We can see how many rows we have dropped and have a quick sanity check on our new data frame with <code>len</code>.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(data) <span class="op">-</span> <span class="bu">len</span>(data_without_missing))</span></code></pre></div>
-<p>So we see that 2,735 of the entries had missing values in one of our variables of interest.</p>
-<p>You may also want to use <code>describe</code> or other functions to exlore the new data frame.</p>
-<p>Now let’s perform a linear regression. But this time, we will create a pandas data frame for the result so we can store it in a form that we can visualise easily.</p>
+<p>We see that 2,735 of the entries had missing values in one of our variables of interest.</p>
+<p>You may also want to use <code>describe</code> or other functions to explore the new data frame.</p>
+<p>Now let’s perform a linear regression. But this time, we will create a pandas data frame for the result so we can store it in a form that we can visualize easily.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Phi <span class="op">=</span> data_without_missing[covariates]</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Phi[<span class="st">&#39;Eins&#39;</span>] <span class="op">=</span> <span class="dv">1</span> <span class="co"># add a column for the offset</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data_without_missing[response]</span></code></pre></div>
@@ -450,7 +450,7 @@ L(\mathbf{ w})=
 <p>We can check the residuals to see how good our estimates are. First we create a pandas data frame containing the predictions and use it to compute the residuals.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ypred <span class="op">=</span> pd.DataFrame(data<span class="op">=</span>(Phi<span class="op">@</span>w).values, columns<span class="op">=</span>[<span class="st">&#39;num_doctors_fulltime&#39;</span>])</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>resid <span class="op">=</span> y<span class="op">-</span>ypred</span></code></pre></div>
-<p>Let’s take a look at the residuals. We can use <code>describe</code> to get a summary.</p>
+<p>Let’s look at the residuals. We can use <code>describe</code> to get a summary.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>resid.describe()</span></code></pre></div>
 <p>We can see that while the standard deviation of our residuals is around 3, (this is equivalent to a root mean square error). The smallest and largest residual sow there are some significant outliers that our regression isn’t picking up.</p>
 <div class="figure">
@@ -474,7 +474,7 @@ L(\mathbf{ w})=
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/qr-decomposition-regression.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/qr-decomposition-regression.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Performing a solve instead of a matrix inverse is the more numerically stable approach, but we can do even better. A <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR-decomposition</a> of a matrix factorises it into a matrix which is an orthogonal matrix <span class="math inline">\(\mathbf{Q}\)</span>, so that <span class="math inline">\(\mathbf{Q}^\top \mathbf{Q} = \mathbf{I}\)</span>. And a matrix which is upper triangular, <span class="math inline">\(\mathbf{R}\)</span>. <span class="math display">\[
+<p>Performing a solve instead of a matrix inverse is the more numerically stable approach, but we can do even better. A <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR-decomposition</a> of a matrix factorizes it into a matrix which is an orthogonal matrix <span class="math inline">\(\mathbf{Q}\)</span>, so that <span class="math inline">\(\mathbf{Q}^\top \mathbf{Q} = \mathbf{I}\)</span>. And a matrix which is upper triangular, <span class="math inline">\(\mathbf{R}\)</span>. <span class="math display">\[
 \boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\boldsymbol{\beta} =
 \boldsymbol{ \Phi}^\top \mathbf{ y}
 \]</span> <span class="math display">\[
@@ -492,14 +492,14 @@ L(\mathbf{ w})=
 \mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^\top \mathbf{ y}
 \]</span></p>
 <p>This is a more numerically stable solution because it removes the need to compute <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> as an intermediate. Computing <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> is a bad idea because it involves squaring all the elements of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> and thereby potentially reducing the numerical precision with which we can represent the solution. Operating on <span class="math inline">\(\boldsymbol{ \Phi}\)</span> directly preserves the numerical precision of the model.</p>
-<p>This can be more particularly seen when we begin to work with <em>basis functions</em> in the next session. Some systems that can be resolved with the QR decomposition can not be resolved by using solve directly.</p>
+<p>This can be more particularly seen when we begin to work with <em>basis functions</em> in the next session. Some systems that can be resolved with the QR decomposition cannot be resolved by using solve directly.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span></code></pre></div>
 <div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Q, R <span class="op">=</span> np.linalg.qr(Phi)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> sp.linalg.solve_triangular(R, Q.T<span class="op">@</span>y) </span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.DataFrame(w, index<span class="op">=</span>Phi.columns)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>w</span></code></pre></div>
 <h2 id="shallow-and-deep-learning">Shallow and Deep Learning</h2>
-<p>So far we have been talking about <em>linear models</em> or <em>shallow learning</em> as we might think of it. Let’s pause for a moment and consider a <em>fully connected</em> deep neural network model to relate the two ideas.</p>
+<p>So far, we have been talking about <em>linear models</em> or <em>shallow learning</em> as we might think of it. Let’s pause for a moment and consider a <em>fully connected</em> deep neural network model to relate the two ideas.</p>
 <h2 id="deep-neural-network">Deep Neural Network</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deep-neural-network.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/deep-neural-network.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -526,20 +526,20 @@ L(\mathbf{ w})=
 \end{align*}
 \]</span></p>
 <p>Under our basis function perspective, we can see that our deep neural network is mathematical composition of basis function models. Each layer contains a separate basis function set, so <span class="math display">\[
- f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right)
+ f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right).
 \]</span></p>
-<p>So, in this course there are two reasons for looking at the shallow model. Firstly, it is easier to introduce the concepts of regularisation in the linear model regime. Secondly, the matrix forms we see, e.g. expressions like <span class="math inline">\(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\)</span>, appear in both models.</p>
-<p>For deep learning, we can no longer optimize the parameters of the model through solving a linear system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, we need to turn to non-linear optimization algorithms. For deep learning, that’s typically stochastic gradient descient.</p>
-<p>While it’s possible to compute the Hessian in a neural network, <span class="citation" data-cites="Bishop-exact92">Bishop (1992)</span>, we also find that it varies across the parameter space, and will not normally be positive definite. In practice, the number of parameters is normally so large that storing the Hessian is impossible (it has quadratic cost in the number of weights/parameters) due to memory constraints.</p>
+<p>In this course there are two reasons for looking at the shallow model. Firstly, it is easier to introduce the concepts of regularisation in the linear model regime. Secondly, the matrix forms we see, e.g., expressions like <span class="math inline">\(\boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\)</span>, appear in both models.</p>
+<p>For deep learning, we can no longer optimize the parameters of the model through solving a linear system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Instead, we need to turn to non-linear optimization algorithms. For deep learning, that’s typically stochastic gradient descent.</p>
+<p>While it’s possible to compute the Hessian in a neural network, <span class="citation" data-cites="Bishop-exact92">Bishop (1992)</span>, we also find that it varies across the parameter space and will not normally be positive definite. In practice, the number of parameters is normally so large that storing the Hessian is impossible (it has quadratic cost in the number of weights/parameters) due to memory constraints.</p>
 <p>This means that while the theory of minima in optimization is well understood, empirical experiments with large neural networks are hard and the lessons of small models do not all translate to the very large systems.</p>
-<p>We can stay within the framework of linear models, but take a step closer to neural network models by introducing functions that are non-linear in the inputs, <span class="math inline">\(\mathbf{ x}\)</span>, known as <em>basis functions</em>.</p>
+<p>We can stay within the framework of linear models but take a step closer to neural network models by introducing functions that are non-linear in the inputs, <span class="math inline">\(\mathbf{ x}\)</span>, known as <em>basis functions</em>.</p>
 <h2 id="basis-function-models">Basis Function Models</h2>
 <p>We are reviewing models that are <em>linear</em> in the parameters. Very often we are interested in <em>non-linear</em> predictions. We can make models that are linear in the parameters and given non-linear predictions by introducing non-linear <em>basis functions</em>. A common example is the polynomial basis.</p>
 <h2 id="polynomial-basis">Polynomial Basis</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/polynomial-basis.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/polynomial-basis.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The polynomial basis combines higher order polynomials together to create the function. For example the fourth order polynomial has five components to its basis function. <span class="math display">\[
+<p>The polynomial basis combines higher order polynomials together to create the function. For example, the fourth order polynomial has five components to its basis function. <span class="math display">\[
 \phi_j(x) = x^j
 \]</span></p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
@@ -665,7 +665,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olympic-marathon-polynomial-2-caption" class="caption-frame">
-<p>Figure: Fit of a 1 degree polynomial (a linear model) to the olympic marathon data.</p>
+<p>Figure: Fit of a 1-degree polynomial (a linear model) to the Olympic marathon data.</p>
 </div>
 </div>
 <h2 id="cubic-fit">Cubic Fit</h2>
@@ -684,7 +684,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olympic-marathon-polynomial-4-caption" class="caption-frame">
-<p>Figure: Fit of a 3 degree polynomial (a cubic model) to the olympic marathon data.</p>
+<p>Figure: Fit of a 3-degree polynomial (a cubic model) to the Olympic marathon data.</p>
 </div>
 </div>
 <h2 id="th-degree-polynomial-fit">9th Degree Polynomial Fit</h2>
@@ -704,7 +704,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olympic-marathon-polynomial-10-caption" class="caption-frame">
-<p>Figure: Fit of a 9 degree polynomial to the olympic marathon data.</p>
+<p>Figure: Fit of a 9-degree polynomial to the Olympic marathon data.</p>
 </div>
 </div>
 <h2 id="th-degree-polynomial-fit-1">16th Degree Polynomial Fit</h2>
@@ -724,7 +724,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olympic-marathon-polynomial-17-caption" class="caption-frame">
-<p>Figure: Fit of a 16 degree polynomial to the olympic marathon data.</p>
+<p>Figure: Fit of a 16-degree polynomial to the Olympic marathon data.</p>
 </div>
 </div>
 <h2 id="th-degree-polynomial-fit-2">26th Degree Polynomial Fit</h2>
@@ -744,7 +744,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="olympic-marathon-polynomial-27-caption" class="caption-frame">
-<p>Figure: Fit of a 26 degree polynomial to the olympic marathon data.</p>
+<p>Figure: Fit of a 26-degree polynomial to the Olympic marathon data.</p>
 </div>
 </div>
 <h2 id="the-bootstrap">The Bootstrap</h2>
@@ -754,7 +754,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>Bootstrap sampling <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span> is an approach to assessing the sensitivity of the model to different variations on a data set. In an ideal world, we’d like to be able to look at different realisations from the original data generating distribution <span class="math inline">\(\mathbb{P}(y, \mathbf{ x})\)</span>, but this is not available to us.</p>
 <p>In bootstrap sampling, we take the sample we have, <span class="math display">\[
 \mathbf{ y}, \mathbf{X}\sim \mathbb{P}(y, \mathbf{ x})
-\]</span> and resample from that data, rather than from the true distribution. So we have a new data set, <span class="math inline">\(\hat{\mathbf{ y}}\)</span>, <span class="math inline">\(\hat{\mathbf{X}}\)</span> which is sampled from the original <em>with</em> replacement.</p>
+\]</span> and resample from that data, rather than from the true distribution. So, we have a new data set, <span class="math inline">\(\hat{\mathbf{ y}}\)</span>, <span class="math inline">\(\hat{\mathbf{X}}\)</span> which is sampled from the original <em>with</em> replacement.</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div>
 <div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X):</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
@@ -865,7 +865,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 </div>
 <p>One of Breiman’s ideas for improving predictive performance is known as bagging <span class="citation" data-cites="Breiman:bagging96">(Breiman, 1996)</span>. The idea is to train a number of models on the data such that they overfit (high variance). Then average the predictions of these models. The models are trained on different bootstrap samples <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span> and their predictions are aggregated giving us the acronym, Bagging. By combining decision trees with bagging, we recover random forests <span class="citation" data-cites="Breiman-forests01">(Breiman, 2001)</span>.</p>
 <p>Bias and variance can also be estimated through Efron’s bootstrap <span class="citation" data-cites="Efron:bootstrap79">(Efron, 1979)</span>, and the traditional view has been that there’s a form of Goldilocks effect, where the best predictions are given by the model that is ‘just right’ for the amount of data available. Not to simple, not too complex. The idea is that bias decreases with increasing model complexity and variance increases with increasing model complexity. Typically plots begin with the Mummy bear on the left (too much bias) end with the Daddy bear on the right (too much variance) and show a dip in the middle where the Baby bear (just) right finds themselves.</p>
-<p>The Daddy bear is typically positioned at the point where the model is able to exactly interpolate the data. For a generalized linear model <span class="citation" data-cites="McCullagh:gen_linear89">(McCullagh and Nelder, 1989)</span>, this is the point at which the number of parameters is equal to the number of data<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>The Daddy bear is typically positioned at the point where the model can exactly interpolate the data. For a generalized linear model <span class="citation" data-cites="McCullagh:gen_linear89">(McCullagh and Nelder, 1989)</span>, this is the point at which the number of parameters is equal to the number of data<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <p>The bias-variance decomposition <span class="citation" data-cites="Geman:biasvariance92">(Geman et al., 1992)</span> considers the expected test error for different variations of the <em>training data</em> sampled from, <span class="math inline">\(\mathbb{P}(\mathbf{ x}, y)\)</span> <span class="math display">\[\begin{align*}
 R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \mathbf{ x}) \text{d}y\text{d}\mathbf{ x}\\
 &amp; \triangleq \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
@@ -880,9 +880,9 @@ R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \ma
 \]</span> and it summarizes error that arises from the model’s inability to represent the underlying complexity of the data. For example, if we were to model the marathon pace of the winning runner from the Olympics by computing the average pace across time, then that model would exhibit <em>bias</em> error because the reality of Olympic marathon pace is it is changing (typically getting faster).</p>
 <p>The variance term is given by <span class="math display">\[
   \text{variance}\left[f^*(\mathbf{ x})\right] = \mathbb{E}\left[\left(f^*(\mathbf{ x}) - \mathbb{E}\left[f^*(\mathbf{ x})\right]\right)^2\right].
-  \]</span> The variance term is often described as arising from a model that is too complex, but we have to be careful with this idea. Is the model really too complex relative to the real world that generates the data? The real world is a complex place, and it is rare that we are constructing mathematical models that are more complex than the world around us. Rather, the ‘too complex’ refers to ability to estimate the parameters of the model given the data we have. Slight variations in the training set cause changes in prediction.</p>
+  \]</span> The variance term is often described as arising from a model that is too complex, but we must be careful with this idea. Is the model really too complex relative to the real world that generates the data? The real world is a complex place, and it is rare that we are constructing mathematical models that are more complex than the world around us. Rather, the ‘too complex’ refers to ability to estimate the parameters of the model given the data we have. Slight variations in the training set cause changes in prediction.</p>
 <p>Models that exhibit high variance are sometimes said to ‘overfit’ the data whereas models that exhibit high bias are sometimes described as ‘underfitting’ the data.</p>
-<p>Also related on generalisation error is the so called ‘no free lunch theorem,’ which refers to our inability to decide what a better learning algorithm is without making assumptions about the data <span class="citation" data-cites="Wolpert:lack96">(Wolpert, 1996)</span> (see also <span class="citation" data-cites="Wolpert-supervised02">Wolpert (2002)</span>).</p>
+<p>Also related on generalization error is the so called ‘no free lunch theorem,’ which refers to our inability to decide what a better learning algorithm is without making assumptions about the data <span class="citation" data-cites="Wolpert:lack96">(Wolpert, 1996)</span> (see also <span class="citation" data-cites="Wolpert-supervised02">Wolpert (2002)</span>).</p>
 <h2 id="regularisation">Regularisation</h2>
 <div style="text-align:right">
 <span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/linear-regression-regularisation.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
@@ -902,7 +902,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}+ \alpha \mathbf{I}
 \]</span> Which is always full rank. The minimal eigenvalues are now given by <span class="math inline">\(\alpha\)</span>.</p>
 <h2 id="lasso">Lasso</h2>
-<p>Other techniques for regularisation based on a norm of the parameters include the Lasso <span class="citation" data-cites="Tibshirani-lasso96">Tibshirani (1996)</span>, which is an L1 norm of the parameters</p>
+<p>Other techniques for regularisation based on a norm of the parameters include the Lasso <span class="citation" data-cites="Tibshirani-lasso96">(Tibshirani, 1996)</span>, which is an L1 norm of the parameters</p>
 <h2 id="splines-functions-hilbert-kernels">Splines, Functions, Hilbert Kernels</h2>
 <p>Regularisation of the parameters has the desired effect of making the solution viable, but it can sometimes be difficult to interpret, particularly if the parameters don’t have any inherent meaning (like in a neural network). An alternative approach is to regularise the function, <span class="math inline">\(\mathbf{ f}\)</span>, directly, (see e.g. <span class="citation" data-cites="Kimeldorf:correspondence70">Kimeldorf and Wahba (1970)</span> and <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span>). This is the approach taken by <em>spline models</em> which use energy based regularisation for <span class="math inline">\(f(\cdot)\)</span> and also <em>kernel methods</em> such as the support vector machine <span class="citation" data-cites="Scholkopf:learning01">(Schölkopf and Smola, 2001)</span>.</p>
 <h2 id="training-with-noise">Training with Noise</h2>
