@@ -325,7 +325,7 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <h2>Bias Variance Decomposition</h2>
 <p>Generalisation error <span class="math display">\[\begin{align*}
 R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \mathbf{ x}) \text{d}y\text{d}\mathbf{ x}\\
-&amp; \triangleq &amp; \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
+&amp; \triangleq \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
 \end{align*}\]</span></p>
 </section>
 <section id="decompose" class="slide level2">
@@ -448,7 +448,8 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <h2>Deep Linear Models</h2>
 <p><span class="math display">\[
 f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 \mathbf{ x}.
-\]</span> {In these models, a gradient flow analysis shows that the model finds solutions where the linear mapping, <span class="math display">\[
+\]</span></p>
+<p><span class="math display">\[
 \mathbf{W}= \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 
 \]</span></p>
 </section>

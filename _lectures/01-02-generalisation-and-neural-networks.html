@@ -871,7 +871,7 @@ f(x) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3 + w_4 x^4
 <p>The Daddy bear is typically positioned at the point where the model is able to exactly interpolate the data. For a generalized linear model <span class="citation" data-cites="McCullagh:gen_linear89">(McCullagh and Nelder, 1989)</span>, this is the point at which the number of parameters is equal to the number of data<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <p>The bias-variance decomposition <span class="citation" data-cites="Geman:biasvariance92">(Geman et al., 1992)</span> considers the expected test error for different variations of the <em>training data</em> sampled from, <span class="math inline">\(\mathbb{P}(\mathbf{ x}, y)\)</span> <span class="math display">\[\begin{align*}
 R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \mathbf{ x}) \text{d}y\text{d}\mathbf{ x}\\
-&amp; \triangleq &amp; \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
+&amp; \triangleq \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
 \end{align*}\]</span></p>
 <p>This can be decomposed into two parts, <span class="math display">\[
 \begin{align*}
@@ -961,7 +961,7 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <p>By reparameterising the linear model so that each <span class="math inline">\(w_i = u_i^2 - v_i^2\)</span> and optimising in the space defined by <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span> <span class="citation" data-cites="Woodworth-kernel20">Woodworth et al. (2020)</span> show that the L1 norm is found.</p>
 <p>Other papers have looked at <em>deep linear models</em> <span class="citation" data-cites="Arora-convergence19">(Arora et al., 2019)</span>, where <span class="math display">\[
 f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 \mathbf{ x}.
-\]</span> {In these models, a gradient flow analysis shows that the model finds solutions where the linear mapping, <span class="math display">\[
+\]</span> In these models, a gradient flow analysis shows that the model finds solutions where the linear mapping, <span class="math display">\[
 \mathbf{W}= \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 
 \]</span> is very low rank. This is highly suggestive of another type of regularisation that could be occurring in deep neural networks. Low rank parameter matrices mean that the effective capacity of the neural network is reduced. Indeed empirical observations of the rank of deep nets trained on data suggest that they may be finding such solutions.</p>
 <h2 id="thanks">Thanks!</h2>
