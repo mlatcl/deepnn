@@ -477,7 +477,7 @@ L(\mathbf{ w})=
 <p>Performing a solve instead of a matrix inverse is the more numerically stable approach, but we can do even better. A <a href="http://en.wikipedia.org/wiki/QR_decomposition">QR-decomposition</a> of a matrix factorizes it into a matrix which is an orthogonal matrix <span class="math inline">\(\mathbf{Q}\)</span>, so that <span class="math inline">\(\mathbf{Q}^\top \mathbf{Q} = \mathbf{I}\)</span>. And a matrix which is upper triangular, <span class="math inline">\(\mathbf{R}\)</span>. <span class="math display">\[
 \boldsymbol{ \Phi}^\top \boldsymbol{ \Phi}\boldsymbol{\beta} =
 \boldsymbol{ \Phi}^\top \mathbf{ y}
-\]</span> <span class="math display">\[
+\]</span> and we substitute <span class="math inline">\(\boldsymbol{ \Phi}= \mathbf{Q}{\mathbf{R}\)</span> so we have <span class="math display">\[
 (\mathbf{Q}\mathbf{R})^\top
 (\mathbf{Q}\mathbf{R})\boldsymbol{\beta} = (\mathbf{Q}\mathbf{R})^\top
 \mathbf{ y}
@@ -490,7 +490,7 @@ L(\mathbf{ w})=
 \mathbf{ y}
 \]</span> <span class="math display">\[
 \mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^\top \mathbf{ y}
-\]</span></p>
+\]</span> which leaves us with a lower triangular system to solve.</p>
 <p>This is a more numerically stable solution because it removes the need to compute <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> as an intermediate. Computing <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> is a bad idea because it involves squaring all the elements of <span class="math inline">\(\boldsymbol{ \Phi}\)</span> and thereby potentially reducing the numerical precision with which we can represent the solution. Operating on <span class="math inline">\(\boldsymbol{ \Phi}\)</span> directly preserves the numerical precision of the model.</p>
 <p>This can be more particularly seen when we begin to work with <em>basis functions</em> in the next session. Some systems that can be resolved with the QR decomposition cannot be resolved by using solve directly.</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span></code></pre></div>
