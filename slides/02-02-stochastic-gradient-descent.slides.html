@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="dcterms.date" content="2022-02-01">
-  <title>Optimization and Stochastic Gradient Descent</title>
+  <title>Stochastic Optimization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -43,7 +43,7 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Optimization and Stochastic Gradient Descent</h1>
+  <h1 class="title">Stochastic Optimization</h1>
   <p class="author" style="text-align:center"><a href="https://www.inference.vc/about/">Ferenc Huszár</a></p>
   <p class="date" style="text-align:center"><time>2022-02-01</time></p>
   <p class="venue" style="text-align:center">LT1, William Gates Building</p>
@@ -87,13 +87,66 @@
 <h2>Does it behave the same way?</h2>
 <p><img data-src="https://i.imgur.com/xRYHk0m.png%20=1200x" /></p>
 </section>
+<section id="improving-sgd-two-key-ideas" class="slide level2">
+<h2>Improving SGD: Two key ideas</h2>
+<ul>
+<li>idea 1: momentum
+<ul>
+<li><strong>problem:</strong>
+<ul>
+<li>high variance of gradients due to stochasticity</li>
+<li>oscillation in narrow valley situation</li>
+</ul></li>
+<li><strong>solution</strong>: maintain running average of gradients</li>
+</ul></li>
+</ul>
+<p>https://distill.pub/2017/momentum/</p>
+</section>
+<section id="improving-sgd-two-key-ideas-1" class="slide level2">
+<h2>Improving SGD: two key ideas</h2>
+<ul>
+<li>idea 2: adaptive stepsizes
+<ul>
+<li><strong>problem</strong>:
+<ul>
+<li>parameters have different magnitude gradients</li>
+<li>some parameters tolerate high learning rates, others don’t</li>
+</ul></li>
+<li><strong>solution</strong>: normalize by running average of gradient magnitudes</li>
+</ul></li>
+</ul>
+</section>
+<section id="adam-combines-the-two-ideas" class="slide level2">
+<h2>Adam: combines the two ideas</h2>
+<p><img data-src="https://i.imgur.com/MpiCllk.png" /></p>
+</section>
+<section id="how-good-is-adam" class="slide level2">
+<h2>How good is Adam?</h2>
+<p>optimization vs. generalisation</p>
+</section>
+<section id="how-good-is-adam-1" class="slide level2">
+<h2>How good is Adam?</h2>
+<p><img data-src="https://i.imgur.com/0yelxmm.png" /></p>
+</section>
+<section id="how-good-is-adam-2" class="slide level2">
+<h2>How good is Adam?</h2>
+<p><img data-src="https://i.imgur.com/5rAyMYc.png" /></p>
+</section>
+<section id="revisiting-the-cartoon-example" class="slide level2">
+<h2>Revisiting the cartoon example</h2>
+<p><img data-src="https://i.imgur.com/xRYHk0m.png%20=1200x" /></p>
+</section>
+<section id="can-we-describe-sgds-behaviour" class="slide level2">
+<h2>Can we describe SGD’s behaviour?</h2>
+<p><img data-src="https://i.imgur.com/AyrSiFZ.png" /></p>
+</section>
 <section id="analysis-of-mean-iterate" class="slide level2">
 <h2>Analysis of mean iterate</h2>
 <p><img data-src="https://i.imgur.com/9j85UIv.png" /></p>
 <p>(<a href="https://arxiv.org/abs/2101.12176">Smith et al, 2021</a>) “On the Origin of Implicit Regularization in Stochastic Gradient Descent”</p>
 </section>
-<section id="analysis-of-the-mean-iterate" class="slide level2">
-<h2>Analysis of the mean iterate</h2>
+<section id="implicit-regularization-in-sgd" class="slide level2">
+<h2>Implicit regularization in SGD</h2>
 <p><span class="math display">\[
 \mathbf{w}_{t+1} = \mathbf{w}_t - \eta \nabla_\mathbf{w} \hat{L}(\mathbf{w_t}, \mathcal{D}_t)
 \]</span></p>
@@ -102,7 +155,7 @@
 \mu_t = \mathbb{E}[\mathbf{w}_t]
 \]</span></p>
 </section>
-<section id="implicit-regularization-in-sgd" class="slide level2">
+<section id="implicit-regularization-in-sgd-1" class="slide level2">
 <h2>Implicit regularization in SGD</h2>
 <p>(<a href="https://arxiv.org/abs/2101.12176">Smith et al, 2021</a>): mean iterate approximated as continuous gradient flow:</p>
 <p><span class="math display">\[
@@ -115,7 +168,7 @@
 \tilde{L}_{SGD}(\mathbf{w}, \mathcal{D}) = \tilde{L}_{GD}(\mathbf{w}, \mathcal{D}) + \frac{\eta}{4}\mathbb{E}\|\nabla_\mathbf{w}\hat{L}(\mathbf{w}, \mathcal{D_t}) - \nabla_\mathbf{w}\hat{L}(\mathbf{w}, \mathcal{D})\|^2
 \]</span></p>
 </section>
-<section id="implicit-regularization-in-sgd-1" class="slide level2">
+<section id="implicit-regularization-in-sgd-2" class="slide level2">
 <h2>Implicit regularization in SGD</h2>
 <p>(<a href="https://arxiv.org/abs/2101.12176">Smith et al, 2021</a>): mean iterate approximated as continuous gradient flow:</p>
 <p><span class="math display">\[
@@ -132,33 +185,17 @@
 <h2>Revisiting cartoon example</h2>
 <p><img data-src="https://i.imgur.com/xRYHk0m.png%20=1200x" /></p>
 </section>
-<section id="limitations-of-this-analysis" class="slide level2">
-<h2>Limitations of this analysis</h2>
-<p><img data-src="https://i.imgur.com/4Zyb3vy.png" /></p>
+<section id="is-stochastic-training-necessary" class="slide level2">
+<h2>Is Stochastic Training Necessary?</h2>
+<p><img data-src="https://i.imgur.com/1WThiku.png" /></p>
 </section>
-<section id="variants-of-sgd-adam" class="slide level2">
-<h2>Variants of SGD: Adam</h2>
-<p>Motivation: * momentum * adapting to the average gradient norm</p>
-</section>
-<section id="adam-algorithm" class="slide level2">
-<h2>Adam algorithm</h2>
-<p><img data-src="https://i.imgur.com/MpiCllk.png" /></p>
-</section>
-<section id="is-adam-any-good" class="slide level2">
-<h2>Is Adam any good?</h2>
-<p><img data-src="https://i.imgur.com/0yelxmm.png" /></p>
-</section>
-<section id="remember-cartoon-example" class="slide level2">
-<h2>Remember cartoon example</h2>
-<p><img data-src="https://i.imgur.com/xRYHk0m.png%20=1200x" /></p>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<p><img data-src="https://i.imgur.com/xBNd5Qk.png" /></p>
-</section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<p><img data-src="https://i.imgur.com/q9tTe7i.png" /></p>
+<section id="is-stochastic-training-necessary-1" class="slide level2">
+<h2>Is Stochastic Training Necessary?</h2>
+<p><img data-src="https://i.imgur.com/dHJKsKS.png" /></p>
+<ul>
+<li>reg <span class="math inline">\(\approx\)</span> flatness of minimum</li>
+<li>bs32 <span class="math inline">\(\approx\)</span> variance of gradients size 32 batches</li>
+</ul>
 </section>
 <section id="sgd-summary" class="slide level2">
 <h2>SGD summary</h2>
@@ -166,18 +203,9 @@
 <li>gradient noise is a feature not bug</li>
 <li>SGD avoids regions with high gradient noise</li>
 <li>this may help with generalization</li>
-<li>improved SGD, like Adam, may not help</li>
+<li>improved SGD, like Adam, may not always help</li>
 <li>an optimization algorithm can be “too good”</li>
 </ul>
-<!--No Free Lunch for Optimization: <https://ti.arc.nasa.gov/m/profile/dhw/papers/78.pdf> <https://link.springer.com/chapter/10.1007%2F978-3-030-12767-1_5>
-Survey of Optimization methods for DeepNNs: <https://arxiv.org/abs/2007.01547>
-
-
-Related publications and links will appear here.
-
-* SGD (why it works, high variance estimator etc)
-* Adam
-* RMS PropMixed mode-->
 </section>
     </div>
   </div>
