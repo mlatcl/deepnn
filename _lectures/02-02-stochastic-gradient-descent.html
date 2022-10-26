@@ -20,7 +20,6 @@ reveal: 02-02-stochastic-gradient-descent.slides.html
 hackmdslides: fhuszar/Hy69Wvrg_
 hackmdnotes: fhuszar/rJWAWC7gO
 youtube: "nIvu1s1xQUg"
-edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/stochastic-gradient-descent.md
 layout: lecture
 categories:
 - notes
@@ -127,7 +126,12 @@ categories:
 <p><img src="https://i.imgur.com/xRYHk0m.png%20=1200x" /></p>
 <p>I wrote before that SGD may have a tendency to find minima with lower gradient noise (left panel). Adam “fixes” this, and helps converge even in situations where the gradients are noisier. But is it worth doing?</p>
 <p>An intuitive argument can be made that minima with lower minibatch noise may be preferrable from the perspective of generalisation. Regions where the loss function is not very sensitive to the particular minibatch we pick will also probably be less sensitive to whether we evaluate the loss on training or on test data. One can use the variance of minibatch losses as a rough proxy for the difference between training and test loss, which is generalisation.</p>
-<p>So what we intuitively think is going on: 1. SGD has a built-in preference for minima that have lower gradient noise across minibatches 2. minima with lower gradient noise may generalise better 3. Adam “improves” SGD so that it can now more easily converge to local minima with higher gradient noise.</p>
+<p>So what we intuitively think is going on:</p>
+<ol type="1">
+<li>SGD has a built-in preference for minima that have lower gradient noise across minibatches</li>
+<li>minima with lower gradient noise may generalise better</li>
+<li>Adam “improves” SGD so that it can now more easily converge to local minima with higher gradient noise.</li>
+</ol>
 <p>As a consequence, Adam may have inadvertently taken out the magic sauce that made SGD work so well from the perspective of generalisation.</p>
 <h2 id="further-reading">Further Reading</h2>
 <p>The paper I covered in the lecture on the analysis of the mean iterate in SGD is an interesting read: (<a href="https://arxiv.org/abs/2101.12176">Smith et al, 2021</a>) “On the Origin of Implicit Regularization in Stochastic Gradient Descent.” I don’t cover this in the notes because the paper itself is clearly written. The summary is that it is possible to analyse the behaviour of SGD “on average.” The resulting analysis confirms our intuitive story that SGD converges to minima where the minibatch noise is lower.</p>
