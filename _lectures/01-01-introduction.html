@@ -1,7 +1,11 @@
 ---
 title: "Introduction"
 venue: "LT1, William Gates Building"
-abstract: "<p>This lecture will give the background to what this course is about, and how it fits in to other material you can find on deep neural network models. It explains deep neural networks are, how they fit into the wider context of the field and why they are successful.</p>"
+abstract: "<p>This lecture will give the background to what this course
+is about, and how it fits in to other material you can find on deep
+neural network models. It explains deep neural networks are, how they
+fit into the wider context of the field and why they are
+successful.</p>"
 author:
 - given: Neil D.
   family: Lawrence
@@ -10,7 +14,7 @@ author:
   twitter: 
   gscholar: 
   orcid: 
-edit_url: https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/introduction.md
+edit_url: https://github.com/mlatcl/deepnn/edit/gh-pages/_lamd/introduction.md
 date: 2022-01-20
 published: 2022-01-20
 time: "14:00"
@@ -18,6 +22,8 @@ week: 1
 session: 1
 reveal: 01-01-introduction.slides.html
 ipynb: 01-01-introduction.ipynb
+pptx: 01-01-introduction.pptx
+docx: 01-01-introduction.docx
 youtube: "qZiW76V6EnE"
 layout: lecture
 categories:
@@ -36,25 +42,52 @@ categories:
 -->
 <h2 id="course-overview">Course Overview</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/overview-2021.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_deepnn/includes/overview-2021.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_deepnn/includes/overview-2021.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_deepnn/includes/overview-2021.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>Deep Neural Networks is an eight we course that introduces you to the fundamental concepts behind deep learning with neural networks. Over the last decade, deep neural network models have been behind some of the most impressive feats in machine learning. From the <a href="https://en.wikipedia.org/wiki/AlexNet">convolutional neural networks</a> that made breakthrough progress on the <a href="https://en.wikipedia.org/wiki/ImageNet">ImageNet challenge</a>, object detection and the image net challenge, and most recently with the <a href="https://predictioncenter.org/casp14/doc/CASP14_press_release.html">CASP14 Protein Folding result from DeepMind</a>.</p>
-<p>Welcome to this course, which is designed to introduce you to the principles and ideas behind deep neural network models.</p>
-<p>Due to widespread international interest in neural networks, there is now a great deal of material to help you train and deploy these models. It is not our aim to substitute this material but to augment it with deeper understanding of the reasons why deep learning is successful and the context in which that success has occurred.</p>
-<p>You are strongly encouraged to explore that material. For example, you can find <a href="https://atcold.github.io/pytorch-Deep-Learning/">Yann LeCun’s neural networks course from NYU here</a>. For example, <a href="https://atcold.github.io/pytorch-Deep-Learning/">here is their introductory session</a> with Yann giving the first lecture available here.</p>
+<p>Deep Neural Networks is an eight we course that introduces you to the
+fundamental concepts behind deep learning with neural networks. Over the
+last decade, deep neural network models have been behind some of the
+most impressive feats in machine learning. From the <a
+href="https://en.wikipedia.org/wiki/AlexNet">convolutional neural
+networks</a> that made breakthrough progress on the <a
+href="https://en.wikipedia.org/wiki/ImageNet">ImageNet challenge</a>,
+object detection and the image net challenge, and most recently with the
+<a
+href="https://predictioncenter.org/casp14/doc/CASP14_press_release.html">CASP14
+Protein Folding result from DeepMind</a>.</p>
+<p>Welcome to this course, which is designed to introduce you to the
+principles and ideas behind deep neural network models.</p>
+<p>Due to widespread international interest in neural networks, there is
+now a great deal of material to help you train and deploy these models.
+It is not our aim to substitute this material but to augment it with
+deeper understanding of the reasons why deep learning is successful and
+the context in which that success has occurred.</p>
+<p>You are strongly encouraged to explore that material. For example,
+you can find <a
+href="https://atcold.github.io/pytorch-Deep-Learning/">Yann LeCun’s
+neural networks course from NYU here</a>. For example, <a
+href="https://atcold.github.io/pytorch-Deep-Learning/">here is their
+introductory session</a> with Yann giving the first lecture available
+here.</p>
 <div class="figure">
 <div id="nyu-deep-learning-figure" class="figure-frame">
 <iframe width="600" height="450" src="https://www.youtube.com/embed/0bMe_vCZo30?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 </div>
-<div id="nyu-deep-learning-magnify" class="magnify" onclick="magnifyFigure(&#39;nyu-deep-learning&#39;)">
+<div id="nyu-deep-learning-magnify" class="magnify"
+onclick="magnifyFigure(&#39;nyu-deep-learning&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="nyu-deep-learning-caption" class="caption-frame">
-<p>Figure: Lecture from the NYU course on Deep Learning given by Yann LeCun, Alfredo Canziani and Mark Goldstein</p>
+<p>Figure: Lecture from the NYU course on Deep Learning given by Yann
+LeCun, Alfredo Canziani and Mark Goldstein</p>
 </div>
 </div>
-<p>The full playlist is <a href="https://www.youtube.com/playlist?list=PLLHTzKZzVU9eaEyErdV26ikyolxOsz6mq">available here</a>.</p>
+<p>The full playlist is <a
+href="https://www.youtube.com/playlist?list=PLLHTzKZzVU9eaEyErdV26ikyolxOsz6mq">available
+here</a>.</p>
 <div class="centered" style="">
 <svg viewBox="0 0 200 200" style="width:15%">
 <defs> <clipPath id="clip0">
@@ -96,103 +129,209 @@ Neil Lawrence
 <image preserveAspectRatio="xMinYMin slice" width="100%" xlink:href="https://mlatcl.github.io/deepnn/./slides/diagrams//people/neil-lawrence.png" clip-path="url(#clip2)"/>
 </svg>
 </div>
-<p>Our course is taught by Ferenc Huszár, Nic Lane and Neil Lawrence.</p>
-<p>Alongside such teaching material there are frameworks such as PyTorch, that help you in constructing these models and deploying the training on GPUs.</p>
-<p>Neural network models are not new, and this is not the first wave of interest in them, it is the third wave. There are reasons why they have become more successful in this wave than in their first two incarnations. Those reasons include the context in which they were reintroduced. In particular, the wide availability of <em>data</em> and <em>fast compute</em> have been critical in their success.</p>
-<p>Our aim is to give you the understanding of that context, and therefore deepen your understanding of neural networks, how and <em>when</em> they should be used. The neural network is not a panacea, it does not solve all the challenges of machine learning (at least not in its current incarnation). But it is a powerful framework for flexible modelling of data. Just like any powerful framework, it is important to understand its strengths as well as its limitations.</p>
+<p>Our course is taught by Ferenc Huszár, Nic Lane and Neil
+Lawrence.</p>
+<p>Alongside such teaching material there are frameworks such as
+PyTorch, that help you in constructing these models and deploying the
+training on GPUs.</p>
+<p>Neural network models are not new, and this is not the first wave of
+interest in them, it is the third wave. There are reasons why they have
+become more successful in this wave than in their first two
+incarnations. Those reasons include the context in which they were
+reintroduced. In particular, the wide availability of <em>data</em> and
+<em>fast compute</em> have been critical in their success.</p>
+<p>Our aim is to give you the understanding of that context, and
+therefore deepen your understanding of neural networks, how and
+<em>when</em> they should be used. The neural network is not a panacea,
+it does not solve all the challenges of machine learning (at least not
+in its current incarnation). But it is a powerful framework for flexible
+modelling of data. Just like any powerful framework, it is important to
+understand its strengths as well as its limitations.</p>
 <h2 id="schedule">Schedule</h2>
 <ul>
 <li>Week 1:
 <ol type="1">
-<li>Introduction and Data. Lecturer: <a href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
-<li>Generalisation and Neural Networks. Lecturer: <a href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
+<li>Introduction and Data. Lecturer: <a
+href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
+<li>Generalisation and Neural Networks. Lecturer: <a
+href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
 </ol></li>
 <li>Week 2:
 <ol type="1">
-<li>Automatic Differentiation. Lecturer: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
-<li>Optimization and Stochastic Gradient Descent. Lecturer: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Automatic Differentiation. Lecturer: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Optimization and Stochastic Gradient Descent. Lecturer: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
 </ol></li>
 <li>Week 3:
 <ol type="1">
 <li>Hardware. Lecturer: <a href="http://niclane.org/">Nic Lane</a></li>
-<li>Summary and Gap Filling: <a href="https://www.inference.vc/about/">Ferenc Huszár</a>, <a href="http://inverseprobability.com/">Neil D. Lawrence</a>, <a href="http://niclane.org/">Nic Lane</a></li>
+<li>Summary and Gap Filling: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a>, <a
+href="http://inverseprobability.com/">Neil D. Lawrence</a>, <a
+href="http://niclane.org/">Nic Lane</a></li>
 </ol></li>
 </ul>
 <p><strong>Set Assignment 1 (30%)</strong></p>
 <ul>
 <li>Week 4:
 <ol type="1">
-<li>Convolutional Neural Networks: <a href="http://niclane.org/">Nic Lane</a></li>
-<li>Recurrent Neural Networks: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Convolutional Neural Networks: <a href="http://niclane.org/">Nic
+Lane</a></li>
+<li>Recurrent Neural Networks: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
 </ol></li>
 </ul>
 <p><strong>Assignment 1 Submitted</strong></p>
 <ul>
 <li>Week 5:
 <ol type="1">
-<li>Sequence to Sequence and Attention: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Sequence to Sequence and Attention: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
 <li>Transformers: <a href="http://niclane.org/">Nic Lane</a></li>
 </ol></li>
 </ul>
 <p><strong>Set Assignment 2 (70%)</strong></p>
 <h2 id="special-topics">Special Topics</h2>
-<p>Weeks 6-8 will involve a series of guest lectures and discussion sessions to relate the fundamental material you’ve learnt about to how people are deploying these models in the real world and how they are innovating with these models to extend their capabilities.</p>
-<p>The two assignments will make up the entire mark of the module. They should be submitted via <a href="https://vle.cam.ac.uk">Moodle</a>.</p>
+<p>Weeks 6-8 will involve a series of guest lectures and discussion
+sessions to relate the fundamental material you’ve learnt about to how
+people are deploying these models in the real world and how they are
+innovating with these models to extend their capabilities.</p>
+<p>The two assignments will make up the entire mark of the module. They
+should be submitted via <a href="https://vle.cam.ac.uk">Moodle</a>.</p>
 <h1 id="what-is-machine-learning">What is Machine Learning?</h1>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/what-is-ml.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/what-is-ml.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>What is machine learning? At its most basic level machine learning is a combination of</p>
-<p><span class="math display">\[\text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
-<p>where <em>data</em> is our observations. They can be actively or passively acquired (meta-data). The <em>model</em> contains our assumptions, based on previous experience. That experience can be other data, it can come from transfer learning, or it can merely be our beliefs about the regularities of the universe. In humans our models include our inductive biases. The <em>prediction</em> is an action to be taken or a categorization or a quality score. The reason that machine learning has become a mainstay of artificial intelligence is the importance of predictions in artificial intelligence. The data and the model are combined through computation.</p>
-<p>In practice we normally perform machine learning using two functions. To combine data with a model we typically make use of:</p>
-<p><strong>a prediction function</strong> a function which is used to make the predictions. It includes our beliefs about the regularities of the universe, our assumptions about how the world works, e.g., smoothness, spatial similarities, temporal similarities.</p>
-<p><strong>an objective function</strong> a function which defines the cost of misprediction. Typically, it includes knowledge about the world’s generating processes (probabilistic objectives) or the costs we pay for mispredictions (empirical risk minimization).</p>
-<p>The combination of data and model through the prediction function and the objective function leads to a <em>learning algorithm</em>. The class of prediction functions and objective functions we can make use of is restricted by the algorithms they lead to. If the prediction function or the objective function are too complex, then it can be difficult to find an appropriate learning algorithm. Much of the academic field of machine learning is the quest for new learning algorithms that allow us to bring different types of models and data together.</p>
-<p>A useful reference for state of the art in machine learning is the UK Royal Society Report, <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a>.</p>
-<p>You can also check my post blog post on <a href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What is Machine Learning?</a>.</p>
+<p>What is machine learning? At its most basic level machine learning is
+a combination of</p>
+<p><span class="math display">\[\text{data} + \text{model}
+\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p>where <em>data</em> is our observations. They can be actively or
+passively acquired (meta-data). The <em>model</em> contains our
+assumptions, based on previous experience. That experience can be other
+data, it can come from transfer learning, or it can merely be our
+beliefs about the regularities of the universe. In humans our models
+include our inductive biases. The <em>prediction</em> is an action to be
+taken or a categorization or a quality score. The reason that machine
+learning has become a mainstay of artificial intelligence is the
+importance of predictions in artificial intelligence. The data and the
+model are combined through computation.</p>
+<p>In practice we normally perform machine learning using two functions.
+To combine data with a model we typically make use of:</p>
+<p><strong>a prediction function</strong> it is used to make the
+predictions. It includes our beliefs about the regularities of the
+universe, our assumptions about how the world works, e.g., smoothness,
+spatial similarities, temporal similarities.</p>
+<p><strong>an objective function</strong> it defines the ‘cost’ of
+misprediction. Typically, it includes knowledge about the world’s
+generating processes (probabilistic objectives) or the costs we pay for
+mispredictions (empirical risk minimization).</p>
+<p>The combination of data and model through the prediction function and
+the objective function leads to a <em>learning algorithm</em>. The class
+of prediction functions and objective functions we can make use of is
+restricted by the algorithms they lead to. If the prediction function or
+the objective function are too complex, then it can be difficult to find
+an appropriate learning algorithm. Much of the academic field of machine
+learning is the quest for new learning algorithms that allow us to bring
+different types of models and data together.</p>
+<p>A useful reference for state of the art in machine learning is the UK
+Royal Society Report, <a
+href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine
+Learning: Power and Promise of Computers that Learn by Example</a>.</p>
+<p>You can also check my post blog post on <a
+href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What
+is Machine Learning?</a>.</p>
 <h2 id="ingredients">Ingredients</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/introduction.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/introduction.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/introduction.gpp.markdown" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/introduction.gpp.markdown', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>The three key ingredients of machine learning are a model, data and compute. Note, that this necessarily implies that an <em>algorithm</em> exists to combine the model with the data and that algorithm is what consumes the compute.</p>
-<p>So how do these ingredients pan out in our recipe for deep learning? To better understand this, we’re going to add more historical context and go back go 1997 when, here in Cambridge, there was a six-month programme at the Isaac Newton Institute run on Machine Learning, Neural Networks and Generalisation.</p>
-<h2 id="cybernetics-neural-networks-and-the-ratio-club">Cybernetics, Neural Networks and the Ratio Club</h2>
+<p>The three key ingredients of machine learning are a model, data and
+compute. Note, that this necessarily implies that an <em>algorithm</em>
+exists to combine the model with the data and that algorithm is what
+consumes the compute.</p>
+<p>So how do these ingredients pan out in our recipe for deep learning?
+To better understand this, we’re going to add more historical context
+and go back go 1997 when, here in Cambridge, there was a six-month
+programme at the Isaac Newton Institute run on Machine Learning, Neural
+Networks and Generalisation.</p>
+<h2 id="cybernetics-neural-networks-and-the-ratio-club">Cybernetics,
+Neural Networks and the Ratio Club</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/cybernetics-ratio-club.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/cybernetics-ratio-club.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/cybernetics-ratio-club.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/cybernetics-ratio-club.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>This is certainly not the first wave of excitement in neural networks. This history of neural networks predates the history of the computer, and papers on neural networks predate papers on the digital computer.</p>
+<p>This is certainly not the first wave of excitement in neural
+networks. This history of neural networks predates the history of the
+computer, and papers on neural networks predate papers on the digital
+computer.</p>
 <div class="figure">
 <div id="russell-pitts-mcculloch-figure" class="figure-frame">
 <table>
 <tr>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//philosophy/Bertrand_Russell_1957.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/Lettvin_Pitts.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/warren_mcculloch.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div id="russell-pitts-mcculloch-magnify" class="magnify" onclick="magnifyFigure(&#39;russell-pitts-mcculloch&#39;)">
+<div id="russell-pitts-mcculloch-magnify" class="magnify"
+onclick="magnifyFigure(&#39;russell-pitts-mcculloch&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="russell-pitts-mcculloch-caption" class="caption-frame">
-<p>Figure: Bertrand Russell (1872-1970), Walter Pitts, <em>right</em> (1923-1969), Warren McCulloch (1898-1969)</p>
+<p>Figure: Bertrand Russell (1872-1970), Walter Pitts, <em>right</em>
+(1923-1969), Warren McCulloch (1898-1969)</p>
 </div>
 </div>
-<p>Specifically, one of the first papers on neural networks was written by two collaborators from logic and psychology in 1943. <a href="https://en.wikipedia.org/wiki/Walter_Pitts">Walter Pitts</a> was a child prodigy who read Russell and Whitehead’s <em>Principia Mathematica</em>. He felt he’d spotted some errors in the text and wrote to Russell in Cambridge, who replied inviting him for a visit. Pitts did not take up the offer because he was only 12 years old. But, three years later, when Russell took a sabbatical at the University of Chicago, Pitts left his home in Detroit and headed to Chicago to hear Russell speak. When Russell left Pitts stayed on studying logic. He never formally took a degree but just worked with whoever was available.</p>
-<p><a href="https://en.wikipedia.org/wiki/Warren_Sturgis_McCulloch">Warren McCulloch</a> was a psychologist who moved to the University of Chicago in 1941. Overlapping interests meant that he met Pitts, who was still living an itinerant lifestyle around the campus of the University. McCulloch invited Pitts to live with his family and they began collaborating on a simple model of the neuron and how neurons might interact. The dominant ‘theory of knowledge’ at the time was <em>logic</em> and their paper attempted to show how networks of neurons. Their paper, <em>A Logical Calculus of the Ideas Immanent in Nervous Activity</em> <span class="citation" data-cites="McCulloch:neuron43">(McCulloch and Pitts, 1943)</span>, was published in the middle of the Second World War. It modelled the neuron as a linear threshold and described how networks of such neurons could create logical functions. The inspiration in the paper is clear, they make use of Rudolf Carnap’s Language II <span class="citation" data-cites="Carnap-logical37">(Carnap, 1937)</span> to represent their theorem and cite the second edition of Russell and Whitehead <span class="citation" data-cites="Russell-principia25">(Russell and Whitehead, 1925)</span>.</p>
+<p>Specifically, one of the first papers on neural networks was written
+by two collaborators from logic and psychology in 1943. <a
+href="https://en.wikipedia.org/wiki/Walter_Pitts">Walter Pitts</a> was a
+child prodigy who read Russell and Whitehead’s <em>Principia
+Mathematica</em>. He felt he’d spotted some errors in the text and wrote
+to Russell in Cambridge, who replied inviting him for a visit. Pitts did
+not take up the offer because he was only 12 years old. But, three years
+later, when Russell took a sabbatical at the University of Chicago,
+Pitts left his home in Detroit and headed to Chicago to hear Russell
+speak. When Russell left Pitts stayed on studying logic. He never
+formally took a degree but just worked with whoever was available.</p>
+<p><a
+href="https://en.wikipedia.org/wiki/Warren_Sturgis_McCulloch">Warren
+McCulloch</a> was a psychologist who moved to the University of Chicago
+in 1941. Overlapping interests meant that he met Pitts, who was still
+living an itinerant lifestyle around the campus of the University.
+McCulloch invited Pitts to live with his family and they began
+collaborating on a simple model of the neuron and how neurons might
+interact. The dominant ‘theory of knowledge’ at the time was
+<em>logic</em> and their paper attempted to show how networks of
+neurons. Their paper, <em>A Logical Calculus of the Ideas Immanent in
+Nervous Activity</em> <span class="citation"
+data-cites="McCulloch:neuron43">(McCulloch and Pitts, 1943)</span>, was
+published in the middle of the Second World War. It modelled the neuron
+as a linear threshold and described how networks of such neurons could
+create logical functions. The inspiration in the paper is clear, they
+make use of Rudolf Carnap’s Language II <span class="citation"
+data-cites="Carnap-logical37">(Carnap, 1937)</span> to represent their
+theorem and cite the second edition of Russell and Whitehead <span
+class="citation" data-cites="Russell-principia25">(Russell and
+Whitehead, 1925)</span>.</p>
 <h2 id="cybernetics">Cybernetics</h2>
 <div class="figure">
 <div id="maxwell-gibbs-wiener-figure" class="figure-frame">
@@ -204,60 +343,311 @@ Neil Lawrence
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//physics/j-w-gibbs.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//physics/Norbert_wiener.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div id="maxwell-gibbs-wiener-magnify" class="magnify" onclick="magnifyFigure(&#39;maxwell-gibbs-wiener&#39;)">
+<div id="maxwell-gibbs-wiener-magnify" class="magnify"
+onclick="magnifyFigure(&#39;maxwell-gibbs-wiener&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="maxwell-gibbs-wiener-caption" class="caption-frame">
-<p>Figure: James Clerk Maxwell (1831-1879), Josiah Willard Gibbs (1839-1903), Norbert Wiener (1894-1964)</p>
+<p>Figure: James Clerk Maxwell (1831-1879), Josiah Willard Gibbs
+(1839-1903), Norbert Wiener (1894-1964)</p>
 </div>
 </div>
-<p>After the war, this work, along with McCulloch and Pitts, was at the heart of a movement known as <em>Cybernetics</em>. A term coined by <a href="https://en.wikipedia.org/wiki/Norbert_Wiener">Norbert Wiener</a> <span class="citation" data-cites="Wiener:cybernetics48">(Wiener, 1948)</span> to reflect the wealth of work on sensing and computing. Wiener chose the term as an alternative rendering of the word <em>governor</em>. Governor comes to us from Latin but is a corruption of the Greek κυβερνήτης meaning helmsman. Wiener’s choice of the term was a nod to the importance of James Clerk Maxwell’s work on understanding surging in James Watt’s steam engine governor <span class="citation" data-cites="Maxwell:governors1867">(Maxwell, 1867)</span>. It reflected the importance that Wiener placed on <em>feedback</em> in these systems. From this strand of work came the field of <em>control theory</em>.</p>
-<p>Many of the constituent ideas of Cybernetics came from the war itself. Norbert Wiener was a Professor of Applied Mathematics at MIT. He was another child prodigy who visited Russell in Cambridge having completed his PhD at Harvard by the age of 19. But Wiener was less keen on logic than McCulloch and Pitts, he looked to stochastic processes and probability theory as the key to intelligent decision making. He rejected the need for a ‘theory of knowledge’ and preferred to think of a ‘theory of ignorance’ which was inspired by statistical mechanics, Maxwell was also an originator of the field, but Wiener wrote of Josiah Willard Gibbs as being his inspiration.</p>
-<p>This nascent community was mainly based on those who were involved in war work. Wiener worked on radar systems for tracking aircraft (leading to the Wiener filter <span class="citation" data-cites="Wiener:yellow49">(Wiener, 1949)</span>). In the UK researchers such as Jack Good, Alan Turing, Donald MacKay, Ross Ashby formed the <em>Ratio Club</em>. A group of scientists interested in how the brain works and how it might be modelled. Many of these scientists also worked on radar systems or code breaking.</p>
+<p>After the war, this work, along with McCulloch and Pitts, was at the
+heart of a movement known as <em>Cybernetics</em>. A term coined by <a
+href="https://en.wikipedia.org/wiki/Norbert_Wiener">Norbert Wiener</a>
+<span class="citation" data-cites="Wiener:cybernetics48">(Wiener,
+1948)</span> to reflect the wealth of work on sensing and computing.
+Wiener chose the term as an alternative rendering of the word
+<em>governor</em>. Governor comes to us from Latin but is a corruption
+of the Greek κυβερνήτης meaning helmsman. Wiener’s choice of the term
+was a nod to the importance of James Clerk Maxwell’s work on
+understanding surging in James Watt’s steam engine governor <span
+class="citation" data-cites="Maxwell:governors1867">(Maxwell,
+1867)</span>. It reflected the importance that Wiener placed on
+<em>feedback</em> in these systems. From this strand of work came the
+field of <em>control theory</em>.</p>
+<p>Many of the constituent ideas of Cybernetics came from the war
+itself. Norbert Wiener was a Professor of Applied Mathematics at MIT. He
+was another child prodigy who visited Russell in Cambridge having
+completed his PhD at Harvard by the age of 19. But Wiener was less keen
+on logic than McCulloch and Pitts, he looked to stochastic processes and
+probability theory as the key to intelligent decision making. He
+rejected the need for a ‘theory of knowledge’ and preferred to think of
+a ‘theory of ignorance’ which was inspired by statistical mechanics,
+Maxwell was also an originator of the field, but Wiener wrote of Josiah
+Willard Gibbs as being his inspiration.</p>
+<p>This nascent community was mainly based on those who were involved in
+war work. Wiener worked on radar systems for tracking aircraft (leading
+to the Wiener filter <span class="citation"
+data-cites="Wiener:yellow49">(Wiener, 1949)</span>). In the UK
+researchers such as Jack Good, Alan Turing, Donald MacKay, Ross Ashby
+formed the <em>Ratio Club</em>. A group of scientists interested in how
+the brain works and how it might be modelled. Many of these scientists
+also worked on radar systems or code breaking.</p>
 <h2 id="analogue-and-digital">Analogue and Digital</h2>
+<h2 id="donald-mackay">Donald MacKay</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ai/includes/donald-mackay-brain.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ai/includes/donald-mackay-brain.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
 <div class="figure">
 <div id="donald-maccrimmon-mackay-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//physics/dmaccrimmonmackay.jpg" width="30%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//people/DonaldMacKay1952.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="donald-maccrimmon-mackay-magnify" class="magnify" onclick="magnifyFigure(&#39;donald-maccrimmon-mackay&#39;)">
+<div id="donald-maccrimmon-mackay-magnify" class="magnify"
+onclick="magnifyFigure(&#39;donald-maccrimmon-mackay&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="donald-maccrimmon-mackay-caption" class="caption-frame">
-<p>Figure: Donald M. MacKay (1922-1987), an early member of the Cybernetics community and member of the Ratio Club.</p>
+<p>Figure: Donald M. MacKay (1922-1987), a physicist who was an early
+member of the cybernetics community and member of the Ratio Club.</p>
 </div>
 </div>
-<p>Donald MacKay wrote of the influence that his own work on radar had on his interest in the brain.</p>
+<p>Donald MacKay was a physicist who worked on naval gun targetting
+during the second world war. The challenge with gun targetting for ships
+is that both the target and the gun platform are moving. The challenge
+was tackled using analogue computers, for example in the US the <a
+href="https://en.wikipedia.org/wiki/Mark_I_Fire_Control_Computer">Mark I
+fire control computer</a> which was a mechanical computer. MacKay worked
+on radar systems for gun laying, here the velocity and distance of the
+target could be assessed through radar and an mechanical electrical
+analogue computer.</p>
+<h2 id="fire-control-systems">Fire Control Systems</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ai/includes/fire-control-systems.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ai/includes/fire-control-systems.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<p>Naval gunnery systems deal with targeting guns while taking into
+account movement of ships. The Royal Navy’s Gunnery Pocket Book <span
+class="citation" data-cites="Admiralty-gunnery45">(The Admiralty,
+1945)</span> gives details of one system for gun laying.</p>
+<p>Like many challenges we face today, in the second world war, fire
+control was handled by a hybrid system of humans and computers. This
+means deploying human beings for the tasks that they can manage, and
+machines for the tasks that are better performed by a machine. This
+leads to a division of labour between the machine and the human that can
+still be found in our modern digital ecosystems.</p>
+<div class="figure">
+<div id="low-angle-fire-control-team-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ai/low-angle-fire-control-team.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="low-angle-fire-control-team-magnify" class="magnify"
+onclick="magnifyFigure(&#39;low-angle-fire-control-team&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="low-angle-fire-control-team-caption" class="caption-frame">
+<p>Figure: The fire control computer set at the centre of a system of
+observation and tracking <span class="citation"
+data-cites="Admiralty-gunnery45">(The Admiralty, 1945)</span>.</p>
+</div>
+</div>
+<p>As analogue computers, fire control computers from the second world
+war would contain components that directly represented the different
+variables that were important in the problem to be solved, such as the
+inclination between two ships.</p>
+<div class="figure">
+<div id="the-measurement-of-inclination-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ai/the-measurement-of-inclination.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="the-measurement-of-inclination-magnify" class="magnify"
+onclick="magnifyFigure(&#39;the-measurement-of-inclination&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="the-measurement-of-inclination-caption" class="caption-frame">
+<p>Figure: Measuring inclination between two ships <span
+class="citation" data-cites="Admiralty-gunnery45">(The Admiralty,
+1945)</span>. Sophisticated fire control computers allowed the ship to
+continue to fire while under maneuvers.</p>
+</div>
+</div>
+<p>The fire control systems were electro-mechanical analogue computers
+that represented the “state variables” of interest, such as inclination
+and ship speed with gears and cams within the machine.</p>
+<div class="figure">
+<div id="typical-modern-fire-control-table-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ai/typical-modern-fire-control-table.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="typical-modern-fire-control-table-magnify" class="magnify"
+onclick="magnifyFigure(&#39;typical-modern-fire-control-table&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="typical-modern-fire-control-table-caption"
+class="caption-frame">
+<p>Figure: A second world war gun computer’s control table <span
+class="citation" data-cites="Admiralty-gunnery45">(The Admiralty,
+1945)</span>.</p>
+</div>
+</div>
+<p>For more details on fire control computers, you can watch a 1953 film
+on the the US the <a
+href="https://en.wikipedia.org/wiki/Mark_I_Fire_Control_Computer">Mark
+IA fire control computer</a> from Periscope Film.</p>
+<div class="figure">
+<div id="us-navy-training-film-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/gwf5mAlI7Ug?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+<div id="us-navy-training-film-magnify" class="magnify"
+onclick="magnifyFigure(&#39;us-navy-training-film&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="us-navy-training-film-caption" class="caption-frame">
+<p>Figure: U.S. Navy training film MN-6783a. Basic Mechanisms of Fire
+Control Computers. Mechanical Computer Instructional Film 27794 (1953)
+for the Mk 1A Fire Control Computer.</p>
+</div>
+</div>
+<h2 id="behind-the-eye">Behind the Eye</h2>
+<div style="text-align:right">
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_books/includes/behind-the-eye.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_books/includes/behind-the-eye.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+</div>
+<div class="figure">
+<div id="behind-the-eye-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//books/behind-the-eye.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="behind-the-eye-magnify" class="magnify"
+onclick="magnifyFigure(&#39;behind-the-eye&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="behind-the-eye-caption" class="caption-frame">
+<p>Figure: <a
+href="https://www.amazon.co.uk/Behind-Eye-Gifford-Lectures-MACKAY/dp/0631173323">Behind
+the Eye</a> <span class="citation" data-cites="Mackay-behind91">(MacKay,
+1991)</span> summarises MacKay’s Gifford Lectures, where MacKay uses the
+operation of the eye as a window on the operation of the brain.</p>
+</div>
+</div>
+<p>Donald MacKay was at King’s College for his PhD. He was just down the
+road from Bill Phillips at LSE who was building the MONIAC. He was part
+of the Ratio Club. A group of early career scientists who were
+interested in communication and control in animals and humans, or more
+specifically they were interested in computers and brains. The were part
+of an international movement known as cybernetics.</p>
+<p>Donald MacKay wrote of the influence that his own work on radar had
+on his interest in the brain.</p>
 <blockquote>
-<p>… during the war I had worked on the theory of automated and electronic computing and on the theory of information, all of which are highly relevant to such things as automatic pilots and automatic gun direction. I found myself grappling with problems in the design of artificial sense organs for naval gun-directors and with the principles on which electronic circuits could be used to simulate situations in the external world so as to provide goal-directed guidance for ships, aircraft, missiles and the like.</p>
-<p>Later in the 1940’s, when I was doing my Ph.D. work, there was much talk of the brain as a computer and of the early digital computers that were just making the headlines as “electronic brains.” As an analogue computer man I felt strongly convinced that the brain, whatever it was, was not a digital computer. I didn’t think it was an analogue computer either in the conventional sense.</p>
-<p>But this naturally rubbed under my skin the question: well, if it is not either of these, what kind of system is it? Is there any way of following through the kind of analysis that is appropriate to their artificial automata so as to understand better the kind of system the human brain is? That was the beginning of my slippery slope into brain research.</p>
-<p><em>Behind the Eye</em> pg 40. Edited version of the 1986 Gifford Lectures given by Donald M. MacKay and edited by Valerie MacKay</p>
+<p>… during the war I had worked on the theory of automated and
+electronic computing and on the theory of information, all of which are
+highly relevant to such things as automatic pilots and automatic gun
+direction. I found myself grappling with problems in the design of
+artificial sense organs for naval gun-directors and with the principles
+on which electronic circuits could be used to simulate situations in the
+external world so as to provide goal-directed guidance for ships,
+aircraft, missiles and the like.</p>
 </blockquote>
-<p>Importantly, MacKay distinguishes between the <em>analogue</em> computer and the <em>digital</em> computer. As he mentions, his experience was with analogue machines. An analogue machine is <em>literally</em> an analogue. The radar systems that Wiener and MacKay both worked on were made up of electronic components such as resistors, capacitors, and inductors, that together represented a physical system, such as an anti-aircraft gun and a plane. The design of the analogue computer required the engineer to simulate the real world in analogue electronics, using dualities that exist between e.g. mechanical circuits (mass, spring, damper) and electronic circuits (inductor, resistor, capacitor). The analogy between mass and a damper, between spring and a resistor and between capacitor and a damper works because the underlying mathematics is approximated with the same linear system: a second order differential equation. This mathematical analogy allowed the designer to map from the real world, through mathematics, to a virtual world where the components reflected the real world through analogy.</p>
-<p>This is a quite different from the approach that McCulloch and Pitts were taking with their paper on the logical calculus of the nervous system. They were attempting to map their model of the neuron onto logic. Logical reasoning was the mainstay of the contemporary understanding of intelligence. But the components they were considering were neurons, they could only map onto the logical world because their analogy for the neuron was so simple. An ‘on’ or ‘off’ linear threshold unit. Where the synapses of the neuron were compared to a threshold in the neuron. Firing occurs when the sum of input neurons crosses a threshold in the receiving neuron. These networks can then be built together in cascades.</p>
-<p>In the late 1940s and early 1950s, Cyberneticists were also working on <em>digital computers</em>. The type of machines (such as Colossus, built by Tommy Flowers, and known to Turing) and the ENIAC. Indeed, by 1949 Cambridge had built its own machine, the EDSAC in the Mathematical Laboratory, inspired by “draft of a report on the EDVAC” by von Neumann.</p>
-<p>Digital computers are themselves (at their heart) a series of analogue devices, but in the digital computer, the analogue is between collections of transistors and logic gates. Logic gates allow the computer to reconstruct <em>logical truth tables</em>, which Wittgenstein had popularised in his <em>Tractatus Logico-Philosophicus</em> <span class="citation" data-cites="Wittgenstein-logico21">(Wittgenstein, 1922)</span>. The mathematical operations we need can be reconstructed through logic, so this ‘analogue machine’ which we call a <em>digital computer</em> becomes capable of directly computing the mathematics we’re interested in, rather than going via the analogue machine.</p>
+<blockquote>
+<p>Later in the 1940’s, when I was doing my Ph.D. work, there was much
+talk of the brain as a computer and of the early digital computers that
+were just making the headlines as “electronic brains.” As an analogue
+computer man I felt strongly convinced that the brain, whatever it was,
+was not a digital computer. I didn’t think it was an analogue computer
+either in the conventional sense.</p>
+</blockquote>
+<blockquote>
+<p>But this naturally rubbed under my skin the question: well, if it is
+not either of these, what kind of system is it? Is there any way of
+following through the kind of analysis that is appropriate to their
+artificial automata so as to understand better the kind of system the
+human brain is? That was the beginning of my slippery slope into brain
+research.</p>
+<p><em>Behind the Eye</em> pg 40. Edited version of the 1986 Gifford
+Lectures given by Donald M. MacKay and edited by Valerie MacKay</p>
+</blockquote>
+<p>Importantly, MacKay distinguishes between the <em>analogue</em>
+computer and the <em>digital</em> computer. As he mentions, his
+experience was with analogue machines. An analogue machine is
+<em>literally</em> an analogue. The radar systems that Wiener and MacKay
+both worked on were made up of electronic components such as resistors,
+capacitors, inductors and/or mechanical components such as cams and
+gears. Together these components could represent a physical system, such
+as an anti-aircraft gun and a plane. The design of the analogue computer
+required the engineer to simulate the real world in analogue
+electronics, using dualities that exist between e.g. mechanical circuits
+(mass, spring, damper) and electronic circuits (inductor, resistor,
+capacitor). The analogy between mass and a damper, between spring and a
+resistor and between capacitor and a damper works because the underlying
+mathematics is approximated with the same linear system: a second order
+differential equation. This mathematical analogy allowed the designer to
+map from the real world, through mathematics, to a virtual world where
+the components reflected the real world through analogy.</p>
+<p>This is a quite different from the approach that McCulloch and Pitts
+were taking with their paper on the logical calculus of the nervous
+system. They were attempting to map their model of the neuron onto
+logic. Logical reasoning was the mainstay of the contemporary
+understanding of intelligence. But the components they were considering
+were neurons, they could only map onto the logical world because their
+analogy for the neuron was so simple. An ‘on’ or ‘off’ linear threshold
+unit. Where the synapses of the neuron were compared to a threshold in
+the neuron. Firing occurs when the sum of input neurons crosses a
+threshold in the receiving neuron. These networks can then be built
+together in cascades.</p>
+<div class="figure">
+<div id="colossus-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//computing/Colossus.jpg" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+<div id="colossus-magnify" class="magnify"
+onclick="magnifyFigure(&#39;colossus&#39;)">
+<img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
+</div>
+<div id="colossus-caption" class="caption-frame">
+<p>Figure: A Colossus Mark 2 codebreaking computer being operated by
+Dorothy Du Boisson (left) and Elsie Booker (right). Colossus was
+designed by Tommy Flowers, but programmed and operated by groups of
+Wrens based at Bletchley Park.</p>
+</div>
+</div>
+<p>In the late 1940s and early 1950s, Cyberneticists were also working
+on <em>digital computers</em>. The type of machines (such as Colossus,
+built by Tommy Flowers, and known to Turing) and the ENIAC. Indeed, by
+1949 Cambridge had built its own machine, the EDSAC in the Mathematical
+Laboratory, inspired by “draft of a report on the EDVAC” by von
+Neumann.</p>
+<p>Digital computers are themselves (at their heart) a series of
+analogue devices, but in the digital computer, the analogue is between
+collections of transistors and logic gates. Logic gates allow the
+computer to reconstruct <em>logical truth tables</em>, which
+Wittgenstein had popularised in his <em>Tractatus
+Logico-Philosophicus</em> <span class="citation"
+data-cites="Wittgenstein-logico21">(Wittgenstein, 1922)</span>. The
+mathematical operations we need can be reconstructed through logic, so
+this ‘analogue machine’ which we call a <em>digital computer</em>
+becomes capable of directly computing the mathematics we’re interested
+in, rather than going via the analogue machine.</p>
 <h2 id="the-perceptron">The Perceptron</h2>
 <div class="figure">
 <div id="ashby-neumann-rosenblatt-figure" class="figure-frame">
 <table>
 <tr>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/w-ross-ashby.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
@@ -267,34 +657,85 @@ Neil Lawrence
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//Frank_Rosenblatt.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div id="ashby-neumann-rosenblatt-magnify" class="magnify" onclick="magnifyFigure(&#39;ashby-neumann-rosenblatt&#39;)">
+<div id="ashby-neumann-rosenblatt-magnify" class="magnify"
+onclick="magnifyFigure(&#39;ashby-neumann-rosenblatt&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="ashby-neumann-rosenblatt-caption" class="caption-frame">
-<p>Figure: W. Ross Ashby (1903-1972), John von Neumann (1903-1957), Frank Rosenblatt (1928-1971). <em>Photograph of W. Ross Ashby is Copyright W. Ross Ashby</em>.</p>
+<p>Figure: W. Ross Ashby (1903-1972), John von Neumann (1903-1957),
+Frank Rosenblatt (1928-1971). <em>Photograph of W. Ross Ashby is
+Copyright W. Ross Ashby</em>.</p>
 </div>
 </div>
-<p>The early story of Cybernetics starts with the success of analogue control, and in the domain of neural networks, analogues machines were built. Inspired by F. Ross Ashby’s <span class="citation" data-cites="Ashby-design52">(Ashby, 1952)</span> ideas that suggested <em>random connections</em> and von Neumann <span class="citation" data-cites="Neumann-probabilistic56">(Neumann, 1956)</span>, who wrote about <em>probabilistic logics</em>, Frank Rosenblatt constructed the Perceptron <span class="citation" data-cites="Rosenblatt-perceptron58">(Rosenblatt, 1958)</span>. This was a deep neural network that recognised images from TV cameras.</p>
-<p>The perceptron created a great deal of interest, but it was rapidly eclipsed by the emerging <em>digital computer</em>. Perhaps as a marker as the increasing importance of the digital computer, the Apollo program (1961-1972) had a guidance computer that was a 16-bit digital machine for navigating to the moon. It implemented Kalman filters for guidance. In signal processing there’s a shift from the 1950s to the 1960s of researchers moving from analogue designs to designs that are suitable for implementation of digital machines.</p>
-<p>That same shift was imposed on the Cybernetics community. Artificial Intelligence is often traced to the ‘summer research project’ proposed by John McCarthy at Dartmouth. But the proposal is not just notable for the introduction of the term, it is notable for the extent to which it marks a break with the Cybernetics community. Wiener’s name isn’t even mentioned in the proposal. And Cyberneticists either weren’t invited to, or couldn’t make, the event (with the notable exception of Warren McCulloch). Turing had died, and von Neumann was seriously ill with cancer. W. Ross Ashby was even in the US, but from his diaries there’s no trace of him attending. Donald MacKay was on the initial proposal, but didn’t make the event (perhaps because that summer his son, <a href="https://warwick.ac.uk/fac/sci/maths/people/staff/robert_mackay/">Robert</a>, was born).</p>
-<p>One of the great ironies of modern artificial intelligence is that it is almost wholly reliant on deep neural network methodologies for the recent breakthroughs. But the dawn of the term artificial intelligence is associated with a period of around three decades when those methods (and the community that originated them) was actively marginalised.</p>
-<p>There were many reasons for this, including personal enmities between Wiener and McCulloch, the untimely death of Frank Rosenblatt in a sailing accident. But regardless of these personal tragedies and tales of academic politics, the principal reason that neural networks were eclipsed was the dominance of the digital computer. From 1956 to 1986 we saw the rise of the computer from a tool for science and big business to a personal machine, available to individual researchers.</p>
+<p>The early story of Cybernetics starts with the success of analogue
+control, and in the domain of neural networks, analogues machines were
+built. Inspired by F. Ross Ashby’s <span class="citation"
+data-cites="Ashby-design52">(Ashby, 1952)</span> ideas that suggested
+<em>random connections</em> and von Neumann <span class="citation"
+data-cites="Neumann-probabilistic56">(Neumann, 1956)</span>, who wrote
+about <em>probabilistic logics</em>, Frank Rosenblatt constructed the
+Perceptron <span class="citation"
+data-cites="Rosenblatt-perceptron58">(Rosenblatt, 1958)</span>. This was
+a deep neural network that recognised images from TV cameras.</p>
+<p>The perceptron created a great deal of interest, but it was rapidly
+eclipsed by the emerging <em>digital computer</em>. Perhaps as a marker
+as the increasing importance of the digital computer, the Apollo program
+(1961-1972) had a guidance computer that was a 16-bit digital machine
+for navigating to the moon. It implemented Kalman filters for guidance.
+In signal processing there’s a shift from the 1950s to the 1960s of
+researchers moving from analogue designs to designs that are suitable
+for implementation of digital machines.</p>
+<p>That same shift was imposed on the Cybernetics community. Artificial
+Intelligence is often traced to the ‘summer research project’ proposed
+by John McCarthy at Dartmouth. But the proposal is not just notable for
+the introduction of the term, it is notable for the extent to which it
+marks a break with the Cybernetics community. Wiener’s name isn’t even
+mentioned in the proposal. And Cyberneticists either weren’t invited to,
+or couldn’t make, the event (with the notable exception of Warren
+McCulloch). Turing had died, and von Neumann was seriously ill with
+cancer. W. Ross Ashby was even in the US, but from his diaries there’s
+no trace of him attending. Donald MacKay was on the initial proposal,
+but didn’t make the event (perhaps because that summer his son, <a
+href="https://warwick.ac.uk/fac/sci/maths/people/staff/robert_mackay/">Robert</a>,
+was born).</p>
+<p>One of the great ironies of modern artificial intelligence is that it
+is almost wholly reliant on deep neural network methodologies for the
+recent breakthroughs. But the dawn of the term artificial intelligence
+is associated with a period of around three decades when those methods
+(and the community that originated them) was actively marginalised.</p>
+<p>There were many reasons for this, including personal enmities between
+Wiener and McCulloch, the untimely death of Frank Rosenblatt in a
+sailing accident. But regardless of these personal tragedies and tales
+of academic politics, the principal reason that neural networks were
+eclipsed was the dominance of the digital computer. From 1956 to 1986 we
+saw the rise of the computer from a tool for science and big business to
+a personal machine, available to individual researchers.</p>
 <h2 id="the-connectionists">The Connectionists</h2>
 <div style="text-align:right">
-<span class="editsection-bracket" style="">[</span><span class="editsection" style=""><a href="https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/connectionist-revival.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/talks/edit/gh-pages/_ml/includes/connectionist-revival.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
+<span class="editsection-bracket" style="">[</span><span
+class="editsection"
+style=""><a href="https://github.com/lawrennd/snippets/edit/main/_ml/includes/connectionist-revival.md" target="_blank" onclick="ga('send', 'event', 'Edit Page', 'Edit', 'https://github.com/lawrennd/snippets/edit/main/_ml/includes/connectionist-revival.md', 13);">edit</a></span><span class="editsection-bracket" style="">]</span>
 </div>
-<p>By the early 1980s, some disillusionment was creeping into the artificial intelligence agenda that stemmed from the Dartmouth Meeting. At the same time, an emerging group was re-examining the ideas of the Cyberneticists. This group became known as the connectionists, because of their focus on neural network models with their myriad of connections.</p>
-<p>By the second half of the decade, some of their principles had come together to form a movement. Meetings including the Snowbird Workshop, Neural Information Processing Systems and the connectionist summer school provided a venue for these researchers to come together.</p>
+<p>By the early 1980s, some disillusionment was creeping into the
+artificial intelligence agenda that stemmed from the Dartmouth Meeting.
+At the same time, an emerging group was re-examining the ideas of the
+Cyberneticists. This group became known as the connectionists, because
+of their focus on neural network models with their myriad of
+connections.</p>
+<p>By the second half of the decade, some of their principles had come
+together to form a movement. Meetings including the Snowbird Workshop,
+Neural Information Processing Systems and the connectionist summer
+school provided a venue for these researchers to come together.</p>
 <div class="figure">
 <div id="-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/connectionist-summer-school.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
@@ -302,62 +743,126 @@ Neil Lawrence
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="-caption" class="caption-frame">
-<p>Figure: Group photo from the 1986 Connectionists’ Summer School, held at CMU in July. Included in the photo are Richard Durbin, Terry Sejnowski, Geoff Hinton, Yann LeCun, Michael I. Jordan.</p>
+<p>Figure: Group photo from the 1986 Connectionists’ Summer School, held
+at CMU in July. Included in the photo are Richard Durbin, Terry
+Sejnowski, Geoff Hinton, Yann LeCun, Michael I. Jordan.</p>
 </div>
 </div>
-<p>This was also the era of cheap(er) computing. Connectionists were able to implement <em>simulators</em> of neural networks in <em>minicomputers</em> such as DEC’s PDP-11 series. These allowed new architectures to be tried. Among them was backpropagation, popularised by the “Parallel Distributed Processing” books <span class="citation" data-cites="Rumelhart:book86">(Rumelhart et al., 1986)</span>, these books formed the canonical ideas on which the connectionists based their research.</p>
+<p>This was also the era of cheap(er) computing. Connectionists were
+able to implement <em>simulators</em> of neural networks in
+<em>minicomputers</em> such as DEC’s PDP-11 series. These allowed new
+architectures to be tried. Among them was backpropagation, popularised
+by the “Parallel Distributed Processing” books <span class="citation"
+data-cites="Rumelhart:book86">(Rumelhart et al., 1986)</span>, these
+books formed the canonical ideas on which the connectionists based their
+research.</p>
 <blockquote>
-<p>What makes people smarter than machines? They certainly are not quicker or more precise. Yet people are far better at perceiving objects in natural scenes and noting their relations, at understanding language and retrieving contextually appropriate information from memory, at making plans and carrying out contextually appropriate actions, and at a wide range of other natural cognitive tasks. People are also far better at learning to do these things more accurately and fluently through processing experience.</p>
-<p>What is the basis for these differences? One answer, perhaps the classic one we might expect from artificial intelligence, is “software.” If we only had the right computer program, the argument goes, we might be able to capture the fluidity and adaptability of human information processing.</p>
-<p>Certainly this answer is partially correct. There have been great breakthroughs in our understanding of cognition as a result of the development of expressive high-level computer languages and powerful algorithms. No doubt there will be more such breakthroughs in the future. However, we do not think that software is the whole story.</p>
-<p>In our view, people are smarter than today’s computers because the brain employs a basic computational architecture that is more suited to deal with a central aspect of the natural information processing tasks that people are so good at.</p>
-<p>J. L. McClelland, David E. Rumelhart and Geoffrey E. Hinton in <em>Parallel Distributed Processing,</em> <span class="citation" data-cites="Rumelhart:book86">Rumelhart et al. (1986)</span></p>
+<p>What makes people smarter than machines? They certainly are not
+quicker or more precise. Yet people are far better at perceiving objects
+in natural scenes and noting their relations, at understanding language
+and retrieving contextually appropriate information from memory, at
+making plans and carrying out contextually appropriate actions, and at a
+wide range of other natural cognitive tasks. People are also far better
+at learning to do these things more accurately and fluently through
+processing experience.</p>
+<p>What is the basis for these differences? One answer, perhaps the
+classic one we might expect from artificial intelligence, is “software.”
+If we only had the right computer program, the argument goes, we might
+be able to capture the fluidity and adaptability of human information
+processing.</p>
+<p>Certainly this answer is partially correct. There have been great
+breakthroughs in our understanding of cognition as a result of the
+development of expressive high-level computer languages and powerful
+algorithms. No doubt there will be more such breakthroughs in the
+future. However, we do not think that software is the whole story.</p>
+<p>In our view, people are smarter than today’s computers because the
+brain employs a basic computational architecture that is more suited to
+deal with a central aspect of the natural information processing tasks
+that people are so good at.</p>
+<p>J. L. McClelland, David E. Rumelhart and Geoffrey E. Hinton in
+<em>Parallel Distributed Processing,</em> <span class="citation"
+data-cites="Rumelhart:book86">Rumelhart et al. (1986)</span></p>
 </blockquote>
 <div class="figure">
 <div id="pdp-volume-1-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/pdp_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="pdp-volume-1-magnify" class="magnify" onclick="magnifyFigure(&#39;pdp-volume-1&#39;)">
+<div id="pdp-volume-1-magnify" class="magnify"
+onclick="magnifyFigure(&#39;pdp-volume-1&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="pdp-volume-1-caption" class="caption-frame">
-<p>Figure: Cover of the Parallel Distributed Processing edited volume <span class="citation" data-cites="Rumelhart:book86">(Rumelhart et al., 1986)</span>.</p>
+<p>Figure: Cover of the Parallel Distributed Processing edited volume
+<span class="citation" data-cites="Rumelhart:book86">(Rumelhart et al.,
+1986)</span>.</p>
 </div>
 </div>
-<p>This led to the second wave of neural network architectures. A new journal, <em>Neural Computation</em> was launched in 1989 to cater for this new field. It’s first volume contained a new architecture: the convolutional neural networks <span class="citation" data-cites="LeCun:zip89">(Le Cun et al., 1989)</span>, developed for recognising handwritten digits. It made the cover.</p>
+<p>This led to the second wave of neural network architectures. A new
+journal, <em>Neural Computation</em> was launched in 1989 to cater for
+this new field. It’s first volume contained a new architecture: the
+convolutional neural networks <span class="citation"
+data-cites="LeCun:zip89">(Le Cun et al., 1989)</span>, developed for
+recognising handwritten digits. It made the cover.</p>
 <div class="figure">
 <div id="nc-cover-lecun-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/nc_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="nc-cover-lecun-magnify" class="magnify" onclick="magnifyFigure(&#39;nc-cover-lecun&#39;)">
+<div id="nc-cover-lecun-magnify" class="magnify"
+onclick="magnifyFigure(&#39;nc-cover-lecun&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="nc-cover-lecun-caption" class="caption-frame">
-<p>Figure: Cover of <em>Neural Computation</em>, Volume 1, Issue 4 containing <span class="citation" data-cites="LeCun:zip89">Le Cun et al. (1989)</span>. The cover shows examples from the U.S. Postal Service data set of handwritten digits.</p>
+<p>Figure: Cover of <em>Neural Computation</em>, Volume 1, Issue 4
+containing <span class="citation" data-cites="LeCun:zip89">Le Cun et al.
+(1989)</span>. The cover shows examples from the U.S. Postal Service
+data set of handwritten digits.</p>
 </div>
 </div>
-<p>It’s worth noting what compute and data that LeCun and collaborators had available. Experiments were run on a SUN-4/260, with a CPU running at 16.67 MHz and 128 MB of RAM. It’s an impressive machine for the day. The neural network had just under 10,000 parameters and the training data consisted of 7,291 digitized training images on a 16 x 16 grid, 2007 images were retained for testing. The model had a 5% error rate on the test data.</p>
+<p>It’s worth noting what compute and data that LeCun and collaborators
+had available. Experiments were run on a SUN-4/260, with a CPU running
+at 16.67 MHz and 128 MB of RAM. It’s an impressive machine for the day.
+The neural network had just under 10,000 parameters and the training
+data consisted of 7,291 digitized training images on a 16 x 16 grid,
+2007 images were retained for testing. The model had a 5% error rate on
+the test data.</p>
 <blockquote>
-<p>The first several stages of processing in our previous system (described in Denker et al. 1989) involved convolutions in which the coefficients had been laboriously hand designed. In the present system, the first two layers of the network are constrained to be convolutional, but the system automatically learns the coefficients that make up the kernels.</p>
-<p>Section 5.1 in <span class="citation" data-cites="LeCun:zip89">Le Cun et al. (1989)</span></p>
+<p>The first several stages of processing in our previous system
+(described in Denker et al. 1989) involved convolutions in which the
+coefficients had been laboriously hand designed. In the present system,
+the first two layers of the network are constrained to be convolutional,
+but the system automatically learns the coefficients that make up the
+kernels.</p>
+<p>Section 5.1 in <span class="citation" data-cites="LeCun:zip89">Le Cun
+et al. (1989)</span></p>
 </blockquote>
-<p>The second half of the 1980s and the 1990s were a period of growth and innovation for the community. Recurrent neural networks that operated through time were produced including in 1997, the Long Short-Term Memory architecture <span class="citation" data-cites="Hochreiter-lstm97">(Hochreiter and Schmidhuber, 1997)</span>, a form of recurrent neural network that can deal with sequence data.</p>
+<p>The second half of the 1980s and the 1990s were a period of growth
+and innovation for the community. Recurrent neural networks that
+operated through time were produced including in 1997, the Long
+Short-Term Memory architecture <span class="citation"
+data-cites="Hochreiter-lstm97">(Hochreiter and Schmidhuber,
+1997)</span>, a form of recurrent neural network that can deal with
+sequence data.</p>
 <!--include{_ml/includes/what-does-machine-learning-do.md}-->
 <div class="figure">
 <div id="neil-newton-institute-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//people/1997-08-02-neil-newton-institute.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="neil-newton-institute-magnify" class="magnify" onclick="magnifyFigure(&#39;neil-newton-institute&#39;)">
+<div id="neil-newton-institute-magnify" class="magnify"
+onclick="magnifyFigure(&#39;neil-newton-institute&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="neil-newton-institute-caption" class="caption-frame">
-<p>Figure: Neil standing outside the Newton Institute on 2nd August 1997, just after arriving for “Generalisation in Neural Networks and Machine Learning,” <a href="http://www.newton.ac.uk/files/reports/annual/ini_annual_report_97-98.pdf">see page 26-30 of this report</a>.</p>
+<p>Figure: Neil standing outside the Newton Institute on 2nd August
+1997, just after arriving for “Generalisation in Neural Networks and
+Machine Learning”, <a
+href="http://www.newton.ac.uk/files/reports/annual/ini_annual_report_97-98.pdf">see
+page 26-30 of this report</a>.</p>
 </div>
 </div>
 <div class="figure">
@@ -366,7 +871,8 @@ Neil Lawrence
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/le-net-5.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="le-net-5-magnify" class="magnify" onclick="magnifyFigure(&#39;le-net-5&#39;)">
+<div id="le-net-5-magnify" class="magnify"
+onclick="magnifyFigure(&#39;le-net-5&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="le-net-5-caption" class="caption-frame">
@@ -379,11 +885,13 @@ Neil Lawrence
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/le-net-translate.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="le-net-5-magnify" class="magnify" onclick="magnifyFigure(&#39;le-net-5&#39;)">
+<div id="le-net-5-magnify" class="magnify"
+onclick="magnifyFigure(&#39;le-net-5&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="le-net-5-caption" class="caption-frame">
-<p>Figure: Gif animation of LeNet-5 in action. Here the translation invariance of the network is being tested.</p>
+<p>Figure: Gif animation of LeNet-5 in action. Here the translation
+invariance of the network is being tested.</p>
 </div>
 </div>
 <div class="figure">
@@ -392,47 +900,68 @@ Neil Lawrence
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/le-net-scale.gif" width="60%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
-<div id="le-net-5-magnify" class="magnify" onclick="magnifyFigure(&#39;le-net-5&#39;)">
+<div id="le-net-5-magnify" class="magnify"
+onclick="magnifyFigure(&#39;le-net-5&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="le-net-5-caption" class="caption-frame">
-<p>Figure: Gif animation of LeNet-5 in action, here the scale invariance of the network is being tested.</p>
+<p>Figure: Gif animation of LeNet-5 in action, here the scale invariance
+of the network is being tested.</p>
 </div>
 </div>
-<p>At the same meeting Vladmir Vapnik was present, as was Bernhard Schölkopf. Corinna Cortes, Bernard Boser, Isabelle Guyon and Vladmir Vapnik were all instrumental in developing the Support Vector Machine.</p>
+<p>At the same meeting Vladmir Vapnik was present, as was Bernhard
+Schölkopf. Corinna Cortes, Bernard Boser, Isabelle Guyon and Vladmir
+Vapnik were all instrumental in developing the Support Vector
+Machine.</p>
 <div class="figure">
 <div id="cortes-guyon-vapnik-figure" class="figure-frame">
 <table>
 <tr>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/corinna-cortes.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/isabelle-guyon.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/vladmir-vapnik.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div id="cortes-guyon-vapnik-magnify" class="magnify" onclick="magnifyFigure(&#39;cortes-guyon-vapnik&#39;)">
+<div id="cortes-guyon-vapnik-magnify" class="magnify"
+onclick="magnifyFigure(&#39;cortes-guyon-vapnik&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="cortes-guyon-vapnik-caption" class="caption-frame">
-<p>Figure: Corinna Cortes, Isabelle Guyon and Vladmir Vapnik. Three of the key people behind the support vector machine <span class="citation" data-cites="Boser-optimal92">Cortes and Vapnik (1995)</span>. All were based at Bell Labs in the 1990s.</p>
+<p>Figure: Corinna Cortes, Isabelle Guyon and Vladmir Vapnik. Three of
+the key people behind the support vector machine <span class="citation"
+data-cites="Boser-optimal92">Cortes and Vapnik (1995)</span>. All were
+based at Bell Labs in the 1990s.</p>
 </div>
 </div>
-<p>Also attending the summer school at the Newton Institute was Bernhard Schölkopf. He had shown that, on the same USPS digits data set, the support vector machine was able to achieve an error of 4.2% <span class="citation" data-cites="Scholkopf:comparing97">(Schölkopf et al., 1997)</span>. It was also mathematically more elegant than the neural network approaches. Even on larger data sets, by incorporating the translation invariance <span class="citation" data-cites="Scholkopf:incorporating96">(Schölkopf et al., n.d.)</span>, the support vector machine was able to achieve similar error rates to convolutional neural networks.</p>
+<p>Also attending the summer school at the Newton Institute was Bernhard
+Schölkopf. He had shown that, on the same USPS digits data set, the
+support vector machine was able to achieve an error of 4.2% <span
+class="citation" data-cites="Scholkopf:comparing97">(Schölkopf et al.,
+1997)</span>. It was also mathematically more elegant than the neural
+network approaches. Even on larger data sets, by incorporating the
+translation invariance <span class="citation"
+data-cites="Scholkopf:incorporating96">(Schölkopf et al., n.d.)</span>,
+the support vector machine was able to achieve similar error rates to
+convolutional neural networks.</p>
 <blockquote>
-<p>This work points out the necessity of having flexible “network design” software tools that ease the design of complex, specialized network architectures</p>
-<p>From conclusions of <span class="citation" data-cites="LeCun:zip89">Le Cun et al. (1989)</span></p>
+<p>This work points out the necessity of having flexible “network
+design” software tools that ease the design of complex, specialized
+network architectures</p>
+<p>From conclusions of <span class="citation"
+data-cites="LeCun:zip89">Le Cun et al. (1989)</span></p>
 </blockquote>
 <div class="figure">
 <div id="russakovsky-li-figure" class="figure-frame">
@@ -451,11 +980,15 @@ Neil Lawrence
 </tr>
 </table>
 </div>
-<div id="russakovsky-li-magnify" class="magnify" onclick="magnifyFigure(&#39;russakovsky-li&#39;)">
+<div id="russakovsky-li-magnify" class="magnify"
+onclick="magnifyFigure(&#39;russakovsky-li&#39;)">
 <img class="img-button" src="{{ '/assets/images/Magnify_Large.svg' | relative_url }}" style="width:1.5ex">
 </div>
 <div id="russakovsky-li-caption" class="caption-frame">
-<p>Figure: Olga Russakovsky, Fei Fei Li. Olga and Fei Fei led the creation of the ImageNet database that enabled convolutional neural networks to show their true potential. The data base contains millions of images.</p>
+<p>Figure: Olga Russakovsky, Fei Fei Li. Olga and Fei Fei led the
+creation of the ImageNet database that enabled convolutional neural
+networks to show their true potential. The data base contains millions
+of images.</p>
 </div>
 </div>
 <h2 id="the-third-wave">The Third Wave</h2>
@@ -497,64 +1030,112 @@ Neil Lawrence
 <li>Different NN Architectures</li>
 </ul>
 <h2 id="thanks">Thanks!</h2>
-<p>For more information on these subjects and more you might want to check the following resources.</p>
+<p>For more information on these subjects and more you might want to
+check the following resources.</p>
 <ul>
 <li>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></li>
-<li>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></li>
-<li>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></li>
-<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+<li>podcast: <a href="http://thetalkingmachines.com">The Talking
+Machines</a></li>
+<li>newspaper: <a
+href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
+Page</a></li>
+<li>blog: <a
+href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
 </ul>
 <h1 class="unnumbered" id="references">References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Ashby-design52" class="csl-entry" role="doc-biblioentry">
-Ashby, W.R., 1952. Design for a brain: The origin of adaptive behaviour. Chapman &amp; Hall, London.
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-Ashby-design52" class="csl-entry" role="listitem">
+Ashby, W.R., 1952. Design for a brain: The origin of adaptive behaviour.
+Chapman &amp; Hall, London.
 </div>
-<div id="ref-Boser-optimal92" class="csl-entry" role="doc-biblioentry">
-Boser, B.E., Guyon, I.M., Vapnik, V.N., 1992. A training algorithm for optimal margin classifiers, in: Proceedings of the Fifth Annual Workshop on Computational Learning Theory, COLT ’92. Association for Computing Machinery, New York, NY, USA, pp. 144–152. <a href="https://doi.org/10.1145/130385.130401">https://doi.org/10.1145/130385.130401</a>
+<div id="ref-Boser-optimal92" class="csl-entry" role="listitem">
+Boser, B.E., Guyon, I.M., Vapnik, V.N., 1992. A training algorithm for
+optimal margin classifiers, in: Proceedings of the Fifth Annual Workshop
+on Computational Learning Theory, COLT ’92. Association for Computing
+Machinery, New York, NY, USA, pp. 144–152. <a
+href="https://doi.org/10.1145/130385.130401">https://doi.org/10.1145/130385.130401</a>
 </div>
-<div id="ref-Carnap-logical37" class="csl-entry" role="doc-biblioentry">
-Carnap, R., 1937. Locigal syntax of language. Routledge, Trench, Trubner &amp; Co Ltd.
+<div id="ref-Carnap-logical37" class="csl-entry" role="listitem">
+Carnap, R., 1937. Locigal syntax of language. Routledge, Trench, Trubner
+&amp; Co Ltd.
 </div>
-<div id="ref-Cortes:svnet95" class="csl-entry" role="doc-biblioentry">
-Cortes, C., Vapnik, V.N., 1995. Support vector networks. Machine Learning 20, 273–297. <a href="https://doi.org/10.1007/BF00994018">https://doi.org/10.1007/BF00994018</a>
+<div id="ref-Cortes:svnet95" class="csl-entry" role="listitem">
+Cortes, C., Vapnik, V.N., 1995. Support vector networks. Machine
+Learning 20, 273–297. <a
+href="https://doi.org/10.1007/BF00994018">https://doi.org/10.1007/BF00994018</a>
 </div>
-<div id="ref-Hochreiter-lstm97" class="csl-entry" role="doc-biblioentry">
-Hochreiter, S., Schmidhuber, J., 1997. Long short-term memory. Neural Computation 9, 1735–1780. <a href="https://doi.org/10.1162/neco.1997.9.8.1735">https://doi.org/10.1162/neco.1997.9.8.1735</a>
+<div id="ref-Hochreiter-lstm97" class="csl-entry" role="listitem">
+Hochreiter, S., Schmidhuber, J., 1997. Long short-term memory. Neural
+Computation 9, 1735–1780. <a
+href="https://doi.org/10.1162/neco.1997.9.8.1735">https://doi.org/10.1162/neco.1997.9.8.1735</a>
 </div>
-<div id="ref-LeCun:zip89" class="csl-entry" role="doc-biblioentry">
-Le Cun, Y., Boser, B.E., Denker, J.S., Henderson, D., Howard, R.E., Hubbard, W., Jackel, L.D., 1989. Backpropagation applied to handwritten zip code recognition. Neural Computation 1, 541–551. <a href="https://doi.org/10.1162/neco.1989.1.4.541">https://doi.org/10.1162/neco.1989.1.4.541</a>
+<div id="ref-LeCun:zip89" class="csl-entry" role="listitem">
+Le Cun, Y., Boser, B.E., Denker, J.S., Henderson, D., Howard, R.E.,
+Hubbard, W., Jackel, L.D., 1989. Backpropagation applied to handwritten
+zip code recognition. Neural Computation 1, 541–551. <a
+href="https://doi.org/10.1162/neco.1989.1.4.541">https://doi.org/10.1162/neco.1989.1.4.541</a>
 </div>
-<div id="ref-Maxwell:governors1867" class="csl-entry" role="doc-biblioentry">
-Maxwell, J.C., 1867. On governors. Proceedings of the Royal Society of London 16, 270–283.
+<div id="ref-Mackay-behind91" class="csl-entry" role="listitem">
+MacKay, D.M., 1991. Behind the eye. Basil Blackwell.
 </div>
-<div id="ref-McCulloch:neuron43" class="csl-entry" role="doc-biblioentry">
-McCulloch, W.S., Pitts, W., 1943. A logical calculus of the ideas immanent in nervous activity. Bulletin of Mathematical Biophysics 5, 115–133. <a href="https://doi.org/10.1007/BF02478259">https://doi.org/10.1007/BF02478259</a>
+<div id="ref-Maxwell:governors1867" class="csl-entry" role="listitem">
+Maxwell, J.C., 1867. <a href="http://www.jstor.org/stable/112510">On
+governors</a>. Proceedings of the Royal Society of London 16, 270–283.
 </div>
-<div id="ref-Neumann-probabilistic56" class="csl-entry" role="doc-biblioentry">
-Neumann, J. von, 1956. Probabilistic logics and the synthesis of reliable organisms from unreliable components, in: Shannon, C.E., McCarthy, J. (Eds.), Automata Studies. Princeton University Press, Princeton.
+<div id="ref-McCulloch:neuron43" class="csl-entry" role="listitem">
+McCulloch, W.S., Pitts, W., 1943. A logical calculus of the ideas
+immanent in nervous activity. Bulletin of Mathematical Biophysics 5,
+115–133. <a
+href="https://doi.org/10.1007/BF02478259">https://doi.org/10.1007/BF02478259</a>
 </div>
-<div id="ref-Rosenblatt-perceptron58" class="csl-entry" role="doc-biblioentry">
-Rosenblatt, F., 1958. The perceptron: A probabilistic model for information storage and organization in the brain. Psychological Review 65, 386–408. <a href="https://doi.org/10.1037/h0042519">https://doi.org/10.1037/h0042519</a>
+<div id="ref-Neumann-probabilistic56" class="csl-entry" role="listitem">
+Neumann, J. von, 1956. Probabilistic logics and the synthesis of
+reliable organisms from unreliable components, in: Shannon, C.E.,
+McCarthy, J. (Eds.), Automata Studies. Princeton University Press,
+Princeton.
 </div>
-<div id="ref-Rumelhart:book86" class="csl-entry" role="doc-biblioentry">
-Rumelhart, D.E., McClelland, J.L., the PDP Research Group, 1986. Parallel distributed programming: Explorations in the microstructure of cognition. mit, Cambridge, MA.
+<div id="ref-Rosenblatt-perceptron58" class="csl-entry" role="listitem">
+Rosenblatt, F., 1958. The perceptron: A probabilistic model for
+information storage and organization in the brain. Psychological Review
+65, 386–408. <a
+href="https://doi.org/10.1037/h0042519">https://doi.org/10.1037/h0042519</a>
 </div>
-<div id="ref-Russell-principia25" class="csl-entry" role="doc-biblioentry">
-Russell, B., Whitehead, A.N., 1925. Principia mathematica, 2nd ed. Cambridge University Press.
+<div id="ref-Rumelhart:book86" class="csl-entry" role="listitem">
+Rumelhart, D.E., McClelland, J.L., the PDP Research Group, 1986.
+Parallel distributed programming: Explorations in the microstructure of
+cognition. mit, Cambridge, MA.
 </div>
-<div id="ref-Scholkopf:incorporating96" class="csl-entry" role="doc-biblioentry">
-Schölkopf, B., Burges, C.J.C., Vapnik, V.N., n.d. Incorporating invariances in support vector learning machines. pp. 47–52. <a href="https://doi.org/10.1007/3-540-61510-5_12">https://doi.org/10.1007/3-540-61510-5_12</a>
+<div id="ref-Russell-principia25" class="csl-entry" role="listitem">
+Russell, B., Whitehead, A.N., 1925. Principia mathematica, 2nd ed.
+Cambridge University Press.
 </div>
-<div id="ref-Scholkopf:comparing97" class="csl-entry" role="doc-biblioentry">
-Schölkopf, B., Sung, K.-K., Burges, C.J.C., Girosi, F., Niyogi, P., Poggio, T., Vapnik, V.N., 1997. Comparing support vector machines with <span>G</span>aussian kernels to radial basis function classifiers. IEEE Transactions on Signal Processing 45, 2758–2765. <a href="https://doi.org/10.1109/78.650102">https://doi.org/10.1109/78.650102</a>
+<div id="ref-Scholkopf:incorporating96" class="csl-entry"
+role="listitem">
+Schölkopf, B., Burges, C.J.C., Vapnik, V.N., n.d. Incorporating
+invariances in support vector learning machines. pp. 47–52. <a
+href="https://doi.org/10.1007/3-540-61510-5_12">https://doi.org/10.1007/3-540-61510-5_12</a>
 </div>
-<div id="ref-Wiener:yellow49" class="csl-entry" role="doc-biblioentry">
-Wiener, N., 1949. The extrapolation, interpolation and smoothing of stationary time series with engineering applications. wiley.
+<div id="ref-Scholkopf:comparing97" class="csl-entry" role="listitem">
+Schölkopf, B., Sung, K.-K., Burges, C.J.C., Girosi, F., Niyogi, P.,
+Poggio, T., Vapnik, V.N., 1997. Comparing support vector machines with
+<span>G</span>aussian kernels to radial basis function classifiers. IEEE
+Transactions on Signal Processing 45, 2758–2765. <a
+href="https://doi.org/10.1109/78.650102">https://doi.org/10.1109/78.650102</a>
 </div>
-<div id="ref-Wiener:cybernetics48" class="csl-entry" role="doc-biblioentry">
-Wiener, N., 1948. Cybernetics: Control and communication in the animal and the machine. MIT Press, Cambridge, MA.
+<div id="ref-Admiralty-gunnery45" class="csl-entry" role="listitem">
+The Admiralty, 1945. <a href="https://www.maritime.org/doc/br224/">The
+gunnery pocket book, b.r. 224/45</a>.
 </div>
-<div id="ref-Wittgenstein-logico21" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Wiener:yellow49" class="csl-entry" role="listitem">
+Wiener, N., 1949. The extrapolation, interpolation and smoothing of
+stationary time series with engineering applications. wiley.
+</div>
+<div id="ref-Wiener:cybernetics48" class="csl-entry" role="listitem">
+Wiener, N., 1948. Cybernetics: Control and communication in the animal
+and the machine. MIT Press, Cambridge, MA.
+</div>
+<div id="ref-Wittgenstein-logico21" class="csl-entry" role="listitem">
 Wittgenstein, L., 1922. Tractatus logico-philosophicus. Kegan Paul.
 </div>
 </div>

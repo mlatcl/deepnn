@@ -44,9 +44,11 @@
 
 <section id="title-slide">
   <h1 class="title">Introduction</h1>
-  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
+  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
+D. Lawrence</a></p>
   <p class="date" style="text-align:center"><time>2022-01-20</time></p>
-  <p class="venue" style="text-align:center">LT1, William Gates Building</p>
+  <p class="venue" style="text-align:center">LT1, William Gates
+Building</p>
 </section>
 
 <section class="slide level2">
@@ -68,7 +70,8 @@
 </div>
 </div>
 <aside class="notes">
-Lecture from the NYU course on Deep Learning given by Yann LeCun, Alfredo Canziani and Mark Goldstein
+Lecture from the NYU course on Deep Learning given by Yann LeCun,
+Alfredo Canziani and Mark Goldstein
 </aside>
 </section>
 <section id="lecturers" class="slide level2">
@@ -120,13 +123,17 @@ Neil Lawrence
 <ul>
 <li>Week 1:
 <ol type="1">
-<li>Introduction and Data. Lecturer: <a href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
-<li>Generalisation and Neural Networks. Lecturer: <a href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
+<li>Introduction and Data. Lecturer: <a
+href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
+<li>Generalisation and Neural Networks. Lecturer: <a
+href="http://inverseprobability.com/">Neil D. Lawrence</a></li>
 </ol></li>
 <li>Week 2:
 <ol type="1">
-<li>Automatic Differentiation. Lecturer: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
-<li>Optimization and Stochastic Gradient Descent. Lecturer: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Automatic Differentiation. Lecturer: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Optimization and Stochastic Gradient Descent. Lecturer: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
 </ol></li>
 </ul>
 </section>
@@ -136,7 +143,10 @@ Neil Lawrence
 <li>Week 3:
 <ol type="1">
 <li>Hardware. Lecturer: <a href="http://niclane.org/">Nic Lane</a></li>
-<li>Summary and Gap Filling: <a href="https://www.inference.vc/about/">Ferenc Huszár</a>, <a href="http://inverseprobability.com/">Neil D. Lawrence</a>, <a href="http://niclane.org/">Nic Lane</a></li>
+<li>Summary and Gap Filling: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a>, <a
+href="http://inverseprobability.com/">Neil D. Lawrence</a>, <a
+href="http://niclane.org/">Nic Lane</a></li>
 </ol></li>
 </ul>
 <p><strong>Set Assignment 1 (30%)</strong></p>
@@ -146,8 +156,10 @@ Neil Lawrence
 <ul>
 <li>Week 4:
 <ol type="1">
-<li>Convolutional Neural Networks: <a href="http://niclane.org/">Nic Lane</a></li>
-<li>Recurrent Neural Networks: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Convolutional Neural Networks: <a href="http://niclane.org/">Nic
+Lane</a></li>
+<li>Recurrent Neural Networks: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
 </ol></li>
 </ul>
 <p><strong>Assignment 1 Submitted</strong></p>
@@ -157,7 +169,8 @@ Neil Lawrence
 <ul>
 <li>Week 5:
 <ol type="1">
-<li>Sequence to Sequence and Attention: <a href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
+<li>Sequence to Sequence and Attention: <a
+href="https://www.inference.vc/about/">Ferenc Huszár</a></li>
 <li>Transformers: <a href="http://niclane.org/">Nic Lane</a></li>
 </ol></li>
 </ul>
@@ -180,42 +193,55 @@ Neil Lawrence
 <section id="what-is-machine-learning-1" class="slide level2">
 <h2>What is Machine Learning?</h2>
 <div class="fragment">
-<p><span class="math display">\[ \text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p><span class="math display">\[ \text{data} + \text{model}
+\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>data</strong> : observations, could be actively or passively acquired (meta-data).</li>
+<li><strong>data</strong> : observations, could be actively or passively
+acquired (meta-data).</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>model</strong> : assumptions, based on previous experience (other data! transfer learning etc), or beliefs about the regularities of the universe. Inductive bias.</li>
+<li><strong>model</strong> : assumptions, based on previous experience
+(other data! transfer learning etc), or beliefs about the regularities
+of the universe. Inductive bias.</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li><strong>prediction</strong> : an action to be taken or a categorization or a quality score.</li>
+<li><strong>prediction</strong> : an action to be taken or a
+categorization or a quality score.</li>
 </ul>
 </div>
 <div class="fragment">
 <ul>
-<li>Royal Society Report: <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a></li>
+<li>Royal Society Report: <a
+href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine
+Learning: Power and Promise of Computers that Learn by Example</a></li>
 </ul>
 </div>
 </section>
 <section id="what-is-machine-learning-2" class="slide level2">
 <h2>What is Machine Learning?</h2>
-<p><span class="math display">\[\text{data} + \text{model} \stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
+<p><span class="math display">\[\text{data} + \text{model}
+\stackrel{\text{compute}}{\rightarrow} \text{prediction}\]</span></p>
 <ul>
 <li class="fragment">To combine data with a model need:</li>
-<li class="fragment"><strong>a prediction function</strong> <span class="math inline">\(f(\cdot)\)</span> includes our beliefs about the regularities of the universe</li>
-<li class="fragment"><strong>an objective function</strong> <span class="math inline">\(E(\cdot)\)</span> defines the cost of misprediction.</li>
+<li class="fragment"><strong>a prediction function</strong> <span
+class="math inline">\(f(\cdot)\)</span> includes our beliefs about the
+regularities of the universe</li>
+<li class="fragment"><strong>an objective function</strong> <span
+class="math inline">\(E(\cdot)\)</span> defines the cost of
+misprediction.</li>
 </ul>
 </section>
 <section id="ingredients" class="slide level2">
 <h2>Ingredients</h2>
 </section>
-<section id="cybernetics-neural-networks-and-the-ratio-club" class="slide level2">
+<section id="cybernetics-neural-networks-and-the-ratio-club"
+class="slide level2">
 <h2>Cybernetics, Neural Networks and the Ratio Club</h2>
 </section>
 <section id="logic-mcculloch-and-pitts" class="slide level2">
@@ -225,17 +251,17 @@ Neil Lawrence
 <table>
 <tr>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//philosophy/Bertrand_Russell_1957.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/Lettvin_Pitts.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/warren_mcculloch.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
@@ -244,7 +270,8 @@ Neil Lawrence
 </div>
 </div>
 <aside class="notes">
-Bertrand Russell (1872-1970), Walter Pitts, <em>right</em> (1923-1969), Warren McCulloch (1898-1969)
+Bertrand Russell (1872-1970), Walter Pitts, <em>right</em> (1923-1969),
+Warren McCulloch (1898-1969)
 </aside>
 </section>
 <section id="cybernetics" class="slide level2">
@@ -259,12 +286,12 @@ Bertrand Russell (1872-1970), Walter Pitts, <em>right</em> (1923-1969), Warren M
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//physics/j-w-gibbs.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//physics/Norbert_wiener.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
@@ -273,20 +300,128 @@ Bertrand Russell (1872-1970), Walter Pitts, <em>right</em> (1923-1969), Warren M
 </div>
 </div>
 <aside class="notes">
-James Clerk Maxwell (1831-1879), Josiah Willard Gibbs (1839-1903), Norbert Wiener (1894-1964)
+James Clerk Maxwell (1831-1879), Josiah Willard Gibbs (1839-1903),
+Norbert Wiener (1894-1964)
 </aside>
 </section>
 <section id="analogue-and-digital" class="slide level2">
 <h2>Analogue and Digital</h2>
+</section>
+<section id="donald-mackay" class="slide level2">
+<h2>Donald MacKay</h2>
 <div class="figure">
 <div id="donald-maccrimmon-mackay-figure" class="figure-frame">
-<div class="centered centered" style="">
-<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//physics/dmaccrimmonmackay.jpg" width="30%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//people/DonaldMacKay1952.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
 <aside class="notes">
-Donald M. MacKay (1922-1987), an early member of the Cybernetics community and member of the Ratio Club.
+Donald M. MacKay (1922-1987), a physicist who was an early member of the
+cybernetics community and member of the Ratio Club.
+</aside>
+</section>
+<section id="fire-control-systems" class="slide level2">
+<h2>Fire Control Systems</h2>
+<div class="figure">
+<div id="low-angle-fire-control-team-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ai/low-angle-fire-control-team.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+The fire control computer set at the centre of a system of observation
+and tracking <span class="citation"
+data-cites="Admiralty-gunnery45">(The Admiralty, 1945)</span>.
+</aside>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="the-measurement-of-inclination-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ai/the-measurement-of-inclination.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+Measuring inclination between two ships <span class="citation"
+data-cites="Admiralty-gunnery45">(The Admiralty, 1945)</span>.
+Sophisticated fire control computers allowed the ship to continue to
+fire while under maneuvers.
+</aside>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="typical-modern-fire-control-table-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ai/typical-modern-fire-control-table.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+A second world war gun computer’s control table <span class="citation"
+data-cites="Admiralty-gunnery45">(The Admiralty, 1945)</span>.
+</aside>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="us-navy-training-film-figure" class="figure-frame">
+<iframe width="600" height="450" src="https://www.youtube.com/embed/gwf5mAlI7Ug?start=" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+</div>
+<aside class="notes">
+U.S. Navy training film MN-6783a. Basic Mechanisms of Fire Control
+Computers. Mechanical Computer Instructional Film 27794 (1953) for the
+Mk 1A Fire Control Computer.
+</aside>
+</section>
+<section id="behind-the-eye" class="slide level2">
+<h2>Behind the Eye</h2>
+<div class="figure">
+<div id="behind-the-eye-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//books/behind-the-eye.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+<a
+href="https://www.amazon.co.uk/Behind-Eye-Gifford-Lectures-MACKAY/dp/0631173323">Behind
+the Eye</a> <span class="citation" data-cites="Mackay-behind91">(MacKay,
+1991)</span> summarises MacKay’s Gifford Lectures, where MacKay uses the
+operation of the eye as a window on the operation of the brain.
+</aside>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<blockquote>
+<p>Later in the 1940’s, when I was doing my Ph.D. work, there was much
+talk of the brain as a computer and of the early digital computers that
+were just making the headlines as “electronic brains.” As an analogue
+computer man I felt strongly convinced that the brain, whatever it was,
+was not a digital computer. I didn’t think it was an analogue computer
+either in the conventional sense.</p>
+</blockquote>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<div class="figure">
+<div id="colossus-figure" class="figure-frame">
+<div class="centered" style="">
+<img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//computing/Colossus.jpg" width="70%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
+</div>
+</div>
+</div>
+<aside class="notes">
+A Colossus Mark 2 codebreaking computer being operated by Dorothy Du
+Boisson (left) and Elsie Booker (right). Colossus was designed by Tommy
+Flowers, but programmed and operated by groups of Wrens based at
+Bletchley Park.
 </aside>
 </section>
 <section id="the-perceptron" class="slide level2">
@@ -296,7 +431,7 @@ Donald M. MacKay (1922-1987), an early member of the Cybernetics community and m
 <table>
 <tr>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/w-ross-ashby.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
@@ -306,7 +441,7 @@ Donald M. MacKay (1922-1987), an early member of the Cybernetics community and m
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//Frank_Rosenblatt.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
@@ -315,69 +450,91 @@ Donald M. MacKay (1922-1987), an early member of the Cybernetics community and m
 </div>
 </div>
 <aside class="notes">
-W. Ross Ashby (1903-1972), John von Neumann (1903-1957), Frank Rosenblatt (1928-1971). <em>Photograph of W. Ross Ashby is Copyright W. Ross Ashby</em>.
+W. Ross Ashby (1903-1972), John von Neumann (1903-1957), Frank
+Rosenblatt (1928-1971). <em>Photograph of W. Ross Ashby is Copyright W.
+Ross Ashby</em>.
 </aside>
 </section>
 <section id="the-connectionists" class="slide level2">
 <h2>The Connectionists</h2>
 <div class="figure">
 <div id="-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/connectionist-summer-school.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
 <aside class="notes">
-Group photo from the 1986 Connectionists’ Summer School, held at CMU in July. Included in the photo are Richard Durbin, Terry Sejnowski, Geoff Hinton, Yann LeCun, Michael I. Jordan.
+Group photo from the 1986 Connectionists’ Summer School, held at CMU in
+July. Included in the photo are Richard Durbin, Terry Sejnowski, Geoff
+Hinton, Yann LeCun, Michael I. Jordan.
 </aside>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="pdp-volume-1-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/pdp_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
 <aside class="notes">
-Cover of the Parallel Distributed Processing edited volume <span class="citation" data-cites="Rumelhart:book86">(Rumelhart et al., 1986)</span>.
+Cover of the Parallel Distributed Processing edited volume <span
+class="citation" data-cites="Rumelhart:book86">(Rumelhart et al.,
+1986)</span>.
 </aside>
 <aside class="notes">
-What makes people smarter than computers? These volumes by a pioneering neurocomputing group suggest that the answer lies in the massively parallel architecture of the human mind. They describe a new theory of cognition called connectionism that is challenging the idea of symbolic computation that has traditionally been at the center of debate in theoretical discussions about the mind.
+What makes people smarter than computers? These volumes by a pioneering
+neurocomputing group suggest that the answer lies in the massively
+parallel architecture of the human mind. They describe a new theory of
+cognition called connectionism that is challenging the idea of symbolic
+computation that has traditionally been at the center of debate in
+theoretical discussions about the mind.
 </aside>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="nc-cover-lecun-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/nc_cover.jpg" width="40%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
 <aside class="notes">
-Cover of <em>Neural Computation</em>, Volume 1, Issue 4 containing <span class="citation" data-cites="LeCun:zip89">Le Cun et al. (1989)</span>. The cover shows examples from the U.S. Postal Service data set of handwritten digits.
+Cover of <em>Neural Computation</em>, Volume 1, Issue 4 containing <span
+class="citation" data-cites="LeCun:zip89">Le Cun et al. (1989)</span>.
+The cover shows examples from the U.S. Postal Service data set of
+handwritten digits.
 </aside>
 <aside class="notes">
-The first several stages of processing in our previous system (described in Denker et al. 1989) involved convolutions in which the coefficients had been laboriously hand designed. In the present system, the first two layers of the network are constrained to be convolutional, but the system automatically learns the coefficients that make up the kernels.
+The first several stages of processing in our previous system (described
+in Denker et al. 1989) involved convolutions in which the coefficients
+had been laboriously hand designed. In the present system, the first two
+layers of the network are constrained to be convolutional, but the
+system automatically learns the coefficients that make up the kernels.
 </aside>
 <!--include{_ml/includes/what-does-machine-learning-do.md}-->
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="neil-newton-institute-figure" class="figure-frame">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//people/1997-08-02-neil-newton-institute.jpg" width="80%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </div>
 </div>
 <aside class="notes">
-Neil standing outside the Newton Institute on 2nd August 1997, just after arriving for “Generalisation in Neural Networks and Machine Learning,” <a href="http://www.newton.ac.uk/files/reports/annual/ini_annual_report_97-98.pdf">see page 26-30 of this report</a>.
+Neil standing outside the Newton Institute on 2nd August 1997, just
+after arriving for “Generalisation in Neural Networks and Machine
+Learning”, <a
+href="http://www.newton.ac.uk/files/reports/annual/ini_annual_report_97-98.pdf">see
+page 26-30 of this report</a>.
 </aside>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="le-net-5-figure" class="figure-frame">
@@ -390,7 +547,7 @@ Neil standing outside the Newton Institute on 2nd August 1997, just after arrivi
 Gif animation of LeNet-5 in action.
 </aside>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="le-net-5-figure" class="figure-frame">
@@ -400,10 +557,11 @@ Gif animation of LeNet-5 in action.
 </div>
 </div>
 <aside class="notes">
-Gif animation of LeNet-5 in action. Here the translation invariance of the network is being tested.
+Gif animation of LeNet-5 in action. Here the translation invariance of
+the network is being tested.
 </aside>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="le-net-5-figure" class="figure-frame">
@@ -413,27 +571,28 @@ Gif animation of LeNet-5 in action. Here the translation invariance of the netwo
 </div>
 </div>
 <aside class="notes">
-Gif animation of LeNet-5 in action, here the scale invariance of the network is being tested.
+Gif animation of LeNet-5 in action, here the scale invariance of the
+network is being tested.
 </aside>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="cortes-guyon-vapnik-figure" class="figure-frame">
 <table>
 <tr>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/corinna-cortes.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/isabelle-guyon.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/vladmir-vapnik.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
 </td>
@@ -442,17 +601,23 @@ Gif animation of LeNet-5 in action, here the scale invariance of the network is 
 </div>
 </div>
 <aside class="notes">
-Corinna Cortes, Isabelle Guyon and Vladmir Vapnik. Three of the key people behind the support vector machine <span class="citation" data-cites="Boser-optimal92">Cortes and Vapnik (1995)</span>. All were based at Bell Labs in the 1990s.
+Corinna Cortes, Isabelle Guyon and Vladmir Vapnik. Three of the key
+people behind the support vector machine <span class="citation"
+data-cites="Boser-optimal92">Cortes and Vapnik (1995)</span>. All were
+based at Bell Labs in the 1990s.
 </aside>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <blockquote>
-<p>This work points out the necessity of having flexible “network design” software tools that ease the design of complex, specialized network architectures</p>
-<p>From conclusions of <span class="citation" data-cites="LeCun:zip89">Le Cun et al. (1989)</span></p>
+<p>This work points out the necessity of having flexible “network
+design” software tools that ease the design of complex, specialized
+network architectures</p>
+<p>From conclusions of <span class="citation"
+data-cites="LeCun:zip89">Le Cun et al. (1989)</span></p>
 </blockquote>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <div class="figure">
 <div id="russakovsky-li-figure" class="figure-frame">
@@ -473,7 +638,9 @@ Corinna Cortes, Isabelle Guyon and Vladmir Vapnik. Three of the key people behin
 </div>
 </div>
 <aside class="notes">
-Olga Russakovsky, Fei Fei Li. Olga and Fei Fei led the creation of the ImageNet database that enabled convolutional neural networks to show their true potential. The data base contains millions of images.
+Olga Russakovsky, Fei Fei Li. Olga and Fei Fei led the creation of the
+ImageNet database that enabled convolutional neural networks to show
+their true potential. The data base contains millions of images.
 </aside>
 </section>
 <section id="the-third-wave" class="slide level2">
@@ -525,27 +692,52 @@ Olga Russakovsky, Fei Fei Li. Olga and Fei Fei led the creation of the ImageNet 
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
-<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></p></li>
-<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
+<li><p>twitter: <a
+href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
+<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking
+Machines</a></p></li>
+<li><p>newspaper: <a
+href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
+Page</a></p></li>
 <li><p>blog posts:</p>
-<p><a href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What is Machine Learning?</a></p></li>
+<p><a
+href="http://inverseprobability.com/2017/07/17/what-is-machine-learning">What
+is Machine Learning?</a></p></li>
 </ul>
 </section>
 <section id="references" class="slide level2 unnumbered scrollable">
 <h2 class="unnumbered scrollable">References</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Boser-optimal92" class="csl-entry" role="doc-biblioentry">
-Boser, B.E., Guyon, I.M., Vapnik, V.N., 1992. A training algorithm for optimal margin classifiers, in: Proceedings of the Fifth Annual Workshop on Computational Learning Theory, COLT ’92. Association for Computing Machinery, New York, NY, USA, pp. 144–152. <a href="https://doi.org/10.1145/130385.130401">https://doi.org/10.1145/130385.130401</a>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-Boser-optimal92" class="csl-entry" role="listitem">
+Boser, B.E., Guyon, I.M., Vapnik, V.N., 1992. A training algorithm for
+optimal margin classifiers, in: Proceedings of the Fifth Annual Workshop
+on Computational Learning Theory, COLT ’92. Association for Computing
+Machinery, New York, NY, USA, pp. 144–152. <a
+href="https://doi.org/10.1145/130385.130401">https://doi.org/10.1145/130385.130401</a>
 </div>
-<div id="ref-Cortes:svnet95" class="csl-entry" role="doc-biblioentry">
-Cortes, C., Vapnik, V.N., 1995. Support vector networks. Machine Learning 20, 273–297. <a href="https://doi.org/10.1007/BF00994018">https://doi.org/10.1007/BF00994018</a>
+<div id="ref-Cortes:svnet95" class="csl-entry" role="listitem">
+Cortes, C., Vapnik, V.N., 1995. Support vector networks. Machine
+Learning 20, 273–297. <a
+href="https://doi.org/10.1007/BF00994018">https://doi.org/10.1007/BF00994018</a>
 </div>
-<div id="ref-LeCun:zip89" class="csl-entry" role="doc-biblioentry">
-Le Cun, Y., Boser, B.E., Denker, J.S., Henderson, D., Howard, R.E., Hubbard, W., Jackel, L.D., 1989. Backpropagation applied to handwritten zip code recognition. Neural Computation 1, 541–551. <a href="https://doi.org/10.1162/neco.1989.1.4.541">https://doi.org/10.1162/neco.1989.1.4.541</a>
+<div id="ref-LeCun:zip89" class="csl-entry" role="listitem">
+Le Cun, Y., Boser, B.E., Denker, J.S., Henderson, D., Howard, R.E.,
+Hubbard, W., Jackel, L.D., 1989. Backpropagation applied to handwritten
+zip code recognition. Neural Computation 1, 541–551. <a
+href="https://doi.org/10.1162/neco.1989.1.4.541">https://doi.org/10.1162/neco.1989.1.4.541</a>
 </div>
-<div id="ref-Rumelhart:book86" class="csl-entry" role="doc-biblioentry">
-Rumelhart, D.E., McClelland, J.L., the PDP Research Group, 1986. Parallel distributed programming: Explorations in the microstructure of cognition. mit, Cambridge, MA.
+<div id="ref-Mackay-behind91" class="csl-entry" role="listitem">
+MacKay, D.M., 1991. Behind the eye. Basil Blackwell.
+</div>
+<div id="ref-Rumelhart:book86" class="csl-entry" role="listitem">
+Rumelhart, D.E., McClelland, J.L., the PDP Research Group, 1986.
+Parallel distributed programming: Explorations in the microstructure of
+cognition. mit, Cambridge, MA.
+</div>
+<div id="ref-Admiralty-gunnery45" class="csl-entry" role="listitem">
+The Admiralty, 1945. <a href="https://www.maritime.org/doc/br224/">The
+gunnery pocket book, b.r. 224/45</a>.
 </div>
 </div>
 </section>
@@ -560,8 +752,39 @@ Rumelhart, D.E., McClelland, J.L., the PDP Research Group, 1986. Parallel distri
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
         // Push each slide change to the browser history
         history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',

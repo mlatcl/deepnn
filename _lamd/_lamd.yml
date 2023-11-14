@@ -10,20 +10,32 @@ layout: lecture
 room: LT1
 venue: William Gates Building
 talkcss: https://inverseprobability.com/assets/css/talks.css
-postsdir: ../../../mlatcl/deepnn/_lectures/
-slidesdir: ../../../mlatcl/deepnn/slides/
-notesdir: ../../../mlatcl/deepnn/_notes/
-notebooksdir: ../../../mlatcl/deepnn/_notebooks/
+bibdir: $HOME/lawrennd/bibliography
+postsdir: ../_lectures/
+slidesdir: ../slides/
+notesdir: ../_notes/
+notebooksdir: ../_notebooks/
+practicalsdir: ../_practicals/
+snippetsdir: $HOME/lawrennd/snippets
 writediagramsdir: .
-scriptsdir: ../scripts/
+scriptsdir: ./scripts/
 diagramsdir: ./slides/diagrams/
-potx: ../_includes/custom-reference.potx 
-dotx: ../_includes/custom-reference.dotx
+posts: True
+docx: True
+notespdf: False
+slidesipynb: False
+pptx: True
+pdf: False
+assignment: False
+ipynb: False
+reveal: False
+potx: custom-reference.potx 
+dotx: custom-reference.dotx
 baseurl: "deepnn/" # the subpath of your site, e.g. /blog/
 url: "https://mlatcl.github.io/" # the base hostname & protocol for your site
 ghub:
-- organization: lawrennd
-  repository: talks
+- organization: mlatcl
+  repository: deepnn
   branch: gh-pages
-  directory: _deepnn
+  directory: _lamd
 transition: None

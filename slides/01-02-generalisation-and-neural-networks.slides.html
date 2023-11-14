@@ -54,7 +54,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -67,7 +67,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -109,9 +109,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="title-slide">
   <h1 class="title">Generalization and Neural Networks</h1>
-  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil D. Lawrence</a></p>
+  <p class="author" style="text-align:center"><a href="http://inverseprobability.com">Neil
+D. Lawrence</a></p>
   <p class="date" style="text-align:center"><time>2022-01-25</time></p>
-  <p class="venue" style="text-align:center">LT1, William Gates Building</p>
+  <p class="venue" style="text-align:center">LT1, William Gates
+Building</p>
 </section>
 
 <section class="slide level2">
@@ -138,11 +140,14 @@ R(\mathbf{ w}) = \int L(y, x, \mathbf{ w}) \mathbb{P}(y, x) \text{d}y
 <section id="sample-based-approximations" class="slide level2">
 <h2>Sample-Based Approximations</h2>
 <ul>
-<li><p>Sample based approximation: replace true expectation with sum over samples. <span class="math display">\[
+<li><p>Sample based approximation: replace true expectation with sum
+over samples. <span class="math display">\[
 \int f(z) p(z) \text{d}z\approx \frac{1}{s}\sum_{i=1}^s f(z_i).
 \]</span></p></li>
-<li><p>Allows us to approximate true integral with a sum <span class="math display">\[
-R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
+<li><p>Allows us to approximate true integral with a sum <span
+class="math display">\[
+R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{
+w}).
 \]</span></p></li>
 </ul>
 </section>
@@ -157,7 +162,10 @@ R(\mathbf{ w}) \approx \frac{1}{n}\sum_{i=1}^{n} L(y_i, x_i, \mathbf{ w}).
 <script>
 showDivs(0, 'polynomial_basis');
 </script>
-<p><small></small> <input id="range-polynomial_basis" type="range" min="0" max="4" value="0" onchange="setDivs('polynomial_basis')" oninput="setDivs('polynomial_basis')"> <button onclick="plusDivs(-1, 'polynomial_basis')">❮</button> <button onclick="plusDivs(1, 'polynomial_basis')">❯</button></p>
+<p><small></small>
+<input id="range-polynomial_basis" type="range" min="0" max="4" value="0" onchange="setDivs('polynomial_basis')" oninput="setDivs('polynomial_basis')">
+<button onclick="plusDivs(-1, 'polynomial_basis')">❮</button>
+<button onclick="plusDivs(1, 'polynomial_basis')">❯</button></p>
 <div class="polynomial_basis" style="text-align:center;">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_basis000.svg" width="80%" style=" ">
 </object>
@@ -179,15 +187,21 @@ showDivs(0, 'polynomial_basis');
 </object>
 </div>
 </section>
-<section id="functions-derived-from-polynomial-basis" class="slide level2">
+<section id="functions-derived-from-polynomial-basis"
+class="slide level2">
 <h2>Functions Derived from Polynomial Basis</h2>
 <p><span class="math display">\[
-f(x) = {\color{cyan}{w_0}} + {\color{green}{w_1 x}} + {\color{yellow}{w_2 x^2}} + {\color{magenta}{w_3 x^3}} + {\color{red}{w_4 x^4}}
+f(x) = {\color{cyan}{w_0}} + {\color{green}{w_1 x}} +
+{\color{yellow}{w_2 x^2}} + {\color{magenta}{w_3 x^3}} +
+{\color{red}{w_4 x^4}}
 \]</span></p>
 <script>
 showDivs(0, 'polynomial_function');
 </script>
-<p><small></small> <input id="range-polynomial_function" type="range" min="0" max="3" value="0" onchange="setDivs('polynomial_function')" oninput="setDivs('polynomial_function')"> <button onclick="plusDivs(-1, 'polynomial_function')">❮</button> <button onclick="plusDivs(1, 'polynomial_function')">❯</button></p>
+<p><small></small>
+<input id="range-polynomial_function" type="range" min="0" max="3" value="0" onchange="setDivs('polynomial_function')" oninput="setDivs('polynomial_function')">
+<button onclick="plusDivs(-1, 'polynomial_function')">❮</button>
+<button onclick="plusDivs(1, 'polynomial_function')">❯</button></p>
 <div class="polynomial_function" style="text-align:center;">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/polynomial_function000.svg" width="80%" style=" ">
 </object>
@@ -201,7 +215,13 @@ showDivs(0, 'polynomial_function');
 </object>
 </div>
 <ul>
-<li>_2 ^2 + _3 ^3 + _4 ^4 $$ are <em>linear</em> in the parameters, <span class="math inline">\(\mathbf{ w}\)</span>, but <em>non-linear</em> in the input <span class="math inline">\(x^3\)</span>. Here we are showing a polynomial basis for a 1-dimensional input, <span class="math inline">\(x\)</span>, but basis functions can also be constructed for multidimensional inputs, <span class="math inline">\(\mathbf{ x}\)</span>.}</li>
+<li>_2 ^2 + _3 ^3 + _4 ^4 $$ are <em>linear</em> in the parameters,
+<span class="math inline">\(\mathbf{ w}\)</span>, but
+<em>non-linear</em> in the input <span
+class="math inline">\(x^3\)</span>. Here we are showing a polynomial
+basis for a 1-dimensional input, <span class="math inline">\(x\)</span>,
+but basis functions can also be constructed for multidimensional inputs,
+<span class="math inline">\(\mathbf{ x}\)</span>.}</li>
 </ul>
 </section>
 <section id="olympic-marathon-data" class="slide level2">
@@ -213,14 +233,16 @@ showDivs(0, 'polynomial_function');
 <li>Gold medal times for Olympic Marathon since 1896.</li>
 <li>Marathons before 1924 didn’t have a standardized distance.</li>
 <li>Present results using pace per km.</li>
-<li>In 1904 Marathon was badly organized leading to very slow times.</li>
+<li>In 1904 Marathon was badly organized leading to very slow
+times.</li>
 </ul>
 </td>
 <td width="30%">
-<div class="centered centered" style="">
+<div class="centered" style="">
 <img class="" src="https://mlatcl.github.io/deepnn/./slides/diagrams//Stephen_Kiprotich.jpg" width="100%" height="auto" align="center" style="background:none; border:none; box-shadow:none; display:block; margin-left:auto; margin-right:auto;vertical-align:middle">
 </div>
-<small>Image from Wikimedia Commons <a href="http://bit.ly/16kMKHQ" class="uri">http://bit.ly/16kMKHQ</a></small>
+<small>Image from Wikimedia Commons <a href="http://bit.ly/16kMKHQ"
+class="uri">http://bit.ly/16kMKHQ</a></small>
 </td>
 </tr>
 </table>
@@ -237,17 +259,20 @@ showDivs(0, 'polynomial_function');
 Olympic marathon pace times since 1896.
 </aside>
 </section>
-<section id="polynomial-fits-to-olympic-marthon-data" class="slide level2">
+<section id="polynomial-fits-to-olympic-marthon-data"
+class="slide level2">
 <h2>Polynomial Fits to Olympic Marthon Data</h2>
 <ul>
 <li>Fit linear model with polynomial basis to marathon data.</li>
-<li>Try different numbers of basis functions (different degress of polynomial).</li>
+<li>Try different numbers of basis functions (different degress of
+polynomial).</li>
 <li>Check the quality of fit.</li>
 </ul>
 </section>
 <section id="linear-fit" class="slide level2">
 <h2>Linear Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1x\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 +
+w_1x\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-2-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-2.svg" width="80%" style=" ">
@@ -255,12 +280,14 @@ Olympic marathon pace times since 1896.
 </div>
 </div>
 <aside class="notes">
-Fit of a 1-degree polynomial (a linear model) to the Olympic marathon data.
+Fit of a 1-degree polynomial (a linear model) to the Olympic marathon
+data.
 </aside>
 </section>
 <section id="cubic-fit" class="slide level2">
 <h2>Cubic Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + w_3 x^3\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ w_3 x^3\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-4-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-4.svg" width="80%" style=" ">
@@ -268,12 +295,14 @@ Fit of a 1-degree polynomial (a linear model) to the Olympic marathon data.
 </div>
 </div>
 <aside class="notes">
-Fit of a 3-degree polynomial (a cubic model) to the Olympic marathon data.
+Fit of a 3-degree polynomial (a cubic model) to the Olympic marathon
+data.
 </aside>
 </section>
 <section id="th-degree-polynomial-fit" class="slide level2">
 <h2>9th Degree Polynomial Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_9 x^9\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ \dots + w_9 x^9\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-10-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-10.svg" width="80%" style=" ">
@@ -286,7 +315,8 @@ Fit of a 9-degree polynomial to the Olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-1" class="slide level2">
 <h2>16th Degree Polynomial Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{16} x^{16}\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ \dots + w_{16} x^{16}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-17-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-17.svg" width="80%" style=" ">
@@ -299,7 +329,8 @@ Fit of a 16-degree polynomial to the Olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-2" class="slide level2">
 <h2>26th Degree Polynomial Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{26} x^{26}\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ \dots + w_{26} x^{26}\]</span></p>
 <div class="figure">
 <div id="olympic-marathon-polynomial-27-figure" class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-polynomial-27.svg" width="80%" style=" ">
@@ -318,7 +349,8 @@ Fit of a 26-degree polynomial to the Olympic marathon data.
 </section>
 <section id="resample-dataset" class="slide level2">
 <h2>Resample Dataset</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X):</span>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bootstrap(X):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;Return a bootstrap sample from a data set.&quot;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> X.shape[<span class="dv">0</span>]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ind <span class="op">=</span> np.random.choice(n, n, replace<span class="op">=</span><span class="va">True</span>) <span class="co"># Sample randomly with replacement.</span></span>
@@ -329,35 +361,43 @@ Fit of a 26-degree polynomial to the Olympic marathon data.
 </section>
 <section id="linear-fit-1" class="slide level2">
 <h2>Linear Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1
+x\]</span></p>
 <div class="figure">
-<div id="olympic-marathon-bootstrap-polynomial-2-figure" class="figure-frame">
+<div id="olympic-marathon-bootstrap-polynomial-2-figure"
+class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-2.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
-Fit of a 1 degree polynomial (a linear model) to the olympic marathon data.
+Fit of a 1 degree polynomial (a linear model) to the olympic marathon
+data.
 </aside>
 </section>
 <section id="cubic-fit-1" class="slide level2">
 <h2>Cubic Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + w_{3} x^3\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ w_{3} x^3\]</span></p>
 <div class="figure">
-<div id="olympic-marathon-bootstrap-polynomial-4-figure" class="figure-frame">
+<div id="olympic-marathon-bootstrap-polynomial-4-figure"
+class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-4.svg" width="80%" style=" ">
 </object>
 </div>
 </div>
 <aside class="notes">
-Fit of a 3 degree polynomial (a cubic model) to the olympic marathon data.
+Fit of a 3 degree polynomial (a cubic model) to the olympic marathon
+data.
 </aside>
 </section>
 <section id="th-degree-polynomial-fit-3" class="slide level2">
 <h2>9th Degree Polynomial Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{9} x^{9}\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ \dots + w_{9} x^{9}\]</span></p>
 <div class="figure">
-<div id="olympic-marathon-bootstrap-polynomial-10-figure" class="figure-frame">
+<div id="olympic-marathon-bootstrap-polynomial-10-figure"
+class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-10.svg" width="80%" style=" ">
 </object>
 </div>
@@ -368,9 +408,11 @@ Fit of a 9 degree polynomial to the olympic marathon data.
 </section>
 <section id="th-degree-polynomial-fit-4" class="slide level2">
 <h2>16th Degree Polynomial Fit</h2>
-<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2 + \dots + w_{16} x^{16}\]</span></p>
+<p><span class="math display">\[f(x, \mathbf{ w}) = w_0 + w_1 x+ w_2 x^2
++ \dots + w_{16} x^{16}\]</span></p>
 <div class="figure">
-<div id="olympic-marathon-bootstrap-polynomial-17-figure" class="figure-frame">
+<div id="olympic-marathon-bootstrap-polynomial-17-figure"
+class="figure-frame">
 <object class="svgplot " data="https://mlatcl.github.io/deepnn/./slides/diagrams//ml/olympic-marathon-bootstrap-polynomial-17.svg" width="80%" style=" ">
 </object>
 </div>
@@ -382,16 +424,20 @@ Fit of a 16 degree polynomial to the olympic marathon data.
 <section id="bias-variance-decomposition" class="slide level2">
 <h2>Bias Variance Decomposition</h2>
 <p>Generalisation error <span class="math display">\[\begin{align*}
-R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \mathbf{ x}) \text{d}y\text{d}\mathbf{ x}\\
-&amp; \triangleq \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2 \right].
+R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2
+\mathbb{P}(y, \mathbf{ x}) \text{d}y\text{d}\mathbf{ x}\\
+&amp; \triangleq \mathbb{E}\left[ \left(y- f^*(\mathbf{ x})\right)^2
+\right].
 \end{align*}\]</span></p>
 </section>
 <section id="decompose" class="slide level2">
 <h2>Decompose</h2>
 <p>Decompose as <span class="math display">\[
 \begin{align*}
-\mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = &amp; \text{bias}\left[f^*(\mathbf{ x})\right]^2 \\
-&amp; + \text{variance}\left[f^*(\mathbf{ x})\right] \\ \\ &amp;+\sigma^2,
+\mathbb{E}\left[ \left(y- f(\mathbf{ x})\right)^2 \right] = &amp;
+\text{bias}\left[f^*(\mathbf{ x})\right]^2 \\
+&amp; + \text{variance}\left[f^*(\mathbf{ x})\right] \\ \\
+&amp;+\sigma^2,
 \end{align*}
 \]</span></p>
 </section>
@@ -409,23 +455,30 @@ R(\mathbf{ w}) = &amp; \int \left(y- f^*(\mathbf{ x})\right)^2 \mathbb{P}(y, \ma
 <h2>Variance</h2>
 <ul>
 <li><p>Given by <span class="math display">\[
-\text{variance}\left[f^*(\mathbf{ x})\right] = \mathbb{E}\left[\left(f^*(\mathbf{ x}) - \mathbb{E}\left[f^*(\mathbf{ x})\right]\right)^2\right].
+\text{variance}\left[f^*(\mathbf{ x})\right] =
+\mathbb{E}\left[\left(f^*(\mathbf{ x}) - \mathbb{E}\left[f^*(\mathbf{
+x})\right]\right)^2\right].
 \]</span></p></li>
-<li><p>Slight variations in the training set cause changes in the prediction. Error due to variance is error in the model due to an overly complex model.</p></li>
+<li><p>Slight variations in the training set cause changes in the
+prediction. Error due to variance is error in the model due to an overly
+complex model.</p></li>
 </ul>
 </section>
 <section id="regularization" class="slide level2">
 <h2>Regularization</h2>
 <p>Linear system, solve:</p>
 <p><span class="math display">\[
-\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{ \Phi}^\top\mathbf{ y}
-\]</span> But if <span class="math inline">\(\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\)</span> then this is not well posed.</p>
+\boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}\mathbf{ w}= \boldsymbol{
+\Phi}^\top\mathbf{ y}
+\]</span> But if <span class="math inline">\(\boldsymbol{
+\Phi}^\top\boldsymbol{ \Phi}\)</span> then this is not well posed.</p>
 </section>
 <section id="tikhonov-regularization" class="slide level2">
 <h2>Tikhonov Regularization</h2>
 <ul>
 <li>Updated objective: <span class="math display">\[
-L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
+L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{
+f}) + \alpha\left\Vert \mathbf{W} \right\Vert_2^2
 \]</span></li>
 <li>Hessian: <span class="math display">\[
 \boldsymbol{ \Phi}^\top\boldsymbol{ \Phi}+ \alpha \mathbf{I}
@@ -435,18 +488,27 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <section id="splines-functions-hilbert-kernels" class="slide level2">
 <h2>Splines, Functions, Hilbert Kernels</h2>
 <ul>
-<li>Can also regularize the function <span class="math inline">\(f(\cdot)\)</span> directly.</li>
-<li>This approach taken in <em>splines</em> and <span class="citation" data-cites="Wahba:book90">Wahba (1990)</span> and kernels <span class="citation" data-cites="Scholkopf:learning01">Schölkopf and Smola (2001)</span>.</li>
-<li>Mathematically more elegant, but algorithmically less flexible and harder to scale.</li>
+<li>Can also regularize the function <span
+class="math inline">\(f(\cdot)\)</span> directly.</li>
+<li>This approach taken in <em>splines</em> and <span class="citation"
+data-cites="Wahba:book90">Wahba (1990)</span> and kernels <span
+class="citation" data-cites="Scholkopf:learning01">Schölkopf and Smola
+(2001)</span>.</li>
+<li>Mathematically more elegant, but algorithmically less flexible and
+harder to scale.</li>
 </ul>
 </section>
 <section id="training-with-noise" class="slide level2">
 <h2>Training with Noise</h2>
 <ul>
-<li>Other regularisation approaches such as <em>dropout</em> <span class="citation" data-cites="Srivastava-dropout14">(Srivastava et al., 2014)</span></li>
+<li>Other regularisation approaches such as <em>dropout</em> <span
+class="citation" data-cites="Srivastava-dropout14">(Srivastava et al.,
+2014)</span></li>
 <li>Often perturbing the neural network structure or inputs.</li>
-<li>Can have elegant interpretations (see e.g. <span class="citation" data-cites="Bishop:noise95">Bishop (1995)</span>)</li>
-<li>Also interpreted as <em>ensemble</em> or <em>Bayesian</em> methods.</li>
+<li>Can have elegant interpretations (see e.g. <span class="citation"
+data-cites="Bishop:noise95">Bishop (1995)</span>)</li>
+<li>Also interpreted as <em>ensemble</em> or <em>Bayesian</em>
+methods.</li>
 </ul>
 <!--include{_ml/includes/bayesian-interpretation-of-regularisation.md}-->
 </section>
@@ -468,8 +530,10 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <p><span class="math display">\[
 \begin{align*}
     \mathbf{ h}_{1} &amp;= \phi\left(\mathbf{W}_1 \mathbf{ x}\right)\\
-    \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{ h}_{1}\right)\\
-    \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{ h}_{2}\right)\\
+    \mathbf{ h}_{2} &amp;=  \phi\left(\mathbf{W}_2\mathbf{
+h}_{1}\right)\\
+    \mathbf{ h}_{3} &amp;= \phi\left(\mathbf{W}_3 \mathbf{
+h}_{2}\right)\\
     f&amp;= \mathbf{ w}_4 ^\top\mathbf{ h}_{3}
 \end{align*}
 \]</span></p>
@@ -477,7 +541,9 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <section id="neural-network-prediction-function" class="slide level2">
 <h2>Neural Network Prediction Function</h2>
 <p><span class="math display">\[
- f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3 \phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{ x}\right)\right)\right).
+f(\mathbf{ x}; \mathbf{W})  =  \mathbf{ w}_4 ^\top\phi\left(\mathbf{W}_3
+\phi\left(\mathbf{W}_2\phi\left(\mathbf{W}_1 \mathbf{
+x}\right)\right)\right).
 \]</span></p>
 </section>
 <section id="overparameterised-systems" class="slide level2">
@@ -495,10 +561,14 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <section id="whence-generalisation" class="slide level2">
 <h2>Whence Generalisation?</h2>
 <ul>
-<li>Not enough regularisation in our objective functions to explain.</li>
-<li>Neural network models are <em>not</em> using traditional generalisation approaches.</li>
-<li>The ability of these models to generalise <em>must</em> be coming somehow from the algorithm*</li>
-<li>How to explain it and control it is perhaps the most interesting theoretical question for neural networks.</li>
+<li>Not enough regularisation in our objective functions to
+explain.</li>
+<li>Neural network models are <em>not</em> using traditional
+generalisation approaches.</li>
+<li>The ability of these models to generalise <em>must</em> be coming
+somehow from the algorithm*</li>
+<li>How to explain it and control it is perhaps the most interesting
+theoretical question for neural networks.</li>
 </ul>
 </section>
 <section id="double-descent" class="slide level2">
@@ -511,7 +581,14 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 </div>
 </div>
 <aside class="notes">
-<em>Left</em> traditional perspective on generalization. There is a sweet spot of operation where the training error is still non-zero. Overfitting occurs when the variance increases. <em>Right</em> The double descent phenomenon, the modern models operate in an interpolation regime where they reconstruct the training data fully but are well regularized in their interpolations for test data. Figure from <span class="citation" data-cites="Belkin:reconciling19">Belkin et al. (2019)</span>.
+<em>Left</em> traditional perspective on generalization. There is a
+sweet spot of operation where the training error is still non-zero.
+Overfitting occurs when the variance increases. <em>Right</em> The
+double descent phenomenon, the modern models operate in an interpolation
+regime where they reconstruct the training data fully but are well
+regularized in their interpolations for test data. Figure from <span
+class="citation" data-cites="Belkin:reconciling19">Belkin et al.
+(2019)</span>.
 </aside>
 </section>
 <section id="neural-tangent-kernel" class="slide level2">
@@ -519,62 +596,98 @@ L(\mathbf{ w}) = (\mathbf{ y}- \mathbf{ f})^\top(\mathbf{ y}- \mathbf{ f}) + \al
 <ul>
 <li>Consider very wide neural networks.</li>
 <li>Consider particular initialisation.</li>
-<li>Deep neural network is regularising with a particular <em>kernel</em>.</li>
-<li>This is known as the neural tangent kernel <span class="citation" data-cites="Jacot-ntk18">(Jacot et al., 2018)</span>.</li>
+<li>Deep neural network is regularising with a particular
+<em>kernel</em>.</li>
+<li>This is known as the neural tangent kernel <span class="citation"
+data-cites="Jacot-ntk18">(Jacot et al., 2018)</span>.</li>
 </ul>
 </section>
 <section id="regularization-in-optimization" class="slide level2">
 <h2>Regularization in Optimization</h2>
 <ul>
 <li>Gradient flow methods allow us to study nature of optima.</li>
-<li>In particular systems, with given initialisations, we can show L1 and L2 norms are minimised.</li>
-<li>In other cases the rank of <span class="math inline">\(\mathbf{W}\)</span> is minimised.</li>
-<li>Questions remain over the nature of this regularisation in neural networks.</li>
+<li>In particular systems, with given initialisations, we can show L1
+and L2 norms are minimised.</li>
+<li>In other cases the rank of <span
+class="math inline">\(\mathbf{W}\)</span> is minimised.</li>
+<li>Questions remain over the nature of this regularisation in neural
+networks.</li>
 </ul>
 </section>
 <section id="deep-linear-models" class="slide level2">
 <h2>Deep Linear Models</h2>
 <p><span class="math display">\[
-f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 \mathbf{ x}.
+f(\mathbf{ x}; \mathbf{W}) = \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2
+\mathbf{W}_1 \mathbf{ x}.
 \]</span></p>
 <p><span class="math display">\[
-\mathbf{W}= \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1 
+\mathbf{W}= \mathbf{W}_4 \mathbf{W}_3 \mathbf{W}_2 \mathbf{W}_1
 \]</span></p>
 </section>
 <section id="thanks" class="slide level2 scrollable">
 <h2 class="scrollable">Thanks!</h2>
 <ul>
-<li><p>twitter: <a href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
-<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking Machines</a></p></li>
-<li><p>newspaper: <a href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile Page</a></p></li>
+<li><p>twitter: <a
+href="https://twitter.com/lawrennd">@lawrennd</a></p></li>
+<li><p>podcast: <a href="http://thetalkingmachines.com">The Talking
+Machines</a></p></li>
+<li><p>newspaper: <a
+href="http://www.theguardian.com/profile/neil-lawrence">Guardian Profile
+Page</a></p></li>
 <li><p>blog posts:</p>
-<p><a href="http://inverseprobability.com/2014/07/01/open-data-science">Open Data Science</a></p></li>
+<p><a
+href="http://inverseprobability.com/2014/07/01/open-data-science">Open
+Data Science</a></p></li>
 </ul>
 </section>
 <section id="references" class="slide level2 scrollable">
 <h2 class="scrollable">References</h2>
 <p>bootstrap</p>
-<p>David Hogg’s lecture <a href="https://speakerdeck.com/dwhgg/linear-regression-with-huge-numbers-of-parameters" class="uri">https://speakerdeck.com/dwhgg/linear-regression-with-huge-numbers-of-parameters</a></p>
-<p>The Deep Bootstrap <a href="https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20" class="uri">https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20</a></p>
-<p>Aki Vehtari on Leave One Out Uncertainty: <a href="https://arxiv.org/abs/2008.10296" class="uri">https://arxiv.org/abs/2008.10296</a> (check for his references).</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Belkin:reconciling19" class="csl-entry" role="doc-biblioentry">
-Belkin, M., Hsu, D., Ma, S., Soumik Mandal, and, 2019. Reconciling modern machine-learning practice and the classical bias-variance trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.
+<p>David Hogg’s lecture <a
+href="https://speakerdeck.com/dwhgg/linear-regression-with-huge-numbers-of-parameters"
+class="uri">https://speakerdeck.com/dwhgg/linear-regression-with-huge-numbers-of-parameters</a></p>
+<p>The Deep Bootstrap <a
+href="https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20"
+class="uri">https://twitter.com/PreetumNakkiran/status/1318007088321335297?s=20</a></p>
+<p>Aki Vehtari on Leave One Out Uncertainty: <a
+href="https://arxiv.org/abs/2008.10296"
+class="uri">https://arxiv.org/abs/2008.10296</a> (check for his
+references).</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-Belkin:reconciling19" class="csl-entry" role="listitem">
+Belkin, M., Hsu, D., Ma, S., Soumik Mandal, and, 2019. Reconciling
+modern machine-learning practice and the classical bias-variance
+trade-off. Proc. Natl. Acad. Sci. USA 116, 15849–15854.
 </div>
-<div id="ref-Bishop:noise95" class="csl-entry" role="doc-biblioentry">
-Bishop, C.M., 1995. Training with noise is equivalent to <span>T</span>ikhonov regularization. Neural Computation 7, 108–116. <a href="https://doi.org/10.1162/neco.1995.7.1.108">https://doi.org/10.1162/neco.1995.7.1.108</a>
+<div id="ref-Bishop:noise95" class="csl-entry" role="listitem">
+Bishop, C.M., 1995. Training with noise is equivalent to
+<span>T</span>ikhonov regularization. Neural Computation 7, 108–116. <a
+href="https://doi.org/10.1162/neco.1995.7.1.108">https://doi.org/10.1162/neco.1995.7.1.108</a>
 </div>
-<div id="ref-Jacot-ntk18" class="csl-entry" role="doc-biblioentry">
-Jacot, A., Gabriel, F., Hongler, C., 2018. Neural tangent kernel: Convergence and generalization in neural networks, in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi, N., Garnett, R. (Eds.), Advances in Neural Information Processing Systems. Curran Associates, Inc., pp. 8571–8580.
+<div id="ref-Jacot-ntk18" class="csl-entry" role="listitem">
+Jacot, A., Gabriel, F., Hongler, C., 2018. <a
+href="https://papers.nips.cc/paper/2018/hash/5a4be1fa34e62bb8a6ec6b91d2462f5a-Abstract.html">Neural
+tangent kernel: Convergence and generalization in neural networks</a>,
+in: Bengio, S., Wallach, H., Larochelle, H., Grauman, K., Cesa-Bianchi,
+N., Garnett, R. (Eds.), Advances in Neural Information Processing
+Systems. Curran Associates, Inc., pp. 8571–8580.
 </div>
-<div id="ref-Scholkopf:learning01" class="csl-entry" role="doc-biblioentry">
-Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge, MA.
+<div id="ref-Scholkopf:learning01" class="csl-entry" role="listitem">
+Schölkopf, B., Smola, A.J., 2001. Learning with kernels. mit, Cambridge,
+MA.
 </div>
-<div id="ref-Srivastava-dropout14" class="csl-entry" role="doc-biblioentry">
-Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I., Salakhutdinov, R., 2014. Dropout: A simple way to prevent neural networks from overfitting. Journal of Machine Learning Research 15, 1929–1958.
+<div id="ref-Srivastava-dropout14" class="csl-entry" role="listitem">
+Srivastava, N., Hinton, G., Krizhevsky, A., Sutskever, I.,
+Salakhutdinov, R., 2014. <a
+href="http://jmlr.org/papers/v15/srivastava14a.html">Dropout: A simple
+way to prevent neural networks from overfitting</a>. Journal of Machine
+Learning Research 15, 1929–1958.
 </div>
-<div id="ref-Wahba:book90" class="csl-entry" role="doc-biblioentry">
-Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href="https://doi.org/10.1137/1.9781611970128">https://doi.org/10.1137/1.9781611970128</a>
+<div id="ref-Wahba:book90" class="csl-entry" role="listitem">
+Wahba, G., 1990. Spline models for observational data, First. ed. SIAM.
+<a
+href="https://doi.org/10.1137/1.9781611970128">https://doi.org/10.1137/1.9781611970128</a>
 </div>
 </div>
 </section>
@@ -589,8 +702,39 @@ Wahba, G., 1990. Spline models for observational data, First. ed. SIAM. <a href=
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
         // Push each slide change to the browser history
         history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js',
           config: 'TeX-AMS_HTML-full',
