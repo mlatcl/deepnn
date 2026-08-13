@@ -1,0 +1,11 @@
+- given: Ferenc
+  family: Huszár
+  image: people/ferenc-huszar.jpg
+  url: https://www.inference.vc/about/
+  title: Ferenz Huszár
+
+- given: Nic
+  family: Lane
+  image: people/nic-lane.jpg
+  url: https://www.cst.cam.ac.uk/people/ndl32
+  title: Nic Lane
