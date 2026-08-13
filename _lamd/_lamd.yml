@@ -1,3 +1,7 @@
+# LaMD Configuration Template for Course
+# Update these settings for your specific course
+
+# Author information - update with your details
 author:
 - given: Neil D.
   family: Lawrence
@@ -6,36 +10,61 @@ author:
   twitter: lawrennd
   orcid: 0000-0001-9258-1030
   url: http://inverseprobability.com
-layout: lecture
-room: LT1
-venue: William Gates Building
+
+# Directory paths
+bibdir: $HOME/lawrennd/bibliography # Bibliography directory
+postsdir: ../_lectures/ # Where compiled lecture HTML files go
+slidesdir: ../slides/ # Where compiled slides go
+notesdir: ../_notes/ # Where compiled notes go
+notebooksdir: ../_notebooks/ # Where compiled notebooks go
+practicalsdir: ../_practicals/ # Where compiled practicals go
+snippetsdir: $HOME/lawrennd/snippets # Directory for reusable content snippets
+writediagramsdir: . # Where to write generated diagrams
+scriptsdir: ../scripts/ # Directory for scripts
+diagramsdir: ../slides/diagrams/ # Directory for diagrams
+
+# Layout and styling
+slidesheader: slides-header.html
+notation: talk-notation.tex
+layout: lecture # Default layout for lectures
+
+# Output format settings (True/False)
+posts: True # Generate HTML lecture pages
+docx: False # Generate Word documents
+notespdf: False # Generate PDF notes
+slidesipynb: False # Generate Jupyter notebooks for slides
+pptx: False # Generate PowerPoint presentations
+pdf: False # Generate PDF lectures
+assignment: False # Generate assignment format
+ipynb: False # Generate Jupyter notebooks
+reveal: True # Use reveal.js for slides
+
+# Website configuration
+url: "https://mlatcl.github.io/" # the base hostname & protocol for your site
+baseurl: deepnn/
 talkcss: https://inverseprobability.com/assets/css/talks.css
-bibdir: $HOME/lawrennd/bibliography
-postsdir: ../_lectures/
-slidesdir: ../slides/
-notesdir: ../_notes/
-notebooksdir: ../_notebooks/
-practicalsdir: ../_practicals/
-snippetsdir: $HOME/lawrennd/snippets
-writediagramsdir: .
-scriptsdir: ./scripts/
-diagramsdir: ../slides/diagrams/
-posts: True
-docx: True
-notespdf: False
-slidesipynb: False
-pptx: True
-pdf: False
-assignment: False
-ipynb: False
-reveal: False
+people: ../_people/people.yml
+
+# Use shared macros from lamd installation
+macrosdir: $HOME/lawrennd/lamd/lamd/macros
+
+# Slide transition effect
+transition: None # Options: None, fade, slide, convex, concave, zoom
+
+# Custom templates (optional)
 potx: custom-reference.potx 
 dotx: custom-reference.dotx
-baseurl: "deepnn/" # the subpath of your site, e.g. /blog/
-url: "https://mlatcl.github.io/" # the base hostname & protocol for your site
+
+# Venue information (update for your course)
+venue: TBA
+
+# GitHub Pages configuration
 ghub:
-- organization: mlatcl
-  repository: deepnn
-  branch: gh-pages
-  directory: _lamd
-transition: None
+  - organization: mlatcl # Your GitHub username or organization
+    repository: deepnn # Repository name
+    branch: gh-pages # Branch for GitHub Pages
+    directory: _lamd # Directory containing source files
+
+room: LT1
+venue: William Gates Building
+

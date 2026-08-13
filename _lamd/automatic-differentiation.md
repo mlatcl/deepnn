@@ -38,147 +38,6 @@ date: 2022-01-27
 [https://www.reddit.com/r/CST_DeepNN/](https://www.reddit.com/r/CST_DeepNN/)
 
 
-\slides{
-\subsection{Approximation}
-
-\subsubsection{Basic Multilayer Perceptron}
-
-\begin{align}
-f_l(x) &= \phi(W_l f_{l-1}(x) + b_l)\\
-f_0(x) &= x
-\end{align}
-
-\subsubsection{Basic Multilayer Perceptron}
-
-$$
-\small
-f_L(x) = \phi\left(b_L + W_L \phi\left(b_{L-1} + W_{L-1} \phi\left( \cdots \phi\left(b_1 + W_1 x\right) \cdots \right)\right)\right)
-$$
-
-\subsubsection{Rectified Linear Unit}
-
-$$
-\phi(x) = \left\{\matrix{0&\text{when }x\leq 0\\x&\text{when }x>0}\right.
-$$
-
-![](https://i.imgur.com/SxKdrzb.png)
-
-
-\subsubsection{What can these networks represent?}
-
-
-$$
-\operatorname{ReLU}(\mathbf{w}_1x - \mathbf{b}_1)
-$$
-
-![](https://i.imgur.com/rN5wRVJ.png)
-
-\subsubsection{What can these networks represent?}
-
-$$
-f(x) = \mathbf{w}^T_2 \operatorname{ReLU}(\mathbf{w}_1x - \mathbf{b}_1)
-$$
-
-![](https://i.imgur.com/kX3nuYg.png)
-
-\subsubsection{Single hidden layer}
-
-number of kinks $\approx O($ width of network $)$
-
-\subsubsection{Example: "sawtooth" network}
-
-
-\begin{align}
-f_l(x) &= 2\vert f_{l-1}(x)\vert - 2 \\
-f_0(x) &= x
-\end{align}
-
-\subsubsection{Sawtooth network}
-
-\begin{align}
-f_l(x) &= 2 \operatorname{ReLU}(f_{l-1}(x)) + 2 \operatorname{ReLU}(-f_{l-1}(x)) - 2\\
-f_0(x) &= x
-\end{align}
-
-\subsubsection{$0$-layer network}
-
-![](https://i.imgur.com/pucqIVN.png)
-
-\subsubsection{$1$-layer network}
-
-![](https://i.imgur.com/YOTtTY7.png)
-
-\subsubsection{$2$-layer network}
-
-![](https://i.imgur.com/reii7O5.png)
-
-\subsubsection{$3$-layer network}
-
-![](https://i.imgur.com/J6KiUHI.png)
-
-\subsubsection{$4$-layer network}
-
-![](https://i.imgur.com/fHTZhU0.png)
-
-\subsubsection{$5$-layer network}
-
-![](https://i.imgur.com/ni4QV2b.png)
-
-\subsubsection{Deep ReLU networks}
-
-number of kinks $\approx O(2^\text{depth of network})$
-
-\subsubsection{In higher dimensions}
-
-![](https://i.imgur.com/0NVHFEN.png)
-
-\subsubsection{In higher dimensions}
-
-![](https://i.imgur.com/DJtv5Yj.jpg)
-
-\subsubsection{Approximation: summary}
-
-* depth increases model complexity more than width
-* model clas defined by deep networks is VERY LARGE
-* both an advantage, but and cause for concern
-* "complex models don't generalize"
-
-\subsection{Generalization}
-
-\subsection{Generalization}
-
-![](https://i.imgur.com/Tu5SHpr.png)
-
-\subsection{Generalization}
-
-![](https://i.imgur.com/8bkhxAv.png)
-
-\subsection{Generalization}
-
-![](https://i.imgur.com/YHedAr6.png)
-
-\subsection{Generalization: deep nets}
-
-![](https://i.imgur.com/bfyRBsx.png)
-
-\subsection{Generalization: deep nets}
-![](https://i.imgur.com/fzLYvHe.png)
-
-\subsection{Generalization: summary}
-
-* **classical view:** generalization is property of model class and loss function
-* **new view:** it is also a property of the optimization algorithm
-
-\subsection{Generalization}
-
-* optimization is core to deep learning
-* new tools and insights:
-    * infinite width neural networks
-    * neural tangent kernel [(Jacot et al, 2018)](https://arxiv.org/abs/1806.07572)
-    * deep linear models ([e.g. Arora et al, 2019](https://arxiv.org/abs/1905.13655))
-    * importance of initialization
-    * effect of gradient noise
-
 \subsection{Gradient-based optimization}
 
 $$
@@ -283,14 +142,14 @@ $$
 \subsection{Example: calculating a Hessian}
 
 $$
-H(\mathbb{w}) = \frac{\partial^2}{\partial\mathbf{w}\partial\mathbf{w}^T} L(\mathbf{w})
+H(\mathbb{w}) = \frac{\partial^2}{\partial\mathbf{w}\partial\mathbf{w}^\top} L(\mathbf{w})
 = \frac{\partial}{\partial\mathbf{w}} \mathbf{g}(\mathbf{w})
 $$
 
 \subsection{Example: Hessian-vector product}
 
 $$
-\mathbf{v}^TH(\mathbf{w}) = \frac{\partial}{\partial\mathbf{w}} \left( \mathbf{v}^T \mathbf{g}(\mathbf{w}) \right)
+\mathbf{v}^\top H(\mathbf{w}) = \frac{\partial}{\partial\mathbf{w}} \left( \mathbf{v}^\top \mathbf{g}(\mathbf{w}) \right)
 $$
 
 }
