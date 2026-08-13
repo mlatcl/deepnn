@@ -14,6 +14,17 @@
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
+      /* scrollable slides: start content at top, left-align text */
+      .reveal section.scrollable {
+          overflow-y: auto !important;
+          height: 100% !important;
+          top: 0 !important;
+          text-align: left;
+      }
+      .reveal section.scrollable > h2:first-child,
+      .reveal section.scrollable > h2.scrollable:first-child {
+          margin-top: 0.2em;
+      }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@3.9.2/css/theme/black.css" id="theme">
   <link rel="stylesheet" href="https://inverseprobability.com/assets/css/talks.css"/>
@@ -28,6 +39,9 @@
   <!--[if lt IE 9]>
   <script src="https://unpkg.com/reveal.js@3.9.2/lib/js/html5shiv.js"></script>
   <![endif]-->
+   <!-- Mermaid -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -36,7 +50,57 @@
       }
     });
   </script>
-  <script src="../assets/js/figure-animate.js"></script>
+  <script src="https://inverseprobability.com/assets/js/figure-animate.js"></script>
+  <script>
+  /* Map range slider values (min..max, often 0-based in LaMD content) to the
+     1-based frame index expected by figure-animate.js showDivs(). */
+  function lamdFrameIndex(group) {
+    var range = document.getElementById("range-" + group);
+    var val = parseInt(range.value, 10);
+    var min = parseInt(range.min, 10);
+    return val - min + 1;
+  }
+  function lamdSetDivs(group) {
+    if (typeof showDivs !== "function") return;
+    slideIndex = lamdFrameIndex(group);
+    showDivs(slideIndex, group);
+  }
+  function lamdPlusDivs(n, group) {
+    if (typeof showDivs !== "function") return;
+    var range = document.getElementById("range-" + group);
+    var min = parseInt(range.min, 10);
+    var max = parseInt(range.max, 10);
+    var val = parseInt(range.value, 10) + n;
+    if (val < min) val = max;
+    if (val > max) val = min;
+    range.value = val;
+    range.setAttribute("aria-valuenow", val);
+    slideIndex = val - min + 1;
+    showDivs(slideIndex, group);
+  }
+  </script>
+   <!-- Initialize Mermaid after Reveal is loaded -->
+<script>
+  Reveal.addEventListener('ready', event => {
+    // Initialize mermaid
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      // These are the same theme variables we used above
+      themeVariables: {
+          primaryColor: '#4a90e2',
+          primaryTextColor: '#fff',
+          primaryBorderColor: '#357abd',
+          lineColor: '#67b246',
+          fontSize: '30px',
+          fontFamily: 'arial',
+	  edgeLabelBackground: 'transparent',
+	  tertiaryColor: 'transparent'
+      }
+    });
+  });
+</script>
+   
 </head>
 <body>
   <div class="reveal">
@@ -59,152 +123,6 @@
 <section id="reddit-group" class="slide level2">
 <h2>Reddit Group</h2>
 <p><a href="https://www.reddit.com/r/CST_DeepNN/">https://www.reddit.com/r/CST_DeepNN/</a></p>
-<p>{</p>
-</section>
-<section id="approximation" class="slide level2">
-<h2>Approximation</h2>
-</section>
-<section id="basic-multilayer-perceptron" class="slide level2">
-<h2>Basic Multilayer Perceptron</h2>
-<p><span class="math display">\[\begin{align}
-f_l(x) &amp;= \phi(W_l f_{l-1}(x) + b_l)\\
-f_0(x) &amp;= x
-\end{align}\]</span></p>
-</section>
-<section id="basic-multilayer-perceptron-1" class="slide level2">
-<h2>Basic Multilayer Perceptron</h2>
-<p><span class="math display">\[
-\small
-f_L(x) = \phi\left(b_L + W_L \phi\left(b_{L-1} + W_{L-1} \phi\left( \cdots \phi\left(b_1 + W_1 x\right) \cdots \right)\right)\right)
-\]</span></p>
-</section>
-<section id="rectified-linear-unit" class="slide level2">
-<h2>Rectified Linear Unit</h2>
-<p><span class="math display">\[
-\phi(x) = \left\{\matrix{0&amp;\text{when }x\leq 0\\x&amp;\text{when }x&gt;0}\right.
-\]</span></p>
-<p><img data-src="https://i.imgur.com/SxKdrzb.png" /></p>
-</section>
-<section id="what-can-these-networks-represent" class="slide level2">
-<h2>What can these networks represent?</h2>
-<p><span class="math display">\[
-\operatorname{ReLU}(\mathbf{w}_1x - \mathbf{b}_1)
-\]</span></p>
-<p><img data-src="https://i.imgur.com/rN5wRVJ.png" /></p>
-</section>
-<section id="what-can-these-networks-represent-1" class="slide level2">
-<h2>What can these networks represent?</h2>
-<p><span class="math display">\[
-f(x) = \mathbf{w}^T_2 \operatorname{ReLU}(\mathbf{w}_1x - \mathbf{b}_1)
-\]</span></p>
-<p><img data-src="https://i.imgur.com/kX3nuYg.png" /></p>
-</section>
-<section id="single-hidden-layer" class="slide level2">
-<h2>Single hidden layer</h2>
-<p>number of kinks <span class="math inline">\(\approx O(\)</span> width of network <span class="math inline">\()\)</span></p>
-</section>
-<section id="example-sawtooth-network" class="slide level2">
-<h2>Example: “sawtooth” network</h2>
-<p><span class="math display">\[\begin{align}
-f_l(x) &amp;= 2\vert f_{l-1}(x)\vert - 2 \\
-f_0(x) &amp;= x
-\end{align}\]</span></p>
-</section>
-<section id="sawtooth-network" class="slide level2">
-<h2>Sawtooth network</h2>
-<p><span class="math display">\[\begin{align}
-f_l(x) &amp;= 2 \operatorname{ReLU}(f_{l-1}(x)) + 2 \operatorname{ReLU}(-f_{l-1}(x)) - 2\\
-f_0(x) &amp;= x
-\end{align}\]</span></p>
-</section>
-<section id="layer-network" class="slide level2">
-<h2><span class="math inline">\(0\)</span>-layer network</h2>
-<p><img data-src="https://i.imgur.com/pucqIVN.png" /></p>
-</section>
-<section id="layer-network-1" class="slide level2">
-<h2><span class="math inline">\(1\)</span>-layer network</h2>
-<p><img data-src="https://i.imgur.com/YOTtTY7.png" /></p>
-</section>
-<section id="layer-network-2" class="slide level2">
-<h2><span class="math inline">\(2\)</span>-layer network</h2>
-<p><img data-src="https://i.imgur.com/reii7O5.png" /></p>
-</section>
-<section id="layer-network-3" class="slide level2">
-<h2><span class="math inline">\(3\)</span>-layer network</h2>
-<p><img data-src="https://i.imgur.com/J6KiUHI.png" /></p>
-</section>
-<section id="layer-network-4" class="slide level2">
-<h2><span class="math inline">\(4\)</span>-layer network</h2>
-<p><img data-src="https://i.imgur.com/fHTZhU0.png" /></p>
-</section>
-<section id="layer-network-5" class="slide level2">
-<h2><span class="math inline">\(5\)</span>-layer network</h2>
-<p><img data-src="https://i.imgur.com/ni4QV2b.png" /></p>
-</section>
-<section id="deep-relu-networks" class="slide level2">
-<h2>Deep ReLU networks</h2>
-<p>number of kinks <span class="math inline">\(\approx O(2^\text{depth of network})\)</span></p>
-</section>
-<section id="in-higher-dimensions" class="slide level2">
-<h2>In higher dimensions</h2>
-<p><img data-src="https://i.imgur.com/0NVHFEN.png" /></p>
-</section>
-<section id="in-higher-dimensions-1" class="slide level2">
-<h2>In higher dimensions</h2>
-<p><img data-src="https://i.imgur.com/DJtv5Yj.jpg" /></p>
-</section>
-<section id="approximation-summary" class="slide level2">
-<h2>Approximation: summary</h2>
-<ul>
-<li>depth increases model complexity more than width</li>
-<li>model clas defined by deep networks is VERY LARGE</li>
-<li>both an advantage, but and cause for concern</li>
-<li>“complex models don’t generalize”</li>
-</ul>
-</section>
-<section id="generalization" class="slide level2">
-<h2>Generalization</h2>
-</section>
-<section id="generalization-1" class="slide level2">
-<h2>Generalization</h2>
-<p><img data-src="https://i.imgur.com/Tu5SHpr.png" /></p>
-</section>
-<section id="generalization-2" class="slide level2">
-<h2>Generalization</h2>
-<p><img data-src="https://i.imgur.com/8bkhxAv.png" /></p>
-</section>
-<section id="generalization-3" class="slide level2">
-<h2>Generalization</h2>
-<p><img data-src="https://i.imgur.com/YHedAr6.png" /></p>
-</section>
-<section id="generalization-deep-nets" class="slide level2">
-<h2>Generalization: deep nets</h2>
-<p><img data-src="https://i.imgur.com/bfyRBsx.png" /></p>
-</section>
-<section id="generalization-deep-nets-1" class="slide level2">
-<h2>Generalization: deep nets</h2>
-<p><img data-src="https://i.imgur.com/fzLYvHe.png" /></p>
-</section>
-<section id="generalization-summary" class="slide level2">
-<h2>Generalization: summary</h2>
-<ul>
-<li><strong>classical view:</strong> generalization is property of model class and loss function</li>
-<li><strong>new view:</strong> it is also a property of the optimization algorithm</li>
-</ul>
-</section>
-<section id="generalization-4" class="slide level2">
-<h2>Generalization</h2>
-<ul>
-<li>optimization is core to deep learning</li>
-<li>new tools and insights:
-<ul>
-<li>infinite width neural networks</li>
-<li>neural tangent kernel <a href="https://arxiv.org/abs/1806.07572">(Jacot et al, 2018)</a></li>
-<li>deep linear models (<a href="https://arxiv.org/abs/1905.13655">e.g. Arora et al, 2019</a>)</li>
-<li>importance of initialization</li>
-<li>effect of gradient noise</li>
-</ul></li>
-</ul>
 </section>
 <section id="gradient-based-optimization" class="slide level2">
 <h2>Gradient-based optimization</h2>
@@ -215,7 +133,7 @@ f_0(x) &amp;= x
 \theta_{t+1} = \theta_t - \eta \nabla_\theta \mathcal{L}(\theta)
 \]</span></p>
 </section>
-<section id="basic-multilayer-perceptron-2" class="slide level2">
+<section id="basic-multilayer-perceptron" class="slide level2">
 <h2>Basic Multilayer Perceptron</h2>
 <p><span class="math display">\[
 \small
@@ -301,14 +219,14 @@ d_Ld_{L-1}d_{L-2} + d_{L}d_{L-2}d_{L-3} + \ldots + d_Ld_{1}d_0 = d_L \sum_{l=0}^
 <section id="example-calculating-a-hessian" class="slide level2">
 <h2>Example: calculating a Hessian</h2>
 <p><span class="math display">\[
-H(\mathbb{w}) = \frac{\partial^2}{\partial\mathbf{w}\partial\mathbf{w}^T} L(\mathbf{w})
+H(\mathbb{w}) = \frac{\partial^2}{\partial\mathbf{w}\partial\mathbf{w}^\top} L(\mathbf{w})
 = \frac{\partial}{\partial\mathbf{w}} \mathbf{g}(\mathbf{w})
 \]</span></p>
 </section>
 <section id="example-hessian-vector-product" class="slide level2">
 <h2>Example: Hessian-vector product</h2>
 <p><span class="math display">\[
-\mathbf{v}^TH(\mathbf{w}) = \frac{\partial}{\partial\mathbf{w}} \left( \mathbf{v}^T \mathbf{g}(\mathbf{w}) \right)
+\mathbf{v}^\top H(\mathbf{w}) = \frac{\partial}{\partial\mathbf{w}} \left( \mathbf{v}^\top \mathbf{g}(\mathbf{w}) \right)
 \]</span></p>
 <p>}</p>
 </section>
