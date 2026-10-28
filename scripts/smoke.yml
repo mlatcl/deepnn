@@ -1,0 +1,14 @@
+# Course-specific notebook smoke defaults (scripts/smoke_notebooks.py).
+# skip: filename prefixes to omit. plot_dirs: extra dirs created under _notebooks.
+# timeout_by_prefix: optional per-prefix cell timeouts in seconds.
+skip:
+  - 01-02-tmp          # leftover compile artefact
+  - 01-02-01-background  # orphan split; not in lectures.csv
+  - 01-02-02-background  # orphan split; not in lectures.csv
+  - 01-02-03-background  # orphan split; not in lectures.csv
+  - 02-01-automatic-differentiation  # needs jax, not in the shared smoke env
+  - 03-02-assignment   # student assignment; needs torch
+  - 05-02-assignment   # student assignment; needs torch
+plot_dirs: []
+timeout: 900
+timeout_by_prefix: {}
